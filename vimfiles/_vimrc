@@ -10,15 +10,6 @@ runtime vimrc_example.vim
 runtime macros/matchit.vim
 
 "函数
-  function Do_UpFile()
-
-	  let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
-	  if (choice!=3)
-		  let vim_proj="D:/UserProfiles/LawrenceChi/Documents/VIM_proj/PROJ/Tool"
-		  let cmd= "! C:/cygwin/bin/mintty.exe ".vim_proj."/SSHFileuploadmodefiyfile.sh"." ".g:SSHSendDir." ".g:SSHSendRemot." ".choice
-		  execute cmd
-	  endif
-  endfunction
 
  function Do_CsTag()
       let dir = getcwd()
@@ -75,27 +66,12 @@ runtime macros/matchit.vim
           endif
       endif
   endfunction
-if(has("win32") || has("win95") || has("win64") || has("win16"))
-    let g:iswindows=1
-else
-    let g:iswindows=0
-endif
-
-function Do_Astyle()
-	  let g:astyle_file=expand("%")
-	  silent execute "!astyle -A1M40Sjk1n --mode=c ".getcwd()."/".g:astyle_file
-endfunction
 "set相关
-set nobackup
-set rnu "自动显示行号
+set number "自动显示行号
 set nowrap "不自动换行
-set sw=4 "将shiftwidth设为4
-set ts=4 "将tabstop设为4
 "字体的设置
 set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
 set gfw=幼圆:h10:cGB2312
-set shiftwidth=4 
-set softtabstop=4 
 set tabstop=4 "让一个tab等于4个空格
 "set tw=80    "宽度为80时自动换行
 "set fo+=Mm   "中文宽度80时也自动换行
@@ -116,21 +92,12 @@ let NERDTreeWinPos="right"					" put NERDTree at right
 let NERDTreeWinSize=25						" set size
 let NERDTreeShowLineNumbers=0				" show line number
 
-"自动上传设置
-let g:BoyaaFTPSend="/"
-let g:BoyaaFTPRemote="/usr/server/Mahjong.sc/Compile/Hall/kk_Client/"
-
 "map相关
 "更新TAG
-map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 <CR>
-map <C-F8> :set encoding=cp936 \| language message cp936 <CR>
 map <F12> :call Do_CsTag()<CR>
-map <F10> :call Do_Astyle()<CR>
-map <F7> :call Do_UpFile() <CR>
 "更新函数列表
 map Tl :silent! Tlist<CR> "按下F3就可以呼出了
 map NT :NERDTree<CR>
 "自动命令
 "其他命令
 "最后
-call pathogen#infect()
