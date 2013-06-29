@@ -306,6 +306,7 @@ fuf-usage	fuf.txt	/*fuf-usage*
 fuf-vimrc-example	fuf.txt	/*fuf-vimrc-example*
 fuf.txt	fuf.txt	/*fuf.txt*
 fuzzyfinder	fuf.txt	/*fuzzyfinder*
+g:SuperTabClosePreviewOnPopupClose	supertab.txt	/*g:SuperTabClosePreviewOnPopupClose*
 g:SuperTabCompletionContexts	supertab.txt	/*g:SuperTabCompletionContexts*
 g:SuperTabContextDefaultCompletionType	supertab.txt	/*g:SuperTabContextDefaultCompletionType*
 g:SuperTabCrMapping	supertab.txt	/*g:SuperTabCrMapping*
@@ -484,6 +485,8 @@ snippet	snipMate.txt	/*snippet*
 snippet-syntax	snipMate.txt	/*snippet-syntax*
 snippets	snipMate.txt	/*snippets*
 supertab	supertab.txt	/*supertab*
+supertab-closepreviewonpopupclose	supertab.txt	/*supertab-closepreviewonpopupclose*
+supertab-completionchaining	supertab.txt	/*supertab-completionchaining*
 supertab-completioncontexts	supertab.txt	/*supertab-completioncontexts*
 supertab-contextdefault	supertab.txt	/*supertab-contextdefault*
 supertab-contextdiscover	supertab.txt	/*supertab-contextdiscover*
