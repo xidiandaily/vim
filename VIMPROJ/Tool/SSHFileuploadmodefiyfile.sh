@@ -21,14 +21,14 @@ if [ -f "$TIMESTEMP" ];then
 		n=`echo $i|sed -e "s/\.\///g"`;
 		f=$DIR"/"$n;
 		count=` expr $count + 1`;
-		echo "scp -P 3600 -rp $f LawrenceChi@192.168.100.144:$ROMOTE/$n";
-		scp -P 3600 -rp $f LawrenceChi@192.168.100.144:"$ROMOTE/$n";
+		echo "scp -P 3600 -rp $f $ROMOTE/$n";
+		scp -P 3600 -rp $f "$ROMOTE/$n";
 	done
 else
 	f=$DIR"/*";
 	count="all";
 	echo "upload all file";
-	scp -P 3600 -rp $f LawrenceChi@192.168.100.144:$ROMOTE
+	scp -P 3600 -rp $f "$ROMOTE"
 fi
 touch $TIMESTEMP;
 
