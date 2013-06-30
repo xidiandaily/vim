@@ -14,7 +14,7 @@ if exists('loaded_snips') || &cp || version < 700
 	finish
 endif
 let loaded_snips = 1
-if !exists('snips_author') | let snips_author = 'Me' | endif
+if !exists('snips_author') | let snips_author = 'LawrenceChi' | endif
 
 au BufRead,BufNewFile *.snippets\= set ft=snippet
 au FileType snippet setl noet fdm=indent
@@ -23,6 +23,7 @@ let s:snippets = {} | let s:multi_snips = {}
 
 if !exists('snippets_dir')
 	let snippets_dir = substitute(globpath(&rtp, 'snippets/'), "\n", ',', 'g')
+	let snippets_dir = substitute(snippets_dir, "\\", '/', 'g')
 endif
 
 fun! MakeSnip(scope, trigger, content, ...)

@@ -81,10 +81,16 @@ else
     let g:iswindows=0
 endif
 
+
 function Do_Astyle()
 	  let g:astyle_file=expand("%")
 	  silent execute "!astyle -A1M40Sjk1n --mode=c ".getcwd()."/".g:astyle_file
 endfunction
+"禁用vi兼容模式（原始的vi功能太少了，没必要考虑兼容） 
+set nocompatible
+""开启文件检测,使得 snipMate 能够正确加载
+:filetype on
+
 "set相关
 set nobackup
 set rnu "自动显示行号
