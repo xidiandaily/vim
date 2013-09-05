@@ -55,7 +55,8 @@ if [ "$CHOICE" -eq 2 ];then
 	rm $TIMESTEMP;
 fi
 if [ -f "$TIMESTEMP" ];then
-	for i in `find . -newer $TIMESTEMP -type f `; do 
+	#for i in `find . -newer $TIMESTEMP -type f `; do 
+	for i in `find -regextype awk  -regex ".*(php|html|cpp|h|Makefile|so)$" -newer $TIMESTEMP `; do
 		n=`echo $i|sed -e "s/\.\///g"`;
 		f=$DIR"/"$n;
 		count=` expr $count + 1`;
