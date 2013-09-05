@@ -4,8 +4,9 @@ if "%1" == "" (
 ) ELSE (
 echo "building ..."
 copy template.vim "%1".vim
-echo start gvim.exe -S "%VIMPROJ%\%1.vim" > PROJ/"%1".bat
+echo start gvim.exe -S "%%VIMPROJ%%\%1.vim" > PROJ/"%1".bat
 echo exit >> PROJ/"%1".bat
 echo "done!"
+start gvim.exe %1.vim
 )
 
