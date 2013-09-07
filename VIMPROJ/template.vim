@@ -18,8 +18,14 @@ function! InitWorkSpace()
 	:set rnu
 
 	let g:SSHSendDir="/"
-	let g:SSHIPRemote="chiyl@192.168.1.108:/usr/server/Mahjong.gb/Complie/Mahjong/"
-	let g:SSHPortRemote=22
+	let g:SSHUSER="chiyl@192.168.1.109"
+	let g:SSHPORT=22
+	let g:SSHRemoteDir="/usr/server/EventMonitor/"
+
+	#let g:SSHSendDir="/"
+	#let g:SSHUSER="lawrenceChi@192.168.100.144"
+	#let g:SSHPORT=3600
+	#let g:SSHRemoteDir="/usr/server/EventMonitor/"
 endfunction
 
 "Main函数中的参数是项目所在的根目录
