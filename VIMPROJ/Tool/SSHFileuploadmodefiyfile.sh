@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# -ne 4 ];then
+if [ $# -ne 5 ];then
 	echo "argumemnt number err";
 	read
 	exit 0;
@@ -9,9 +9,10 @@ fi
 export PATH=/usr/local/bin:/usr/bin:$PATH
 WorkPath=`pwd`;
 DIR=$WorkPath/$1;
-ROMOTE=$2;
-PORT=$3;
-CHOICE=$4;
+REMOTEIP=$2
+REMOTEPORT=$3;
+REMOTEDIR=$4;
+CHOICE=$5;
 
 shell_type=`uname`;
 
@@ -32,14 +33,14 @@ else
 		exit 0;
 	fi
 
-	if ! [[ $ROMOTE =~ '^.*[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\:.*$' ]];then
-		echo "remote ip( $ROMOTE ) is not support!!";
+	if ! [[ $REMOTEIP =~ '^.*[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*$' ]];then
+		echo "remote ip( $REMOTEIP ) is not support!!";
 		read
 		exit 0;
 	fi
 
-	if ! [[ $PORT =~ '^[0-9]+$' ]];then
-		echo "PORT: $PORT is not a support port!!";
+	if ! [[ $REMOTEPORT =~ '^[0-9]+$' ]];then
+		echo "REMOTEPORT: $REMOTEPORT is not a support port!!";
 		read
 		exit 0;
 	fi
@@ -60,15 +61,28 @@ if [ -f "$TIMESTEMP" ];then
 		n=`echo $i|sed -e "s/\.\///g"`;
 		f=$DIR"/"$n;
 		count=` expr $count + 1`;
-		echo "scp -P $PORT -rp $f $ROMOTE/$n";
-		scp -P $PORT -rp $f "$ROMOTE/$n";
+		echo "scp -P $REMOTEPORT -rp $f $REMOTEIP:$REMOTEDIR/$n";
+		scp -P $REMOTEPORT -rp $f "$REMOTEIP:$REMOTEDIR/$n";
 	done
 else
 	f=$DIR"/*";
 	count="all";
 	echo "upload all file";
-	scp -P $PORT -rp $f "$ROMOTE"
+	scp -P $REMOTEPORT -rp $f "$REMOTEIP:$REMOTEDIR"
 fi
+
+#更改上传文件的权限
+ssh $REMOTEIP -p $REMOTEPORT remote_cmd=$REMOTEDIR 'bash -s' <<'ENDSSH'
+  # commands to run on remote host
+  cd $remote_cmd; pwd
+  find -type f -exec chmod 666 {} \;
+  find -type d -exec chmod 777 {} \;
+  find -type f -name "*.sh" -exec chmod 766 {} \;
+  find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
+ENDSSH
+
+
+
 touch $TIMESTEMP;
 
 echo "upload file :"$count;
