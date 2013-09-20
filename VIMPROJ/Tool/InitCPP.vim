@@ -11,6 +11,6 @@ function! InitCPP()
     " automatically open and close the popup menu / preview window
     au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
     set completeopt=menuone,menu,longest
-    :set tags+=$VIMPROJ/vimlib/tags
-    :set path+=$VIMPROJ/vimlib/cpp_src
+    :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags
+    :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/
 endfunction
