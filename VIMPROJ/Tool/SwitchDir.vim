@@ -6,6 +6,9 @@ function! SwitchDir(filename)
         endif
     endif
     execute ":cd ".a:filename
+    silent! execute "! C:/cygwin/bin/mintty.exe D:/Vim/VIMPROJ/Tool/get_dirlist.sh ~vimcurpath.tmp"
+    let addpath=system("cat ~vimcurpath.tmp")
+    execute addpath
 endfunction
 
 
