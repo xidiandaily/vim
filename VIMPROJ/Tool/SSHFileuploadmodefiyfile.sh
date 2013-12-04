@@ -75,8 +75,8 @@ fi
 ssh $REMOTEIP -p $REMOTEPORT remote_cmd=$REMOTEDIR 'bash -s' <<'ENDSSH'
   # commands to run on remote host
   cd $remote_cmd; pwd
-  find -type f -exec chmod 666 {} \;
   find -type d -exec chmod 777 {} \;
+  find -type f -exec chmod 666 {} \;
   find -type f -name "*.sh" -exec chmod 766 {} \;
   find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
 ENDSSH
