@@ -103,6 +103,10 @@ set gfw=幼圆:h10:cGB2312
 set shiftwidth=4 
 set softtabstop=4 
 set tabstop=4 "让一个tab等于4个空格
+set autoindent    "always set autoindenting on
+set smartindent   "set smart indent
+set smarttab      "use tabs at the start of a line, spaces elsewhere
+set expandtab
 "set tw=80    "宽度为80时自动换行
 "set fo+=Mm   "中文宽度80时也自动换行
 colorscheme lucius
