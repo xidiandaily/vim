@@ -1,5 +1,7 @@
 "初始化CPP环境
 source  $VIMPROJ/Tool/InitCPP.vim
+"初始化LUA环境
+source  $VIMPROJ/Tool/InitLua.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
@@ -9,6 +11,7 @@ function! Main(pa)
 		let s:path=a:pa
 		let s:filename=s:path
 		call InitCPP()
+		call InitLua()
 		call SwitchDir(s:path)
 		call Do_CsTag()
 		:silent! Tlist
