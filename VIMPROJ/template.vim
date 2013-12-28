@@ -18,7 +18,7 @@ function! InitWorkSpace()
 	:set rnu
 
 	let g:SSHSendDir="/"
-	let g:SSHUSER="chiyl@192.168.1.109"
+	let g:SSHUSER="chiyl@192.168.199.109"
 	let g:SSHPORT=22
 	let g:SSHRemoteDir="/usr/server/EventMonitor/"
 
