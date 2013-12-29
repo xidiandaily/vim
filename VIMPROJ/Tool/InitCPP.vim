@@ -13,6 +13,6 @@ function! InitCPP()
     "set completeopt=menuone,menu,longest,preview
 	"预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
-    :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags
-    :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/
+    :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/unix_network_programming/tags
+    :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/unix_network_programming/
 endfunction

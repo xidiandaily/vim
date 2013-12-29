@@ -1,0 +1,558 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AF_LOCAL	.\unp.h	173;"	d
+AI_CANONNAME	.\addrinfo.h	23;"	d
+AI_PASSIVE	.\addrinfo.h	22;"	d
+Accept	.\unp.h	/^int		 Accept(int, SA *, socklen_t *);$/;"	p	signature:(int, SA *, socklen_t *)
+Accept	.\wrapsock.c	/^Accept(int fd, struct sockaddr *sa, socklen_t *salenptr)$/;"	f	signature:(int fd, struct sockaddr *sa, socklen_t *salenptr)
+BUFFSIZE	.\unp.h	197;"	d
+Bind	.\unp.h	/^void	 Bind(int, const SA *, socklen_t);$/;"	p	signature:(int, const SA *, socklen_t)
+Bind	.\wrapsock.c	/^Bind(int fd, const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(int fd, const struct sockaddr *sa, socklen_t salen)
+CMSG_LEN	.\unp.h	154;"	d
+CMSG_SPACE	.\unp.h	158;"	d
+Calloc	.\unp.h	/^void	*Calloc(size_t, size_t);$/;"	p	signature:(size_t, size_t)
+Calloc	.\wrapunix.c	/^Calloc(size_t n, size_t size)$/;"	f	signature:(size_t n, size_t size)
+Close	.\unp.h	/^void	 Close(int);$/;"	p	signature:(int)
+Close	.\wrapunix.c	/^Close(int fd)$/;"	f	signature:(int fd)
+Connect	.\unp.h	/^void	 Connect(int, const SA *, socklen_t);$/;"	p	signature:(int, const SA *, socklen_t)
+Connect	.\wrapsock.c	/^Connect(int fd, const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(int fd, const struct sockaddr *sa, socklen_t salen)
+Connect_timeo	.\connect_timeo.c	/^Connect_timeo(int fd, const SA *sa, socklen_t salen, int sec)$/;"	f	signature:(int fd, const SA *sa, socklen_t salen, int sec)
+Connect_timeo	.\unp.h	/^void	 Connect_timeo(int, const SA *, socklen_t, int);$/;"	p	signature:(int, const SA *, socklen_t, int)
+DIR_MODE	.\unp.h	240;"	d
+Dup2	.\unp.h	/^void	 Dup2(int, int);$/;"	p	signature:(int, int)
+Dup2	.\wrapunix.c	/^Dup2(int fd1, int fd2)$/;"	f	signature:(int fd1, int fd2)
+EAI_ADDRFAMILY	.\addrinfo.h	36;"	d
+EAI_AGAIN	.\addrinfo.h	37;"	d
+EAI_BADFLAGS	.\addrinfo.h	38;"	d
+EAI_FAIL	.\addrinfo.h	39;"	d
+EAI_FAMILY	.\addrinfo.h	40;"	d
+EAI_MEMORY	.\addrinfo.h	41;"	d
+EAI_NODATA	.\addrinfo.h	42;"	d
+EAI_NONAME	.\addrinfo.h	43;"	d
+EAI_SERVICE	.\addrinfo.h	44;"	d
+EAI_SOCKTYPE	.\addrinfo.h	45;"	d
+EAI_SYSTEM	.\addrinfo.h	46;"	d
+FILE_MODE	.\unp.h	238;"	d
+Family_to_level	.\family_to_level.c	/^Family_to_level(int family)$/;"	f	signature:(int family)
+Family_to_level	.\unp.h	/^int		 Family_to_level(int);$/;"	p	signature:(int)
+Fclose	.\unp.h	/^void	 Fclose(FILE *);$/;"	p	signature:(FILE *)
+Fclose	.\wrapstdio.c	/^Fclose(FILE *fp)$/;"	f	signature:(FILE *fp)
+Fcntl	.\unp.h	/^int		 Fcntl(int, int, int);$/;"	p	signature:(int, int, int)
+Fcntl	.\wrapunix.c	/^Fcntl(int fd, int cmd, int arg)$/;"	f	signature:(int fd, int cmd, int arg)
+Fdopen	.\unp.h	/^FILE	*Fdopen(int, const char *);$/;"	p	signature:(int, const char *)
+Fdopen	.\wrapstdio.c	/^Fdopen(int fd, const char *type)$/;"	f	signature:(int fd, const char *type)
+Fgets	.\unp.h	/^char	*Fgets(char *, int, FILE *);$/;"	p	signature:(char *, int, FILE *)
+Fgets	.\wrapstdio.c	/^Fgets(char *ptr, int n, FILE *stream)$/;"	f	signature:(char *ptr, int n, FILE *stream)
+Fopen	.\unp.h	/^FILE	*Fopen(const char *, const char *);$/;"	p	signature:(const char *, const char *)
+Fopen	.\wrapstdio.c	/^Fopen(const char *filename, const char *mode)$/;"	f	signature:(const char *filename, const char *mode)
+Fork	.\unp.h	/^pid_t	 Fork(void);$/;"	p	signature:(void)
+Fork	.\wrapunix.c	/^Fork(void)$/;"	f	signature:(void)
+Fputs	.\unp.h	/^void	 Fputs(const char *, FILE *);$/;"	p	signature:(const char *, FILE *)
+Fputs	.\wrapstdio.c	/^Fputs(const char *ptr, FILE *stream)$/;"	f	signature:(const char *ptr, FILE *stream)
+Get_ifi_info	.\get_ifi_info.c	/^Get_ifi_info(int family, int doaliases)$/;"	f	signature:(int family, int doaliases)
+Get_ifi_info	.\unpifi.h	/^struct ifi_info	*Get_ifi_info(int, int);$/;"	p	signature:(int, int)
+Getpeername	.\unp.h	/^void	 Getpeername(int, SA *, socklen_t *);$/;"	p	signature:(int, SA *, socklen_t *)
+Getpeername	.\wrapsock.c	/^Getpeername(int fd, struct sockaddr *sa, socklen_t *salenptr)$/;"	f	signature:(int fd, struct sockaddr *sa, socklen_t *salenptr)
+Getsockname	.\unp.h	/^void	 Getsockname(int, SA *, socklen_t *);$/;"	p	signature:(int, SA *, socklen_t *)
+Getsockname	.\wrapsock.c	/^Getsockname(int fd, struct sockaddr *sa, socklen_t *salenptr)$/;"	f	signature:(int fd, struct sockaddr *sa, socklen_t *salenptr)
+Getsockopt	.\unp.h	/^void	 Getsockopt(int, int, int, void *, socklen_t *);$/;"	p	signature:(int, int, int, void *, socklen_t *)
+Getsockopt	.\wrapsock.c	/^Getsockopt(int fd, int level, int optname, void *optval, socklen_t *optlenptr)$/;"	f	signature:(int fd, int level, int optname, void *optval, socklen_t *optlenptr)
+Gettimeofday	.\unp.h	/^void	 Gettimeofday(struct timeval *, void *);$/;"	p	signature:(struct timeval *, void *)
+Gettimeofday	.\wrapunix.c	/^Gettimeofday(struct timeval *tv, void *foo)$/;"	f	signature:(struct timeval *tv, void *foo)
+Host_serv	.\host_serv.c	/^Host_serv(const char *host, const char *serv, int family, int socktype)$/;"	f	signature:(const char *host, const char *serv, int family, int socktype)
+Host_serv	.\unp.h	/^struct addrinfo *Host_serv(const char *, const char *, int, int);$/;"	p	signature:(const char *, const char *, int, int)
+IFI_ALIAS	.\unpifi.h	27;"	d
+IFI_HADDR	.\unpifi.h	11;"	d
+IFI_NAME	.\unpifi.h	10;"	d
+INADDR_NONE	.\unp.h	98;"	d
+INET6_ADDRSTRLEN	.\unp.h	121;"	d
+INET_ADDRSTRLEN	.\unp.h	113;"	d
+INFTIM	.\unp.h	184;"	d
+INFTIM_UNPH	.\unp.h	187;"	d
+If_indextoname	.\if_indextoname.c	/^If_indextoname(unsigned int index, char *name)$/;"	f	signature:(unsigned int index, char *name)
+If_indextoname	.\unp.h	/^char			*If_indextoname(unsigned int, char *);$/;"	p	signature:(unsigned int, char *)
+If_nameindex	.\if_nameindex.c	/^If_nameindex(void)$/;"	f	signature:(void)
+If_nameindex	.\unp.h	/^struct if_nameindex	*If_nameindex(void);$/;"	p	signature:(void)
+If_nametoindex	.\if_nametoindex.c	/^If_nametoindex(const char *name)$/;"	f	signature:(const char *name)
+If_nametoindex	.\unp.h	/^unsigned int		 If_nametoindex(const char *);$/;"	p	signature:(const char *)
+Inet6_rth_add	.\unp.h	/^void	 Inet6_rth_add(void *, const struct in6_addr *);$/;"	p	signature:(void *, const struct in6_addr *)
+Inet6_rth_add	.\wrapsock.c	/^Inet6_rth_add(void *rthbuf, const struct in6_addr *addr)$/;"	f	signature:(void *rthbuf, const struct in6_addr *addr)
+Inet6_rth_getaddr	.\unp.h	/^struct in6_addr *Inet6_rth_getaddr(const void *, int);$/;"	p	signature:(const void *, int)
+Inet6_rth_getaddr	.\wrapsock.c	/^Inet6_rth_getaddr(const void *rthbuf, int idx)$/;"	f	signature:(const void *rthbuf, int idx)
+Inet6_rth_init	.\unp.h	/^void	*Inet6_rth_init(void *, socklen_t, int, int);$/;"	p	signature:(void *, socklen_t, int, int)
+Inet6_rth_init	.\wrapsock.c	/^Inet6_rth_init(void *rthbuf, socklen_t rthlen, int type, int segments)$/;"	f	signature:(void *rthbuf, socklen_t rthlen, int type, int segments)
+Inet6_rth_reverse	.\unp.h	/^void	 Inet6_rth_reverse(const void *, void *);$/;"	p	signature:(const void *, void *)
+Inet6_rth_reverse	.\wrapsock.c	/^Inet6_rth_reverse(const void *in, void *out)$/;"	f	signature:(const void *in, void *out)
+Inet6_rth_segments	.\unp.h	/^int		 Inet6_rth_segments(const void *);$/;"	p	signature:(const void *)
+Inet6_rth_segments	.\wrapsock.c	/^Inet6_rth_segments(const void *rthbuf)$/;"	f	signature:(const void *rthbuf)
+Inet6_rth_space	.\unp.h	/^int		 Inet6_rth_space(int, int);$/;"	p	signature:(int, int)
+Inet6_rth_space	.\wrapsock.c	/^Inet6_rth_space(int type, int segments)$/;"	f	signature:(int type, int segments)
+Inet_ntop	.\unp.h	/^const char		*Inet_ntop(int, const void *, char *, size_t);$/;"	p	signature:(int, const void *, char *, size_t)
+Inet_ntop	.\wraplib.c	/^Inet_ntop(int family, const void *addrptr, char *strptr, size_t len)$/;"	f	signature:(int family, const void *addrptr, char *strptr, size_t len)
+Inet_pton	.\unp.h	/^void			 Inet_pton(int, const char *, void *);$/;"	p	signature:(int, const char *, void *)
+Inet_pton	.\wraplib.c	/^Inet_pton(int family, const char *strptr, void *addrptr)$/;"	f	signature:(int family, const char *strptr, void *addrptr)
+Ioctl	.\unp.h	/^int		 Ioctl(int, int, void *);$/;"	p	signature:(int, int, void *)
+Ioctl	.\wrapunix.c	/^Ioctl(int fd, int request, void *arg)$/;"	f	signature:(int fd, int request, void *arg)
+Kevent	.\unp.h	/^int		 Kevent(int, const struct kevent *, int,$/;"	p	signature:(int, const struct kevent *, int, struct kevent *, int, const struct timespec *)
+Kevent	.\wrapsock.c	/^Kevent(int kq, const struct kevent *changelist, int nchanges,$/;"	f	signature:(int kq, const struct kevent *changelist, int nchanges, struct kevent *eventlist, int nevents, const struct timespec *timeout)
+Kqueue	.\unp.h	/^int		 Kqueue(void);$/;"	p	signature:(void)
+Kqueue	.\wrapsock.c	/^Kqueue(void)$/;"	f	signature:(void)
+LISTENQ	.\unp.h	193;"	d
+Listen	.\unp.h	/^void	 Listen(int, int);$/;"	p	signature:(int, int)
+Listen	.\wrapsock.c	/^Listen(int fd, int backlog)$/;"	f	signature:(int fd, int backlog)
+MAXFD	.\daemon_init.c	4;"	d	file:
+MAXLINE	.\unp.h	196;"	d
+Malloc	.\unp.h	/^void	*Malloc(size_t);$/;"	p	signature:(size_t)
+Malloc	.\wrapunix.c	/^Malloc(size_t size)$/;"	f	signature:(size_t size)
+Mcast_block_source	.\mcast_join.c	/^Mcast_block_source(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mcast_block_source	.\unp.h	/^void	 Mcast_block_source(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mcast_get_if	.\mcast_get_if.c	/^Mcast_get_if(int sockfd)$/;"	f	signature:(int sockfd)
+Mcast_get_if	.\unp.h	/^int		 Mcast_get_if(int);$/;"	p	signature:(int)
+Mcast_get_loop	.\mcast_get_loop.c	/^Mcast_get_loop(int sockfd)$/;"	f	signature:(int sockfd)
+Mcast_get_loop	.\unp.h	/^int		 Mcast_get_loop(int);$/;"	p	signature:(int)
+Mcast_get_ttl	.\mcast_get_ttl.c	/^Mcast_get_ttl(int sockfd)$/;"	f	signature:(int sockfd)
+Mcast_get_ttl	.\unp.h	/^int		 Mcast_get_ttl(int);$/;"	p	signature:(int)
+Mcast_join	.\mcast_join.c	/^Mcast_join(int sockfd, const SA *grp, socklen_t grplen,$/;"	f	signature:(int sockfd, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+Mcast_join	.\unp.h	/^void	 Mcast_join(int, const SA *, socklen_t, const char *, u_int);$/;"	p	signature:(int, const SA *, socklen_t, const char *, u_int)
+Mcast_join_source_group	.\mcast_join.c	/^Mcast_join_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+Mcast_join_source_group	.\unp.h	/^void	 Mcast_join_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+Mcast_leave	.\mcast_leave.c	/^Mcast_leave(int sockfd, const SA *grp, socklen_t grplen)$/;"	f	signature:(int sockfd, const SA *grp, socklen_t grplen)
+Mcast_leave	.\unp.h	/^void	 Mcast_leave(int, const SA *, socklen_t);$/;"	p	signature:(int, const SA *, socklen_t)
+Mcast_leave_source_group	.\mcast_leave.c	/^Mcast_leave_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mcast_leave_source_group	.\unp.h	/^void	 Mcast_leave_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mcast_set_if	.\mcast_set_if.c	/^Mcast_set_if(int sockfd, const char *ifname, u_int ifindex)$/;"	f	signature:(int sockfd, const char *ifname, u_int ifindex)
+Mcast_set_if	.\unp.h	/^void	 Mcast_set_if(int, const char *, u_int);$/;"	p	signature:(int, const char *, u_int)
+Mcast_set_loop	.\mcast_set_loop.c	/^Mcast_set_loop(int sockfd, int onoff)$/;"	f	signature:(int sockfd, int onoff)
+Mcast_set_loop	.\unp.h	/^void	 Mcast_set_loop(int, int);$/;"	p	signature:(int, int)
+Mcast_set_ttl	.\mcast_set_ttl.c	/^Mcast_set_ttl(int sockfd, int val)$/;"	f	signature:(int sockfd, int val)
+Mcast_set_ttl	.\unp.h	/^void	 Mcast_set_ttl(int, int);$/;"	p	signature:(int, int)
+Mcast_unblock_source	.\mcast_join.c	/^Mcast_unblock_source(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mcast_unblock_source	.\unp.h	/^void	 Mcast_unblock_source(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+Mkstemp	.\unp.h	/^int	 Mkstemp(char *);$/;"	p	signature:(char *)
+Mkstemp	.\wrapunix.c	/^Mkstemp(char *template)$/;"	f	signature:(char *template)
+Mmap	.\unp.h	/^void	*Mmap(void *, size_t, int, int, int, off_t);$/;"	p	signature:(void *, size_t, int, int, int, off_t)
+Mmap	.\wrapunix.c	/^Mmap(void *addr, size_t len, int prot, int flags, int fd, off_t offset)$/;"	f	signature:(void *addr, size_t len, int prot, int flags, int fd, off_t offset)
+My_addrs	.\my_addrs.c	/^My_addrs(int *pfamily)$/;"	f	signature:(int *pfamily)
+My_addrs	.\unp.h	/^char   **My_addrs(int *);$/;"	p	signature:(int *)
+NI_DGRAM	.\addrinfo.h	33;"	d
+NI_MAXHOST	.\addrinfo.h	26;"	d
+NI_MAXSERV	.\addrinfo.h	27;"	d
+NI_NAMEREQD	.\addrinfo.h	31;"	d
+NI_NOFQDN	.\addrinfo.h	29;"	d
+NI_NUMERICHOST	.\addrinfo.h	30;"	d
+NI_NUMERICSERV	.\addrinfo.h	32;"	d
+Open	.\unp.h	/^int		 Open(const char *, int, mode_t);$/;"	p	signature:(const char *, int, mode_t)
+Open	.\wrapunix.c	/^Open(const char *pathname, int oflag, mode_t mode)$/;"	f	signature:(const char *pathname, int oflag, mode_t mode)
+PF_LOCAL	.\unp.h	176;"	d
+Pipe	.\unp.h	/^void	 Pipe(int *fds);$/;"	p	signature:(int *fds)
+Pipe	.\wrapunix.c	/^Pipe(int *fds)$/;"	f	signature:(int *fds)
+Poll	.\unp.h	/^int		 Poll(struct pollfd *, unsigned long, int);$/;"	p	signature:(struct pollfd *, unsigned long, int)
+Poll	.\wrapsock.c	/^Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)$/;"	f	signature:(struct pollfd *fdarray, unsigned long nfds, int timeout)
+Pthread_cond_broadcast	.\unpthread.h	/^void	Pthread_cond_broadcast(pthread_cond_t *);$/;"	p	signature:(pthread_cond_t *)
+Pthread_cond_broadcast	.\wrappthread.c	/^Pthread_cond_broadcast(pthread_cond_t *cptr)$/;"	f	signature:(pthread_cond_t *cptr)
+Pthread_cond_signal	.\unpthread.h	/^void	Pthread_cond_signal(pthread_cond_t *);$/;"	p	signature:(pthread_cond_t *)
+Pthread_cond_signal	.\wrappthread.c	/^Pthread_cond_signal(pthread_cond_t *cptr)$/;"	f	signature:(pthread_cond_t *cptr)
+Pthread_cond_timedwait	.\unpthread.h	/^void	Pthread_cond_timedwait(pthread_cond_t *, pthread_mutex_t *,$/;"	p	signature:(pthread_cond_t *, pthread_mutex_t *, const struct timespec *)
+Pthread_cond_timedwait	.\wrappthread.c	/^Pthread_cond_timedwait(pthread_cond_t *cptr, pthread_mutex_t *mptr,$/;"	f	signature:(pthread_cond_t *cptr, pthread_mutex_t *mptr, const struct timespec *tsptr)
+Pthread_cond_wait	.\unpthread.h	/^void	Pthread_cond_wait(pthread_cond_t *, pthread_mutex_t *);$/;"	p	signature:(pthread_cond_t *, pthread_mutex_t *)
+Pthread_cond_wait	.\wrappthread.c	/^Pthread_cond_wait(pthread_cond_t *cptr, pthread_mutex_t *mptr)$/;"	f	signature:(pthread_cond_t *cptr, pthread_mutex_t *mptr)
+Pthread_create	.\unpthread.h	/^void	Pthread_create(pthread_t *, const pthread_attr_t *,$/;"	p	signature:(pthread_t *, const pthread_attr_t *, void * (*)(void *), void *)
+Pthread_create	.\wrappthread.c	/^Pthread_create(pthread_t *tid, const pthread_attr_t *attr,$/;"	f	signature:(pthread_t *tid, const pthread_attr_t *attr, void * (*func)(void *), void *arg)
+Pthread_detach	.\unpthread.h	/^void	Pthread_detach(pthread_t);$/;"	p	signature:(pthread_t)
+Pthread_detach	.\wrappthread.c	/^Pthread_detach(pthread_t tid)$/;"	f	signature:(pthread_t tid)
+Pthread_join	.\unpthread.h	/^void	Pthread_join(pthread_t, void **);$/;"	p	signature:(pthread_t, void **)
+Pthread_join	.\wrappthread.c	/^Pthread_join(pthread_t tid, void **status)$/;"	f	signature:(pthread_t tid, void **status)
+Pthread_key_create	.\unpthread.h	/^void	Pthread_key_create(pthread_key_t *, void (*)(void *));$/;"	p	signature:(pthread_key_t *, void (*)(void *))
+Pthread_key_create	.\wrappthread.c	/^Pthread_key_create(pthread_key_t *key, void (*func)(void *))$/;"	f	signature:(pthread_key_t *key, void (*func)(void *))
+Pthread_kill	.\unpthread.h	/^void	Pthread_kill(pthread_t, int);$/;"	p	signature:(pthread_t, int)
+Pthread_kill	.\wrappthread.c	/^Pthread_kill(pthread_t tid, int signo)$/;"	f	signature:(pthread_t tid, int signo)
+Pthread_mutex_init	.\unpthread.h	/^void	Pthread_mutex_init(pthread_mutex_t *, pthread_mutexattr_t *);$/;"	p	signature:(pthread_mutex_t *, pthread_mutexattr_t *)
+Pthread_mutex_init	.\wrappthread.c	/^Pthread_mutex_init(pthread_mutex_t *mptr, pthread_mutexattr_t *attr)$/;"	f	signature:(pthread_mutex_t *mptr, pthread_mutexattr_t *attr)
+Pthread_mutex_lock	.\unpthread.h	/^void	Pthread_mutex_lock(pthread_mutex_t *);$/;"	p	signature:(pthread_mutex_t *)
+Pthread_mutex_lock	.\wrappthread.c	/^Pthread_mutex_lock(pthread_mutex_t *mptr)$/;"	f	signature:(pthread_mutex_t *mptr)
+Pthread_mutex_unlock	.\unpthread.h	/^void	Pthread_mutex_unlock(pthread_mutex_t *);$/;"	p	signature:(pthread_mutex_t *)
+Pthread_mutex_unlock	.\wrappthread.c	/^Pthread_mutex_unlock(pthread_mutex_t *mptr)$/;"	f	signature:(pthread_mutex_t *mptr)
+Pthread_mutexattr_init	.\unpthread.h	/^void	Pthread_mutexattr_init(pthread_mutexattr_t *);$/;"	p	signature:(pthread_mutexattr_t *)
+Pthread_mutexattr_init	.\wrappthread.c	/^Pthread_mutexattr_init(pthread_mutexattr_t *attr)$/;"	f	signature:(pthread_mutexattr_t *attr)
+Pthread_mutexattr_setpshared	.\unpthread.h	/^void	Pthread_mutexattr_setpshared(pthread_mutexattr_t *, int);$/;"	p	signature:(pthread_mutexattr_t *, int)
+Pthread_mutexattr_setpshared	.\wrappthread.c	/^Pthread_mutexattr_setpshared(pthread_mutexattr_t *attr, int flag)$/;"	f	signature:(pthread_mutexattr_t *attr, int flag)
+Pthread_once	.\unpthread.h	/^void	Pthread_once(pthread_once_t *, void (*)(void));$/;"	p	signature:(pthread_once_t *, void (*)(void))
+Pthread_once	.\wrappthread.c	/^Pthread_once(pthread_once_t *ptr, void (*func)(void))$/;"	f	signature:(pthread_once_t *ptr, void (*func)(void))
+Pthread_setspecific	.\unpthread.h	/^void	Pthread_setspecific(pthread_key_t, const void *);$/;"	p	signature:(pthread_key_t, const void *)
+Pthread_setspecific	.\wrappthread.c	/^Pthread_setspecific(pthread_key_t key, const void *value)$/;"	f	signature:(pthread_key_t key, const void *value)
+RTT_MAXNREXMT	.\unprtt.h	17;"	d
+RTT_RTOCALC	.\rtt.c	10;"	d	file:
+RTT_RXTMAX	.\unprtt.h	16;"	d
+RTT_RXTMIN	.\unprtt.h	15;"	d
+Read	.\unp.h	/^ssize_t	 Read(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+Read	.\wrapunix.c	/^Read(int fd, void *ptr, size_t nbytes)$/;"	f	signature:(int fd, void *ptr, size_t nbytes)
+Read_fd	.\read_fd.c	/^Read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int *recvfd)
+Read_fd	.\unp.h	/^ssize_t	 Read_fd(int, void *, size_t, int *);$/;"	p	signature:(int, void *, size_t, int *)
+Readable_timeo	.\readable_timeo.c	/^Readable_timeo(int fd, int sec)$/;"	f	signature:(int fd, int sec)
+Readable_timeo	.\unp.h	/^int		 Readable_timeo(int, int);$/;"	p	signature:(int, int)
+Readline	.\readline.c	/^Readline(int fd, void *ptr, size_t maxlen)$/;"	f	signature:(int fd, void *ptr, size_t maxlen)
+Readline	.\unp.h	/^ssize_t	 Readline(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+Readn	.\readn.c	/^Readn(int fd, void *ptr, size_t nbytes)$/;"	f	signature:(int fd, void *ptr, size_t nbytes)
+Readn	.\unp.h	/^ssize_t	 Readn(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+Recv	.\unp.h	/^ssize_t	 Recv(int, void *, size_t, int);$/;"	p	signature:(int, void *, size_t, int)
+Recv	.\wrapsock.c	/^Recv(int fd, void *ptr, size_t nbytes, int flags)$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int flags)
+Recvfrom	.\unp.h	/^ssize_t	 Recvfrom(int, void *, size_t, int, SA *, socklen_t *);$/;"	p	signature:(int, void *, size_t, int, SA *, socklen_t *)
+Recvfrom	.\wrapsock.c	/^Recvfrom(int fd, void *ptr, size_t nbytes, int flags,$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int flags, struct sockaddr *sa, socklen_t *salenptr)
+Recvfrom_flags	.\unp.h	/^ssize_t	 Recvfrom_flags(int, void *, size_t, int *, SA *, socklen_t *,$/;"	p	signature:(int, void *, size_t, int *, SA *, socklen_t *, struct unp_in_pktinfo *)
+Recvmsg	.\unp.h	/^ssize_t	 Recvmsg(int, struct msghdr *, int);$/;"	p	signature:(int, struct msghdr *, int)
+Recvmsg	.\wrapsock.c	/^Recvmsg(int fd, struct msghdr *msg, int flags)$/;"	f	signature:(int fd, struct msghdr *msg, int flags)
+SA	.\unp.h	212;"	d
+SERV_PORT	.\unp.h	200;"	d
+SERV_PORT_STR	.\unp.h	201;"	d
+SHUT_RD	.\unp.h	102;"	d
+SHUT_RDWR	.\unp.h	104;"	d
+SHUT_WR	.\unp.h	103;"	d
+SUN_LEN	.\unp.h	166;"	d
+Select	.\unp.h	/^int		 Select(int, fd_set *, fd_set *, fd_set *, struct timeval *);$/;"	p	signature:(int, fd_set *, fd_set *, fd_set *, struct timeval *)
+Select	.\wrapsock.c	/^Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,$/;"	f	signature:(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
+Send	.\unp.h	/^void	 Send(int, const void *, size_t, int);$/;"	p	signature:(int, const void *, size_t, int)
+Send	.\wrapsock.c	/^Send(int fd, const void *ptr, size_t nbytes, int flags)$/;"	f	signature:(int fd, const void *ptr, size_t nbytes, int flags)
+Sendmsg	.\unp.h	/^void	 Sendmsg(int, const struct msghdr *, int);$/;"	p	signature:(int, const struct msghdr *, int)
+Sendmsg	.\wrapsock.c	/^Sendmsg(int fd, const struct msghdr *msg, int flags)$/;"	f	signature:(int fd, const struct msghdr *msg, int flags)
+Sendto	.\unp.h	/^void	 Sendto(int, const void *, size_t, int, const SA *, socklen_t);$/;"	p	signature:(int, const void *, size_t, int, const SA *, socklen_t)
+Sendto	.\wrapsock.c	/^Sendto(int fd, const void *ptr, size_t nbytes, int flags,$/;"	f	signature:(int fd, const void *ptr, size_t nbytes, int flags, const struct sockaddr *sa, socklen_t salen)
+Setsockopt	.\unp.h	/^void	 Setsockopt(int, int, int, const void *, socklen_t);$/;"	p	signature:(int, int, int, const void *, socklen_t)
+Setsockopt	.\wrapsock.c	/^Setsockopt(int fd, int level, int optname, const void *optval, socklen_t optlen)$/;"	f	signature:(int fd, int level, int optname, const void *optval, socklen_t optlen)
+Shutdown	.\unp.h	/^void	 Shutdown(int, int);$/;"	p	signature:(int, int)
+Shutdown	.\wrapsock.c	/^Shutdown(int fd, int how)$/;"	f	signature:(int fd, int how)
+Sigaddset	.\unp.h	/^void	 Sigaddset(sigset_t *, int);$/;"	p	signature:(sigset_t *, int)
+Sigaddset	.\wrapunix.c	/^Sigaddset(sigset_t *set, int signo)$/;"	f	signature:(sigset_t *set, int signo)
+Sigdelset	.\unp.h	/^void	 Sigdelset(sigset_t *, int);$/;"	p	signature:(sigset_t *, int)
+Sigdelset	.\wrapunix.c	/^Sigdelset(sigset_t *set, int signo)$/;"	f	signature:(sigset_t *set, int signo)
+Sigemptyset	.\unp.h	/^void	 Sigemptyset(sigset_t *);$/;"	p	signature:(sigset_t *)
+Sigemptyset	.\wrapunix.c	/^Sigemptyset(sigset_t *set)$/;"	f	signature:(sigset_t *set)
+Sigfillset	.\unp.h	/^void	 Sigfillset(sigset_t *);$/;"	p	signature:(sigset_t *)
+Sigfillset	.\wrapunix.c	/^Sigfillset(sigset_t *set)$/;"	f	signature:(sigset_t *set)
+Sigfunc	.\unp.h	/^typedef	void	Sigfunc(int);	\/* for signal handlers *\/$/;"	t
+Sigismember	.\unp.h	/^int		 Sigismember(const sigset_t *, int);$/;"	p	signature:(const sigset_t *, int)
+Sigismember	.\wrapunix.c	/^Sigismember(const sigset_t *set, int signo)$/;"	f	signature:(const sigset_t *set, int signo)
+Signal	.\signal.c	/^Signal(int signo, Sigfunc *func)	\/* for our signal() function *\/$/;"	f	signature:(int signo, Sigfunc *func)
+Signal	.\unp.h	/^Sigfunc *Signal(int, Sigfunc *);$/;"	p	signature:(int, Sigfunc *)
+Signal_intr	.\signal_intr.c	/^Signal_intr(int signo, Sigfunc *func)$/;"	f	signature:(int signo, Sigfunc *func)
+Signal_intr	.\unp.h	/^Sigfunc *Signal_intr(int, Sigfunc *);$/;"	p	signature:(int, Sigfunc *)
+Sigpending	.\unp.h	/^void	 Sigpending(sigset_t *);$/;"	p	signature:(sigset_t *)
+Sigpending	.\wrapunix.c	/^Sigpending(sigset_t *set)$/;"	f	signature:(sigset_t *set)
+Sigprocmask	.\unp.h	/^void	 Sigprocmask(int, const sigset_t *, sigset_t *);$/;"	p	signature:(int, const sigset_t *, sigset_t *)
+Sigprocmask	.\wrapunix.c	/^Sigprocmask(int how, const sigset_t *set, sigset_t *oset)$/;"	f	signature:(int how, const sigset_t *set, sigset_t *oset)
+Sock_bind_wild	.\sock_bind_wild.c	/^Sock_bind_wild(int sockfd, int family)$/;"	f	signature:(int sockfd, int family)
+Sock_bind_wild	.\unp.h	/^int		 Sock_bind_wild(int, int);$/;"	p	signature:(int, int)
+Sock_ntop	.\sock_ntop.c	/^Sock_ntop(const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(const struct sockaddr *sa, socklen_t salen)
+Sock_ntop	.\unp.h	/^char	*Sock_ntop(const SA *, socklen_t);$/;"	p	signature:(const SA *, socklen_t)
+Sock_ntop_host	.\sock_ntop_host.c	/^Sock_ntop_host(const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(const struct sockaddr *sa, socklen_t salen)
+Sock_ntop_host	.\unp.h	/^char	*Sock_ntop_host(const SA *, socklen_t);$/;"	p	signature:(const SA *, socklen_t)
+Sockatmark	.\unp.h	/^int		 Sockatmark(int);$/;"	p	signature:(int)
+Sockatmark	.\wrapsock.c	/^Sockatmark(int fd)$/;"	f	signature:(int fd)
+Socket	.\unp.h	/^int		 Socket(int, int, int);$/;"	p	signature:(int, int, int)
+Socket	.\wrapsock.c	/^Socket(int family, int type, int protocol)$/;"	f	signature:(int family, int type, int protocol)
+Socketpair	.\unp.h	/^void	 Socketpair(int, int, int, int *);$/;"	p	signature:(int, int, int, int *)
+Socketpair	.\wrapsock.c	/^Socketpair(int family, int type, int protocol, int *fd)$/;"	f	signature:(int family, int type, int protocol, int *fd)
+Sockfd_to_family	.\sockfd_to_family.c	/^Sockfd_to_family(int sockfd)$/;"	f	signature:(int sockfd)
+Sockfd_to_family	.\unp.h	/^int		 Sockfd_to_family(int);$/;"	p	signature:(int)
+Strdup	.\unp.h	/^char	*Strdup(const char *);$/;"	p	signature:(const char *)
+Strdup	.\wrapunix.c	/^Strdup(const char *str)$/;"	f	signature:(const char *str)
+Sysconf	.\unp.h	/^long	 Sysconf(int);$/;"	p	signature:(int)
+Sysconf	.\wrapunix.c	/^Sysconf(int name)$/;"	f	signature:(int name)
+Sysctl	.\unp.h	/^void	 Sysctl(int *, u_int, void *, size_t *, void *, size_t);$/;"	p	signature:(int *, u_int, void *, size_t *, void *, size_t)
+Sysctl	.\wrapunix.c	/^Sysctl(int *name, u_int namelen, void *oldp, size_t *oldlenp,$/;"	f	signature:(int *name, u_int namelen, void *oldp, size_t *oldlenp, void *newp, size_t newlen)
+Tcp_connect	.\tcp_connect.c	/^Tcp_connect(const char *host, const char *serv)$/;"	f	signature:(const char *host, const char *serv)
+Tcp_connect	.\unp.h	/^int		 Tcp_connect(const char *, const char *);$/;"	p	signature:(const char *, const char *)
+Tcp_listen	.\tcp_listen.c	/^Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)$/;"	f	signature:(const char *host, const char *serv, socklen_t *addrlenp)
+Tcp_listen	.\unp.h	/^int		 Tcp_listen(const char *, const char *, socklen_t *);$/;"	p	signature:(const char *, const char *, socklen_t *)
+UNIXDG_PATH	.\unp.h	203;"	d
+UNIXSTR_PATH	.\unp.h	202;"	d
+Udp_client	.\udp_client.c	/^Udp_client(const char *host, const char *serv, SA **saptr, socklen_t *lenptr)$/;"	f	signature:(const char *host, const char *serv, SA **saptr, socklen_t *lenptr)
+Udp_client	.\unp.h	/^int		 Udp_client(const char *, const char *, SA **, socklen_t *);$/;"	p	signature:(const char *, const char *, SA **, socklen_t *)
+Udp_connect	.\udp_connect.c	/^Udp_connect(const char *host, const char *serv)$/;"	f	signature:(const char *host, const char *serv)
+Udp_connect	.\unp.h	/^int		 Udp_connect(const char *, const char *);$/;"	p	signature:(const char *, const char *)
+Udp_server	.\udp_server.c	/^Udp_server(const char *host, const char *serv, socklen_t *addrlenp)$/;"	f	signature:(const char *host, const char *serv, socklen_t *addrlenp)
+Udp_server	.\unp.h	/^int		 Udp_server(const char *, const char *, socklen_t *);$/;"	p	signature:(const char *, const char *, socklen_t *)
+Unlink	.\unp.h	/^void	 Unlink(const char *);$/;"	p	signature:(const char *)
+Unlink	.\wrapunix.c	/^Unlink(const char *pathname)$/;"	f	signature:(const char *pathname)
+Wait	.\unp.h	/^pid_t	 Wait(int *);$/;"	p	signature:(int *)
+Wait	.\wrapunix.c	/^Wait(int *iptr)$/;"	f	signature:(int *iptr)
+Waitpid	.\unp.h	/^pid_t	 Waitpid(pid_t, int *, int);$/;"	p	signature:(pid_t, int *, int)
+Waitpid	.\wrapunix.c	/^Waitpid(pid_t pid, int *iptr, int options)$/;"	f	signature:(pid_t pid, int *iptr, int options)
+Writable_timeo	.\unp.h	/^int		 Writable_timeo(int, int);$/;"	p	signature:(int, int)
+Writable_timeo	.\writable_timeo.c	/^Writable_timeo(int fd, int sec)$/;"	f	signature:(int fd, int sec)
+Write	.\unp.h	/^void	 Write(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+Write	.\wrapunix.c	/^Write(int fd, void *ptr, size_t nbytes)$/;"	f	signature:(int fd, void *ptr, size_t nbytes)
+Write_fd	.\unp.h	/^ssize_t	 Write_fd(int, void *, size_t, int);$/;"	p	signature:(int, void *, size_t, int)
+Write_fd	.\write_fd.c	/^Write_fd(int fd, void *ptr, size_t nbytes, int sendfd)$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int sendfd)
+Writen	.\unp.h	/^void	 Writen(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+Writen	.\writen.c	/^Writen(int fd, void *ptr, size_t nbytes)$/;"	f	signature:(int fd, void *ptr, size_t nbytes)
+__SS_ALIGNSIZE	.\unp.h	219;"	d
+__SS_MAXSIZE	.\unp.h	218;"	d
+__SS_PAD1SIZE	.\unp.h	221;"	d
+__SS_PAD1SIZE	.\unp.h	223;"	d
+__SS_PAD2SIZE	.\unp.h	225;"	d
+__addrinfo_h	.\addrinfo.h	2;"	d
+__ss_align	.\unp.h	/^	int64_t		__ss_align;$/;"	m	struct:sockaddr_storage	access:public
+__ss_pad1	.\unp.h	/^	char		__ss_pad1[__SS_PAD1SIZE];$/;"	m	struct:sockaddr_storage	access:public
+__ss_pad2	.\unp.h	/^	char		__ss_pad2[__SS_PAD2SIZE];$/;"	m	struct:sockaddr_storage	access:public
+__unp_h	.\unp.h	5;"	d
+__unp_ifi_h	.\unpifi.h	5;"	d
+__unp_pthread_h	.\unpthread.h	5;"	d
+__unp_rtt_h	.\unprtt.h	2;"	d
+addrinfo	.\addrinfo.h	/^struct addrinfo {$/;"	s
+addrinfo::ai_addr	.\addrinfo.h	/^  struct sockaddr	*ai_addr;	\/* binary address *\/$/;"	m	struct:addrinfo	typeref:struct:addrinfo::sockaddr	access:public
+addrinfo::ai_addrlen	.\addrinfo.h	/^  size_t	ai_addrlen;			\/* length of ai_addr *\/$/;"	m	struct:addrinfo	access:public
+addrinfo::ai_canonname	.\addrinfo.h	/^  char		*ai_canonname;		\/* canonical name for host *\/$/;"	m	struct:addrinfo	access:public
+addrinfo::ai_family	.\addrinfo.h	/^  int		ai_family;			\/* PF_xxx *\/$/;"	m	struct:addrinfo	access:public
+addrinfo::ai_flags	.\addrinfo.h	/^  int		ai_flags;			\/* AI_PASSIVE, AI_CANONNAME *\/$/;"	m	struct:addrinfo	access:public
+addrinfo::ai_next	.\addrinfo.h	/^  struct addrinfo	*ai_next;	\/* next structure in linked list *\/$/;"	m	struct:addrinfo	typeref:struct:addrinfo::addrinfo	access:public
+addrinfo::ai_protocol	.\addrinfo.h	/^  int		ai_protocol;		\/* IPPROTO_xxx for IPv4 and IPv6 *\/$/;"	m	struct:addrinfo	access:public
+addrinfo::ai_socktype	.\addrinfo.h	/^  int		ai_socktype;		\/* SOCK_xxx *\/$/;"	m	struct:addrinfo	access:public
+ai_addr	.\addrinfo.h	/^  struct sockaddr	*ai_addr;	\/* binary address *\/$/;"	m	struct:addrinfo	typeref:struct:addrinfo::sockaddr	access:public
+ai_addrlen	.\addrinfo.h	/^  size_t	ai_addrlen;			\/* length of ai_addr *\/$/;"	m	struct:addrinfo	access:public
+ai_canonname	.\addrinfo.h	/^  char		*ai_canonname;		\/* canonical name for host *\/$/;"	m	struct:addrinfo	access:public
+ai_family	.\addrinfo.h	/^  int		ai_family;			\/* PF_xxx *\/$/;"	m	struct:addrinfo	access:public
+ai_flags	.\addrinfo.h	/^  int		ai_flags;			\/* AI_PASSIVE, AI_CANONNAME *\/$/;"	m	struct:addrinfo	access:public
+ai_next	.\addrinfo.h	/^  struct addrinfo	*ai_next;	\/* next structure in linked list *\/$/;"	m	struct:addrinfo	typeref:struct:addrinfo::addrinfo	access:public
+ai_protocol	.\addrinfo.h	/^  int		ai_protocol;		\/* IPPROTO_xxx for IPv4 and IPv6 *\/$/;"	m	struct:addrinfo	access:public
+ai_socktype	.\addrinfo.h	/^  int		ai_socktype;		\/* SOCK_xxx *\/$/;"	m	struct:addrinfo	access:public
+bzero	.\unp.h	130;"	d
+connect_alarm	.\connect_timeo.c	/^connect_alarm(int signo)$/;"	f	file:	signature:(int signo)
+connect_alarm	.\connect_timeo.c	/^static void	connect_alarm(int);$/;"	p	file:	signature:(int)
+connect_nonb	.\connect_nonb.c	/^connect_nonb(int sockfd, const SA *saptr, socklen_t salen, int nsec)$/;"	f	signature:(int sockfd, const SA *saptr, socklen_t salen, int nsec)
+connect_nonb	.\unp.h	/^int		 connect_nonb(int, const SA *, socklen_t, int);$/;"	p	signature:(int, const SA *, socklen_t, int)
+connect_timeo	.\connect_timeo.c	/^connect_timeo(int sockfd, const SA *saptr, socklen_t salen, int nsec)$/;"	f	signature:(int sockfd, const SA *saptr, socklen_t salen, int nsec)
+connect_timeo	.\unp.h	/^int		 connect_timeo(int, const SA *, socklen_t, int);$/;"	p	signature:(int, const SA *, socklen_t, int)
+daemon_inetd	.\daemon_inetd.c	/^daemon_inetd(const char *pname, int facility)$/;"	f	signature:(const char *pname, int facility)
+daemon_inetd	.\unp.h	/^void	 daemon_inetd(const char *, int);$/;"	p	signature:(const char *, int)
+daemon_init	.\daemon_init.c	/^daemon_init(const char *pname, int facility)$/;"	f	signature:(const char *pname, int facility)
+daemon_init	.\unp.h	/^int	 daemon_init(const char *, int);$/;"	p	signature:(const char *, int)
+daemon_proc	.\error.c	/^int		daemon_proc;		\/* set nonzero by daemon_init() *\/$/;"	v
+dg_cli	.\dg_cli.c	/^dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)$/;"	f	signature:(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)
+dg_cli	.\unp.h	/^void	 dg_cli(FILE *, int, const SA *, socklen_t);$/;"	p	signature:(FILE *, int, const SA *, socklen_t)
+dg_echo	.\dg_echo.c	/^dg_echo(int sockfd, SA *pcliaddr, socklen_t clilen)$/;"	f	signature:(int sockfd, SA *pcliaddr, socklen_t clilen)
+dg_echo	.\unp.h	/^void	 dg_echo(int, SA *, socklen_t);$/;"	p	signature:(int, SA *, socklen_t)
+err_doit	.\error.c	/^err_doit(int errnoflag, int level, const char *fmt, va_list ap)$/;"	f	file:	signature:(int errnoflag, int level, const char *fmt, va_list ap)
+err_doit	.\error.c	/^static void	err_doit(int, int, const char *, va_list);$/;"	p	file:	signature:(int, int, const char *, va_list)
+err_dump	.\error.c	/^err_dump(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_dump	.\unp.h	/^void	 err_dump(const char *, ...);$/;"	p	signature:(const char *, ...)
+err_msg	.\error.c	/^err_msg(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_msg	.\unp.h	/^void	 err_msg(const char *, ...);$/;"	p	signature:(const char *, ...)
+err_quit	.\error.c	/^err_quit(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_quit	.\unp.h	/^void	 err_quit(const char *, ...);$/;"	p	signature:(const char *, ...)
+err_ret	.\error.c	/^err_ret(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_ret	.\unp.h	/^void	 err_ret(const char *, ...);$/;"	p	signature:(const char *, ...)
+err_sys	.\error.c	/^err_sys(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_sys	.\unp.h	/^void	 err_sys(const char *, ...);$/;"	p	signature:(const char *, ...)
+family_to_level	.\family_to_level.c	/^family_to_level(int family)$/;"	f	signature:(int family)
+family_to_level	.\unp.h	/^int		 family_to_level(int);$/;"	p	signature:(int)
+free_ifi_info	.\get_ifi_info.c	/^free_ifi_info(struct ifi_info *ifihead)$/;"	f	signature:(struct ifi_info *ifihead)
+free_ifi_info	.\unpifi.h	/^void			 free_ifi_info(struct ifi_info *);$/;"	p	signature:(struct ifi_info *)
+freeaddrinfo	.\unp.h	/^void	 freeaddrinfo(struct addrinfo *);$/;"	p	signature:(struct addrinfo *)
+gai_strerror	.\unp.h	/^char	*gai_strerror(int);$/;"	p	signature:(int)
+get_ifi_info	.\get_ifi_info.c	/^get_ifi_info(int family, int doaliases)$/;"	f	signature:(int family, int doaliases)
+get_ifi_info	.\unpifi.h	/^struct ifi_info	*get_ifi_info(int, int);$/;"	p	signature:(int, int)
+getaddrinfo	.\unp.h	/^int		 getaddrinfo(const char *, const char *, const struct addrinfo *,$/;"	p	signature:(const char *, const char *, const struct addrinfo *, struct addrinfo **)
+gethostbyname2	.\unp.h	137;"	d
+gethostname	.\unp.h	/^int		 gethostname(char *, int);$/;"	p	signature:(char *, int)
+getnameinfo	.\unp.h	/^int		 getnameinfo(const SA *, socklen_t, char *, size_t, char *, size_t, int);$/;"	p	signature:(const SA *, socklen_t, char *, size_t, char *, size_t, int)
+gf_time	.\gf_time.c	/^gf_time(void)$/;"	f	signature:(void)
+gf_time	.\unp.h	/^char	*gf_time(void);$/;"	p	signature:(void)
+heartbeat_cli	.\unp.h	/^void	 heartbeat_cli(int, int, int);$/;"	p	signature:(int, int, int)
+heartbeat_serv	.\unp.h	/^void	 heartbeat_serv(int, int, int);$/;"	p	signature:(int, int, int)
+host_serv	.\host_serv.c	/^host_serv(const char *host, const char *serv, int family, int socktype)$/;"	f	signature:(const char *host, const char *serv, int family, int socktype)
+host_serv	.\unp.h	/^struct addrinfo *host_serv(const char *, const char *, int, int);$/;"	p	signature:(const char *, const char *, int, int)
+hstrerror	.\hstrerror.c	/^hstrerror(int err)$/;"	f	signature:(int err)
+hstrerror	.\unp.h	/^const char	*hstrerror(int);$/;"	p	signature:(int)
+if_freenameindex	.\if_nameindex.c	/^if_freenameindex(struct if_nameindex *ptr)$/;"	f	signature:(struct if_nameindex *ptr)
+if_freenameindex	.\unp.h	/^void			 if_freenameindex(struct if_nameindex *);$/;"	p	signature:(struct if_nameindex *)
+if_index	.\unp.h	/^  unsigned int   if_index;  \/* 1, 2, ... *\/$/;"	m	struct:if_nameindex	access:public
+if_indextoname	.\if_indextoname.c	/^if_indextoname(unsigned int index, char *name)$/;"	f	signature:(unsigned int index, char *name)
+if_indextoname	.\unp.h	/^char			*if_indextoname(unsigned int, char *);$/;"	p	signature:(unsigned int, char *)
+if_name	.\unp.h	/^  char          *if_name;   \/* null-terminated name: "le0", ... *\/$/;"	m	struct:if_nameindex	access:public
+if_nameindex	.\if_nameindex.c	/^if_nameindex(void)$/;"	f	signature:(void)
+if_nameindex	.\unp.h	/^struct if_nameindex *if_nameindex(void);$/;"	p	signature:(void)
+if_nameindex	.\unp.h	/^struct if_nameindex {$/;"	s
+if_nameindex::if_index	.\unp.h	/^  unsigned int   if_index;  \/* 1, 2, ... *\/$/;"	m	struct:if_nameindex	access:public
+if_nameindex::if_name	.\unp.h	/^  char          *if_name;   \/* null-terminated name: "le0", ... *\/$/;"	m	struct:if_nameindex	access:public
+if_nametoindex	.\if_nametoindex.c	/^if_nametoindex(const char *name)$/;"	f	signature:(const char *name)
+if_nametoindex	.\unp.h	/^unsigned int	 if_nametoindex(const char *);$/;"	p	signature:(const char *)
+ifi_addr	.\unpifi.h	/^  struct sockaddr  *ifi_addr;	\/* primary address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_brdaddr	.\unpifi.h	/^  struct sockaddr  *ifi_brdaddr;\/* broadcast address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_dstaddr	.\unpifi.h	/^  struct sockaddr  *ifi_dstaddr;\/* destination address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_flags	.\unpifi.h	/^  short   ifi_flags;			\/* IFF_xxx constants from <net\/if.h> *\/$/;"	m	struct:ifi_info	access:public
+ifi_haddr	.\unpifi.h	/^  u_char  ifi_haddr[IFI_HADDR];	\/* hardware address *\/$/;"	m	struct:ifi_info	access:public
+ifi_hlen	.\unpifi.h	/^  u_short ifi_hlen;				\/* # bytes in hardware address: 0, 6, 8 *\/$/;"	m	struct:ifi_info	access:public
+ifi_index	.\unpifi.h	/^  short   ifi_index;			\/* interface index *\/$/;"	m	struct:ifi_info	access:public
+ifi_info	.\unpifi.h	/^struct ifi_info {$/;"	s
+ifi_info::ifi_addr	.\unpifi.h	/^  struct sockaddr  *ifi_addr;	\/* primary address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_info::ifi_brdaddr	.\unpifi.h	/^  struct sockaddr  *ifi_brdaddr;\/* broadcast address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_info::ifi_dstaddr	.\unpifi.h	/^  struct sockaddr  *ifi_dstaddr;\/* destination address *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::sockaddr	access:public
+ifi_info::ifi_flags	.\unpifi.h	/^  short   ifi_flags;			\/* IFF_xxx constants from <net\/if.h> *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_haddr	.\unpifi.h	/^  u_char  ifi_haddr[IFI_HADDR];	\/* hardware address *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_hlen	.\unpifi.h	/^  u_short ifi_hlen;				\/* # bytes in hardware address: 0, 6, 8 *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_index	.\unpifi.h	/^  short   ifi_index;			\/* interface index *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_mtu	.\unpifi.h	/^  short   ifi_mtu;				\/* interface MTU *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_myflags	.\unpifi.h	/^  short   ifi_myflags;			\/* our own IFI_xxx flags *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_name	.\unpifi.h	/^  char    ifi_name[IFI_NAME];	\/* interface name, null-terminated *\/$/;"	m	struct:ifi_info	access:public
+ifi_info::ifi_next	.\unpifi.h	/^  struct ifi_info  *ifi_next;	\/* next of these structures *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::ifi_info	access:public
+ifi_mtu	.\unpifi.h	/^  short   ifi_mtu;				\/* interface MTU *\/$/;"	m	struct:ifi_info	access:public
+ifi_myflags	.\unpifi.h	/^  short   ifi_myflags;			\/* our own IFI_xxx flags *\/$/;"	m	struct:ifi_info	access:public
+ifi_name	.\unpifi.h	/^  char    ifi_name[IFI_NAME];	\/* interface name, null-terminated *\/$/;"	m	struct:ifi_info	access:public
+ifi_next	.\unpifi.h	/^  struct ifi_info  *ifi_next;	\/* next of these structures *\/$/;"	m	struct:ifi_info	typeref:struct:ifi_info::ifi_info	access:public
+in6addr_any	.\in6addr_any.c	/^const struct in6_addr in6addr_any;$/;"	v	typeref:struct:in6_addr
+in_cksum	.\unp.h	/^uint16_t	in_cksum(uint16_t *, int);$/;"	p	signature:(uint16_t *, int)
+inet6_srcrt_print	.\unp.h	/^void	 inet6_srcrt_print(void *);$/;"	p	signature:(void *)
+inet_aton	.\unp.h	/^int		 inet_aton(const char *, struct in_addr *);$/;"	p	signature:(const char *, struct in_addr *)
+inet_ntop	.\unp.h	/^const char	*inet_ntop(int, const void *, char *, size_t);$/;"	p	signature:(int, const void *, char *, size_t)
+inet_pton	.\unp.h	/^int			 inet_pton(int, const char *, void *);$/;"	p	signature:(int, const char *, void *)
+inet_srcrt_add	.\unp.h	/^int		 inet_srcrt_add(char *);$/;"	p	signature:(char *)
+inet_srcrt_init	.\unp.h	/^u_char  *inet_srcrt_init(int);$/;"	p	signature:(int)
+inet_srcrt_print	.\unp.h	/^void	 inet_srcrt_print(u_char *, int);$/;"	p	signature:(u_char *, int)
+ipi_addr	.\unp.h	/^  struct in_addr	ipi_addr;	\/* dst IPv4 address *\/$/;"	m	struct:unp_in_pktinfo	typeref:struct:unp_in_pktinfo::in_addr	access:public
+ipi_ifindex	.\unp.h	/^  int				ipi_ifindex;\/* received interface index *\/$/;"	m	struct:unp_in_pktinfo	access:public
+max	.\unp.h	246;"	d
+mcast_block_source	.\mcast_join.c	/^mcast_block_source(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+mcast_block_source	.\unp.h	/^int		 mcast_block_source(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+mcast_get_if	.\mcast_get_if.c	/^mcast_get_if(int sockfd)$/;"	f	signature:(int sockfd)
+mcast_get_if	.\unp.h	/^int		 mcast_get_if(int);$/;"	p	signature:(int)
+mcast_get_loop	.\mcast_get_loop.c	/^mcast_get_loop(int sockfd)$/;"	f	signature:(int sockfd)
+mcast_get_loop	.\unp.h	/^int		 mcast_get_loop(int);$/;"	p	signature:(int)
+mcast_get_ttl	.\mcast_get_ttl.c	/^mcast_get_ttl(int sockfd)$/;"	f	signature:(int sockfd)
+mcast_get_ttl	.\unp.h	/^int		 mcast_get_ttl(int);$/;"	p	signature:(int)
+mcast_join	.\mcast_join.c	/^mcast_join(int sockfd, const SA *grp, socklen_t grplen,$/;"	f	signature:(int sockfd, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+mcast_join	.\unp.h	/^int		 mcast_join(int, const SA *, socklen_t, const char *, u_int);$/;"	p	signature:(int, const SA *, socklen_t, const char *, u_int)
+mcast_join_source_group	.\mcast_join.c	/^mcast_join_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+mcast_join_source_group	.\unp.h	/^int		 mcast_join_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen, const char *ifname, u_int ifindex)
+mcast_leave	.\mcast_leave.c	/^mcast_leave(int sockfd, const SA *grp, socklen_t grplen)$/;"	f	signature:(int sockfd, const SA *grp, socklen_t grplen)
+mcast_leave	.\unp.h	/^int		 mcast_leave(int, const SA *, socklen_t);$/;"	p	signature:(int, const SA *, socklen_t)
+mcast_leave_source_group	.\mcast_leave.c	/^mcast_leave_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+mcast_leave_source_group	.\unp.h	/^int		 mcast_leave_source_group(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+mcast_set_if	.\mcast_set_if.c	/^mcast_set_if(int sockfd, const char *ifname, u_int ifindex)$/;"	f	signature:(int sockfd, const char *ifname, u_int ifindex)
+mcast_set_if	.\unp.h	/^int		 mcast_set_if(int, const char *, u_int);$/;"	p	signature:(int, const char *, u_int)
+mcast_set_loop	.\mcast_set_loop.c	/^mcast_set_loop(int sockfd, int onoff)$/;"	f	signature:(int sockfd, int onoff)
+mcast_set_loop	.\unp.h	/^int		 mcast_set_loop(int, int);$/;"	p	signature:(int, int)
+mcast_set_ttl	.\mcast_set_ttl.c	/^mcast_set_ttl(int sockfd, int val)$/;"	f	signature:(int sockfd, int val)
+mcast_set_ttl	.\unp.h	/^int		 mcast_set_ttl(int, int);$/;"	p	signature:(int, int)
+mcast_unblock_source	.\mcast_join.c	/^mcast_unblock_source(int sockfd, const SA *src, socklen_t srclen,$/;"	f	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+mcast_unblock_source	.\unp.h	/^int		 mcast_unblock_source(int sockfd, const SA *src, socklen_t srclen,$/;"	p	signature:(int sockfd, const SA *src, socklen_t srclen, const SA *grp, socklen_t grplen)
+min	.\unp.h	245;"	d
+my_addrs	.\my_addrs.c	/^my_addrs(int *addrtype)$/;"	f	signature:(int *addrtype)
+my_addrs	.\unp.h	/^char   **my_addrs(int *);$/;"	p	signature:(int *)
+my_read	.\readline.c	/^my_read(int fd, char *ptr)$/;"	f	file:	signature:(int fd, char *ptr)
+pselect	.\pselect.c	/^pselect(int nfds, fd_set *rset, fd_set *wset, fd_set *xset,$/;"	f	signature:(int nfds, fd_set *rset, fd_set *wset, fd_set *xset, const struct timespec *ts, const sigset_t *sigmask)
+pselect	.\unp.h	/^int		 pselect(int, fd_set *, fd_set *, fd_set *,$/;"	p	signature:(int, fd_set *, fd_set *, fd_set *, const struct timespec *, const sigset_t *)
+read_buf	.\readline.c	/^static char	read_buf[MAXLINE];$/;"	v	file:
+read_cnt	.\readline.c	/^static int	read_cnt;$/;"	v	file:
+read_fd	.\read_fd.c	/^read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int *recvfd)
+read_fd	.\unp.h	/^ssize_t	 read_fd(int, void *, size_t, int *);$/;"	p	signature:(int, void *, size_t, int *)
+read_ptr	.\readline.c	/^static char	*read_ptr;$/;"	v	file:
+readable_timeo	.\readable_timeo.c	/^readable_timeo(int fd, int sec)$/;"	f	signature:(int fd, int sec)
+readable_timeo	.\unp.h	/^int		 readable_timeo(int, int);$/;"	p	signature:(int, int)
+readline	.\readline.c	/^readline(int fd, void *vptr, size_t maxlen)$/;"	f	signature:(int fd, void *vptr, size_t maxlen)
+readline	.\unp.h	/^ssize_t	 readline(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+readlinebuf	.\readline.c	/^readlinebuf(void **vptrptr)$/;"	f	signature:(void **vptrptr)
+readn	.\readn.c	/^readn(int fd, void *vptr, size_t n)$/;"	f	signature:(int fd, void *vptr, size_t n)
+readn	.\unp.h	/^ssize_t	 readn(int, void *, size_t);$/;"	p	signature:(int, void *, size_t)
+recv	.\unp.h	90;"	d
+recv	.\unp.h	92;"	d
+recvfrom_flags	.\unp.h	/^ssize_t	 recvfrom_flags(int, void *, size_t, int *, SA *, socklen_t *,$/;"	p	signature:(int, void *, size_t, int *, SA *, socklen_t *, struct unp_in_pktinfo *)
+rtt_base	.\unprtt.h	/^  uint32_t	rtt_base;	\/* # sec since 1\/1\/1970 at start *\/$/;"	m	struct:rtt_info	access:public
+rtt_d_flag	.\rtt.c	/^int		rtt_d_flag = 0;		\/* debug flag; can be set by caller *\/$/;"	v
+rtt_debug	.\rtt.c	/^rtt_debug(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_debug	.\unprtt.h	/^void	 rtt_debug(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+rtt_info	.\unprtt.h	/^struct rtt_info {$/;"	s
+rtt_info::rtt_base	.\unprtt.h	/^  uint32_t	rtt_base;	\/* # sec since 1\/1\/1970 at start *\/$/;"	m	struct:rtt_info	access:public
+rtt_info::rtt_nrexmt	.\unprtt.h	/^  int		rtt_nrexmt;	\/* # times retransmitted: 0, 1, 2, ... *\/$/;"	m	struct:rtt_info	access:public
+rtt_info::rtt_rto	.\unprtt.h	/^  float		rtt_rto;	\/* current RTO to use, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_info::rtt_rtt	.\unprtt.h	/^  float		rtt_rtt;	\/* most recent measured RTT, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_info::rtt_rttvar	.\unprtt.h	/^  float		rtt_rttvar;	\/* smoothed mean deviation, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_info::rtt_srtt	.\unprtt.h	/^  float		rtt_srtt;	\/* smoothed RTT estimator, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_init	.\rtt.c	/^rtt_init(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_init	.\unprtt.h	/^void	 rtt_init(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+rtt_minmax	.\rtt.c	/^rtt_minmax(float rto)$/;"	f	file:	signature:(float rto)
+rtt_newpack	.\rtt.c	/^rtt_newpack(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_newpack	.\unprtt.h	/^void	 rtt_newpack(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+rtt_nrexmt	.\unprtt.h	/^  int		rtt_nrexmt;	\/* # times retransmitted: 0, 1, 2, ... *\/$/;"	m	struct:rtt_info	access:public
+rtt_rto	.\unprtt.h	/^  float		rtt_rto;	\/* current RTO to use, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_rtt	.\unprtt.h	/^  float		rtt_rtt;	\/* most recent measured RTT, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_rttvar	.\unprtt.h	/^  float		rtt_rttvar;	\/* smoothed mean deviation, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_srtt	.\unprtt.h	/^  float		rtt_srtt;	\/* smoothed RTT estimator, in seconds *\/$/;"	m	struct:rtt_info	access:public
+rtt_start	.\rtt.c	/^rtt_start(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_start	.\unprtt.h	/^int		 rtt_start(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+rtt_stop	.\rtt.c	/^rtt_stop(struct rtt_info *ptr, uint32_t ms)$/;"	f	signature:(struct rtt_info *ptr, uint32_t ms)
+rtt_stop	.\unprtt.h	/^void	 rtt_stop(struct rtt_info *, uint32_t);$/;"	p	signature:(struct rtt_info *, uint32_t)
+rtt_timeout	.\rtt.c	/^rtt_timeout(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_timeout	.\unprtt.h	/^int		 rtt_timeout(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+rtt_ts	.\rtt.c	/^rtt_ts(struct rtt_info *ptr)$/;"	f	signature:(struct rtt_info *ptr)
+rtt_ts	.\unprtt.h	/^uint32_t rtt_ts(struct rtt_info *);$/;"	p	signature:(struct rtt_info *)
+send	.\unp.h	91;"	d
+send	.\unp.h	93;"	d
+signal	.\signal.c	/^signal(int signo, Sigfunc *func)$/;"	f	signature:(int signo, Sigfunc *func)
+signal_intr	.\signal_intr.c	/^signal_intr(int signo, Sigfunc *func)$/;"	f	signature:(int signo, Sigfunc *func)
+signal_intr	.\unp.h	/^Sigfunc *signal_intr(int, Sigfunc *);$/;"	p	signature:(int, Sigfunc *)
+snprintf	.\snprintf.c	/^snprintf(char *buf, size_t size, const char *fmt, ...)$/;"	f	signature:(char *buf, size_t size, const char *fmt, ...)
+snprintf	.\unp.h	/^int		 snprintf(char *, size_t, const char *, ...);$/;"	p	signature:(char *, size_t, const char *, ...)
+sock_bind_wild	.\sock_bind_wild.c	/^sock_bind_wild(int sockfd, int family)$/;"	f	signature:(int sockfd, int family)
+sock_bind_wild	.\unp.h	/^int		 sock_bind_wild(int, int);$/;"	p	signature:(int, int)
+sock_cmp_addr	.\sock_cmp_addr.c	/^sock_cmp_addr(const struct sockaddr *sa1, const struct sockaddr *sa2,$/;"	f	signature:(const struct sockaddr *sa1, const struct sockaddr *sa2, socklen_t salen)
+sock_cmp_addr	.\unp.h	/^int		 sock_cmp_addr(const SA *, const SA *, socklen_t);$/;"	p	signature:(const SA *, const SA *, socklen_t)
+sock_cmp_port	.\sock_cmp_port.c	/^sock_cmp_port(const struct sockaddr *sa1, const struct sockaddr *sa2,$/;"	f	signature:(const struct sockaddr *sa1, const struct sockaddr *sa2, socklen_t salen)
+sock_cmp_port	.\unp.h	/^int		 sock_cmp_port(const SA *, const SA *, socklen_t);$/;"	p	signature:(const SA *, const SA *, socklen_t)
+sock_get_port	.\sock_get_port.c	/^sock_get_port(const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(const struct sockaddr *sa, socklen_t salen)
+sock_get_port	.\unp.h	/^int		 sock_get_port(const SA *, socklen_t);$/;"	p	signature:(const SA *, socklen_t)
+sock_ntop	.\sock_ntop.c	/^sock_ntop(const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(const struct sockaddr *sa, socklen_t salen)
+sock_ntop	.\unp.h	/^char	*sock_ntop(const SA *, socklen_t);$/;"	p	signature:(const SA *, socklen_t)
+sock_ntop_host	.\sock_ntop_host.c	/^sock_ntop_host(const struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(const struct sockaddr *sa, socklen_t salen)
+sock_ntop_host	.\unp.h	/^char	*sock_ntop_host(const SA *, socklen_t);$/;"	p	signature:(const SA *, socklen_t)
+sock_set_addr	.\sock_set_addr.c	/^sock_set_addr(struct sockaddr *sa, socklen_t salen, const void *addr)$/;"	f	signature:(struct sockaddr *sa, socklen_t salen, const void *addr)
+sock_set_addr	.\unp.h	/^void	 sock_set_addr(SA *, socklen_t, const void *);$/;"	p	signature:(SA *, socklen_t, const void *)
+sock_set_port	.\sock_set_port.c	/^sock_set_port(struct sockaddr *sa, socklen_t salen, int port)$/;"	f	signature:(struct sockaddr *sa, socklen_t salen, int port)
+sock_set_port	.\unp.h	/^void	 sock_set_port(SA *, socklen_t, int);$/;"	p	signature:(SA *, socklen_t, int)
+sock_set_wild	.\sock_set_wild.c	/^sock_set_wild(struct sockaddr *sa, socklen_t salen)$/;"	f	signature:(struct sockaddr *sa, socklen_t salen)
+sock_set_wild	.\unp.h	/^void	 sock_set_wild(SA *, socklen_t);$/;"	p	signature:(SA *, socklen_t)
+sockaddr_storage	.\unp.h	/^struct sockaddr_storage {$/;"	s
+sockaddr_storage::__ss_align	.\unp.h	/^	int64_t		__ss_align;$/;"	m	struct:sockaddr_storage	access:public
+sockaddr_storage::__ss_pad1	.\unp.h	/^	char		__ss_pad1[__SS_PAD1SIZE];$/;"	m	struct:sockaddr_storage	access:public
+sockaddr_storage::__ss_pad2	.\unp.h	/^	char		__ss_pad2[__SS_PAD2SIZE];$/;"	m	struct:sockaddr_storage	access:public
+sockaddr_storage::ss_family	.\unp.h	/^	sa_family_t	ss_family;$/;"	m	struct:sockaddr_storage	access:public
+sockaddr_storage::ss_len	.\unp.h	/^	u_char		ss_len;$/;"	m	struct:sockaddr_storage	access:public
+sockatmark	.\sockatmark.c	/^sockatmark(int fd)$/;"	f	signature:(int fd)
+sockatmark	.\unp.h	/^int		 sockatmark(int);$/;"	p	signature:(int)
+sockfd_to_family	.\sockfd_to_family.c	/^sockfd_to_family(int sockfd)$/;"	f	signature:(int sockfd)
+sockfd_to_family	.\unp.h	/^int		 sockfd_to_family(int);$/;"	p	signature:(int)
+ss_family	.\unp.h	/^	sa_family_t	ss_family;$/;"	m	struct:sockaddr_storage	access:public
+ss_len	.\unp.h	/^	u_char		ss_len;$/;"	m	struct:sockaddr_storage	access:public
+str_cli	.\str_cli.c	/^str_cli(FILE *fp, int sockfd)$/;"	f	signature:(FILE *fp, int sockfd)
+str_cli	.\unp.h	/^void	 str_cli(FILE *, int);$/;"	p	signature:(FILE *, int)
+str_echo	.\str_echo.c	/^str_echo(int sockfd)$/;"	f	signature:(int sockfd)
+str_echo	.\unp.h	/^void	 str_echo(int);$/;"	p	signature:(int)
+tcp_connect	.\tcp_connect.c	/^tcp_connect(const char *host, const char *serv)$/;"	f	signature:(const char *host, const char *serv)
+tcp_connect	.\unp.h	/^int		 tcp_connect(const char *, const char *);$/;"	p	signature:(const char *, const char *)
+tcp_listen	.\tcp_listen.c	/^tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)$/;"	f	signature:(const char *host, const char *serv, socklen_t *addrlenp)
+tcp_listen	.\unp.h	/^int		 tcp_listen(const char *, const char *, socklen_t *);$/;"	p	signature:(const char *, const char *, socklen_t *)
+timespec	.\unp.h	/^struct timespec {$/;"	s
+timespec::tv_nsec	.\unp.h	/^  long		tv_nsec;	\/* and nanoseconds *\/$/;"	m	struct:timespec	access:public
+timespec::tv_sec	.\unp.h	/^  time_t	tv_sec;		\/* seconds *\/$/;"	m	struct:timespec	access:public
+tv_nsec	.\unp.h	/^  long		tv_nsec;	\/* and nanoseconds *\/$/;"	m	struct:timespec	access:public
+tv_sec	.\unp.h	/^  time_t	tv_sec;		\/* seconds *\/$/;"	m	struct:timespec	access:public
+tv_sub	.\tv_sub.c	/^tv_sub(struct timeval *out, struct timeval *in)$/;"	f	signature:(struct timeval *out, struct timeval *in)
+tv_sub	.\unp.h	/^void	 tv_sub(struct timeval *, struct timeval *);$/;"	p	signature:(struct timeval *, struct timeval *)
+udp_client	.\udp_client.c	/^udp_client(const char *host, const char *serv, SA **saptr, socklen_t *lenp)$/;"	f	signature:(const char *host, const char *serv, SA **saptr, socklen_t *lenp)
+udp_client	.\unp.h	/^int		 udp_client(const char *, const char *, SA **, socklen_t *);$/;"	p	signature:(const char *, const char *, SA **, socklen_t *)
+udp_connect	.\udp_connect.c	/^udp_connect(const char *host, const char *serv)$/;"	f	signature:(const char *host, const char *serv)
+udp_connect	.\unp.h	/^int		 udp_connect(const char *, const char *);$/;"	p	signature:(const char *, const char *)
+udp_server	.\udp_server.c	/^udp_server(const char *host, const char *serv, socklen_t *addrlenp)$/;"	f	signature:(const char *host, const char *serv, socklen_t *addrlenp)
+udp_server	.\unp.h	/^int		 udp_server(const char *, const char *, socklen_t *);$/;"	p	signature:(const char *, const char *, socklen_t *)
+unp_in_pktinfo	.\unp.h	/^struct unp_in_pktinfo {$/;"	s
+unp_in_pktinfo::ipi_addr	.\unp.h	/^  struct in_addr	ipi_addr;	\/* dst IPv4 address *\/$/;"	m	struct:unp_in_pktinfo	typeref:struct:unp_in_pktinfo::in_addr	access:public
+unp_in_pktinfo::ipi_ifindex	.\unp.h	/^  int				ipi_ifindex;\/* received interface index *\/$/;"	m	struct:unp_in_pktinfo	access:public
+writable_timeo	.\unp.h	/^int		 writable_timeo(int, int);$/;"	p	signature:(int, int)
+writable_timeo	.\writable_timeo.c	/^writable_timeo(int fd, int sec)$/;"	f	signature:(int fd, int sec)
+write_fd	.\unp.h	/^ssize_t	 write_fd(int, void *, size_t, int);$/;"	p	signature:(int, void *, size_t, int)
+write_fd	.\write_fd.c	/^write_fd(int fd, void *ptr, size_t nbytes, int sendfd)$/;"	f	signature:(int fd, void *ptr, size_t nbytes, int sendfd)
+writen	.\unp.h	/^ssize_t	 writen(int, const void *, size_t);$/;"	p	signature:(int, const void *, size_t)
+writen	.\writen.c	/^writen(int fd, const void *vptr, size_t n)$/;"	f	signature:(int fd, const void *vptr, size_t n)

@@ -1,0 +1,18316 @@
+cscope 16 G:\Study\Unix_Network_Programming\unpv13e\lib               0000093519
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\addrinfo.h
+
+1 #iâdef 
+__addršfo_h
+
+
+2 
+	#__addršfo_h
+
+
+	)
+
+10 
+	saddršfo
+ {
+
+11 
+	mai_æags
+;
+
+12 
+	mai_çmy
+;
+
+13 
+	mai_sockty³
+;
+
+14 
+	mai_´ÙocŞ
+;
+
+15 
+size_t
+ 
+	mai_add¾’
+;
+
+16 *
+	mai_ÿnÚÇme
+;
+
+17 
+sockaddr
+ *
+	mai_addr
+;
+
+18 
+addršfo
+ *
+	mai_Ãxt
+;
+
+22 
+	#AI_PASSIVE
+ 1
+
+	)
+
+23 
+	#AI_CANONNAME
+ 2
+
+	)
+
+26 
+	#NI_MAXHOST
+ 1025
+
+	)
+
+27 
+	#NI_MAXSERV
+ 32
+
+	)
+
+29 
+	#NI_NOFQDN
+ 1
+
+	)
+
+30 
+	#NI_NUMERICHOST
+ 2
+
+	)
+
+31 
+	#NI_NAMEREQD
+ 4
+
+	)
+
+32 
+	#NI_NUMERICSERV
+ 8
+
+	)
+
+33 
+	#NI_DGRAM
+ 16
+
+	)
+
+36 
+	#EAI_ADDRFAMILY
+ 1
+
+	)
+
+37 
+	#EAI_AGAIN
+ 2
+
+	)
+
+38 
+	#EAI_BADFLAGS
+ 3
+
+	)
+
+39 
+	#EAI_FAIL
+ 4
+
+	)
+
+40 
+	#EAI_FAMILY
+ 5
+
+	)
+
+41 
+	#EAI_MEMORY
+ 6
+
+	)
+
+42 
+	#EAI_NODATA
+ 7
+
+	)
+
+43 
+	#EAI_NONAME
+ 8
+
+	)
+
+44 
+	#EAI_SERVICE
+ 9
+
+	)
+
+45 
+	#EAI_SOCKTYPE
+ 10
+
+	)
+
+46 
+	#EAI_SYSTEM
+ 11
+
+	)
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\connect_nonb.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$cÚÃù_nÚb
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+§±r
+, 
+sockËn_t
+ 
+§Ën
+, 
+n£c
+)
+
+6 
+æags
+, 
+n
+, 
+”rÜ
+;
+
+7 
+sockËn_t
+ 
+Ën
+;
+
+8 
+fd_£t
+ 
+r£t
+, 
+w£t
+;
+
+9 
+timev®
+ 
+tv®
+;
+
+11 
+æags
+ = 
+	`Fú
+(
+sockfd
+, 
+F_GETFL
+, 0);
+
+12 
+	`Fú
+(
+sockfd
+, 
+F_SETFL
+, 
+æags
+ | 
+O_NONBLOCK
+);
+
+14 
+”rÜ
+ = 0;
+
+15 iàĞ(
+n
+ = 
+	`cÚÃù
+(
+sockfd
+, 
+§±r
+, 
+§Ën
+)) < 0)
+
+16 ià(
+”ºo
+ !ğ
+EINPROGRESS
+)
+
+21 ià(
+n
+ == 0)
+
+22 
+dÚe
+;
+
+24 
+	`FD_ZERO
+(&
+r£t
+);
+
+25 
+	`FD_SET
+(
+sockfd
+, &
+r£t
+);
+
+26 
+w£t
+ = 
+r£t
+;
+
+27 
+tv®
+.
+tv_£c
+ = 
+n£c
+;
+
+28 
+tv®
+.
+tv_u£c
+ = 0;
+
+30 iàĞ(
+n
+ = 
+	`S–eù
+(
+sockfd
++1, &
+r£t
+, &
+w£t
+, 
+NULL
+,
+
+31 
+n£c
+ ? &
+tv®
+ : 
+NULL
+)) == 0) {
+
+32 
+	`şo£
+(
+sockfd
+);
+
+33 
+”ºo
+ = 
+ETIMEDOUT
+;
+
+37 ià(
+	`FD_ISSET
+(
+sockfd
+, &
+r£t
+è|| FD_ISSET(sockfd, &
+w£t
+)) {
+
+38 
+Ën
+ = (
+”rÜ
+);
+
+39 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+SOL_SOCKET
+, 
+SO_ERROR
+, &
+”rÜ
+, &
+Ën
+) < 0)
+
+42 
+	`”r_qu™
+("selectƒrror: sockfd‚ot set");
+
+44 
+dÚe
+:
+
+45 
+	`Fú
+(
+sockfd
+, 
+F_SETFL
+, 
+æags
+);
+
+47 ià(
+”rÜ
+) {
+
+48 
+	`şo£
+(
+sockfd
+);
+
+49 
+”ºo
+ = 
+”rÜ
+;
+
+53 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\connect_timeo.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+cÚÃù_®¬m
+();
+
+7 
+	$cÚÃù_timeo
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+§±r
+, 
+sockËn_t
+ 
+§Ën
+, 
+n£c
+)
+
+9 
+Sigfunc
+ *
+sigfunc
+;
+
+10 
+n
+;
+
+12 
+sigfunc
+ = 
+	`SigÇl
+(
+SIGALRM
+, 
+cÚÃù_®¬m
+);
+
+13 ià(
+	`®¬m
+(
+n£c
+) != 0)
+
+14 
+	`”r_msg
+("connect_timeo:‡larm was‡lready set");
+
+16 iàĞ(
+n
+ = 
+	`cÚÃù
+(
+sockfd
+, 
+§±r
+, 
+§Ën
+)) < 0) {
+
+17 
+	`şo£
+(
+sockfd
+);
+
+18 ià(
+”ºo
+ =ğ
+EINTR
+)
+
+19 
+”ºo
+ = 
+ETIMEDOUT
+;
+
+21 
+	`®¬m
+(0);
+
+22 
+	`SigÇl
+(
+SIGALRM
+, 
+sigfunc
+);
+
+24 (
+n
+);
+
+25 
+	}
+}
+
+28 
+	$cÚÃù_®¬m
+(
+signo
+)
+
+31 
+	}
+}
+
+35 
+	$CÚÃù_timeo
+(
+fd
+, cÚ¡ 
+SA
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+, 
+£c
+)
+
+37 ià(
+	`cÚÃù_timeo
+(
+fd
+, 
+§
+, 
+§Ën
+, 
+£c
+) < 0)
+
+38 
+	`”r_sys
+("connect_timeoƒrror");
+
+39 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\daemon_inetd.c
+
+1 
+	~"uÅ.h
+"
+
+2 
+	~<sy¦og.h
+>
+
+4 
+d«mÚ_´oc
+;
+
+7 
+	$d«mÚ_š‘d
+(cÚ¡ *
+²ame
+, 
+çc™y
+)
+
+9 
+d«mÚ_´oc
+ = 1;
+
+10 
+	`İ’log
+(
+²ame
+, 
+LOG_PID
+, 
+çc™y
+);
+
+11 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\daemon_init.c
+
+1 
+	~"uÅ.h
+"
+
+2 
+	~<sy¦og.h
+>
+
+4 
+	#MAXFD
+ 64
+
+	)
+
+6 
+d«mÚ_´oc
+;
+
+9 
+	$d«mÚ_š™
+(cÚ¡ *
+²ame
+, 
+çc™y
+)
+
+11 
+i
+;
+
+12 
+pid_t
+ 
+pid
+;
+
+14 iàĞ(
+pid
+ = 
+	`FÜk
+()) < 0)
+
+16 ià(
+pid
+)
+
+17 
+	`_ex™
+(0);
+
+21 ià(
+	`£tsid
+() < 0)
+
+24 
+	`SigÇl
+(
+SIGHUP
+, 
+SIG_IGN
+);
+
+25 iàĞ(
+pid
+ = 
+	`FÜk
+()) < 0)
+
+27 ià(
+pid
+)
+
+28 
+	`_ex™
+(0);
+
+32 
+d«mÚ_´oc
+ = 1;
+
+34 
+	`chdœ
+("/");
+
+37 
+i
+ = 0; i < 
+MAXFD
+; i++)
+
+38 
+	`şo£
+(
+i
+);
+
+41 
+	`İ’
+("/dev/nuÎ", 
+O_RDONLY
+);
+
+42 
+	`İ’
+("/dev/nuÎ", 
+O_RDWR
+);
+
+43 
+	`İ’
+("/dev/nuÎ", 
+O_RDWR
+);
+
+45 
+	`İ’log
+(
+²ame
+, 
+LOG_PID
+, 
+çc™y
+);
+
+48 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\dg_cli.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$dg_şi
+(
+FILE
+ *
+å
+, 
+sockfd
+, cÚ¡ 
+SA
+ *
+p£rvaddr
+, 
+sockËn_t
+ 
+£rvËn
+)
+
+6 
+n
+;
+
+7 
+£ndlše
+[
+MAXLINE
+], 
+»cvlše
+[MAXLINE + 1];
+
+9 
+	`Fg‘s
+(
+£ndlše
+, 
+MAXLINE
+, 
+å
+è!ğ
+NULL
+) {
+
+11 
+	`S’dto
+(
+sockfd
+, 
+£ndlše
+, 
+	`¡¾’
+(£ndlše), 0, 
+p£rvaddr
+, 
+£rvËn
+);
+
+13 
+n
+ = 
+	`Recväom
+(
+sockfd
+, 
+»cvlše
+, 
+MAXLINE
+, 0, 
+NULL
+, NULL);
+
+15 
+»cvlše
+[
+n
+] = 0;
+
+16 
+	`Fputs
+(
+»cvlše
+, 
+¡dout
+);
+
+18 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\dg_echo.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$dg_echo
+(
+sockfd
+, 
+SA
+ *
+pşŸddr
+, 
+sockËn_t
+ 
+ş’
+)
+
+6 
+n
+;
+
+7 
+sockËn_t
+ 
+Ën
+;
+
+8 
+mesg
+[
+MAXLINE
+];
+
+11 
+Ën
+ = 
+ş’
+;
+
+12 
+n
+ = 
+	`Recväom
+(
+sockfd
+, 
+mesg
+, 
+MAXLINE
+, 0, 
+pşŸddr
+, &
+Ën
+);
+
+14 
+	`S’dto
+(
+sockfd
+, 
+mesg
+, 
+n
+, 0, 
+pşŸddr
+, 
+Ën
+);
+
+16 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\error.c
+
+1 
+	~"uÅ.h
+"
+
+3 
+	~<¡d¬g.h
+>
+
+4 
+	~<sy¦og.h
+>
+
+6 
+	gd«mÚ_´oc
+;
+
+8 
+”r_do™
+(, , cÚ¡ *, 
+va_li¡
+);
+
+14 
+	$”r_»t
+(cÚ¡ *
+fmt
+, ...)
+
+16 
+va_li¡
+ 
+­
+;
+
+18 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+19 
+	`”r_do™
+(1, 
+LOG_INFO
+, 
+fmt
+, 
+­
+);
+
+20 
+	`va_’d
+(
+­
+);
+
+22 
+	}
+}
+
+28 
+	$”r_sys
+(cÚ¡ *
+fmt
+, ...)
+
+30 
+va_li¡
+ 
+­
+;
+
+32 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+33 
+	`”r_do™
+(1, 
+LOG_ERR
+, 
+fmt
+, 
+­
+);
+
+34 
+	`va_’d
+(
+­
+);
+
+35 
+	`ex™
+(1);
+
+36 
+	}
+}
+
+42 
+	$”r_dump
+(cÚ¡ *
+fmt
+, ...)
+
+44 
+va_li¡
+ 
+­
+;
+
+46 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+47 
+	`”r_do™
+(1, 
+LOG_ERR
+, 
+fmt
+, 
+­
+);
+
+48 
+	`va_’d
+(
+­
+);
+
+49 
+	`abÜt
+();
+
+50 
+	`ex™
+(1);
+
+51 
+	}
+}
+
+57 
+	$”r_msg
+(cÚ¡ *
+fmt
+, ...)
+
+59 
+va_li¡
+ 
+­
+;
+
+61 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+62 
+	`”r_do™
+(0, 
+LOG_INFO
+, 
+fmt
+, 
+­
+);
+
+63 
+	`va_’d
+(
+­
+);
+
+65 
+	}
+}
+
+71 
+	$”r_qu™
+(cÚ¡ *
+fmt
+, ...)
+
+73 
+va_li¡
+ 
+­
+;
+
+75 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+76 
+	`”r_do™
+(0, 
+LOG_ERR
+, 
+fmt
+, 
+­
+);
+
+77 
+	`va_’d
+(
+­
+);
+
+78 
+	`ex™
+(1);
+
+79 
+	}
+}
+
+85 
+	$”r_do™
+(
+”ºoæag
+, 
+Ëv–
+, cÚ¡ *
+fmt
+, 
+va_li¡
+ 
+­
+)
+
+87 
+”ºo_§ve
+, 
+n
+;
+
+88 
+buf
+[
+MAXLINE
+ + 1];
+
+90 
+”ºo_§ve
+ = 
+”ºo
+;
+
+91 #ifdef 
+HAVE_VSNPRINTF
+
+
+92 
+	`v¢´štf
+(
+buf
+, 
+MAXLINE
+, 
+fmt
+, 
+­
+);
+
+94 
+	`v¥rštf
+(
+buf
+, 
+fmt
+, 
+­
+);
+
+96 
+n
+ = 
+	`¡¾’
+(
+buf
+);
+
+97 ià(
+”ºoæag
+)
+
+98 
+	`¢´štf
+(
+buf
+ + 
+n
+, 
+MAXLINE
+ -‚, ": %s", 
+	`¡»¼Ü
+(
+”ºo_§ve
+));
+
+99 
+	`¡rÿt
+(
+buf
+, "\n");
+
+101 ià(
+d«mÚ_´oc
+) {
+
+102 
+	`sy¦og
+(
+Ëv–
+, 
+buf
+);
+
+104 
+	`fæush
+(
+¡dout
+);
+
+105 
+	`åuts
+(
+buf
+, 
+¡d”r
+);
+
+106 
+	`fæush
+(
+¡d”r
+);
+
+109 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\family_to_level.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$çmy_to_Ëv–
+(
+çmy
+)
+
+6 
+çmy
+) {
+
+7 
+AF_INET
+:
+
+8  
+IPPROTO_IP
+;
+
+9 #ifdef 
+IPV6
+
+
+10 
+AF_INET6
+:
+
+11  
+IPPROTO_IPV6
+;
+
+16 
+	}
+}
+
+19 
+	$Famy_to_Ëv–
+(
+çmy
+)
+
+21 
+rc
+;
+
+23 iàĞ(
+rc
+ = 
+	`çmy_to_Ëv–
+(
+çmy
+)) < 0)
+
+24 
+	`”r_sys
+("family_to_levelƒrror");
+
+26 (
+rc
+);
+
+27 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\get_ifi_info.c
+
+2 
+	~"uÅifi.h
+"
+
+4 
+ifi_šfo
+ *
+
+5 
+	$g‘_ifi_šfo
+(
+çmy
+, 
+dßlŸ£s
+)
+
+7 
+ifi_šfo
+ *
+ifi
+, *
+ifih—d
+, **
+ifÃxt
+;
+
+8 
+sockfd
+, 
+Ën
+, 
+Ï¡Ën
+, 
+æags
+, 
+myæags
+, 
+idx
+ = 0, 
+hËn
+ = 0;
+
+9 *
+±r
+, *
+buf
+, 
+Ï¡Çme
+[
+IFNAMSIZ
+], *
+ıŒ
+, *
+haddr
+, *
+sdÊame
+;
+
+10 
+ifcÚf
+ 
+ifc
+;
+
+11 
+iäeq
+ *
+iä
+, 
+iäcİy
+;
+
+12 
+sockaddr_š
+ *
+sš±r
+;
+
+13 
+sockaddr_š6
+ *
+sš6±r
+;
+
+15 
+sockfd
+ = 
+	`Sock‘
+(
+AF_INET
+, 
+SOCK_DGRAM
+, 0);
+
+17 
+Ï¡Ën
+ = 0;
+
+18 
+Ën
+ = 100 * (
+iäeq
+);
+
+20 
+buf
+ = 
+	`M®loc
+(
+Ën
+);
+
+21 
+ifc
+.
+ifc_Ën
+ = 
+Ën
+;
+
+22 
+ifc
+.
+ifc_buf
+ = 
+buf
+;
+
+23 ià(
+	`ioùl
+(
+sockfd
+, 
+SIOCGIFCONF
+, &
+ifc
+) < 0) {
+
+24 ià(
+”ºo
+ !ğ
+EINVAL
+ || 
+Ï¡Ën
+ != 0)
+
+25 
+	`”r_sys
+("ioctlƒrror");
+
+27 ià(
+ifc
+.
+ifc_Ën
+ =ğ
+Ï¡Ën
+)
+
+29 
+Ï¡Ën
+ = 
+ifc
+.
+ifc_Ën
+;
+
+31 
+Ën
+ +ğ10 * (
+iäeq
+);
+
+32 
+	`ä“
+(
+buf
+);
+
+34 
+ifih—d
+ = 
+NULL
+;
+
+35 
+ifÃxt
+ = &
+ifih—d
+;
+
+36 
+Ï¡Çme
+[0] = 0;
+
+37 
+sdÊame
+ = 
+NULL
+;
+
+41 
+±r
+ = 
+buf
+;…Œ < buà+ 
+ifc
+.
+ifc_Ën
+; ) {
+
+42 
+iä
+ = (
+iäeq
+ *è
+±r
+;
+
+44 #ifdef 
+HAVE_SOCKADDR_SA_LEN
+
+
+45 
+Ën
+ = 
+	`max
+((
+sockaddr
+), 
+iä
+->
+iä_addr
+.
+§_Ën
+);
+
+47 
+iä
+->
+iä_addr
+.
+§_çmy
+) {
+
+48 #ifdef 
+IPV6
+
+
+49 
+AF_INET6
+:
+
+50 
+Ën
+ = (
+sockaddr_š6
+);
+
+53 
+AF_INET
+:
+
+55 
+Ën
+ = (
+sockaddr
+);
+
+59 
+±r
+ +ğ(
+iä
+->
+iä_Çme
+è+ 
+Ën
+;
+
+61 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+63 ià(
+iä
+->
+iä_addr
+.
+§_çmy
+ =ğ
+AF_LINK
+) {
+
+64 
+sockaddr_dl
+ *
+sdl
+ = (sockaddr_dÈ*)&
+iä
+->
+iä_addr
+;
+
+65 
+sdÊame
+ = 
+iä
+->
+iä_Çme
+;
+
+66 
+idx
+ = 
+sdl
+->
+sdl_šdex
+;
+
+67 
+haddr
+ = 
+sdl
+->
+sdl_d©a
+ + sdl->
+sdl_Æ’
+;
+
+68 
+hËn
+ = 
+sdl
+->
+sdl_®’
+;
+
+72 ià(
+iä
+->
+iä_addr
+.
+§_çmy
+ !ğ
+çmy
+)
+
+75 
+myæags
+ = 0;
+
+76 iàĞ(
+ıŒ
+ = 
+	`¡rchr
+(
+iä
+->
+iä_Çme
+, ':')è!ğ
+NULL
+)
+
+77 *
+ıŒ
+ = 0;
+
+78 ià(
+	`¡ºcmp
+(
+Ï¡Çme
+, 
+iä
+->
+iä_Çme
+, 
+IFNAMSIZ
+) == 0) {
+
+79 ià(
+dßlŸ£s
+ == 0)
+
+81 
+myæags
+ = 
+IFI_ALIAS
+;
+
+83 
+	`memıy
+(
+Ï¡Çme
+, 
+iä
+->
+iä_Çme
+, 
+IFNAMSIZ
+);
+
+85 
+iäcİy
+ = *
+iä
+;
+
+86 
+	`Ioùl
+(
+sockfd
+, 
+SIOCGIFFLAGS
+, &
+iäcİy
+);
+
+87 
+æags
+ = 
+iäcİy
+.
+iä_æags
+;
+
+88 ià((
+æags
+ & 
+IFF_UP
+) == 0)
+
+93 
+ifi
+ = 
+	`C®loc
+(1, (
+ifi_šfo
+));
+
+94 *
+ifÃxt
+ = 
+ifi
+;
+
+95 
+ifÃxt
+ = &
+ifi
+->
+ifi_Ãxt
+;
+
+97 
+ifi
+->
+ifi_æags
+ = 
+æags
+;
+
+98 
+ifi
+->
+ifi_myæags
+ = 
+myæags
+;
+
+99 #ià
+	`defšed
+(
+SIOCGIFMTU
+è&& defšed(
+HAVE_STRUCT_IFREQ_IFR_MTU
+)
+
+100 
+	`Ioùl
+(
+sockfd
+, 
+SIOCGIFMTU
+, &
+iäcİy
+);
+
+101 
+ifi
+->
+ifi_mtu
+ = 
+iäcİy
+.
+iä_mtu
+;
+
+103 
+ifi
+->
+ifi_mtu
+ = 0;
+
+105 
+	`memıy
+(
+ifi
+->
+ifi_Çme
+, 
+iä
+->
+iä_Çme
+, 
+IFI_NAME
+);
+
+106 
+ifi
+->
+ifi_Çme
+[
+IFI_NAME
+-1] = '\0';
+
+108 ià(
+sdÊame
+ =ğ
+NULL
+ || 
+	`¡rcmp
+(sdÊame, 
+iä
+->
+iä_Çme
+) != 0)
+
+109 
+idx
+ = 
+hËn
+ = 0;
+
+110 
+ifi
+->
+ifi_šdex
+ = 
+idx
+;
+
+111 
+ifi
+->
+ifi_hËn
+ = 
+hËn
+;
+
+112 ià(
+ifi
+->
+ifi_hËn
+ > 
+IFI_HADDR
+)
+
+113 
+ifi
+->
+ifi_hËn
+ = 
+IFI_HADDR
+;
+
+114 ià(
+hËn
+)
+
+115 
+	`memıy
+(
+ifi
+->
+ifi_haddr
+, 
+haddr
+, ifi->
+ifi_hËn
+);
+
+118 
+iä
+->
+iä_addr
+.
+§_çmy
+) {
+
+119 
+AF_INET
+:
+
+120 
+sš±r
+ = (
+sockaddr_š
+ *è&
+iä
+->
+iä_addr
+;
+
+121 
+ifi
+->
+ifi_addr
+ = 
+	`C®loc
+(1, (
+sockaddr_š
+));
+
+122 
+	`memıy
+(
+ifi
+->
+ifi_addr
+, 
+sš±r
+, (
+sockaddr_š
+));
+
+124 #ifdef 
+SIOCGIFBRDADDR
+
+
+125 ià(
+æags
+ & 
+IFF_BROADCAST
+) {
+
+126 
+	`Ioùl
+(
+sockfd
+, 
+SIOCGIFBRDADDR
+, &
+iäcİy
+);
+
+127 
+sš±r
+ = (
+sockaddr_š
+ *è&
+iäcİy
+.
+iä_brßdaddr
+;
+
+128 
+ifi
+->
+ifi_brdaddr
+ = 
+	`C®loc
+(1, (
+sockaddr_š
+));
+
+129 
+	`memıy
+(
+ifi
+->
+ifi_brdaddr
+, 
+sš±r
+, (
+sockaddr_š
+));
+
+133 #ifdef 
+SIOCGIFDSTADDR
+
+
+134 ià(
+æags
+ & 
+IFF_POINTOPOINT
+) {
+
+135 
+	`Ioùl
+(
+sockfd
+, 
+SIOCGIFDSTADDR
+, &
+iäcİy
+);
+
+136 
+sš±r
+ = (
+sockaddr_š
+ *è&
+iäcİy
+.
+iä_d¡addr
+;
+
+137 
+ifi
+->
+ifi_d¡addr
+ = 
+	`C®loc
+(1, (
+sockaddr_š
+));
+
+138 
+	`memıy
+(
+ifi
+->
+ifi_d¡addr
+, 
+sš±r
+, (
+sockaddr_š
+));
+
+143 
+AF_INET6
+:
+
+144 
+sš6±r
+ = (
+sockaddr_š6
+ *è&
+iä
+->
+iä_addr
+;
+
+145 
+ifi
+->
+ifi_addr
+ = 
+	`C®loc
+(1, (
+sockaddr_š6
+));
+
+146 
+	`memıy
+(
+ifi
+->
+ifi_addr
+, 
+sš6±r
+, (
+sockaddr_š6
+));
+
+148 #ifdef 
+SIOCGIFDSTADDR
+
+
+149 ià(
+æags
+ & 
+IFF_POINTOPOINT
+) {
+
+150 
+	`Ioùl
+(
+sockfd
+, 
+SIOCGIFDSTADDR
+, &
+iäcİy
+);
+
+151 
+sš6±r
+ = (
+sockaddr_š6
+ *è&
+iäcİy
+.
+iä_d¡addr
+;
+
+152 
+ifi
+->
+ifi_d¡addr
+ = 
+	`C®loc
+(1, (
+sockaddr_š6
+));
+
+153 
+	`memıy
+(
+ifi
+->
+ifi_d¡addr
+, 
+sš6±r
+, (
+sockaddr_š6
+));
+
+162 
+	`ä“
+(
+buf
+);
+
+163 (
+ifih—d
+);
+
+164 
+	}
+}
+
+169 
+	$ä“_ifi_šfo
+(
+ifi_šfo
+ *
+ifih—d
+)
+
+171 
+ifi_šfo
+ *
+ifi
+, *
+ifšext
+;
+
+173 
+ifi
+ = 
+ifih—d
+; if˜!ğ
+NULL
+; if˜ğ
+ifšext
+) {
+
+174 ià(
+ifi
+->
+ifi_addr
+ !ğ
+NULL
+)
+
+175 
+	`ä“
+(
+ifi
+->
+ifi_addr
+);
+
+176 ià(
+ifi
+->
+ifi_brdaddr
+ !ğ
+NULL
+)
+
+177 
+	`ä“
+(
+ifi
+->
+ifi_brdaddr
+);
+
+178 ià(
+ifi
+->
+ifi_d¡addr
+ !ğ
+NULL
+)
+
+179 
+	`ä“
+(
+ifi
+->
+ifi_d¡addr
+);
+
+180 
+ifšext
+ = 
+ifi
+->
+ifi_Ãxt
+;
+
+181 
+	`ä“
+(
+ifi
+);
+
+183 
+	}
+}
+
+186 
+ifi_šfo
+ *
+
+187 
+	$G‘_ifi_šfo
+(
+çmy
+, 
+dßlŸ£s
+)
+
+189 
+ifi_šfo
+ *
+ifi
+;
+
+191 iàĞ(
+ifi
+ = 
+	`g‘_ifi_šfo
+(
+çmy
+, 
+dßlŸ£s
+)è=ğ
+NULL
+)
+
+192 
+	`”r_qu™
+("get_ifi_infoƒrror");
+
+193 (
+ifi
+);
+
+194 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\gf_time.c
+
+1 
+	~"uÅ.h
+"
+
+2 
+	~<time.h
+>
+
+5 
+	$gf_time
+()
+
+7 
+timev®
+ 
+tv
+;
+
+8 
+time_t
+ 
+t
+;
+
+9 
+¡r
+[30];
+
+10 *
+±r
+;
+
+12 ià(
+	`g‘timeofday
+(&
+tv
+, 
+NULL
+) < 0)
+
+13 
+	`”r_sys
+("gettimeofdayƒrror");
+
+15 
+t
+ = 
+tv
+.
+tv_£c
+;
+
+16 
+±r
+ = 
+	`ùime
+(&
+t
+);
+
+17 
+	`¡rıy
+(
+¡r
+, &
+±r
+[11]);
+
+20 
+	`¢´štf
+(
+¡r
++8, (¡r)-8, ".%06ld", 
+tv
+.
+tv_u£c
+);
+
+22 (
+¡r
+);
+
+23 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\host_serv.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+addršfo
+ *
+
+5 
+	$ho¡_£rv
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+çmy
+, 
+sockty³
+)
+
+7 
+n
+;
+
+8 
+addršfo
+ 
+hšts
+, *
+»s
+;
+
+10 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+11 
+hšts
+.
+ai_æags
+ = 
+AI_CANONNAME
+;
+
+12 
+hšts
+.
+ai_çmy
+ = 
+çmy
+;
+
+13 
+hšts
+.
+ai_sockty³
+ = 
+sockty³
+;
+
+15 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+16 (
+NULL
+);
+
+18 (
+»s
+);
+
+19 
+	}
+}
+
+29 
+addršfo
+ *
+
+30 
+	$Ho¡_£rv
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+çmy
+, 
+sockty³
+)
+
+32 
+n
+;
+
+33 
+addršfo
+ 
+hšts
+, *
+»s
+;
+
+35 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+36 
+hšts
+.
+ai_æags
+ = 
+AI_CANONNAME
+;
+
+37 
+hšts
+.
+ai_çmy
+ = 
+çmy
+;
+
+38 
+hšts
+.
+ai_sockty³
+ = 
+sockty³
+;
+
+40 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+41 
+	`”r_qu™
+("host_servƒrror for %s, %s: %s",
+
+42 (
+ho¡
+ =ğ
+NULL
+) ? "(no hostname)" : host,
+
+43 (
+£rv
+ =ğ
+NULL
+) ? "(no service‚ame)" : serv,
+
+44 
+	`gai_¡»¼Ü
+(
+n
+));
+
+46 (
+»s
+);
+
+47 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\hstrerror.c
+
+9 
+	~"uÅ.h
+"
+
+12 
+	$h¡»¼Ü
+(
+”r
+)
+
+14 ià(
+”r
+ == 0)
+
+17 ià(
+”r
+ =ğ
+HOST_NOT_FOUND
+)
+
+20 ià(
+”r
+ =ğ
+TRY_AGAIN
+)
+
+23 ià(
+”r
+ =ğ
+NO_RECOVERY
+)
+
+26 ià(
+”r
+ =ğ
+NO_DATA
+)
+
+30 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\if_indextoname.c
+
+1 
+	~"uÅ.h
+"
+
+10 
+	$if_šdextÚame
+(
+šdex
+, *
+Çme
+)
+
+12 (
+NULL
+);
+
+13 
+	}
+}
+
+16 
+	$If_šdextÚame
+(
+šdex
+, *
+Çme
+)
+
+18 *
+±r
+;
+
+20 iàĞ(
+±r
+ = 
+	`if_šdextÚame
+(
+šdex
+, 
+Çme
+)è=ğ
+NULL
+)
+
+21 
+	`”r_qu™
+("if_šdextÚam”rÜ fÜ %d", 
+šdex
+);
+
+22 (
+±r
+);
+
+23 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\if_nameindex.c
+
+1 
+	~"uÅ.h
+"
+
+9 
+if_Çmešdex
+ *
+
+10 
+	$if_Çmešdex
+()
+
+12 (
+NULL
+);
+
+13 
+	}
+}
+
+16 
+	$if_ä“Çmešdex
+(
+if_Çmešdex
+ *
+±r
+)
+
+18 
+	}
+}
+
+20 
+if_Çmešdex
+ *
+
+21 
+	$If_Çmešdex
+()
+
+23 
+if_Çmešdex
+ *
+iåŒ
+;
+
+25 iàĞ(
+iåŒ
+ = 
+	`if_Çmešdex
+()è=ğ
+NULL
+)
+
+26 
+	`”r_qu™
+("if_nameindexƒrror");
+
+27 (
+iåŒ
+);
+
+28 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\if_nametoindex.c
+
+1 
+	~"uÅ.h
+"
+
+10 
+	$if_Çm‘ošdex
+(cÚ¡ *
+Çme
+)
+
+13 
+	}
+}
+
+16 
+	$If_Çm‘ošdex
+(cÚ¡ *
+Çme
+)
+
+18 
+šdex
+;
+
+20 iàĞ(
+šdex
+ = 
+	`if_Çm‘ošdex
+(
+Çme
+)) == 0)
+
+21 
+	`”r_qu™
+("if_Çm‘ošdexƒ¼Ü fÜ %s", 
+Çme
+);
+
+22 (
+šdex
+);
+
+23 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\in6addr_any.c
+
+1 
+	~"uÅ.h
+"
+
+3 #ifdef 
+IPV6
+
+
+4 cÚ¡ 
+š6_addr
+ 
+	gš6addr_ªy
+;
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_if.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$mÿ¡_g‘_if
+(
+sockfd
+)
+
+6 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+7 
+AF_INET
+: {
+
+12 #ifdef 
+IPV6
+
+
+13 
+AF_INET6
+: {
+
+14 
+u_št
+ 
+idx
+;
+
+15 
+sockËn_t
+ 
+Ën
+;
+
+17 
+Ën
+ = (
+idx
+);
+
+18 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_IF
+,
+
+19 &
+idx
+, &
+Ën
+) < 0)
+
+21 (
+idx
+);
+
+26 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+29 
+	}
+}
+
+32 
+	$Mÿ¡_g‘_if
+(
+sockfd
+)
+
+34 
+rc
+;
+
+36 iàĞ(
+rc
+ = 
+	`mÿ¡_g‘_if
+(
+sockfd
+)) < 0)
+
+37 
+	`”r_sys
+("mcast_get_ifƒrror");
+
+38 (
+rc
+);
+
+39 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_loop.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$mÿ¡_g‘_loİ
+(
+sockfd
+)
+
+6 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+7 
+AF_INET
+: {
+
+8 
+u_ch¬
+ 
+æag
+;
+
+9 
+sockËn_t
+ 
+Ën
+;
+
+11 
+Ën
+ = (
+æag
+);
+
+12 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_MULTICAST_LOOP
+,
+
+13 &
+æag
+, &
+Ën
+) < 0)
+
+15 (
+æag
+);
+
+18 #ifdef 
+IPV6
+
+
+19 
+AF_INET6
+: {
+
+20 
+u_št
+ 
+æag
+;
+
+21 
+sockËn_t
+ 
+Ën
+;
+
+23 
+Ën
+ = (
+æag
+);
+
+24 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_LOOP
+,
+
+25 &
+æag
+, &
+Ën
+) < 0)
+
+27 (
+æag
+);
+
+32 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+35 
+	}
+}
+
+38 
+	$Mÿ¡_g‘_loİ
+(
+sockfd
+)
+
+40 
+rc
+;
+
+42 iàĞ(
+rc
+ = 
+	`mÿ¡_g‘_loİ
+(
+sockfd
+)) < 0)
+
+43 
+	`”r_sys
+("mcast_get_loopƒrror");
+
+44 (
+rc
+);
+
+45 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_ttl.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$mÿ¡_g‘_‰l
+(
+sockfd
+)
+
+6 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+7 
+AF_INET
+: {
+
+8 
+u_ch¬
+ 
+‰l
+;
+
+9 
+sockËn_t
+ 
+Ën
+;
+
+11 
+Ën
+ = (
+‰l
+);
+
+12 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_MULTICAST_TTL
+,
+
+13 &
+‰l
+, &
+Ën
+) < 0)
+
+15 (
+‰l
+);
+
+18 #ifdef 
+IPV6
+
+
+19 
+AF_INET6
+: {
+
+20 
+hİ
+;
+
+21 
+sockËn_t
+ 
+Ën
+;
+
+23 
+Ën
+ = (
+hİ
+);
+
+24 ià(
+	`g‘sockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_HOPS
+,
+
+25 &
+hİ
+, &
+Ën
+) < 0)
+
+27 (
+hİ
+);
+
+32 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+35 
+	}
+}
+
+38 
+	$Mÿ¡_g‘_‰l
+(
+sockfd
+)
+
+40 
+rc
+;
+
+42 iàĞ(
+rc
+ = 
+	`mÿ¡_g‘_‰l
+(
+sockfd
+)) < 0)
+
+43 
+	`”r_sys
+("mcast_get_ttlƒrror");
+
+44 (
+rc
+);
+
+45 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_join.c
+
+2 
+	~"uÅ.h
+"
+
+3 
+	~<Ãt/if.h
+>
+
+6 
+	$mÿ¡_još
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+7 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+9 #ifdeà
+MCAST_JOIN_GROUP
+
+
+10 
+group_»q
+ 
+»q
+;
+
+11 ià(
+ifšdex
+ > 0) {
+
+12 
+»q
+.
+gr_š‹rçû
+ = 
+ifšdex
+;
+
+13 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+14 iàĞ(
+»q
+.
+gr_š‹rçû
+ = 
+	`if_Çm‘ošdex
+(
+iâame
+)) == 0) {
+
+15 
+”ºo
+ = 
+ENXIO
+;
+
+19 
+»q
+.
+gr_š‹rçû
+ = 0;
+
+20 ià(
+g½Ën
+ > (
+»q
+.
+gr_group
+)) {
+
+21 
+”ºo
+ = 
+EINVAL
+;
+
+24 
+	`memıy
+(&
+»q
+.
+gr_group
+, 
+g½
+, 
+g½Ën
+);
+
+25  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+26 
+MCAST_JOIN_GROUP
+, &
+»q
+, (req)));
+
+31 
+g½
+->
+§_çmy
+) {
+
+32 
+AF_INET
+: {
+
+33 
+_m»q
+ 
+m»q
+;
+
+34 
+iäeq
+ ifreq;
+
+36 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+37 &((cÚ¡ 
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+38 (
+š_addr
+));
+
+40 ià(
+ifšdex
+ > 0) {
+
+41 ià(
+	`if_šdextÚame
+(
+ifšdex
+, 
+iäeq
+.
+iä_Çme
+è=ğ
+NULL
+) {
+
+42 
+”ºo
+ = 
+ENXIO
+;
+
+45 
+doioùl
+;
+
+46 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+47 
+	`¡ºıy
+(
+iäeq
+.
+iä_Çme
+, 
+iâame
+, 
+IFNAMSIZ
+);
+
+48 
+doioùl
+:
+
+49 ià(
+	`ioùl
+(
+sockfd
+, 
+SIOCGIFADDR
+, &
+iäeq
+) < 0)
+
+51 
+	`memıy
+(&
+m»q
+.
+imr_š‹rçû
+,
+
+52 &((
+sockaddr_š
+ *è&
+iäeq
+.
+iä_addr
+)->
+sš_addr
+,
+
+53 (
+š_addr
+));
+
+55 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+57 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_ADD_MEMBERSHIP
+,
+
+58 &
+m»q
+, (mreq)));
+
+63 #ifdef 
+IPV6
+
+
+64 #iâdef 
+IPV6_JOIN_GROUP
+
+
+65 
+	#IPV6_JOIN_GROUP
+ 
+IPV6_ADD_MEMBERSHIP
+
+
+	)
+
+67 
+AF_INET6
+: {
+
+68 
+v6_m»q
+ 
+m»q6
+;
+
+70 
+	`memıy
+(&
+m»q6
+.
+v6mr_muÉŸddr
+,
+
+71 &((cÚ¡ 
+sockaddr_š6
+ *è
+g½
+)->
+sš6_addr
+,
+
+72 (
+š6_addr
+));
+
+74 ià(
+ifšdex
+ > 0) {
+
+75 
+m»q6
+.
+v6mr_š‹rçû
+ = 
+ifšdex
+;
+
+76 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+77 iàĞ(
+m»q6
+.
+v6mr_š‹rçû
+ = 
+	`if_Çm‘ošdex
+(
+iâame
+)) == 0) {
+
+78 
+”ºo
+ = 
+ENXIO
+;
+
+82 
+m»q6
+.
+v6mr_š‹rçû
+ = 0;
+
+84 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_JOIN_GROUP
+,
+
+85 &
+m»q6
+, (mreq6)));
+
+90 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+94 
+	}
+}
+
+98 
+	$Mÿ¡_još
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+99 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+101 ià(
+	`mÿ¡_još
+(
+sockfd
+, 
+g½
+, 
+g½Ën
+, 
+iâame
+, 
+ifšdex
+) < 0)
+
+102 
+	`”r_sys
+("mcast_joinƒrror");
+
+103 
+	}
+}
+
+106 
+	$mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+107 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+108 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+110 #ifdeà
+MCAST_JOIN_SOURCE_GROUP
+
+
+111 
+group_sourû_»q
+ 
+»q
+;
+
+112 ià(
+ifšdex
+ > 0) {
+
+113 
+»q
+.
+g¤_š‹rçû
+ = 
+ifšdex
+;
+
+114 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+115 iàĞ(
+»q
+.
+g¤_š‹rçû
+ = 
+	`if_Çm‘ošdex
+(
+iâame
+)) == 0) {
+
+116 
+”ºo
+ = 
+ENXIO
+;
+
+120 
+»q
+.
+g¤_š‹rçû
+ = 0;
+
+121 ià(
+g½Ën
+ > (
+»q
+.
+g¤_group
+è|| 
+¤ş’
+ > Ôeq.
+g¤_sourû
+)) {
+
+122 
+”ºo
+ = 
+EINVAL
+;
+
+125 
+	`memıy
+(&
+»q
+.
+g¤_group
+, 
+g½
+, 
+g½Ën
+);
+
+126 
+	`memıy
+(&
+»q
+.
+g¤_sourû
+, 
+¤c
+, 
+¤ş’
+);
+
+127  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+128 
+MCAST_JOIN_SOURCE_GROUP
+, &
+»q
+, (req)));
+
+130 
+g½
+->
+§_çmy
+) {
+
+131 #ifdeà
+IP_ADD_SOURCE_MEMBERSHIP
+
+
+132 
+AF_INET
+: {
+
+133 
+_m»q_sourû
+ 
+m»q
+;
+
+134 
+iäeq
+ ifreq;
+
+136 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+137 &((
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+138 (
+š_addr
+));
+
+139 
+	`memıy
+(&
+m»q
+.
+imr_sourûaddr
+,
+
+140 &((
+sockaddr_š
+ *è
+¤c
+)->
+sš_addr
+,
+
+141 (
+š_addr
+));
+
+143 ià(
+ifšdex
+ > 0) {
+
+144 ià(
+	`if_šdextÚame
+(
+ifšdex
+, 
+iäeq
+.
+iä_Çme
+è=ğ
+NULL
+) {
+
+145 
+”ºo
+ = 
+ENXIO
+;
+
+148 
+doioùl
+;
+
+149 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+150 
+	`¡ºıy
+(
+iäeq
+.
+iä_Çme
+, 
+iâame
+, 
+IFNAMSIZ
+);
+
+151 
+doioùl
+:
+
+152 ià(
+	`ioùl
+(
+sockfd
+, 
+SIOCGIFADDR
+, &
+iäeq
+) < 0)
+
+154 
+	`memıy
+(&
+m»q
+.
+imr_š‹rçû
+,
+
+155 &((
+sockaddr_š
+ *è&
+iäeq
+.
+iä_addr
+)->
+sš_addr
+,
+
+156 (
+š_addr
+));
+
+158 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+160 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_ADD_SOURCE_MEMBERSHIP
+,
+
+161 &
+m»q
+, (mreq)));
+
+165 #ifdef 
+IPV6
+
+
+166 
+AF_INET6
+:
+
+169 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+173 
+	}
+}
+
+176 
+	$Mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+177 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+178 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+180 ià(
+	`mÿ¡_još_sourû_group
+(
+sockfd
+, 
+¤c
+, 
+¤ş’
+, 
+g½
+, 
+g½Ën
+,
+
+181 
+iâame
+, 
+ifšdex
+) < 0)
+
+182 
+	`”r_sys
+("mcast_join_source_groupƒrror");
+
+183 
+	}
+}
+
+186 
+	$mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+187 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+189 #ifdeà
+MCAST_BLOCK_SOURCE
+
+
+190 
+group_sourû_»q
+ 
+»q
+;
+
+191 
+»q
+.
+g¤_š‹rçû
+ = 0;
+
+192 ià(
+g½Ën
+ > (
+»q
+.
+g¤_group
+è|| 
+¤ş’
+ > Ôeq.
+g¤_sourû
+)) {
+
+193 
+”ºo
+ = 
+EINVAL
+;
+
+196 
+	`memıy
+(&
+»q
+.
+g¤_group
+, 
+g½
+, 
+g½Ën
+);
+
+197 
+	`memıy
+(&
+»q
+.
+g¤_sourû
+, 
+¤c
+, 
+¤ş’
+);
+
+198  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+199 
+MCAST_BLOCK_SOURCE
+, &
+»q
+, (req)));
+
+201 
+g½
+->
+§_çmy
+) {
+
+202 #ifdeà
+IP_BLOCK_SOURCE
+
+
+203 
+AF_INET
+: {
+
+204 
+_m»q_sourû
+ 
+m»q
+;
+
+206 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+207 &((
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+208 (
+š_addr
+));
+
+209 
+	`memıy
+(&
+m»q
+.
+imr_sourûaddr
+,
+
+210 &((
+sockaddr_š
+ *è
+¤c
+)->
+sš_addr
+,
+
+211 (
+š_addr
+));
+
+212 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+214 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_BLOCK_SOURCE
+,
+
+215 &
+m»q
+, (mreq)));
+
+219 #ifdef 
+IPV6
+
+
+220 
+AF_INET6
+:
+
+223 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+227 
+	}
+}
+
+230 
+	$Mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+231 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+233 ià(
+	`mÿ¡_block_sourû
+(
+sockfd
+, 
+¤c
+, 
+¤ş’
+, 
+g½
+, 
+g½Ën
+) < 0)
+
+234 
+	`”r_sys
+("mcast_block_sourceƒrror");
+
+235 
+	}
+}
+
+238 
+	$mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+239 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+241 #ifdeà
+MCAST_UNBLOCK_SOURCE
+
+
+242 
+group_sourû_»q
+ 
+»q
+;
+
+243 
+»q
+.
+g¤_š‹rçû
+ = 0;
+
+244 ià(
+g½Ën
+ > (
+»q
+.
+g¤_group
+è|| 
+¤ş’
+ > Ôeq.
+g¤_sourû
+)) {
+
+245 
+”ºo
+ = 
+EINVAL
+;
+
+248 
+	`memıy
+(&
+»q
+.
+g¤_group
+, 
+g½
+, 
+g½Ën
+);
+
+249 
+	`memıy
+(&
+»q
+.
+g¤_sourû
+, 
+¤c
+, 
+¤ş’
+);
+
+250  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+251 
+MCAST_UNBLOCK_SOURCE
+, &
+»q
+, (req)));
+
+253 
+g½
+->
+§_çmy
+) {
+
+254 #ifdeà
+IP_UNBLOCK_SOURCE
+
+
+255 
+AF_INET
+: {
+
+256 
+_m»q_sourû
+ 
+m»q
+;
+
+258 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+259 &((
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+260 (
+š_addr
+));
+
+261 
+	`memıy
+(&
+m»q
+.
+imr_sourûaddr
+,
+
+262 &((
+sockaddr_š
+ *è
+¤c
+)->
+sš_addr
+,
+
+263 (
+š_addr
+));
+
+264 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+266 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_UNBLOCK_SOURCE
+,
+
+267 &
+m»q
+, (mreq)));
+
+271 #ifdef 
+IPV6
+
+
+272 
+AF_INET6
+:
+
+275 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+279 
+	}
+}
+
+282 
+	$Mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+283 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+285 ià(
+	`mÿ¡_unblock_sourû
+(
+sockfd
+, 
+¤c
+, 
+¤ş’
+, 
+g½
+, 
+g½Ën
+) < 0)
+
+286 
+	`”r_sys
+("mcast_unblock_sourceƒrror");
+
+287 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_leave.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$mÿ¡_Ëave
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+6 #ifdeà
+MCAST_JOIN_GROUP
+
+
+7 
+group_»q
+ 
+»q
+;
+
+8 
+»q
+.
+gr_š‹rçû
+ = 0;
+
+9 ià(
+g½Ën
+ > (
+»q
+.
+gr_group
+)) {
+
+10 
+”ºo
+ = 
+EINVAL
+;
+
+13 
+	`memıy
+(&
+»q
+.
+gr_group
+, 
+g½
+, 
+g½Ën
+);
+
+14  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+15 
+MCAST_LEAVE_GROUP
+, &
+»q
+, (req)));
+
+17 
+g½
+->
+§_çmy
+) {
+
+18 
+AF_INET
+: {
+
+19 
+_m»q
+ 
+m»q
+;
+
+21 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+22 &((cÚ¡ 
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+23 (
+š_addr
+));
+
+24 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+25 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_DROP_MEMBERSHIP
+,
+
+26 &
+m»q
+, (mreq)));
+
+29 #ifdef 
+IPV6
+
+
+30 #iâdef 
+IPV6_LEAVE_GROUP
+
+
+31 
+	#IPV6_LEAVE_GROUP
+ 
+IPV6_DROP_MEMBERSHIP
+
+
+	)
+
+33 
+AF_INET6
+: {
+
+34 
+v6_m»q
+ 
+m»q6
+;
+
+36 
+	`memıy
+(&
+m»q6
+.
+v6mr_muÉŸddr
+,
+
+37 &((cÚ¡ 
+sockaddr_š6
+ *è
+g½
+)->
+sš6_addr
+,
+
+38 (
+š6_addr
+));
+
+39 
+m»q6
+.
+v6mr_š‹rçû
+ = 0;
+
+40 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_LEAVE_GROUP
+,
+
+41 &
+m»q6
+, (mreq6)));
+
+46 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+50 
+	}
+}
+
+53 
+	$Mÿ¡_Ëave
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+55 ià(
+	`mÿ¡_Ëave
+(
+sockfd
+, 
+g½
+, 
+g½Ën
+) < 0)
+
+56 
+	`”r_sys
+("mcast_leaveƒrror");
+
+57 
+	}
+}
+
+60 
+	$mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+61 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+63 #ifdeà
+MCAST_LEAVE_SOURCE_GROUP
+
+
+64 
+group_sourû_»q
+ 
+»q
+;
+
+65 
+»q
+.
+g¤_š‹rçû
+ = 0;
+
+66 ià(
+g½Ën
+ > (
+»q
+.
+g¤_group
+è|| 
+¤ş’
+ > Ôeq.
+g¤_sourû
+)) {
+
+67 
+”ºo
+ = 
+EINVAL
+;
+
+70 
+	`memıy
+(&
+»q
+.
+g¤_group
+, 
+g½
+, 
+g½Ën
+);
+
+71 
+	`memıy
+(&
+»q
+.
+g¤_sourû
+, 
+¤c
+, 
+¤ş’
+);
+
+72  (
+	`£tsockİt
+(
+sockfd
+, 
+	`çmy_to_Ëv–
+(
+g½
+->
+§_çmy
+),
+
+73 
+MCAST_LEAVE_SOURCE_GROUP
+, &
+»q
+, (req)));
+
+75 
+g½
+->
+§_çmy
+) {
+
+76 #ifdeà
+IP_DROP_SOURCE_MEMBERSHIP
+
+
+77 
+AF_INET
+: {
+
+78 
+_m»q_sourû
+ 
+m»q
+;
+
+80 
+	`memıy
+(&
+m»q
+.
+imr_muÉŸddr
+,
+
+81 &((
+sockaddr_š
+ *è
+g½
+)->
+sš_addr
+,
+
+82 (
+š_addr
+));
+
+83 
+	`memıy
+(&
+m»q
+.
+imr_sourûaddr
+,
+
+84 &((
+sockaddr_š
+ *è
+¤c
+)->
+sš_addr
+,
+
+85 (
+š_addr
+));
+
+86 
+m»q
+.
+imr_š‹rçû
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+88 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_DROP_SOURCE_MEMBERSHIP
+,
+
+89 &
+m»q
+, (mreq)));
+
+93 #ifdef 
+IPV6
+
+
+94 
+AF_INET6
+:
+
+97 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+101 
+	}
+}
+
+104 
+	$Mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+105 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+)
+
+107 ià(
+	`mÿ¡_Ëave_sourû_group
+(
+sockfd
+, 
+¤c
+, 
+¤ş’
+, 
+g½
+, 
+g½Ën
+) < 0)
+
+108 
+	`”r_sys
+("mcast_leave_source_groupƒrror");
+
+109 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_if.c
+
+1 
+	~"uÅ.h
+"
+
+2 
+	~<Ãt/if.h
+>
+
+5 
+	$mÿ¡_£t_if
+(
+sockfd
+, cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+7 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+8 
+AF_INET
+: {
+
+9 
+š_addr
+ 
+šaddr
+;
+
+10 
+iäeq
+ ifreq;
+
+12 ià(
+ifšdex
+ > 0) {
+
+13 ià(
+	`if_šdextÚame
+(
+ifšdex
+, 
+iäeq
+.
+iä_Çme
+è=ğ
+NULL
+) {
+
+14 
+”ºo
+ = 
+ENXIO
+;
+
+17 
+doioùl
+;
+
+18 } ià(
+iâame
+ !ğ
+NULL
+) {
+
+19 
+	`¡ºıy
+(
+iäeq
+.
+iä_Çme
+, 
+iâame
+, 
+IFNAMSIZ
+);
+
+20 
+doioùl
+:
+
+21 ià(
+	`ioùl
+(
+sockfd
+, 
+SIOCGIFADDR
+, &
+iäeq
+) < 0)
+
+23 
+	`memıy
+(&
+šaddr
+,
+
+24 &((
+sockaddr_š
+ *è&
+iäeq
+.
+iä_addr
+)->
+sš_addr
+,
+
+25 (
+š_addr
+));
+
+27 
+šaddr
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+29 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_MULTICAST_IF
+,
+
+30 &
+šaddr
+, (
+š_addr
+)));
+
+33 #ifdef 
+IPV6
+
+
+34 
+AF_INET6
+: {
+
+35 
+u_št
+ 
+idx
+;
+
+37 iàĞ(
+idx
+ = 
+ifšdex
+) == 0) {
+
+38 ià(
+iâame
+ =ğ
+NULL
+) {
+
+39 
+”ºo
+ = 
+EINVAL
+;
+
+42 iàĞ(
+idx
+ = 
+	`if_Çm‘ošdex
+(
+iâame
+)) == 0) {
+
+43 
+”ºo
+ = 
+ENXIO
+;
+
+47 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_IF
+,
+
+48 &
+idx
+, (idx)));
+
+53 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+56 
+	}
+}
+
+59 
+	$Mÿ¡_£t_if
+(
+sockfd
+, cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+)
+
+61 ià(
+	`mÿ¡_£t_if
+(
+sockfd
+, 
+iâame
+, 
+ifšdex
+) < 0)
+
+62 
+	`”r_sys
+("mcast_set_ifƒrror");
+
+63 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_loop.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$mÿ¡_£t_loİ
+(
+sockfd
+, 
+Úoff
+)
+
+7 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+8 
+AF_INET
+: {
+
+9 
+u_ch¬
+ 
+æag
+;
+
+11 
+æag
+ = 
+Úoff
+;
+
+12 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_MULTICAST_LOOP
+,
+
+13 &
+æag
+, (flag)));
+
+16 #ifdef 
+IPV6
+
+
+17 
+AF_INET6
+: {
+
+18 
+u_št
+ 
+æag
+;
+
+20 
+æag
+ = 
+Úoff
+;
+
+21 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_LOOP
+,
+
+22 &
+æag
+, (flag)));
+
+27 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+30 
+	}
+}
+
+34 
+	$Mÿ¡_£t_loİ
+(
+sockfd
+, 
+Úoff
+)
+
+36 ià(
+	`mÿ¡_£t_loİ
+(
+sockfd
+, 
+Úoff
+) < 0)
+
+37 
+	`”r_sys
+("mcast_set_loopƒrror");
+
+38 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_ttl.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$mÿ¡_£t_‰l
+(
+sockfd
+, 
+v®
+)
+
+6 
+	`sockfd_to_çmy
+(
+sockfd
+)) {
+
+7 
+AF_INET
+: {
+
+8 
+u_ch¬
+ 
+‰l
+;
+
+10 
+‰l
+ = 
+v®
+;
+
+11 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IP
+, 
+IP_MULTICAST_TTL
+,
+
+12 &
+‰l
+, (ttl)));
+
+15 #ifdef 
+IPV6
+
+
+16 
+AF_INET6
+: {
+
+17 
+hİ
+;
+
+19 
+hİ
+ = 
+v®
+;
+
+20 (
+	`£tsockİt
+(
+sockfd
+, 
+IPPROTO_IPV6
+, 
+IPV6_MULTICAST_HOPS
+,
+
+21 &
+hİ
+, (hop)));
+
+26 
+”ºo
+ = 
+EAFNOSUPPORT
+;
+
+29 
+	}
+}
+
+32 
+	$Mÿ¡_£t_‰l
+(
+sockfd
+, 
+v®
+)
+
+34 ià(
+	`mÿ¡_£t_‰l
+(
+sockfd
+, 
+v®
+) < 0)
+
+35 
+	`”r_sys
+("mcast_set_ttlƒrror");
+
+36 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\my_addrs.c
+
+2 
+	~"uÅ.h
+"
+
+3 
+	~<sys/ut¢ame.h
+>
+
+6 
+	$my_addrs
+(*
+add¹y³
+)
+
+8 
+ho¡’t
+ *
+h±r
+;
+
+9 
+ut¢ame
+ 
+myÇme
+;
+
+11 ià(
+	`uÇme
+(&
+myÇme
+) < 0)
+
+12 (
+NULL
+);
+
+14 iàĞ(
+h±r
+ = 
+	`g‘ho¡byÇme
+(
+myÇme
+.
+nod’ame
+)è=ğ
+NULL
+)
+
+15 (
+NULL
+);
+
+17 *
+add¹y³
+ = 
+h±r
+->
+h_add¹y³
+;
+
+18 (
+h±r
+->
+h_addr_li¡
+);
+
+19 
+	}
+}
+
+23 
+	$My_addrs
+(*
+pçmy
+)
+
+25 **
+µŒ
+;
+
+27 iàĞ(
+µŒ
+ = 
+	`my_addrs
+(
+pçmy
+)è=ğ
+NULL
+)
+
+28 
+	`”r_sys
+("my_addrsƒrror");
+
+29 (
+µŒ
+);
+
+30 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\pselect.c
+
+10 
+	~"uÅ.h
+"
+
+13 
+	$p£Ëù
+(
+nfds
+, 
+fd_£t
+ *
+r£t
+, fd_£ˆ*
+w£t
+, fd_£ˆ*
+x£t
+,
+
+14 cÚ¡ 
+time¥ec
+ *
+ts
+, cÚ¡ 
+sig£t_t
+ *
+sigmask
+)
+
+16 
+n
+;
+
+17 
+timev®
+ 
+tv
+;
+
+18 
+sig£t_t
+ 
+§vemask
+;
+
+20 ià(
+ts
+ !ğ
+NULL
+) {
+
+21 
+tv
+.
+tv_£c
+ = 
+ts
+->tv_sec;
+
+22 
+tv
+.
+tv_u£c
+ = 
+ts
+->
+tv_n£c
+ / 1000;
+
+25 
+	`sig´ocmask
+(
+SIG_SETMASK
+, 
+sigmask
+, &
+§vemask
+);
+
+26 
+n
+ = 
+	`£Ëù
+(
+nfds
+, 
+r£t
+, 
+w£t
+, 
+x£t
+, (
+ts
+ =ğ
+NULL
+è? NULL : &
+tv
+);
+
+27 
+	`sig´ocmask
+(
+SIG_SETMASK
+, &
+§vemask
+, 
+NULL
+);
+
+29 (
+n
+);
+
+30 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\read_fd.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+ssize_t
+
+
+5 
+	$»ad_fd
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, *
+»cvfd
+)
+
+7 
+msghdr
+ 
+msg
+;
+
+8 
+iovec
+ 
+iov
+[1];
+
+9 
+ssize_t
+ 
+n
+;
+
+11 #ifdef 
+HAVE_MSGHDR_MSG_CONTROL
+
+
+13 
+cmsghdr
+ 
+cm
+;
+
+14 
+cÚŒŞ
+[
+	`CMSG_SPACE
+(())];
+
+15 } 
+cÚŒŞ_un
+;
+
+16 
+cmsghdr
+ *
+cm±r
+;
+
+18 
+msg
+.
+msg_cÚŒŞ
+ = 
+cÚŒŞ_un
+.
+cÚŒŞ
+;
+
+19 
+msg
+.
+msg_cÚŒŞËn
+ = (
+cÚŒŞ_un
+.
+cÚŒŞ
+);
+
+21 
+Ãwfd
+;
+
+23 
+msg
+.
+msg_acüights
+ = (
+ÿddr_t
+è&
+Ãwfd
+;
+
+24 
+msg
+.
+msg_acüight¦’
+ = ();
+
+27 
+msg
+.
+msg_Çme
+ = 
+NULL
+;
+
+28 
+msg
+.
+msg_Çm–’
+ = 0;
+
+30 
+iov
+[0].
+iov_ba£
+ = 
+±r
+;
+
+31 
+iov
+[0].
+iov_Ën
+ = 
+nby‹s
+;
+
+32 
+msg
+.
+msg_iov
+ = 
+iov
+;
+
+33 
+msg
+.
+msg_iovËn
+ = 1;
+
+35 iàĞ(
+n
+ = 
+	`»cvmsg
+(
+fd
+, &
+msg
+, 0)) <= 0)
+
+36 (
+n
+);
+
+38 #ifdef 
+HAVE_MSGHDR_MSG_CONTROL
+
+
+39 iàĞ(
+cm±r
+ = 
+	`CMSG_FIRSTHDR
+(&
+msg
+)è!ğ
+NULL
+ &&
+
+40 
+cm±r
+->
+cmsg_Ën
+ =ğ
+	`CMSG_LEN
+(())) {
+
+41 ià(
+cm±r
+->
+cmsg_Ëv–
+ !ğ
+SOL_SOCKET
+)
+
+42 
+	`”r_qu™
+("control†evel != SOL_SOCKET");
+
+43 ià(
+cm±r
+->
+cmsg_ty³
+ !ğ
+SCM_RIGHTS
+)
+
+44 
+	`”r_qu™
+("controlype != SCM_RIGHTS");
+
+45 *
+»cvfd
+ = *((*è
+	`CMSG_DATA
+(
+cm±r
+));
+
+47 *
+»cvfd
+ = -1;
+
+50 ià(
+msg
+.
+msg_acüight¦’
+ == ())
+
+51 *
+»cvfd
+ = 
+Ãwfd
+;
+
+53 *
+»cvfd
+ = -1;
+
+57 (
+n
+);
+
+58 
+	}
+}
+
+61 
+ssize_t
+
+
+62 
+	$R—d_fd
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, *
+»cvfd
+)
+
+64 
+ssize_t
+ 
+n
+;
+
+66 iàĞ(
+n
+ = 
+	`»ad_fd
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+»cvfd
+)) < 0)
+
+67 
+	`”r_sys
+("read_fdƒrror");
+
+69 (
+n
+);
+
+70 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\readable_timeo.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$»adabË_timeo
+(
+fd
+, 
+£c
+)
+
+7 
+fd_£t
+ 
+r£t
+;
+
+8 
+timev®
+ 
+tv
+;
+
+10 
+	`FD_ZERO
+(&
+r£t
+);
+
+11 
+	`FD_SET
+(
+fd
+, &
+r£t
+);
+
+13 
+tv
+.
+tv_£c
+ = 
+£c
+;
+
+14 
+tv
+.
+tv_u£c
+ = 0;
+
+16 (
+	`£Ëù
+(
+fd
++1, &
+r£t
+, 
+NULL
+, NULL, &
+tv
+));
+
+18 
+	}
+}
+
+22 
+	$R—dabË_timeo
+(
+fd
+, 
+£c
+)
+
+24 
+n
+;
+
+26 iàĞ(
+n
+ = 
+	`»adabË_timeo
+(
+fd
+, 
+£c
+)) < 0)
+
+27 
+	`”r_sys
+("readable_timeoƒrror");
+
+28 (
+n
+);
+
+29 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\readline.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+	g»ad_út
+;
+
+5 *
+	g»ad_±r
+;
+
+6 
+	g»ad_buf
+[
+MAXLINE
+];
+
+8 
+ssize_t
+
+
+9 
+	$my_»ad
+(
+fd
+, *
+±r
+)
+
+12 ià(
+»ad_út
+ <= 0) {
+
+13 
+agaš
+:
+
+14 iàĞ(
+»ad_út
+ = 
+	`»ad
+(
+fd
+, 
+»ad_buf
+, (read_buf))) < 0) {
+
+15 ià(
+”ºo
+ =ğ
+EINTR
+)
+
+16 
+agaš
+;
+
+18 } ià(
+»ad_út
+ == 0)
+
+20 
+»ad_±r
+ = 
+»ad_buf
+;
+
+23 
+»ad_út
+--;
+
+24 *
+±r
+ = *
+»ad_±r
+++;
+
+26 
+	}
+}
+
+28 
+ssize_t
+
+
+29 
+	$»adlše
+(
+fd
+, *
+v±r
+, 
+size_t
+ 
+maxËn
+)
+
+31 
+ssize_t
+ 
+n
+, 
+rc
+;
+
+32 
+c
+, *
+±r
+;
+
+34 
+±r
+ = 
+v±r
+;
+
+35 
+n
+ = 1;‚ < 
+maxËn
+;‚++) {
+
+36 iàĞ(
+rc
+ = 
+	`my_»ad
+(
+fd
+, &
+c
+)) == 1) {
+
+37 *
+±r
+++ = 
+c
+;
+
+38 ià(
+c
+ == '\n')
+
+40 } ià(
+rc
+ == 0) {
+
+41 *
+±r
+ = 0;
+
+42 (
+n
+ - 1);
+
+47 *
+±r
+ = 0;
+
+48 (
+n
+);
+
+49 
+	}
+}
+
+51 
+ssize_t
+
+
+52 
+	$»adlšebuf
+(**
+v±½Œ
+)
+
+54 ià(
+»ad_út
+)
+
+55 *
+v±½Œ
+ = 
+»ad_±r
+;
+
+56 (
+»ad_út
+);
+
+57 
+	}
+}
+
+60 
+ssize_t
+
+
+61 
+	$R—dlše
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+maxËn
+)
+
+63 
+ssize_t
+ 
+n
+;
+
+65 iàĞ(
+n
+ = 
+	`»adlše
+(
+fd
+, 
+±r
+, 
+maxËn
+)) < 0)
+
+66 
+	`”r_sys
+("readlineƒrror");
+
+67 (
+n
+);
+
+68 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\readn.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+ssize_t
+
+
+5 
+	$»adn
+(
+fd
+, *
+v±r
+, 
+size_t
+ 
+n
+)
+
+7 
+size_t
+ 
+Æeá
+;
+
+8 
+ssize_t
+ 
+Ä—d
+;
+
+9 *
+±r
+;
+
+11 
+±r
+ = 
+v±r
+;
+
+12 
+Æeá
+ = 
+n
+;
+
+13 
+Æeá
+ > 0) {
+
+14 iàĞ(
+Ä—d
+ = 
+	`»ad
+(
+fd
+, 
+±r
+, 
+Æeá
+)) < 0) {
+
+15 ià(
+”ºo
+ =ğ
+EINTR
+)
+
+16 
+Ä—d
+ = 0;
+
+19 } ià(
+Ä—d
+ == 0)
+
+22 
+Æeá
+ -ğ
+Ä—d
+;
+
+23 
+±r
+ +ğ
+Ä—d
+;
+
+25 (
+n
+ - 
+Æeá
+);
+
+26 
+	}
+}
+
+29 
+ssize_t
+
+
+30 
+	$R—dn
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+)
+
+32 
+ssize_t
+ 
+n
+;
+
+34 iàĞ(
+n
+ = 
+	`»adn
+(
+fd
+, 
+±r
+, 
+nby‹s
+)) < 0)
+
+35 
+	`”r_sys
+("readnƒrror");
+
+36 (
+n
+);
+
+37 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\rtt.c
+
+2 
+	~"uÅ¹t.h
+"
+
+4 
+	g¹t_d_æag
+ = 0;
+
+10 
+	#RTT_RTOCALC
+(
+±r
+è(ÕŒ)->
+¹t_¤‰
+ + (4.0 * (±r)->
+¹t_¹tv¬
+))
+
+	)
+
+13 
+	$¹t_mšmax
+(
+¹o
+)
+
+15 ià(
+¹o
+ < 
+RTT_RXTMIN
+)
+
+16 
+¹o
+ = 
+RTT_RXTMIN
+;
+
+17 ià(
+¹o
+ > 
+RTT_RXTMAX
+)
+
+18 
+¹o
+ = 
+RTT_RXTMAX
+;
+
+19 (
+¹o
+);
+
+20 
+	}
+}
+
+23 
+	$¹t_š™
+(
+¹t_šfo
+ *
+±r
+)
+
+25 
+timev®
+ 
+tv
+;
+
+27 
+	`G‘timeofday
+(&
+tv
+, 
+NULL
+);
+
+28 
+±r
+->
+¹t_ba£
+ = 
+tv
+.
+tv_£c
+;
+
+30 
+±r
+->
+¹t_¹t
+ = 0;
+
+31 
+±r
+->
+¹t_¤‰
+ = 0;
+
+32 
+±r
+->
+¹t_¹tv¬
+ = 0.75;
+
+33 
+±r
+->
+¹t_¹o
+ = 
+	`¹t_mšmax
+(
+	`RTT_RTOCALC
+(ptr));
+
+35 
+	}
+}
+
+45 
+ušt32_t
+
+
+46 
+	$¹t_ts
+(
+¹t_šfo
+ *
+±r
+)
+
+48 
+ušt32_t
+ 
+ts
+;
+
+49 
+timev®
+ 
+tv
+;
+
+51 
+	`G‘timeofday
+(&
+tv
+, 
+NULL
+);
+
+52 
+ts
+ = ((
+tv
+.
+tv_£c
+ - 
+±r
+->
+¹t_ba£
+è* 1000è+ (tv.
+tv_u£c
+ / 1000);
+
+53 (
+ts
+);
+
+54 
+	}
+}
+
+57 
+	$¹t_Ãw·ck
+(
+¹t_šfo
+ *
+±r
+)
+
+59 
+±r
+->
+¹t_Äexmt
+ = 0;
+
+60 
+	}
+}
+
+63 
+	$¹t_¡¬t
+(
+¹t_šfo
+ *
+±r
+)
+
+65 ((è(
+±r
+->
+¹t_¹o
+ + 0.5));
+
+67 
+	}
+}
+
+81 
+	$¹t_¡İ
+(
+¹t_šfo
+ *
+±r
+, 
+ušt32_t
+ 
+ms
+)
+
+83 
+d–
+;
+
+85 
+±r
+->
+¹t_¹t
+ = 
+ms
+ / 1000.0;
+
+93 
+d–
+ = 
+±r
+->
+¹t_¹t
+ -…Œ->
+¹t_¤‰
+;
+
+94 
+±r
+->
+¹t_¤‰
+ +ğ
+d–
+ / 8;
+
+96 ià(
+d–
+ < 0.0)
+
+97 
+d–
+ = -delta;
+
+99 
+±r
+->
+¹t_¹tv¬
+ +ğ(
+d–
+ -…tr->rtt_rttvar) / 4;
+
+101 
+±r
+->
+¹t_¹o
+ = 
+	`¹t_mšmax
+(
+	`RTT_RTOCALC
+(ptr));
+
+102 
+	}
+}
+
+112 
+	$¹t_timeout
+(
+¹t_šfo
+ *
+±r
+)
+
+114 
+±r
+->
+¹t_¹o
+ *= 2;
+
+116 ià(++
+±r
+->
+¹t_Äexmt
+ > 
+RTT_MAXNREXMT
+)
+
+119 
+	}
+}
+
+127 
+	$¹t_debug
+(
+¹t_šfo
+ *
+±r
+)
+
+129 ià(
+¹t_d_æag
+ == 0)
+
+132 
+	`årštf
+(
+¡d”r
+, "rtt = %.3f, srtt = %.3f,„ttvar = %.3f,„to = %.3f\n",
+
+133 
+±r
+->
+¹t_¹t
+,…Œ->
+¹t_¤‰
+,…Œ->
+¹t_¹tv¬
+,…Œ->
+¹t_¹o
+);
+
+134 
+	`fæush
+(
+¡d”r
+);
+
+135 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\signal.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+Sigfunc
+ *
+
+5 
+	$sigÇl
+(
+signo
+, 
+Sigfunc
+ *
+func
+)
+
+7 
+sigaùiÚ
+ 
+aù
+, 
+ßù
+;
+
+9 
+aù
+.
+§_hªdËr
+ = 
+func
+;
+
+10 
+	`sigem±y£t
+(&
+aù
+.
+§_mask
+);
+
+11 
+aù
+.
+§_æags
+ = 0;
+
+12 ià(
+signo
+ =ğ
+SIGALRM
+) {
+
+13 #ifdef 
+SA_INTERRUPT
+
+
+14 
+aù
+.
+§_æags
+ |ğ
+SA_INTERRUPT
+;
+
+17 #ifdef 
+SA_RESTART
+
+
+18 
+aù
+.
+§_æags
+ |ğ
+SA_RESTART
+;
+
+21 ià(
+	`sigaùiÚ
+(
+signo
+, &
+aù
+, &
+ßù
+) < 0)
+
+22 (
+SIG_ERR
+);
+
+23 (
+ßù
+.
+§_hªdËr
+);
+
+24 
+	}
+}
+
+27 
+Sigfunc
+ *
+
+28 
+	$SigÇl
+(
+signo
+, 
+Sigfunc
+ *
+func
+)
+
+30 
+Sigfunc
+ *
+sigfunc
+;
+
+32 iàĞ(
+sigfunc
+ = 
+	`sigÇl
+(
+signo
+, 
+func
+)è=ğ
+SIG_ERR
+)
+
+33 
+	`”r_sys
+("signalƒrror");
+
+34 (
+sigfunc
+);
+
+35 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\signal_intr.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+Sigfunc
+ *
+
+5 
+	$sigÇl_šŒ
+(
+signo
+, 
+Sigfunc
+ *
+func
+)
+
+7 
+sigaùiÚ
+ 
+aù
+, 
+ßù
+;
+
+9 
+aù
+.
+§_hªdËr
+ = 
+func
+;
+
+10 
+	`sigem±y£t
+(&
+aù
+.
+§_mask
+);
+
+11 
+aù
+.
+§_æags
+ = 0;
+
+12 #ifdef 
+SA_INTERRUPT
+
+
+13 
+aù
+.
+§_æags
+ |ğ
+SA_INTERRUPT
+;
+
+15 ià(
+	`sigaùiÚ
+(
+signo
+, &
+aù
+, &
+ßù
+) < 0)
+
+16 (
+SIG_ERR
+);
+
+17 (
+ßù
+.
+§_hªdËr
+);
+
+18 
+	}
+}
+
+21 
+Sigfunc
+ *
+
+22 
+	$SigÇl_šŒ
+(
+signo
+, 
+Sigfunc
+ *
+func
+)
+
+24 
+Sigfunc
+ *
+sigfunc
+;
+
+26 iàĞ(
+sigfunc
+ = 
+	`sigÇl_šŒ
+(
+signo
+, 
+func
+)è=ğ
+SIG_ERR
+)
+
+27 
+	`”r_sys
+("signal_intrƒrror");
+
+28 (
+sigfunc
+);
+
+29 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\snprintf.c
+
+10 
+	~"uÅ.h
+"
+
+12 
+	~<¡d¬g.h
+>
+
+15 
+	$¢´štf
+(*
+buf
+, 
+size_t
+ 
+size
+, cÚ¡ *
+fmt
+, ...)
+
+17 
+n
+;
+
+18 
+va_li¡
+ 
+­
+;
+
+20 
+	`va_¡¬t
+(
+­
+, 
+fmt
+);
+
+21 
+	`v¥rštf
+(
+buf
+, 
+fmt
+, 
+­
+);
+
+22 
+n
+ = 
+	`¡¾’
+(
+buf
+);
+
+23 
+	`va_’d
+(
+­
+);
+
+24 ià(
+n
+ >ğ
+size
+)
+
+25 
+	`”r_qu™
+("¢´štf: '%s' ov”æowed‡¼ay", 
+fmt
+);
+
+26 (
+n
+);
+
+27 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_bind_wild.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock_bšd_wd
+(
+sockfd
+, 
+çmy
+)
+
+6 
+sockËn_t
+ 
+Ën
+;
+
+8 
+çmy
+) {
+
+9 
+AF_INET
+: {
+
+10 
+sockaddr_š
+ 
+sš
+;
+
+12 
+	`bz”o
+(&
+sš
+, (sin));
+
+13 
+sš
+.
+sš_çmy
+ = 
+AF_INET
+;
+
+14 
+sš
+.
+sš_addr
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+15 
+sš
+.
+sš_pÜt
+ = 
+	`htÚs
+(0);
+
+17 ià(
+	`bšd
+(
+sockfd
+, (
+SA
+ *è&
+sš
+, (sin)) < 0)
+
+19 
+Ën
+ = (
+sš
+);
+
+20 ià(
+	`g‘sockÇme
+(
+sockfd
+, (
+SA
+ *è&
+sš
+, &
+Ën
+) < 0)
+
+22 (
+sš
+.
+sš_pÜt
+);
+
+25 #ifdef 
+IPV6
+
+
+26 
+AF_INET6
+: {
+
+27 
+sockaddr_š6
+ 
+sš6
+;
+
+29 
+	`bz”o
+(&
+sš6
+, (sin6));
+
+30 
+sš6
+.
+sš6_çmy
+ = 
+AF_INET6
+;
+
+31 
+sš6
+.
+sš6_addr
+ = 
+š6addr_ªy
+;
+
+32 
+sš6
+.
+sš6_pÜt
+ = 
+	`htÚs
+(0);
+
+34 ià(
+	`bšd
+(
+sockfd
+, (
+SA
+ *è&
+sš6
+, (sin6)) < 0)
+
+36 
+Ën
+ = (
+sš6
+);
+
+37 ià(
+	`g‘sockÇme
+(
+sockfd
+, (
+SA
+ *è&
+sš6
+, &
+Ën
+) < 0)
+
+39 (
+sš6
+.
+sš6_pÜt
+);
+
+44 
+	}
+}
+
+47 
+	$Sock_bšd_wd
+(
+sockfd
+, 
+çmy
+)
+
+49 
+pÜt
+;
+
+51 iàĞ(
+pÜt
+ = 
+	`sock_bšd_wd
+(
+sockfd
+, 
+çmy
+)) < 0)
+
+52 
+	`”r_sys
+("sock_bind_wildƒrror");
+
+54 (
+pÜt
+);
+
+55 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_cmp_addr.c
+
+1 
+	~"uÅ.h
+"
+
+3 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+4 
+	~<Ãt/if_dl.h
+>
+
+8 
+	$sock_cmp_addr
+(cÚ¡ 
+sockaddr
+ *
+§1
+, cÚ¡ sockadd¸*
+§2
+,
+
+9 
+sockËn_t
+ 
+§Ën
+)
+
+11 ià(
+§1
+->
+§_çmy
+ !ğ
+§2
+->sa_family)
+
+14 
+§1
+->
+§_çmy
+) {
+
+15 
+AF_INET
+: {
+
+16 (
+	`memcmp
+Ğ&((
+sockaddr_š
+ *è
+§1
+)->
+sš_addr
+,
+
+17 &((
+sockaddr_š
+ *è
+§2
+)->
+sš_addr
+,
+
+18 (
+š_addr
+)));
+
+21 #ifdef 
+IPV6
+
+
+22 
+AF_INET6
+: {
+
+23 (
+	`memcmp
+Ğ&((
+sockaddr_š6
+ *è
+§1
+)->
+sš6_addr
+,
+
+24 &((
+sockaddr_š6
+ *è
+§2
+)->
+sš6_addr
+,
+
+25 (
+š6_addr
+)));
+
+29 #ifdef 
+AF_UNIX
+
+
+30 
+AF_UNIX
+: {
+
+31 (
+	`¡rcmp
+Ğ((
+sockaddr_un
+ *è
+§1
+)->
+sun_·th
+,
+
+32 ((
+sockaddr_un
+ *è
+§2
+)->
+sun_·th
+));
+
+36 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+37 
+AF_LINK
+: {
+
+43 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_cmp_port.c
+
+1 
+	~"uÅ.h
+"
+
+3 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+4 
+	~<Ãt/if_dl.h
+>
+
+8 
+	$sock_cmp_pÜt
+(cÚ¡ 
+sockaddr
+ *
+§1
+, cÚ¡ sockadd¸*
+§2
+,
+
+9 
+sockËn_t
+ 
+§Ën
+)
+
+11 ià(
+§1
+->
+§_çmy
+ !ğ
+§2
+->sa_family)
+
+14 
+§1
+->
+§_çmy
+) {
+
+15 
+AF_INET
+: {
+
+16 Ğ((
+sockaddr_š
+ *è
+§1
+)->
+sš_pÜt
+ ==
+
+17 ((
+sockaddr_š
+ *è
+§2
+)->
+sš_pÜt
+);
+
+20 #ifdef 
+IPV6
+
+
+21 
+AF_INET6
+: {
+
+22 Ğ((
+sockaddr_š6
+ *è
+§1
+)->
+sš6_pÜt
+ ==
+
+23 ((
+sockaddr_š6
+ *è
+§2
+)->
+sš6_pÜt
+);
+
+29 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_get_port.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock_g‘_pÜt
+(cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+6 
+§
+->
+§_çmy
+) {
+
+7 
+AF_INET
+: {
+
+8 
+sockaddr_š
+ *
+sš
+ = (sockaddr_š *è
+§
+;
+
+10 (
+sš
+->
+sš_pÜt
+);
+
+13 #ifdef 
+IPV6
+
+
+14 
+AF_INET6
+: {
+
+15 
+sockaddr_š6
+ *
+sš6
+ = (sockaddr_š6 *è
+§
+;
+
+17 (
+sš6
+->
+sš6_pÜt
+);
+
+23 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_ntop.c
+
+1 
+	~"uÅ.h
+"
+
+3 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+4 
+	~<Ãt/if_dl.h
+>
+
+9 
+	$sock_Áİ
+(cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+11 
+pÜt¡r
+[8];
+
+12 
+¡r
+[128];
+
+14 
+§
+->
+§_çmy
+) {
+
+15 
+AF_INET
+: {
+
+16 
+sockaddr_š
+ *
+sš
+ = (sockaddr_š *è
+§
+;
+
+18 ià(
+	`š‘_Áİ
+(
+AF_INET
+, &
+sš
+->
+sš_addr
+, 
+¡r
+, (¡r)è=ğ
+NULL
+)
+
+19 (
+NULL
+);
+
+20 ià(
+	`Áohs
+(
+sš
+->
+sš_pÜt
+) != 0) {
+
+21 
+	`¢´štf
+(
+pÜt¡r
+, ÕÜt¡r), ":%d", 
+	`Áohs
+(
+sš
+->
+sš_pÜt
+));
+
+22 
+	`¡rÿt
+(
+¡r
+, 
+pÜt¡r
+);
+
+24 (
+¡r
+);
+
+28 #ifdef 
+IPV6
+
+
+29 
+AF_INET6
+: {
+
+30 
+sockaddr_š6
+ *
+sš6
+ = (sockaddr_š6 *è
+§
+;
+
+32 
+¡r
+[0] = '[';
+
+33 ià(
+	`š‘_Áİ
+(
+AF_INET6
+, &
+sš6
+->
+sš6_addr
+, 
+¡r
+ + 1, (¡rè- 1è=ğ
+NULL
+)
+
+34 (
+NULL
+);
+
+35 ià(
+	`Áohs
+(
+sš6
+->
+sš6_pÜt
+) != 0) {
+
+36 
+	`¢´štf
+(
+pÜt¡r
+, ÕÜt¡r), "]:%d", 
+	`Áohs
+(
+sš6
+->
+sš6_pÜt
+));
+
+37 
+	`¡rÿt
+(
+¡r
+, 
+pÜt¡r
+);
+
+38 (
+¡r
+);
+
+40  (
+¡r
+ + 1);
+
+44 #ifdef 
+AF_UNIX
+
+
+45 
+AF_UNIX
+: {
+
+46 
+sockaddr_un
+ *
+uÅ
+ = (sockaddr_uÀ*è
+§
+;
+
+50 ià(
+uÅ
+->
+sun_·th
+[0] == 0)
+
+51 
+	`¡rıy
+(
+¡r
+, "(no…athname bound)");
+
+53 
+	`¢´štf
+(
+¡r
+, (¡r), "%s", 
+uÅ
+->
+sun_·th
+);
+
+54 (
+¡r
+);
+
+58 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+59 
+AF_LINK
+: {
+
+60 
+sockaddr_dl
+ *
+sdl
+ = (sockaddr_dÈ*è
+§
+;
+
+62 ià(
+sdl
+->
+sdl_Æ’
+ > 0)
+
+63 
+	`¢´štf
+(
+¡r
+, (str), "%*s (index %d)",
+
+64 
+sdl
+->
+sdl_Æ’
+, &sdl->
+sdl_d©a
+[0], sdl->
+sdl_šdex
+);
+
+66 
+	`¢´štf
+(
+¡r
+, (¡r), "AF_LINK, index=%d", 
+sdl
+->
+sdl_šdex
+);
+
+67 (
+¡r
+);
+
+71 
+	`¢´štf
+(
+¡r
+, (str), "sock_ntop: unknown AF_xxx: %d,†en %d",
+
+72 
+§
+->
+§_çmy
+, 
+§Ën
+);
+
+73 (
+¡r
+);
+
+75  (
+NULL
+);
+
+76 
+	}
+}
+
+79 
+	$Sock_Áİ
+(cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+81 *
+±r
+;
+
+83 iàĞ(
+±r
+ = 
+	`sock_Áİ
+(
+§
+, 
+§Ën
+)è=ğ
+NULL
+)
+
+84 
+	`”r_sys
+("sock_ntopƒrror");
+
+85 (
+±r
+);
+
+86 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_ntop_host.c
+
+1 
+	~"uÅ.h
+"
+
+3 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+4 
+	~<Ãt/if_dl.h
+>
+
+8 
+	$sock_Áİ_ho¡
+(cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+10 
+¡r
+[128];
+
+12 
+§
+->
+§_çmy
+) {
+
+13 
+AF_INET
+: {
+
+14 
+sockaddr_š
+ *
+sš
+ = (sockaddr_š *è
+§
+;
+
+16 ià(
+	`š‘_Áİ
+(
+AF_INET
+, &
+sš
+->
+sš_addr
+, 
+¡r
+, (¡r)è=ğ
+NULL
+)
+
+17 (
+NULL
+);
+
+18 (
+¡r
+);
+
+21 #ifdef 
+IPV6
+
+
+22 
+AF_INET6
+: {
+
+23 
+sockaddr_š6
+ *
+sš6
+ = (sockaddr_š6 *è
+§
+;
+
+25 ià(
+	`š‘_Áİ
+(
+AF_INET6
+, &
+sš6
+->
+sš6_addr
+, 
+¡r
+, (¡r)è=ğ
+NULL
+)
+
+26 (
+NULL
+);
+
+27 (
+¡r
+);
+
+31 #ifdef 
+AF_UNIX
+
+
+32 
+AF_UNIX
+: {
+
+33 
+sockaddr_un
+ *
+uÅ
+ = (sockaddr_uÀ*è
+§
+;
+
+37 ià(
+uÅ
+->
+sun_·th
+[0] == 0)
+
+38 
+	`¡rıy
+(
+¡r
+, "(no…athname bound)");
+
+40 
+	`¢´štf
+(
+¡r
+, (¡r), "%s", 
+uÅ
+->
+sun_·th
+);
+
+41 (
+¡r
+);
+
+45 #ifdef 
+HAVE_SOCKADDR_DL_STRUCT
+
+
+46 
+AF_LINK
+: {
+
+47 
+sockaddr_dl
+ *
+sdl
+ = (sockaddr_dÈ*è
+§
+;
+
+49 ià(
+sdl
+->
+sdl_Æ’
+ > 0)
+
+50 
+	`¢´štf
+(
+¡r
+, (str), "%*s",
+
+51 
+sdl
+->
+sdl_Æ’
+, &sdl->
+sdl_d©a
+[0]);
+
+53 
+	`¢´štf
+(
+¡r
+, (¡r), "AF_LINK, index=%d", 
+sdl
+->
+sdl_šdex
+);
+
+54 (
+¡r
+);
+
+58 
+	`¢´štf
+(
+¡r
+, (str), "sock_ntop_host: unknown AF_xxx: %d,†en %d",
+
+59 
+§
+->
+§_çmy
+, 
+§Ën
+);
+
+60 (
+¡r
+);
+
+62  (
+NULL
+);
+
+63 
+	}
+}
+
+66 
+	$Sock_Áİ_ho¡
+(cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+68 *
+±r
+;
+
+70 iàĞ(
+±r
+ = 
+	`sock_Áİ_ho¡
+(
+§
+, 
+§Ën
+)è=ğ
+NULL
+)
+
+71 
+	`”r_sys
+("sock_ntop_hostƒrror");
+
+72 (
+±r
+);
+
+73 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_addr.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock_£t_addr
+(
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+, cÚ¡ *
+addr
+)
+
+6 
+§
+->
+§_çmy
+) {
+
+7 
+AF_INET
+: {
+
+8 
+sockaddr_š
+ *
+sš
+ = (sockaddr_š *è
+§
+;
+
+10 
+	`memıy
+(&
+sš
+->
+sš_addr
+, 
+addr
+, (
+š_addr
+));
+
+14 #ifdef 
+IPV6
+
+
+15 
+AF_INET6
+: {
+
+16 
+sockaddr_š6
+ *
+sš6
+ = (sockaddr_š6 *è
+§
+;
+
+18 
+	`memıy
+(&
+sš6
+->
+sš6_addr
+, 
+addr
+, (
+š6_addr
+));
+
+25 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_port.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock_£t_pÜt
+(
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+, 
+pÜt
+)
+
+6 
+§
+->
+§_çmy
+) {
+
+7 
+AF_INET
+: {
+
+8 
+sockaddr_š
+ *
+sš
+ = (sockaddr_š *è
+§
+;
+
+10 
+sš
+->
+sš_pÜt
+ = 
+pÜt
+;
+
+14 #ifdef 
+IPV6
+
+
+15 
+AF_INET6
+: {
+
+16 
+sockaddr_š6
+ *
+sš6
+ = (sockaddr_š6 *è
+§
+;
+
+18 
+sš6
+->
+sš6_pÜt
+ = 
+pÜt
+;
+
+25 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_wild.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock_£t_wd
+(
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+6 cÚ¡ *
+wd±r
+;
+
+8 
+§
+->
+§_çmy
+) {
+
+9 
+AF_INET
+: {
+
+10 
+š_addr
+ 
+š4addr_ªy
+;
+
+12 
+š4addr_ªy
+.
+s_addr
+ = 
+	`htÚl
+(
+INADDR_ANY
+);
+
+13 
+wd±r
+ = &
+š4addr_ªy
+;
+
+17 #ifdef 
+IPV6
+
+
+18 
+AF_INET6
+: {
+
+19 
+wd±r
+ = &
+š6addr_ªy
+;
+
+27 
+	`sock_£t_addr
+(
+§
+, 
+§Ën
+, 
+wd±r
+);
+
+29 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sockatmark.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$sock©m¬k
+(
+fd
+)
+
+6 
+æag
+;
+
+8 ià(
+	`ioùl
+(
+fd
+, 
+SIOCATMARK
+, &
+æag
+) < 0)
+
+10 (
+æag
+ != 0);
+
+11 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\sockfd_to_family.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$sockfd_to_çmy
+(
+sockfd
+)
+
+7 
+sockaddr_¡Üage
+ 
+ss
+;
+
+8 
+sockËn_t
+ 
+Ën
+;
+
+10 
+Ën
+ = (
+ss
+);
+
+11 ià(
+	`g‘sockÇme
+(
+sockfd
+, (
+SA
+ *è&
+ss
+, &
+Ën
+) < 0)
+
+13 (
+ss
+.
+ss_çmy
+);
+
+14 
+	}
+}
+
+18 
+	$Sockfd_to_çmy
+(
+sockfd
+)
+
+20 
+rc
+;
+
+22 iàĞ(
+rc
+ = 
+	`sockfd_to_çmy
+(
+sockfd
+)) < 0)
+
+23 
+	`”r_sys
+("sockfd_to_familyƒrror");
+
+25 (
+rc
+);
+
+26 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\str_cli.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$¡r_şi
+(
+FILE
+ *
+å
+, 
+sockfd
+)
+
+6 
+£ndlše
+[
+MAXLINE
+], 
+»cvlše
+[MAXLINE];
+
+8 
+	`Fg‘s
+(
+£ndlše
+, 
+MAXLINE
+, 
+å
+è!ğ
+NULL
+) {
+
+10 
+	`Wr™’
+(
+sockfd
+, 
+£ndlše
+, 
+	`¡¾’
+(sendline));
+
+12 ià(
+	`R—dlše
+(
+sockfd
+, 
+»cvlše
+, 
+MAXLINE
+) == 0)
+
+13 
+	`”r_qu™
+("str_cli: servererminated…rematurely");
+
+15 
+	`Fputs
+(
+»cvlše
+, 
+¡dout
+);
+
+17 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\str_echo.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$¡r_echo
+(
+sockfd
+)
+
+6 
+ssize_t
+ 
+n
+;
+
+7 
+buf
+[
+MAXLINE
+];
+
+9 
+agaš
+:
+
+10  (
+n
+ = 
+	`»ad
+(
+sockfd
+, 
+buf
+, 
+MAXLINE
+)) > 0)
+
+11 
+	`Wr™’
+(
+sockfd
+, 
+buf
+, 
+n
+);
+
+13 ià(
+n
+ < 0 && 
+”ºo
+ =ğ
+EINTR
+)
+
+14 
+agaš
+;
+
+15 ià(
+n
+ < 0)
+
+16 
+	`”r_sys
+("str_echo:„eadƒrror");
+
+17 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\tcp_connect.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$tı_cÚÃù
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+)
+
+7 
+sockfd
+, 
+n
+;
+
+8 
+addršfo
+ 
+hšts
+, *
+»s
+, *
+»s§ve
+;
+
+10 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+11 
+hšts
+.
+ai_çmy
+ = 
+AF_UNSPEC
+;
+
+12 
+hšts
+.
+ai_sockty³
+ = 
+SOCK_STREAM
+;
+
+14 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+15 
+	`”r_qu™
+("tcp_connectƒrror for %s, %s: %s",
+
+16 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(
+n
+));
+
+17 
+»s§ve
+ = 
+»s
+;
+
+20 
+sockfd
+ = 
+	`sock‘
+(
+»s
+->
+ai_çmy
+,„es->
+ai_sockty³
+,„es->
+ai_´ÙocŞ
+);
+
+21 ià(
+sockfd
+ < 0)
+
+24 ià(
+	`cÚÃù
+(
+sockfd
+, 
+»s
+->
+ai_addr
+,„es->
+ai_add¾’
+) == 0)
+
+27 
+	`Clo£
+(
+sockfd
+);
+
+28 }  (
+»s
+ =„es->
+ai_Ãxt
+è!ğ
+NULL
+);
+
+30 ià(
+»s
+ =ğ
+NULL
+)
+
+31 
+	`”r_sys
+("tı_cÚÃùƒ¼Ü fÜ %s, %s", 
+ho¡
+, 
+£rv
+);
+
+33 
+	`ä“addršfo
+(
+»s§ve
+);
+
+35 (
+sockfd
+);
+
+36 
+	}
+}
+
+46 
+	$Tı_cÚÃù
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+)
+
+48 (
+	`tı_cÚÃù
+(
+ho¡
+, 
+£rv
+));
+
+49 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\tcp_listen.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$tı_li¡’
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+sockËn_t
+ *
+add¾’p
+)
+
+7 
+li¡’fd
+, 
+n
+;
+
+8 cÚ¡ 
+Ú
+ = 1;
+
+9 
+addršfo
+ 
+hšts
+, *
+»s
+, *
+»s§ve
+;
+
+11 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+12 
+hšts
+.
+ai_æags
+ = 
+AI_PASSIVE
+;
+
+13 
+hšts
+.
+ai_çmy
+ = 
+AF_UNSPEC
+;
+
+14 
+hšts
+.
+ai_sockty³
+ = 
+SOCK_STREAM
+;
+
+16 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+17 
+	`”r_qu™
+("tcp_listenƒrror for %s, %s: %s",
+
+18 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(
+n
+));
+
+19 
+»s§ve
+ = 
+»s
+;
+
+22 
+li¡’fd
+ = 
+	`sock‘
+(
+»s
+->
+ai_çmy
+,„es->
+ai_sockty³
+,„es->
+ai_´ÙocŞ
+);
+
+23 ià(
+li¡’fd
+ < 0)
+
+26 
+	`S‘sockİt
+(
+li¡’fd
+, 
+SOL_SOCKET
+, 
+SO_REUSEADDR
+, &
+Ú
+, (on));
+
+27 ià(
+	`bšd
+(
+li¡’fd
+, 
+»s
+->
+ai_addr
+,„es->
+ai_add¾’
+) == 0)
+
+30 
+	`Clo£
+(
+li¡’fd
+);
+
+31 }  (
+»s
+ =„es->
+ai_Ãxt
+è!ğ
+NULL
+);
+
+33 ià(
+»s
+ =ğ
+NULL
+)
+
+34 
+	`”r_sys
+("tı_li¡’ƒ¼Ü fÜ %s, %s", 
+ho¡
+, 
+£rv
+);
+
+36 
+	`Li¡’
+(
+li¡’fd
+, 
+LISTENQ
+);
+
+38 ià(
+add¾’p
+)
+
+39 *
+add¾’p
+ = 
+»s
+->
+ai_add¾’
+;
+
+41 
+	`ä“addršfo
+(
+»s§ve
+);
+
+43 (
+li¡’fd
+);
+
+44 
+	}
+}
+
+54 
+	$Tı_li¡’
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+sockËn_t
+ *
+add¾’p
+)
+
+56 (
+	`tı_li¡’
+(
+ho¡
+, 
+£rv
+, 
+add¾’p
+));
+
+57 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\tv_sub.c
+
+1 
+	~"uÅ.h
+"
+
+4 
+	$tv_sub
+(
+timev®
+ *
+out
+, timev® *
+š
+)
+
+6 iàĞ(
+out
+->
+tv_u£c
+ -ğ
+š
+->tv_usec) < 0) {
+
+7 --
+out
+->
+tv_£c
+;
+
+8 
+out
+->
+tv_u£c
+ += 1000000;
+
+10 
+out
+->
+tv_£c
+ -ğ
+š
+->tv_sec;
+
+11 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\udp_client.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$udp_ş›Á
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+SA
+ **
+§±r
+, 
+sockËn_t
+ *
+ËÅ
+)
+
+7 
+sockfd
+, 
+n
+;
+
+8 
+addršfo
+ 
+hšts
+, *
+»s
+, *
+»s§ve
+;
+
+10 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+11 
+hšts
+.
+ai_çmy
+ = 
+AF_UNSPEC
+;
+
+12 
+hšts
+.
+ai_sockty³
+ = 
+SOCK_DGRAM
+;
+
+14 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+15 
+	`”r_qu™
+("udp_clientƒrror for %s, %s: %s",
+
+16 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(
+n
+));
+
+17 
+»s§ve
+ = 
+»s
+;
+
+20 
+sockfd
+ = 
+	`sock‘
+(
+»s
+->
+ai_çmy
+,„es->
+ai_sockty³
+,„es->
+ai_´ÙocŞ
+);
+
+21 ià(
+sockfd
+ >= 0)
+
+23 }  (
+»s
+ =„es->
+ai_Ãxt
+è!ğ
+NULL
+);
+
+25 ià(
+»s
+ =ğ
+NULL
+)
+
+26 
+	`”r_sys
+("udp_ş›Áƒ¼Ü fÜ %s, %s", 
+ho¡
+, 
+£rv
+);
+
+28 *
+§±r
+ = 
+	`M®loc
+(
+»s
+->
+ai_add¾’
+);
+
+29 
+	`memıy
+(*
+§±r
+, 
+»s
+->
+ai_addr
+,„es->
+ai_add¾’
+);
+
+30 *
+ËÅ
+ = 
+»s
+->
+ai_add¾’
+;
+
+32 
+	`ä“addršfo
+(
+»s§ve
+);
+
+34 (
+sockfd
+);
+
+35 
+	}
+}
+
+39 
+	$Udp_ş›Á
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+SA
+ **
+§±r
+, 
+sockËn_t
+ *
+ËÅŒ
+)
+
+41 (
+	`udp_ş›Á
+(
+ho¡
+, 
+£rv
+, 
+§±r
+, 
+ËÅŒ
+));
+
+42 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\udp_connect.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$udp_cÚÃù
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+)
+
+7 
+sockfd
+, 
+n
+;
+
+8 
+addršfo
+ 
+hšts
+, *
+»s
+, *
+»s§ve
+;
+
+10 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+11 
+hšts
+.
+ai_çmy
+ = 
+AF_UNSPEC
+;
+
+12 
+hšts
+.
+ai_sockty³
+ = 
+SOCK_DGRAM
+;
+
+14 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+15 
+	`”r_qu™
+("udp_connectƒrror for %s, %s: %s",
+
+16 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(
+n
+));
+
+17 
+»s§ve
+ = 
+»s
+;
+
+20 
+sockfd
+ = 
+	`sock‘
+(
+»s
+->
+ai_çmy
+,„es->
+ai_sockty³
+,„es->
+ai_´ÙocŞ
+);
+
+21 ià(
+sockfd
+ < 0)
+
+24 ià(
+	`cÚÃù
+(
+sockfd
+, 
+»s
+->
+ai_addr
+,„es->
+ai_add¾’
+) == 0)
+
+27 
+	`Clo£
+(
+sockfd
+);
+
+28 }  (
+»s
+ =„es->
+ai_Ãxt
+è!ğ
+NULL
+);
+
+30 ià(
+»s
+ =ğ
+NULL
+)
+
+31 
+	`”r_sys
+("udp_cÚÃùƒ¼Ü fÜ %s, %s", 
+ho¡
+, 
+£rv
+);
+
+33 
+	`ä“addršfo
+(
+»s§ve
+);
+
+35 (
+sockfd
+);
+
+36 
+	}
+}
+
+40 
+	$Udp_cÚÃù
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+)
+
+42 
+n
+;
+
+44 iàĞ(
+n
+ = 
+	`udp_cÚÃù
+(
+ho¡
+, 
+£rv
+)) < 0) {
+
+45 
+	`”r_qu™
+("udp_connectƒrror for %s, %s: %s",
+
+46 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(-
+n
+));
+
+48 (
+n
+);
+
+49 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\udp_server.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$udp_£rv”
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+sockËn_t
+ *
+add¾’p
+)
+
+7 
+sockfd
+, 
+n
+;
+
+8 
+addršfo
+ 
+hšts
+, *
+»s
+, *
+»s§ve
+;
+
+10 
+	`bz”o
+(&
+hšts
+, (
+addršfo
+));
+
+11 
+hšts
+.
+ai_æags
+ = 
+AI_PASSIVE
+;
+
+12 
+hšts
+.
+ai_çmy
+ = 
+AF_UNSPEC
+;
+
+13 
+hšts
+.
+ai_sockty³
+ = 
+SOCK_DGRAM
+;
+
+15 iàĞ(
+n
+ = 
+	`g‘addršfo
+(
+ho¡
+, 
+£rv
+, &
+hšts
+, &
+»s
+)) != 0)
+
+16 
+	`”r_qu™
+("udp_serverƒrror for %s, %s: %s",
+
+17 
+ho¡
+, 
+£rv
+, 
+	`gai_¡»¼Ü
+(
+n
+));
+
+18 
+»s§ve
+ = 
+»s
+;
+
+21 
+sockfd
+ = 
+	`sock‘
+(
+»s
+->
+ai_çmy
+,„es->
+ai_sockty³
+,„es->
+ai_´ÙocŞ
+);
+
+22 ià(
+sockfd
+ < 0)
+
+25 ià(
+	`bšd
+(
+sockfd
+, 
+»s
+->
+ai_addr
+,„es->
+ai_add¾’
+) == 0)
+
+28 
+	`Clo£
+(
+sockfd
+);
+
+29 }  (
+»s
+ =„es->
+ai_Ãxt
+è!ğ
+NULL
+);
+
+31 ià(
+»s
+ =ğ
+NULL
+)
+
+32 
+	`”r_sys
+("udp_£rv”ƒ¼Ü fÜ %s, %s", 
+ho¡
+, 
+£rv
+);
+
+34 ià(
+add¾’p
+)
+
+35 *
+add¾’p
+ = 
+»s
+->
+ai_add¾’
+;
+
+37 
+	`ä“addršfo
+(
+»s§ve
+);
+
+39 (
+sockfd
+);
+
+40 
+	}
+}
+
+44 
+	$Udp_£rv”
+(cÚ¡ *
+ho¡
+, cÚ¡ *
+£rv
+, 
+sockËn_t
+ *
+add¾’p
+)
+
+46 (
+	`udp_£rv”
+(
+ho¡
+, 
+£rv
+, 
+add¾’p
+));
+
+47 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\unp.h
+
+4 #iâdef 
+__uÅ_h
+
+
+5 
+	#__uÅ_h
+
+
+	)
+
+7 
+	~"../cÚfig.h
+"
+
+13 
+	~<sys/ty³s.h
+>
+
+14 
+	~<sys/sock‘.h
+>
+
+15 #ià
+TIME_WITH_SYS_TIME
+
+
+16 
+	~<sys/time.h
+>
+
+17 
+	~<time.h
+>
+
+19 #ià
+HAVE_SYS_TIME_H
+
+
+20 
+	~<sys/time.h
+>
+
+22 
+	~<time.h
+>
+
+25 
+	~<Ãtš‘/š.h
+>
+
+26 
+	~<¬·/š‘.h
+>
+
+27 
+	~<”ºo.h
+>
+
+28 
+	~<fú.h
+>
+
+29 
+	~<Ãtdb.h
+>
+
+30 
+	~<sigÇl.h
+>
+
+31 
+	~<¡dio.h
+>
+
+32 
+	~<¡dlib.h
+>
+
+33 
+	~<¡ršg.h
+>
+
+34 
+	~<sys/¡©.h
+>
+
+35 
+	~<sys/uio.h
+>
+
+36 
+	~<uni¡d.h
+>
+
+37 
+	~<sys/wa™.h
+>
+
+38 
+	~<sys/un.h
+>
+
+40 #ifdef 
+HAVE_SYS_SELECT_H
+
+
+41 
+	~<sys/£Ëù.h
+>
+
+44 #ifdef 
+HAVE_SYS_SYSCTL_H
+
+
+45 #ifdef 
+HAVE_SYS_PARAM_H
+
+
+46 
+	~<sys/·¿m.h
+>
+
+48 
+	~<sys/sysùl.h
+>
+
+51 #ifdef 
+HAVE_POLL_H
+
+
+52 
+	~<pŞl.h
+>
+
+55 #ifdef 
+HAVE_SYS_EVENT_H
+
+
+56 
+	~<sys/ev’t.h
+>
+
+59 #ifdef 
+HAVE_STRINGS_H
+
+
+60 
+	~<¡ršgs.h
+>
+
+66 #ifdef 
+HAVE_SYS_IOCTL_H
+
+
+67 
+	~<sys/ioùl.h
+>
+
+69 #ifdef 
+HAVE_SYS_FILIO_H
+
+
+70 
+	~<sys/fio.h
+>
+
+72 #ifdef 
+HAVE_SYS_SOCKIO_H
+
+
+73 
+	~<sys/sockio.h
+>
+
+76 #ifdef 
+HAVE_PTHREAD_H
+
+
+77 
+	~<±h»ad.h
+>
+
+80 #ifdeà
+HAVE_NET_IF_DL_H
+
+
+81 
+	~<Ãt/if_dl.h
+>
+
+84 #ifdeà
+HAVE_NETINET_SCTP_H
+
+
+85 
+	~<Ãtš‘/sùp.h
+>
+
+89 #ifdef 
+__osf__
+
+
+90 #undeà
+»cv
+
+
+91 #undeà
+£nd
+
+
+92 
+	#»cv
+(
+a
+,
+b
+,
+c
+,
+d
+è
+	`»cväom
+×,b,c,d,0,0)
+
+	)
+
+93 
+	#£nd
+(
+a
+,
+b
+,
+c
+,
+d
+è
+	`£ndto
+×,b,c,d,0,0)
+
+	)
+
+96 #iâdef 
+INADDR_NONE
+
+
+98 
+	#INADDR_NONE
+ 0xfffffffà
+
+	)
+
+101 #iâdef 
+SHUT_RD
+
+
+102 
+	#SHUT_RD
+ 0
+
+	)
+
+103 
+	#SHUT_WR
+ 1
+
+	)
+
+104 
+	#SHUT_RDWR
+ 2
+
+	)
+
+111 #iâdeà
+INET_ADDRSTRLEN
+
+
+113 
+	#INET_ADDRSTRLEN
+ 16
+
+	)
+
+119 #iâdeà
+INET6_ADDRSTRLEN
+
+
+121 
+	#INET6_ADDRSTRLEN
+ 46
+
+	)
+
+129 #iâdef 
+HAVE_BZERO
+
+
+130 
+	#bz”o
+(
+±r
+,
+n
+è
+	`mem£t
+ÕŒ, 0,‚)
+
+	)
+
+136 #iâdef 
+HAVE_GETHOSTBYNAME2
+
+
+137 
+	#g‘ho¡byÇme2
+(
+ho¡
+,
+çmy
+è
+	`g‘ho¡byÇme
+((ho¡))
+
+	)
+
+141 
+	suÅ_š_pktšfo
+ {
+
+142 
+š_addr
+ 
+	mi_addr
+;
+
+143 
+	mi_ifšdex
+;
+
+152 #iâdef 
+CMSG_LEN
+
+
+154 
+	#CMSG_LEN
+(
+size
+è((
+cmsghdr
+è+ (size))
+
+	)
+
+156 #iâdef 
+CMSG_SPACE
+
+
+158 
+	#CMSG_SPACE
+(
+size
+è((
+cmsghdr
+è+ (size))
+
+	)
+
+164 #iâdef 
+SUN_LEN
+
+
+166 
+	#SUN_LEN
+(
+su
+) \
+
+167 ((*(
+su
+)è- ((su)->
+sun_·th
+è+ 
+	`¡¾’
+((su)->sun_·th))
+
+	)
+
+172 #iâdef 
+AF_LOCAL
+
+
+173 
+	#AF_LOCAL
+ 
+AF_UNIX
+
+
+	)
+
+175 #iâdef 
+PF_LOCAL
+
+
+176 
+	#PF_LOCAL
+ 
+PF_UNIX
+
+
+	)
+
+183 #iâdeà
+INFTIM
+
+
+184 
+	#INFTIM
+ (-1è
+
+	)
+
+186 #ifdef 
+HAVE_POLL_H
+
+
+187 
+	#INFTIM_UNPH
+
+
+	)
+
+193 
+	#LISTENQ
+ 1024
+
+	)
+
+196 
+	#MAXLINE
+ 4096
+
+	)
+
+197 
+	#BUFFSIZE
+ 8192
+
+	)
+
+200 
+	#SERV_PORT
+ 9877
+
+	)
+
+201 
+	#SERV_PORT_STR
+ "9877"
+
+	)
+
+202 
+	#UNIXSTR_PATH
+ "/tmp/unix.¡r"
+
+	)
+
+203 
+	#UNIXDG_PATH
+ "/tmp/unix.dg"
+
+	)
+
+212 
+	#SA
+ 
+sockaddr
+
+
+	)
+
+214 #iâdeà
+HAVE_STRUCT_SOCKADDR_STORAGE
+
+
+218 
+	#__SS_MAXSIZE
+ 128
+
+	)
+
+219 
+	#__SS_ALIGNSIZE
+ ((
+št64_t
+))
+
+	)
+
+220 #ifdeà
+HAVE_SOCKADDR_SA_LEN
+
+
+221 
+	#__SS_PAD1SIZE
+ (
+__SS_ALIGNSIZE
+ - (
+u_ch¬
+è- (
+§_çmy_t
+))
+
+	)
+
+223 
+	#__SS_PAD1SIZE
+ (
+__SS_ALIGNSIZE
+ - (
+§_çmy_t
+))
+
+	)
+
+225 
+	#__SS_PAD2SIZE
+ (
+__SS_MAXSIZE
+ - 2*
+__SS_ALIGNSIZE
+)
+
+	)
+
+227 
+	ssockaddr_¡Üage
+ {
+
+228 #ifdeà
+HAVE_SOCKADDR_SA_LEN
+
+
+229 
+u_ch¬
+ 
+	mss_Ën
+;
+
+231 
+§_çmy_t
+ 
+	mss_çmy
+;
+
+232 
+	m__ss_·d1
+[
+__SS_PAD1SIZE
+];
+
+233 
+št64_t
+ 
+	m__ss_®ign
+;
+
+234 
+	m__ss_·d2
+[
+__SS_PAD2SIZE
+];
+
+238 
+	#FILE_MODE
+ (
+S_IRUSR
+ | 
+S_IWUSR
+ | 
+S_IRGRP
+ | 
+S_IROTH
+)
+
+	)
+
+240 
+	#DIR_MODE
+ (
+FILE_MODE
+ | 
+S_IXUSR
+ | 
+S_IXGRP
+ | 
+S_IXOTH
+)
+
+	)
+
+243 
+	tSigfunc
+();
+
+245 
+	#mš
+(
+a
+,
+b
+è(×è< (bè? (aè: (b))
+
+	)
+
+246 
+	#max
+(
+a
+,
+b
+è(×è> (bè? (aè: (b))
+
+	)
+
+248 #iâdef 
+HAVE_ADDRINFO_STRUCT
+
+
+249 
+	~"../lib/addršfo.h
+"
+
+252 #iâdef 
+HAVE_IF_NAMEINDEX_STRUCT
+
+
+253 
+	sif_Çmešdex
+ {
+
+254 
+	mif_šdex
+;
+
+255 *
+	mif_Çme
+;
+
+262 #iâdef 
+HAVE_TIMESPEC_STRUCT
+
+
+263 
+	stime¥ec
+ {
+
+264 
+time_t
+ 
+	mtv_£c
+;
+
+265 
+	mtv_n£c
+;
+
+274 
+cÚÃù_nÚb
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+275 
+cÚÃù_timeo
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+276 
+d«mÚ_š™
+(const *, );
+
+277 
+d«mÚ_š‘d
+(const *, );
+
+278 
+dg_şi
+(
+FILE
+ *, , cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+279 
+dg_echo
+(, 
+SA
+ *, 
+sockËn_t
+);
+
+280 
+çmy_to_Ëv–
+();
+
+281 *
+gf_time
+();
+
+282 
+h—¹b—t_şi
+(, , );
+
+283 
+h—¹b—t_£rv
+(, , );
+
+284 
+addršfo
+ *
+ho¡_£rv
+(const *, const *, , );
+
+285 
+š‘_¤üt_add
+(*);
+
+286 
+u_ch¬
+ *
+š‘_¤üt_š™
+();
+
+287 
+š‘_¤üt_´št
+(
+u_ch¬
+ *, );
+
+288 
+š‘6_¤üt_´št
+(*);
+
+289 **
+my_addrs
+(*);
+
+290 
+»adabË_timeo
+(, );
+
+291 
+ssize_t
+ 
+»adlše
+(, *, 
+size_t
+);
+
+292 
+ssize_t
+ 
+»adn
+(, *, 
+size_t
+);
+
+293 
+ssize_t
+ 
+»ad_fd
+(, *, 
+size_t
+, *);
+
+294 
+ssize_t
+ 
+»cväom_æags
+(, *, 
+size_t
+, *, 
+SA
+ *, 
+sockËn_t
+ *,
+
+295 
+uÅ_š_pktšfo
+ *);
+
+296 
+Sigfunc
+ *
+sigÇl_šŒ
+(, Sigfunc *);
+
+297 
+sock_bšd_wd
+(, );
+
+298 
+sock_cmp_addr
+(cÚ¡ 
+SA
+ *, cÚ¡ SA *, 
+sockËn_t
+);
+
+299 
+sock_cmp_pÜt
+(cÚ¡ 
+SA
+ *, cÚ¡ SA *, 
+sockËn_t
+);
+
+300 
+sock_g‘_pÜt
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+301 
+sock_£t_addr
+(
+SA
+ *, 
+sockËn_t
+, const *);
+
+302 
+sock_£t_pÜt
+(
+SA
+ *, 
+sockËn_t
+, );
+
+303 
+sock_£t_wd
+(
+SA
+ *, 
+sockËn_t
+);
+
+304 *
+sock_Áİ
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+305 *
+sock_Áİ_ho¡
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+306 
+sockfd_to_çmy
+();
+
+307 
+¡r_echo
+();
+
+308 
+¡r_şi
+(
+FILE
+ *, );
+
+309 
+tı_cÚÃù
+(const *, const *);
+
+310 
+tı_li¡’
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+311 
+tv_sub
+(
+timev®
+ *, timeval *);
+
+312 
+udp_ş›Á
+(cÚ¡ *, cÚ¡ *, 
+SA
+ **, 
+sockËn_t
+ *);
+
+313 
+udp_cÚÃù
+(const *, const *);
+
+314 
+udp_£rv”
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+315 
+wr™abË_timeo
+(, );
+
+316 
+ssize_t
+ 
+wr™’
+(, cÚ¡ *, 
+size_t
+);
+
+317 
+ssize_t
+ 
+wr™e_fd
+(, *, 
+size_t
+, );
+
+319 #ifdef 
+MCAST
+
+
+320 
+mÿ¡_Ëave
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+321 
+mÿ¡_još
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, cÚ¡ *, 
+u_št
+);
+
+322 
+mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+323 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+324 
+mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+325 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+326 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+);
+
+327 
+mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+328 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+329 
+mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+330 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+331 
+mÿ¡_g‘_if
+();
+
+332 
+mÿ¡_g‘_loİ
+();
+
+333 
+mÿ¡_g‘_‰l
+();
+
+334 
+mÿ¡_£t_if
+(, cÚ¡ *, 
+u_št
+);
+
+335 
+mÿ¡_£t_loİ
+(, );
+
+336 
+mÿ¡_£t_‰l
+(, );
+
+338 
+Mÿ¡_Ëave
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+339 
+Mÿ¡_još
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, cÚ¡ *, 
+u_št
+);
+
+340 
+Mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+341 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+342 
+Mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+343 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+344 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+);
+
+345 
+Mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+346 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+347 
+Mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+348 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+349 
+Mÿ¡_g‘_if
+();
+
+350 
+Mÿ¡_g‘_loİ
+();
+
+351 
+Mÿ¡_g‘_‰l
+();
+
+352 
+Mÿ¡_£t_if
+(, cÚ¡ *, 
+u_št
+);
+
+353 
+Mÿ¡_£t_loİ
+(, );
+
+354 
+Mÿ¡_£t_‰l
+(, );
+
+357 
+ušt16_t
+ 
+š_cksum
+(uint16_t *, );
+
+359 #iâdef 
+HAVE_GETADDRINFO_PROTO
+
+
+360 
+g‘addršfo
+(cÚ¡ *, cÚ¡ *, cÚ¡ 
+addršfo
+ *,
+
+361 
+addršfo
+ **);
+
+362 
+ä“addršfo
+(
+addršfo
+ *);
+
+363 *
+gai_¡»¼Ü
+();
+
+366 #iâdef 
+HAVE_GETNAMEINFO_PROTO
+
+
+367 
+g‘Çmešfo
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+, *, 
+size_t
+, *, size_t, );
+
+370 #iâdef 
+HAVE_GETHOSTNAME_PROTO
+
+
+371 
+g‘ho¡Çme
+(*, );
+
+374 #iâdef 
+HAVE_HSTRERROR_PROTO
+
+
+375 cÚ¡ *
+h¡»¼Ü
+();
+
+378 #iâdef 
+HAVE_IF_NAMETOINDEX_PROTO
+
+
+379 
+if_Çm‘ošdex
+(const *);
+
+380 *
+if_šdextÚame
+(, *);
+
+381 
+if_ä“Çmešdex
+(
+if_Çmešdex
+ *);
+
+382 
+if_Çmešdex
+ *if_nameindex();
+
+385 #iâdef 
+HAVE_INET_PTON_PROTO
+
+
+386 
+š‘_±Ú
+(, const *, *);
+
+387 cÚ¡ *
+š‘_Áİ
+(, cÚ¡ *, *, 
+size_t
+);
+
+390 #iâdef 
+HAVE_INET_ATON_PROTO
+
+
+391 
+š‘_©Ú
+(cÚ¡ *, 
+š_addr
+ *);
+
+394 #iâdef 
+HAVE_PSELECT_PROTO
+
+
+395 
+p£Ëù
+(, 
+fd_£t
+ *, fd_set *, fd_set *,
+
+396 cÚ¡ 
+time¥ec
+ *, cÚ¡ 
+sig£t_t
+ *);
+
+399 #iâdef 
+HAVE_SOCKATMARK_PROTO
+
+
+400 
+sock©m¬k
+();
+
+403 #iâdef 
+HAVE_SNPRINTF_PROTO
+
+
+404 
+¢´štf
+(*, 
+size_t
+, const *, ...);
+
+408 
+CÚÃù_timeo
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+409 
+Famy_to_Ëv–
+();
+
+410 
+addršfo
+ *
+Ho¡_£rv
+(const *, const *, , );
+
+411 cÚ¡ *
+IÃt_Áİ
+(, cÚ¡ *, *, 
+size_t
+);
+
+412 
+IÃt_±Ú
+(, const *, *);
+
+413 *
+If_šdextÚame
+(, *);
+
+414 
+If_Çm‘ošdex
+(const *);
+
+415 
+if_Çmešdex
+ *
+If_Çmešdex
+();
+
+416 **
+My_addrs
+(*);
+
+417 
+ssize_t
+ 
+R—d_fd
+(, *, 
+size_t
+, *);
+
+418 
+R—dabË_timeo
+(, );
+
+419 
+ssize_t
+ 
+Recväom_æags
+(, *, 
+size_t
+, *, 
+SA
+ *, 
+sockËn_t
+ *,
+
+420 
+uÅ_š_pktšfo
+ *);
+
+421 
+Sigfunc
+ *
+SigÇl
+(, Sigfunc *);
+
+422 
+Sigfunc
+ *
+SigÇl_šŒ
+(, Sigfunc *);
+
+423 
+Sock_bšd_wd
+(, );
+
+424 *
+Sock_Áİ
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+425 *
+Sock_Áİ_ho¡
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+426 
+Sockfd_to_çmy
+();
+
+427 
+Tı_cÚÃù
+(const *, const *);
+
+428 
+Tı_li¡’
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+429 
+Udp_ş›Á
+(cÚ¡ *, cÚ¡ *, 
+SA
+ **, 
+sockËn_t
+ *);
+
+430 
+Udp_cÚÃù
+(const *, const *);
+
+431 
+Udp_£rv”
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+432 
+ssize_t
+ 
+Wr™e_fd
+(, *, 
+size_t
+, );
+
+433 
+Wr™abË_timeo
+(, );
+
+436 *
+C®loc
+(
+size_t
+, size_t);
+
+437 
+Clo£
+();
+
+438 
+Dup2
+(, );
+
+439 
+Fú
+(, , );
+
+440 
+G‘timeofday
+(
+timev®
+ *, *);
+
+441 
+Ioùl
+(, , *);
+
+442 
+pid_t
+ 
+FÜk
+();
+
+443 *
+M®loc
+(
+size_t
+);
+
+444 
+Mk¡emp
+(*);
+
+445 *
+Mm­
+(*, 
+size_t
+, , , , 
+off_t
+);
+
+446 
+O³n
+(cÚ¡ *, , 
+mode_t
+);
+
+447 
+Pe
+(*
+fds
+);
+
+448 
+ssize_t
+ 
+R—d
+(, *, 
+size_t
+);
+
+449 
+Sigadd£t
+(
+sig£t_t
+ *, );
+
+450 
+Sigd–£t
+(
+sig£t_t
+ *, );
+
+451 
+Sigem±y£t
+(
+sig£t_t
+ *);
+
+452 
+Sigfl£t
+(
+sig£t_t
+ *);
+
+453 
+Sigismemb”
+(cÚ¡ 
+sig£t_t
+ *, );
+
+454 
+Sig³ndšg
+(
+sig£t_t
+ *);
+
+455 
+Sig´ocmask
+(, cÚ¡ 
+sig£t_t
+ *, sigset_t *);
+
+456 *
+SŒdup
+(const *);
+
+457 
+SyscÚf
+();
+
+458 
+Sysùl
+(*, 
+u_št
+, *, 
+size_t
+ *, *, size_t);
+
+459 
+UÆšk
+(const *);
+
+460 
+pid_t
+ 
+Wa™
+(*);
+
+461 
+pid_t
+ 
+Wa™pid
+(pid_t, *, );
+
+462 
+Wr™e
+(, *, 
+size_t
+);
+
+465 
+Fşo£
+(
+FILE
+ *);
+
+466 
+FILE
+ *
+Fdİ’
+(, const *);
+
+467 *
+Fg‘s
+(*, , 
+FILE
+ *);
+
+468 
+FILE
+ *
+Fİ’
+(const *, const *);
+
+469 
+Fputs
+(cÚ¡ *, 
+FILE
+ *);
+
+472 
+Acû±
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+473 
+Bšd
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+474 
+CÚÃù
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+475 
+G‘³”Çme
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+476 
+G‘sockÇme
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+477 
+G‘sockİt
+(, , , *, 
+sockËn_t
+ *);
+
+478 #ifdef 
+HAVE_INET6_RTH_INIT
+
+
+479 
+IÃt6_¹h_¥aû
+(, );
+
+480 *
+IÃt6_¹h_š™
+(*, 
+sockËn_t
+, , );
+
+481 
+IÃt6_¹h_add
+(*, cÚ¡ 
+š6_addr
+ *);
+
+482 
+IÃt6_¹h_»v”£
+(const *, *);
+
+483 
+IÃt6_¹h_£gm’ts
+(const *);
+
+484 
+š6_addr
+ *
+IÃt6_¹h_g‘addr
+(const *, );
+
+486 #ifdef 
+HAVE_KQUEUE
+
+
+487 
+Kqueue
+();
+
+488 
+Kev’t
+(, cÚ¡ 
+kev’t
+ *, ,
+
+489 
+kev’t
+ *, , cÚ¡ 
+time¥ec
+ *);
+
+491 
+Li¡’
+(, );
+
+492 #ifdef 
+HAVE_POLL
+
+
+493 
+PŞl
+(
+pŞlfd
+ *, , );
+
+495 
+ssize_t
+ 
+R—dlše
+(, *, 
+size_t
+);
+
+496 
+ssize_t
+ 
+R—dn
+(, *, 
+size_t
+);
+
+497 
+ssize_t
+ 
+Recv
+(, *, 
+size_t
+, );
+
+498 
+ssize_t
+ 
+Recväom
+(, *, 
+size_t
+, , 
+SA
+ *, 
+sockËn_t
+ *);
+
+499 
+ssize_t
+ 
+Recvmsg
+(, 
+msghdr
+ *, );
+
+500 
+S–eù
+(, 
+fd_£t
+ *, fd_£ˆ*, fd_£ˆ*, 
+timev®
+ *);
+
+501 
+S’d
+(, cÚ¡ *, 
+size_t
+, );
+
+502 
+S’dto
+(, cÚ¡ *, 
+size_t
+, , cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+503 
+S’dmsg
+(, cÚ¡ 
+msghdr
+ *, );
+
+504 
+S‘sockİt
+(, , , cÚ¡ *, 
+sockËn_t
+);
+
+505 
+Shutdown
+(, );
+
+506 
+Sock©m¬k
+();
+
+507 
+Sock‘
+(, , );
+
+508 
+Sock‘·œ
+(, , , *);
+
+509 
+Wr™’
+(, *, 
+size_t
+);
+
+511 
+”r_dump
+(const *, ...);
+
+512 
+”r_msg
+(const *, ...);
+
+513 
+”r_qu™
+(const *, ...);
+
+514 
+”r_»t
+(const *, ...);
+
+515 
+”r_sys
+(const *, ...);
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\unpifi.h
+
+4 #iâdef 
+__uÅ_ifi_h
+
+
+5 
+	#__uÅ_ifi_h
+
+
+	)
+
+7 
+	~"uÅ.h
+"
+
+8 
+	~<Ãt/if.h
+>
+
+10 
+	#IFI_NAME
+ 16
+
+	)
+
+11 
+	#IFI_HADDR
+ 8
+
+	)
+
+13 
+	sifi_šfo
+ {
+
+14 
+	mifi_Çme
+[
+IFI_NAME
+];
+
+15 
+	mifi_šdex
+;
+
+16 
+	mifi_mtu
+;
+
+17 
+u_ch¬
+ 
+	mifi_haddr
+[
+IFI_HADDR
+];
+
+18 
+u_shÜt
+ 
+	mifi_hËn
+;
+
+19 
+	mifi_æags
+;
+
+20 
+	mifi_myæags
+;
+
+21 
+sockaddr
+ *
+	mifi_addr
+;
+
+22 
+sockaddr
+ *
+	mifi_brdaddr
+;
+
+23 
+sockaddr
+ *
+	mifi_d¡addr
+;
+
+24 
+ifi_šfo
+ *
+	mifi_Ãxt
+;
+
+27 
+	#IFI_ALIAS
+ 1
+
+	)
+
+30 
+ifi_šfo
+ *
+g‘_ifi_šfo
+(, );
+
+31 
+ifi_šfo
+ *
+G‘_ifi_šfo
+(, );
+
+32 
+ä“_ifi_šfo
+(
+ifi_šfo
+ *);
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\unprtt.h
+
+1 #iâdef 
+__uÅ_¹t_h
+
+
+2 
+	#__uÅ_¹t_h
+
+
+	)
+
+4 
+	~"uÅ.h
+"
+
+6 
+	s¹t_šfo
+ {
+
+7 
+	m¹t_¹t
+;
+
+8 
+	m¹t_¤‰
+;
+
+9 
+	m¹t_¹tv¬
+;
+
+10 
+	m¹t_¹o
+;
+
+11 
+	m¹t_Äexmt
+;
+
+12 
+ušt32_t
+ 
+	m¹t_ba£
+;
+
+15 
+	#RTT_RXTMIN
+ 2
+
+	)
+
+16 
+	#RTT_RXTMAX
+ 60
+
+	)
+
+17 
+	#RTT_MAXNREXMT
+ 3
+
+	)
+
+20 
+¹t_debug
+(
+¹t_šfo
+ *);
+
+21 
+¹t_š™
+(
+¹t_šfo
+ *);
+
+22 
+¹t_Ãw·ck
+(
+¹t_šfo
+ *);
+
+23 
+¹t_¡¬t
+(
+¹t_šfo
+ *);
+
+24 
+¹t_¡İ
+(
+¹t_šfo
+ *, 
+ušt32_t
+);
+
+25 
+¹t_timeout
+(
+¹t_šfo
+ *);
+
+26 
+ušt32_t
+ 
+¹t_ts
+(
+¹t_šfo
+ *);
+
+28 
+¹t_d_æag
+;
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\unpthread.h
+
+4 #iâdef 
+__uÅ_±h»ad_h
+
+
+5 
+	#__uÅ_±h»ad_h
+
+
+	)
+
+7 
+	~"uÅ.h
+"
+
+9 
+Pth»ad_ü—‹
+(
+±h»ad_t
+ *, cÚ¡ 
+±h»ad_©Œ_t
+ *,
+
+11 
+Pth»ad_još
+(
+±h»ad_t
+, **);
+
+12 
+Pth»ad_d‘ach
+(
+±h»ad_t
+);
+
+13 
+Pth»ad_kl
+(
+±h»ad_t
+, );
+
+15 
+Pth»ad_mu‹x©Œ_š™
+(
+±h»ad_mu‹x©Œ_t
+ *);
+
+16 
+Pth»ad_mu‹x©Œ_£sh¬ed
+(
+±h»ad_mu‹x©Œ_t
+ *, );
+
+17 
+Pth»ad_mu‹x_š™
+(
+±h»ad_mu‹x_t
+ *, 
+±h»ad_mu‹x©Œ_t
+ *);
+
+18 
+Pth»ad_mu‹x_lock
+(
+±h»ad_mu‹x_t
+ *);
+
+19 
+Pth»ad_mu‹x_uÆock
+(
+±h»ad_mu‹x_t
+ *);
+
+21 
+Pth»ad_cÚd_brßdÿ¡
+(
+±h»ad_cÚd_t
+ *);
+
+22 
+Pth»ad_cÚd_sigÇl
+(
+±h»ad_cÚd_t
+ *);
+
+23 
+Pth»ad_cÚd_wa™
+(
+±h»ad_cÚd_t
+ *, 
+±h»ad_mu‹x_t
+ *);
+
+24 
+Pth»ad_cÚd_timedwa™
+(
+±h»ad_cÚd_t
+ *, 
+±h»ad_mu‹x_t
+ *,
+
+25 cÚ¡ 
+time¥ec
+ *);
+
+27 
+Pth»ad_key_ü—‹
+(
+±h»ad_key_t
+ *, (*)(*));
+
+28 
+	`Pth»ad_£t¥ecific
+(
+±h»ad_key_t
+, const *);
+
+29 
+	`Pth»ad_Úû
+(
+±h»ad_Úû_t
+ *, (*)());
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\wraplib.c
+
+6 
+	~"uÅ.h
+"
+
+9 
+	$IÃt_Áİ
+(
+çmy
+, cÚ¡ *
+add½Œ
+, *
+¡½Œ
+, 
+size_t
+ 
+Ën
+)
+
+11 cÚ¡ *
+±r
+;
+
+13 ià(
+¡½Œ
+ =ğ
+NULL
+)
+
+14 
+	`”r_qu™
+("NULL 3rd‡rgumento inet_ntop");
+
+15 iàĞ(
+±r
+ = 
+	`š‘_Áİ
+(
+çmy
+, 
+add½Œ
+, 
+¡½Œ
+, 
+Ën
+)è=ğ
+NULL
+)
+
+16 
+	`”r_sys
+("inet_ntopƒrror");
+
+17 (
+±r
+);
+
+18 
+	}
+}
+
+21 
+	$IÃt_±Ú
+(
+çmy
+, cÚ¡ *
+¡½Œ
+, *
+add½Œ
+)
+
+23 
+n
+;
+
+25 iàĞ(
+n
+ = 
+	`š‘_±Ú
+(
+çmy
+, 
+¡½Œ
+, 
+add½Œ
+)) < 0)
+
+26 
+	`”r_sys
+("š‘_±Úƒ¼Ü fÜ %s", 
+¡½Œ
+);
+
+27 ià(
+n
+ == 0)
+
+28 
+	`”r_qu™
+("š‘_±Úƒ¼Ü fÜ %s", 
+¡½Œ
+);
+
+31 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\wrappthread.c
+
+5 
+	~"uÅ.h
+"
+
+6 
+	~"uÅth»ad.h
+"
+
+9 
+Pth»ad_ü—‹
+(
+±h»ad_t
+ *
+tid
+, cÚ¡ 
+±h»ad_©Œ_t
+ *
+©Œ
+,
+
+10 * (*
+func
+)(*), *
+¬g
+)
+
+12 
+	gn
+;
+
+14 iàĞ(
+	gn
+ = 
+±h»ad_ü—‹
+(
+tid
+, 
+©Œ
+, 
+func
+, 
+¬g
+)) == 0)
+
+16 
+	g”ºo
+ = 
+n
+;
+
+17 
+”r_sys
+("pthread_createƒrror");
+
+21 
+	$Pth»ad_još
+(
+±h»ad_t
+ 
+tid
+, **
+¡©us
+)
+
+23 
+n
+;
+
+25 iàĞ(
+n
+ = 
+	`±h»ad_još
+(
+tid
+, 
+¡©us
+)) == 0)
+
+27 
+”ºo
+ = 
+n
+;
+
+28 
+	`”r_sys
+("pthread_joinƒrror");
+
+29 
+	}
+}
+
+32 
+	$Pth»ad_d‘ach
+(
+±h»ad_t
+ 
+tid
+)
+
+34 
+n
+;
+
+36 iàĞ(
+n
+ = 
+	`±h»ad_d‘ach
+(
+tid
+)) == 0)
+
+38 
+”ºo
+ = 
+n
+;
+
+39 
+	`”r_sys
+("pthread_detachƒrror");
+
+40 
+	}
+}
+
+43 
+	$Pth»ad_kl
+(
+±h»ad_t
+ 
+tid
+, 
+signo
+)
+
+45 
+n
+;
+
+47 iàĞ(
+n
+ = 
+	`±h»ad_kl
+(
+tid
+, 
+signo
+)) == 0)
+
+49 
+”ºo
+ = 
+n
+;
+
+50 
+	`”r_sys
+("pthread_killƒrror");
+
+51 
+	}
+}
+
+54 
+	$Pth»ad_mu‹x©Œ_š™
+(
+±h»ad_mu‹x©Œ_t
+ *
+©Œ
+)
+
+56 
+n
+;
+
+58 iàĞ(
+n
+ = 
+	`±h»ad_mu‹x©Œ_š™
+(
+©Œ
+)) == 0)
+
+60 
+”ºo
+ = 
+n
+;
+
+61 
+	`”r_sys
+("pthread_mutexattr_initƒrror");
+
+62 
+	}
+}
+
+64 #ifdef 
+_POSIX_THREAD_PROCESS_SHARED
+
+
+66 
+	$Pth»ad_mu‹x©Œ_£sh¬ed
+(
+±h»ad_mu‹x©Œ_t
+ *
+©Œ
+, 
+æag
+)
+
+68 
+n
+;
+
+70 iàĞ(
+n
+ = 
+	`±h»ad_mu‹x©Œ_£sh¬ed
+(
+©Œ
+, 
+æag
+)) == 0)
+
+72 
+”ºo
+ = 
+n
+;
+
+73 
+	`”r_sys
+("pthread_mutexattr_setpsharedƒrror");
+
+74 
+	}
+}
+
+78 
+	$Pth»ad_mu‹x_š™
+(
+±h»ad_mu‹x_t
+ *
+m±r
+, 
+±h»ad_mu‹x©Œ_t
+ *
+©Œ
+)
+
+80 
+n
+;
+
+82 iàĞ(
+n
+ = 
+	`±h»ad_mu‹x_š™
+(
+m±r
+, 
+©Œ
+)) == 0)
+
+84 
+”ºo
+ = 
+n
+;
+
+85 
+	`”r_sys
+("pthread_mutex_initƒrror");
+
+86 
+	}
+}
+
+90 
+	$Pth»ad_mu‹x_lock
+(
+±h»ad_mu‹x_t
+ *
+m±r
+)
+
+92 
+n
+;
+
+94 iàĞ(
+n
+ = 
+	`±h»ad_mu‹x_lock
+(
+m±r
+)) == 0)
+
+96 
+”ºo
+ = 
+n
+;
+
+97 
+	`”r_sys
+("pthread_mutex_lockƒrror");
+
+98 
+	}
+}
+
+102 
+	$Pth»ad_mu‹x_uÆock
+(
+±h»ad_mu‹x_t
+ *
+m±r
+)
+
+104 
+n
+;
+
+106 iàĞ(
+n
+ = 
+	`±h»ad_mu‹x_uÆock
+(
+m±r
+)) == 0)
+
+108 
+”ºo
+ = 
+n
+;
+
+109 
+	`”r_sys
+("pthread_mutex_unlockƒrror");
+
+110 
+	}
+}
+
+113 
+	$Pth»ad_cÚd_brßdÿ¡
+(
+±h»ad_cÚd_t
+ *
+ıŒ
+)
+
+115 
+n
+;
+
+117 iàĞ(
+n
+ = 
+	`±h»ad_cÚd_brßdÿ¡
+(
+ıŒ
+)) == 0)
+
+119 
+”ºo
+ = 
+n
+;
+
+120 
+	`”r_sys
+("pthread_cond_broadcastƒrror");
+
+121 
+	}
+}
+
+124 
+	$Pth»ad_cÚd_sigÇl
+(
+±h»ad_cÚd_t
+ *
+ıŒ
+)
+
+126 
+n
+;
+
+128 iàĞ(
+n
+ = 
+	`±h»ad_cÚd_sigÇl
+(
+ıŒ
+)) == 0)
+
+130 
+”ºo
+ = 
+n
+;
+
+131 
+	`”r_sys
+("pthread_cond_signalƒrror");
+
+132 
+	}
+}
+
+135 
+	$Pth»ad_cÚd_wa™
+(
+±h»ad_cÚd_t
+ *
+ıŒ
+, 
+±h»ad_mu‹x_t
+ *
+m±r
+)
+
+137 
+n
+;
+
+139 iàĞ(
+n
+ = 
+	`±h»ad_cÚd_wa™
+(
+ıŒ
+, 
+m±r
+)) == 0)
+
+141 
+”ºo
+ = 
+n
+;
+
+142 
+	`”r_sys
+("pthread_cond_waitƒrror");
+
+143 
+	}
+}
+
+146 
+	$Pth»ad_cÚd_timedwa™
+(
+±h»ad_cÚd_t
+ *
+ıŒ
+, 
+±h»ad_mu‹x_t
+ *
+m±r
+,
+
+147 cÚ¡ 
+time¥ec
+ *
+t¥Œ
+)
+
+149 
+n
+;
+
+151 iàĞ(
+n
+ = 
+	`±h»ad_cÚd_timedwa™
+(
+ıŒ
+, 
+m±r
+, 
+t¥Œ
+)) == 0)
+
+153 
+”ºo
+ = 
+n
+;
+
+154 
+	`”r_sys
+("pthread_cond_timedwaitƒrror");
+
+155 
+	}
+}
+
+158 
+Pth»ad_Úû
+(
+±h»ad_Úû_t
+ *
+±r
+, (*
+func
+)())
+
+160 
+n
+;
+
+162 iàĞ(
+n
+ = 
+	`±h»ad_Úû
+(
+±r
+, 
+func
+)) == 0)
+
+164 
+”ºo
+ = 
+n
+;
+
+165 
+	`”r_sys
+("pthread_onceƒrror");
+
+166 
+	}
+}
+
+169 
+Pth»ad_key_ü—‹
+(
+±h»ad_key_t
+ *
+key
+, (*
+func
+)(*))
+
+171 
+n
+;
+
+173 iàĞ(
+n
+ = 
+	`±h»ad_key_ü—‹
+(
+key
+, 
+func
+)) == 0)
+
+175 
+”ºo
+ = 
+n
+;
+
+176 
+	`”r_sys
+("pthread_key_createƒrror");
+
+177 
+	}
+}
+
+180 
+	$Pth»ad_£t¥ecific
+(
+±h»ad_key_t
+ 
+key
+, cÚ¡ *
+v®ue
+)
+
+182 
+n
+;
+
+184 iàĞ(
+n
+ = 
+	`±h»ad_£t¥ecific
+(
+key
+, 
+v®ue
+)) == 0)
+
+186 
+”ºo
+ = 
+n
+;
+
+187 
+	`”r_sys
+("pthread_setspecificƒrror");
+
+188 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\wrapsock.c
+
+19 
+	~"uÅ.h
+"
+
+22 
+	$Acû±
+(
+fd
+, 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ *
+§ËÅŒ
+)
+
+24 
+n
+;
+
+26 
+agaš
+:
+
+27 iàĞ(
+n
+ = 
+	`acû±
+(
+fd
+, 
+§
+, 
+§ËÅŒ
+)) < 0) {
+
+28 #ifdef 
+EPROTO
+
+
+29 ià(
+”ºo
+ =ğ
+EPROTO
+ ||ƒ¼nØ=ğ
+ECONNABORTED
+)
+
+31 ià(
+”ºo
+ =ğ
+ECONNABORTED
+)
+
+33 
+agaš
+;
+
+35 
+	`”r_sys
+("acceptƒrror");
+
+37 (
+n
+);
+
+38 
+	}
+}
+
+41 
+	$Bšd
+(
+fd
+, cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+43 ià(
+	`bšd
+(
+fd
+, 
+§
+, 
+§Ën
+) < 0)
+
+44 
+	`”r_sys
+("bindƒrror");
+
+45 
+	}
+}
+
+48 
+	$CÚÃù
+(
+fd
+, cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+50 ià(
+	`cÚÃù
+(
+fd
+, 
+§
+, 
+§Ën
+) < 0)
+
+51 
+	`”r_sys
+("connectƒrror");
+
+52 
+	}
+}
+
+55 
+	$G‘³”Çme
+(
+fd
+, 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ *
+§ËÅŒ
+)
+
+57 ià(
+	`g‘³”Çme
+(
+fd
+, 
+§
+, 
+§ËÅŒ
+) < 0)
+
+58 
+	`”r_sys
+("getpeernameƒrror");
+
+59 
+	}
+}
+
+62 
+	$G‘sockÇme
+(
+fd
+, 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ *
+§ËÅŒ
+)
+
+64 ià(
+	`g‘sockÇme
+(
+fd
+, 
+§
+, 
+§ËÅŒ
+) < 0)
+
+65 
+	`”r_sys
+("getsocknameƒrror");
+
+66 
+	}
+}
+
+69 
+	$G‘sockİt
+(
+fd
+, 
+Ëv–
+, 
+İŠame
+, *
+İtv®
+, 
+sockËn_t
+ *
+İ’±r
+)
+
+71 ià(
+	`g‘sockİt
+(
+fd
+, 
+Ëv–
+, 
+İŠame
+, 
+İtv®
+, 
+İ’±r
+) < 0)
+
+72 
+	`”r_sys
+("getsockoptƒrror");
+
+73 
+	}
+}
+
+75 #ifdef 
+HAVE_INET6_RTH_INIT
+
+
+77 
+	$IÃt6_¹h_¥aû
+(
+ty³
+, 
+£gm’ts
+)
+
+79 
+»t
+;
+
+81 
+»t
+ = 
+	`š‘6_¹h_¥aû
+(
+ty³
+, 
+£gm’ts
+);
+
+82 ià(
+»t
+ < 0)
+
+83 
+	`”r_qu™
+("inet6_rth_spaceƒrror");
+
+85  
+»t
+;
+
+86 
+	}
+}
+
+89 
+	$IÃt6_¹h_š™
+(*
+¹hbuf
+, 
+sockËn_t
+ 
+¹hËn
+, 
+ty³
+, 
+£gm’ts
+)
+
+91 *
+»t
+;
+
+93 
+»t
+ = 
+	`š‘6_¹h_š™
+(
+¹hbuf
+, 
+¹hËn
+, 
+ty³
+, 
+£gm’ts
+);
+
+94 ià(
+»t
+ =ğ
+NULL
+)
+
+95 
+	`”r_qu™
+("inet6_rth_initƒrror");
+
+97  
+»t
+;
+
+98 
+	}
+}
+
+101 
+	$IÃt6_¹h_add
+(*
+¹hbuf
+, cÚ¡ 
+š6_addr
+ *
+addr
+)
+
+103 ià(
+	`š‘6_¹h_add
+(
+¹hbuf
+, 
+addr
+) < 0)
+
+104 
+	`”r_qu™
+("inet6_rth_addƒrror");
+
+105 
+	}
+}
+
+108 
+	$IÃt6_¹h_»v”£
+(cÚ¡ *
+š
+, *
+out
+)
+
+110 ià(
+	`š‘6_¹h_»v”£
+(
+š
+, 
+out
+) < 0)
+
+111 
+	`”r_qu™
+("inet6_rth_reverseƒrror");
+
+112 
+	}
+}
+
+115 
+	$IÃt6_¹h_£gm’ts
+(cÚ¡ *
+¹hbuf
+)
+
+117 
+»t
+;
+
+119 
+»t
+ = 
+	`š‘6_¹h_£gm’ts
+(
+¹hbuf
+);
+
+120 ià(
+»t
+ < 0)
+
+121 
+	`”r_qu™
+("inet6_rth_segmentsƒrror");
+
+123  
+»t
+;
+
+124 
+	}
+}
+
+126 
+š6_addr
+ *
+
+127 
+	$IÃt6_¹h_g‘addr
+(cÚ¡ *
+¹hbuf
+, 
+idx
+)
+
+129 
+š6_addr
+ *
+»t
+;
+
+131 
+»t
+ = 
+	`š‘6_¹h_g‘addr
+(
+¹hbuf
+, 
+idx
+);
+
+132 ià(
+»t
+ =ğ
+NULL
+)
+
+133 
+	`”r_qu™
+("inet6_rth_getaddrƒrror");
+
+135  
+»t
+;
+
+136 
+	}
+}
+
+139 #ifdeà
+HAVE_KQUEUE
+
+
+141 
+	$Kqueue
+()
+
+143 
+»t
+;
+
+145 ià((
+»t
+ = 
+	`kqueue
+()) < 0)
+
+146 
+	`”r_sys
+("kqueueƒrror");
+
+147  
+»t
+;
+
+148 
+	}
+}
+
+151 
+	$Kev’t
+(
+kq
+, cÚ¡ 
+kev’t
+ *
+chªg–i¡
+, 
+nchªges
+,
+
+152 
+kev’t
+ *
+ev’i¡
+, 
+Ãv’ts
+, cÚ¡ 
+time¥ec
+ *
+timeout
+)
+
+154 
+»t
+;
+
+156 ià((
+»t
+ = 
+	`kev’t
+(
+kq
+, 
+chªg–i¡
+, 
+nchªges
+,
+
+157 
+ev’i¡
+, 
+Ãv’ts
+, 
+timeout
+)) < 0)
+
+158 
+	`”r_sys
+("keventƒrror");
+
+159  
+»t
+;
+
+160 
+	}
+}
+
+166 
+	$Li¡’
+(
+fd
+, 
+backlog
+)
+
+168 *
+±r
+;
+
+171 iàĞ(
+±r
+ = 
+	`g‘’v
+("LISTENQ")è!ğ
+NULL
+)
+
+172 
+backlog
+ = 
+	`©oi
+(
+±r
+);
+
+174 ià(
+	`li¡’
+(
+fd
+, 
+backlog
+) < 0)
+
+175 
+	`”r_sys
+("listenƒrror");
+
+176 
+	}
+}
+
+179 #ifdef 
+HAVE_POLL
+
+
+181 
+	$PŞl
+(
+pŞlfd
+ *
+fd¬¿y
+, 
+nfds
+, 
+timeout
+)
+
+183 
+n
+;
+
+185 iàĞ(
+n
+ = 
+	`pŞl
+(
+fd¬¿y
+, 
+nfds
+, 
+timeout
+)) < 0)
+
+186 
+	`”r_sys
+("pollƒrror");
+
+188 (
+n
+);
+
+189 
+	}
+}
+
+192 
+ssize_t
+
+
+193 
+	$Recv
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+æags
+)
+
+195 
+ssize_t
+ 
+n
+;
+
+197 iàĞ(
+n
+ = 
+	`»cv
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+æags
+)) < 0)
+
+198 
+	`”r_sys
+("recvƒrror");
+
+199 (
+n
+);
+
+200 
+	}
+}
+
+202 
+ssize_t
+
+
+203 
+	$Recväom
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+æags
+,
+
+204 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ *
+§ËÅŒ
+)
+
+206 
+ssize_t
+ 
+n
+;
+
+208 iàĞ(
+n
+ = 
+	`»cväom
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+æags
+, 
+§
+, 
+§ËÅŒ
+)) < 0)
+
+209 
+	`”r_sys
+("recvfromƒrror");
+
+210 (
+n
+);
+
+211 
+	}
+}
+
+213 
+ssize_t
+
+
+214 
+	$Recvmsg
+(
+fd
+, 
+msghdr
+ *
+msg
+, 
+æags
+)
+
+216 
+ssize_t
+ 
+n
+;
+
+218 iàĞ(
+n
+ = 
+	`»cvmsg
+(
+fd
+, 
+msg
+, 
+æags
+)) < 0)
+
+219 
+	`”r_sys
+("recvmsgƒrror");
+
+220 (
+n
+);
+
+221 
+	}
+}
+
+224 
+	$S–eù
+(
+nfds
+, 
+fd_£t
+ *
+»adfds
+, fd_£ˆ*
+wr™efds
+, fd_£ˆ*
+exû±fds
+,
+
+225 
+timev®
+ *
+timeout
+)
+
+227 
+n
+;
+
+229 iàĞ(
+n
+ = 
+	`£Ëù
+(
+nfds
+, 
+»adfds
+, 
+wr™efds
+, 
+exû±fds
+, 
+timeout
+)) < 0)
+
+230 
+	`”r_sys
+("selectƒrror");
+
+231 (
+n
+);
+
+232 
+	}
+}
+
+235 
+	$S’d
+(
+fd
+, cÚ¡ *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+æags
+)
+
+237 ià(
+	`£nd
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+æags
+è!ğ(
+ssize_t
+)nbytes)
+
+238 
+	`”r_sys
+("sendƒrror");
+
+239 
+	}
+}
+
+242 
+	$S’dto
+(
+fd
+, cÚ¡ *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+æags
+,
+
+243 cÚ¡ 
+sockaddr
+ *
+§
+, 
+sockËn_t
+ 
+§Ën
+)
+
+245 ià(
+	`£ndto
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+æags
+, 
+§
+, 
+§Ën
+è!ğ(
+ssize_t
+)nbytes)
+
+246 
+	`”r_sys
+("sendtoƒrror");
+
+247 
+	}
+}
+
+250 
+	$S’dmsg
+(
+fd
+, cÚ¡ 
+msghdr
+ *
+msg
+, 
+æags
+)
+
+252 
+i
+;
+
+253 
+ssize_t
+ 
+nby‹s
+;
+
+255 
+nby‹s
+ = 0;
+
+256 
+i
+ = 0; i < 
+msg
+->
+msg_iovËn
+; i++)
+
+257 
+nby‹s
+ +ğ
+msg
+->
+msg_iov
+[
+i
+].
+iov_Ën
+;
+
+259 ià(
+	`£ndmsg
+(
+fd
+, 
+msg
+, 
+æags
+è!ğ
+nby‹s
+)
+
+260 
+	`”r_sys
+("sendmsgƒrror");
+
+261 
+	}
+}
+
+264 
+	$S‘sockİt
+(
+fd
+, 
+Ëv–
+, 
+İŠame
+, cÚ¡ *
+İtv®
+, 
+sockËn_t
+ 
+İ’
+)
+
+266 ià(
+	`£tsockİt
+(
+fd
+, 
+Ëv–
+, 
+İŠame
+, 
+İtv®
+, 
+İ’
+) < 0)
+
+267 
+	`”r_sys
+("setsockoptƒrror");
+
+268 
+	}
+}
+
+271 
+	$Shutdown
+(
+fd
+, 
+how
+)
+
+273 ià(
+	`shutdown
+(
+fd
+, 
+how
+) < 0)
+
+274 
+	`”r_sys
+("shutdownƒrror");
+
+275 
+	}
+}
+
+278 
+	$Sock©m¬k
+(
+fd
+)
+
+280 
+n
+;
+
+282 iàĞ(
+n
+ = 
+	`sock©m¬k
+(
+fd
+)) < 0)
+
+283 
+	`”r_sys
+("sockatmarkƒrror");
+
+284 (
+n
+);
+
+285 
+	}
+}
+
+289 
+	$Sock‘
+(
+çmy
+, 
+ty³
+, 
+´ÙocŞ
+)
+
+291 
+n
+;
+
+293 iàĞ(
+n
+ = 
+	`sock‘
+(
+çmy
+, 
+ty³
+, 
+´ÙocŞ
+)) < 0)
+
+294 
+	`”r_sys
+("socketƒrror");
+
+295 (
+n
+);
+
+296 
+	}
+}
+
+300 
+	$Sock‘·œ
+(
+çmy
+, 
+ty³
+, 
+´ÙocŞ
+, *
+fd
+)
+
+302 
+n
+;
+
+304 iàĞ(
+n
+ = 
+	`sock‘·œ
+(
+çmy
+, 
+ty³
+, 
+´ÙocŞ
+, 
+fd
+)) < 0)
+
+305 
+	`”r_sys
+("socketpairƒrror");
+
+306 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\wrapstdio.c
+
+5 
+	~"uÅ.h
+"
+
+8 
+	$Fşo£
+(
+FILE
+ *
+å
+)
+
+10 ià(
+	`fşo£
+(
+å
+) != 0)
+
+11 
+	`”r_sys
+("fcloseƒrror");
+
+12 
+	}
+}
+
+14 
+FILE
+ *
+
+15 
+	$Fdİ’
+(
+fd
+, cÚ¡ *
+ty³
+)
+
+17 
+FILE
+ *
+å
+;
+
+19 iàĞ(
+å
+ = 
+	`fdİ’
+(
+fd
+, 
+ty³
+)è=ğ
+NULL
+)
+
+20 
+	`”r_sys
+("fdopenƒrror");
+
+22 (
+å
+);
+
+23 
+	}
+}
+
+26 
+	$Fg‘s
+(*
+±r
+, 
+n
+, 
+FILE
+ *
+¡»am
+)
+
+28 *
+½Œ
+;
+
+30 iàĞ(
+½Œ
+ = 
+	`fg‘s
+(
+±r
+, 
+n
+, 
+¡»am
+)è=ğ
+NULL
+ && 
+	`ã¼Ü
+(stream))
+
+31 
+	`”r_sys
+("fgetsƒrror");
+
+33  (
+½Œ
+);
+
+34 
+	}
+}
+
+36 
+FILE
+ *
+
+37 
+	$Fİ’
+(cÚ¡ *
+f’ame
+, cÚ¡ *
+mode
+)
+
+39 
+FILE
+ *
+å
+;
+
+41 iàĞ(
+å
+ = 
+	`fİ’
+(
+f’ame
+, 
+mode
+)è=ğ
+NULL
+)
+
+42 
+	`”r_sys
+("fopenƒrror");
+
+44 (
+å
+);
+
+45 
+	}
+}
+
+48 
+	$Fputs
+(cÚ¡ *
+±r
+, 
+FILE
+ *
+¡»am
+)
+
+50 ià(
+	`åuts
+(
+±r
+, 
+¡»am
+è=ğ
+EOF
+)
+
+51 
+	`”r_sys
+("fputsƒrror");
+
+52 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\wrapunix.c
+
+19 
+	~"uÅ.h
+"
+
+22 
+	$C®loc
+(
+size_t
+ 
+n
+, size_ˆ
+size
+)
+
+24 *
+±r
+;
+
+26 iàĞ(
+±r
+ = 
+	`ÿÎoc
+(
+n
+, 
+size
+)è=ğ
+NULL
+)
+
+27 
+	`”r_sys
+("callocƒrror");
+
+28 (
+±r
+);
+
+29 
+	}
+}
+
+32 
+	$Clo£
+(
+fd
+)
+
+34 ià(
+	`şo£
+(
+fd
+) == -1)
+
+35 
+	`”r_sys
+("closeƒrror");
+
+36 
+	}
+}
+
+39 
+	$Dup2
+(
+fd1
+, 
+fd2
+)
+
+41 ià(
+	`dup2
+(
+fd1
+, 
+fd2
+) == -1)
+
+42 
+	`”r_sys
+("dup2ƒrror");
+
+43 
+	}
+}
+
+46 
+	$Fú
+(
+fd
+, 
+cmd
+, 
+¬g
+)
+
+48 
+n
+;
+
+50 iàĞ(
+n
+ = 
+	`fú
+(
+fd
+, 
+cmd
+, 
+¬g
+)) == -1)
+
+51 
+	`”r_sys
+("fcntlƒrror");
+
+52 (
+n
+);
+
+53 
+	}
+}
+
+56 
+	$G‘timeofday
+(
+timev®
+ *
+tv
+, *
+foo
+)
+
+58 ià(
+	`g‘timeofday
+(
+tv
+, 
+foo
+) == -1)
+
+59 
+	`”r_sys
+("gettimeofdayƒrror");
+
+61 
+	}
+}
+
+64 
+	$Ioùl
+(
+fd
+, 
+»que¡
+, *
+¬g
+)
+
+66 
+n
+;
+
+68 iàĞ(
+n
+ = 
+	`ioùl
+(
+fd
+, 
+»que¡
+, 
+¬g
+)) == -1)
+
+69 
+	`”r_sys
+("ioctlƒrror");
+
+70 (
+n
+);
+
+71 
+	}
+}
+
+73 
+pid_t
+
+
+74 
+	$FÜk
+()
+
+76 
+pid_t
+ 
+pid
+;
+
+78 iàĞ(
+pid
+ = 
+	`fÜk
+()) == -1)
+
+79 
+	`”r_sys
+("forkƒrror");
+
+80 (
+pid
+);
+
+81 
+	}
+}
+
+84 
+	$M®loc
+(
+size_t
+ 
+size
+)
+
+86 *
+±r
+;
+
+88 iàĞ(
+±r
+ = 
+	`m®loc
+(
+size
+)è=ğ
+NULL
+)
+
+89 
+	`”r_sys
+("mallocƒrror");
+
+90 (
+±r
+);
+
+91 
+	}
+}
+
+94 
+	$Mk¡emp
+(*
+‹m¶©e
+)
+
+96 
+i
+;
+
+98 #ifdeà
+HAVE_MKSTEMP
+
+
+99 ià((
+i
+ = 
+	`mk¡emp
+(
+‹m¶©e
+)) < 0)
+
+100 
+	`”r_qu™
+("mkstempƒrror");
+
+102 ià(
+	`mk‹mp
+(
+‹m¶©e
+è=ğ
+NULL
+ ||emplate[0] == 0)
+
+103 
+	`”r_qu™
+("mktempƒrror");
+
+104 
+i
+ = 
+	`O³n
+(
+‹m¶©e
+, 
+O_CREAT
+ | 
+O_WRONLY
+, 
+FILE_MODE
+);
+
+107  
+i
+;
+
+108 
+	}
+}
+
+110 
+	~<sys/mmª.h
+>
+
+113 
+	$Mm­
+(*
+addr
+, 
+size_t
+ 
+Ën
+, 
+´Ù
+, 
+æags
+, 
+fd
+, 
+off_t
+ 
+off£t
+)
+
+115 *
+±r
+;
+
+117 iàĞ(
+±r
+ = 
+	`mm­
+(
+addr
+, 
+Ën
+, 
+´Ù
+, 
+æags
+, 
+fd
+, 
+off£t
+)) == ((*) -1))
+
+118 
+	`”r_sys
+("mmapƒrror");
+
+119 (
+±r
+);
+
+120 
+	}
+}
+
+123 
+	$O³n
+(cÚ¡ *
+·thÇme
+, 
+oæag
+, 
+mode_t
+ 
+mode
+)
+
+125 
+fd
+;
+
+127 iàĞ(
+fd
+ = 
+	`İ’
+(
+·thÇme
+, 
+oæag
+, 
+mode
+)) == -1)
+
+128 
+	`”r_sys
+("İ’ƒ¼Ü fÜ %s", 
+·thÇme
+);
+
+129 (
+fd
+);
+
+130 
+	}
+}
+
+133 
+	$Pe
+(*
+fds
+)
+
+135 ià(
+	`pe
+(
+fds
+) < 0)
+
+136 
+	`”r_sys
+("pipeƒrror");
+
+137 
+	}
+}
+
+139 
+ssize_t
+
+
+140 
+	$R—d
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+)
+
+142 
+ssize_t
+ 
+n
+;
+
+144 iàĞ(
+n
+ = 
+	`»ad
+(
+fd
+, 
+±r
+, 
+nby‹s
+)) == -1)
+
+145 
+	`”r_sys
+("readƒrror");
+
+146 (
+n
+);
+
+147 
+	}
+}
+
+150 
+	$Sigadd£t
+(
+sig£t_t
+ *
+£t
+, 
+signo
+)
+
+152 ià(
+	`sigadd£t
+(
+£t
+, 
+signo
+) == -1)
+
+153 
+	`”r_sys
+("sigaddsetƒrror");
+
+154 
+	}
+}
+
+157 
+	$Sigd–£t
+(
+sig£t_t
+ *
+£t
+, 
+signo
+)
+
+159 ià(
+	`sigd–£t
+(
+£t
+, 
+signo
+) == -1)
+
+160 
+	`”r_sys
+("sigdelsetƒrror");
+
+161 
+	}
+}
+
+164 
+	$Sigem±y£t
+(
+sig£t_t
+ *
+£t
+)
+
+166 ià(
+	`sigem±y£t
+(
+£t
+) == -1)
+
+167 
+	`”r_sys
+("sigemptysetƒrror");
+
+168 
+	}
+}
+
+171 
+	$Sigfl£t
+(
+sig£t_t
+ *
+£t
+)
+
+173 ià(
+	`sigfl£t
+(
+£t
+) == -1)
+
+174 
+	`”r_sys
+("sigfillsetƒrror");
+
+175 
+	}
+}
+
+178 
+	$Sigismemb”
+(cÚ¡ 
+sig£t_t
+ *
+£t
+, 
+signo
+)
+
+180 
+n
+;
+
+182 iàĞ(
+n
+ = 
+	`sigismemb”
+(
+£t
+, 
+signo
+)) == -1)
+
+183 
+	`”r_sys
+("sigismemberƒrror");
+
+184 (
+n
+);
+
+185 
+	}
+}
+
+188 
+	$Sig³ndšg
+(
+sig£t_t
+ *
+£t
+)
+
+190 ià(
+	`sig³ndšg
+(
+£t
+) == -1)
+
+191 
+	`”r_sys
+("sigpendingƒrror");
+
+192 
+	}
+}
+
+195 
+	$Sig´ocmask
+(
+how
+, cÚ¡ 
+sig£t_t
+ *
+£t
+, sig£t_ˆ*
+o£t
+)
+
+197 ià(
+	`sig´ocmask
+(
+how
+, 
+£t
+, 
+o£t
+) == -1)
+
+198 
+	`”r_sys
+("sigprocmaskƒrror");
+
+199 
+	}
+}
+
+202 
+	$SŒdup
+(cÚ¡ *
+¡r
+)
+
+204 *
+±r
+;
+
+206 iàĞ(
+±r
+ = 
+	`¡rdup
+(
+¡r
+)è=ğ
+NULL
+)
+
+207 
+	`”r_sys
+("strdupƒrror");
+
+208 (
+±r
+);
+
+209 
+	}
+}
+
+212 
+	$SyscÚf
+(
+Çme
+)
+
+214 
+v®
+;
+
+216 
+”ºo
+ = 0;
+
+217 iàĞ(
+v®
+ = 
+	`syscÚf
+(
+Çme
+)) == -1)
+
+218 
+	`”r_sys
+("sysconfƒrror");
+
+219 (
+v®
+);
+
+220 
+	}
+}
+
+222 #ifdef 
+HAVE_SYS_SYSCTL_H
+
+
+224 
+	$Sysùl
+(*
+Çme
+, 
+u_št
+ 
+Çm–’
+, *
+Şdp
+, 
+size_t
+ *
+ŞdËÅ
+,
+
+225 *
+Ãwp
+, 
+size_t
+ 
+ÃwËn
+)
+
+227 ià(
+	`sysùl
+(
+Çme
+, 
+Çm–’
+, 
+Şdp
+, 
+ŞdËÅ
+, 
+Ãwp
+, 
+ÃwËn
+) == -1)
+
+228 
+	`”r_sys
+("sysctlƒrror");
+
+229 
+	}
+}
+
+233 
+	$UÆšk
+(cÚ¡ *
+·thÇme
+)
+
+235 ià(
+	`uÆšk
+(
+·thÇme
+) == -1)
+
+236 
+	`”r_sys
+("uÆškƒ¼Ü fÜ %s", 
+·thÇme
+);
+
+237 
+	}
+}
+
+239 
+pid_t
+
+
+240 
+	$Wa™
+(*
+Œ
+)
+
+242 
+pid_t
+ 
+pid
+;
+
+244 iàĞ(
+pid
+ = 
+	`wa™
+(
+Œ
+)) == -1)
+
+245 
+	`”r_sys
+("waitƒrror");
+
+246 (
+pid
+);
+
+247 
+	}
+}
+
+249 
+pid_t
+
+
+250 
+	$Wa™pid
+(
+pid_t
+ 
+pid
+, *
+Œ
+, 
+İtiÚs
+)
+
+252 
+pid_t
+ 
+»id
+;
+
+254 iàĞ(
+»id
+ = 
+	`wa™pid
+(
+pid
+, 
+Œ
+, 
+İtiÚs
+)) == -1)
+
+255 
+	`”r_sys
+("waitpidƒrror");
+
+256 (
+»id
+);
+
+257 
+	}
+}
+
+260 
+	$Wr™e
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+)
+
+262 ià(
+	`wr™e
+(
+fd
+, 
+±r
+, 
+nby‹s
+) !=‚bytes)
+
+263 
+	`”r_sys
+("writeƒrror");
+
+264 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\writable_timeo.c
+
+2 
+	~"uÅ.h
+"
+
+5 
+	$wr™abË_timeo
+(
+fd
+, 
+£c
+)
+
+7 
+fd_£t
+ 
+w£t
+;
+
+8 
+timev®
+ 
+tv
+;
+
+10 
+	`FD_ZERO
+(&
+w£t
+);
+
+11 
+	`FD_SET
+(
+fd
+, &
+w£t
+);
+
+13 
+tv
+.
+tv_£c
+ = 
+£c
+;
+
+14 
+tv
+.
+tv_u£c
+ = 0;
+
+16 (
+	`£Ëù
+(
+fd
++1, 
+NULL
+, &
+w£t
+, NULL, &
+tv
+));
+
+18 
+	}
+}
+
+22 
+	$Wr™abË_timeo
+(
+fd
+, 
+£c
+)
+
+24 
+n
+;
+
+26 iàĞ(
+n
+ = 
+	`wr™abË_timeo
+(
+fd
+, 
+£c
+)) < 0)
+
+27 
+	`”r_sys
+("writable_timeoƒrror");
+
+28 (
+n
+);
+
+29 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\write_fd.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+ssize_t
+
+
+5 
+	$wr™e_fd
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+£ndfd
+)
+
+7 
+msghdr
+ 
+msg
+;
+
+8 
+iovec
+ 
+iov
+[1];
+
+10 #ifdef 
+HAVE_MSGHDR_MSG_CONTROL
+
+
+12 
+cmsghdr
+ 
+cm
+;
+
+13 
+cÚŒŞ
+[
+	`CMSG_SPACE
+(())];
+
+14 } 
+cÚŒŞ_un
+;
+
+15 
+cmsghdr
+ *
+cm±r
+;
+
+17 
+msg
+.
+msg_cÚŒŞ
+ = 
+cÚŒŞ_un
+.
+cÚŒŞ
+;
+
+18 
+msg
+.
+msg_cÚŒŞËn
+ = (
+cÚŒŞ_un
+.
+cÚŒŞ
+);
+
+20 
+cm±r
+ = 
+	`CMSG_FIRSTHDR
+(&
+msg
+);
+
+21 
+cm±r
+->
+cmsg_Ën
+ = 
+	`CMSG_LEN
+(());
+
+22 
+cm±r
+->
+cmsg_Ëv–
+ = 
+SOL_SOCKET
+;
+
+23 
+cm±r
+->
+cmsg_ty³
+ = 
+SCM_RIGHTS
+;
+
+24 *((*è
+	`CMSG_DATA
+(
+cm±r
+)èğ
+£ndfd
+;
+
+26 
+msg
+.
+msg_acüights
+ = (
+ÿddr_t
+è&
+£ndfd
+;
+
+27 
+msg
+.
+msg_acüight¦’
+ = ();
+
+30 
+msg
+.
+msg_Çme
+ = 
+NULL
+;
+
+31 
+msg
+.
+msg_Çm–’
+ = 0;
+
+33 
+iov
+[0].
+iov_ba£
+ = 
+±r
+;
+
+34 
+iov
+[0].
+iov_Ën
+ = 
+nby‹s
+;
+
+35 
+msg
+.
+msg_iov
+ = 
+iov
+;
+
+36 
+msg
+.
+msg_iovËn
+ = 1;
+
+38 (
+	`£ndmsg
+(
+fd
+, &
+msg
+, 0));
+
+39 
+	}
+}
+
+42 
+ssize_t
+
+
+43 
+	$Wr™e_fd
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+, 
+£ndfd
+)
+
+45 
+ssize_t
+ 
+n
+;
+
+47 iàĞ(
+n
+ = 
+	`wr™e_fd
+(
+fd
+, 
+±r
+, 
+nby‹s
+, 
+£ndfd
+)) < 0)
+
+48 
+	`”r_sys
+("write_fdƒrror");
+
+50 (
+n
+);
+
+51 
+	}
+}
+
+	@G:\Study\Unix_Network_Programming\unpv13e\lib\writen.c
+
+2 
+	~"uÅ.h
+"
+
+4 
+ssize_t
+
+
+5 
+	$wr™’
+(
+fd
+, cÚ¡ *
+v±r
+, 
+size_t
+ 
+n
+)
+
+7 
+size_t
+ 
+Æeá
+;
+
+8 
+ssize_t
+ 
+nwr™‹n
+;
+
+9 cÚ¡ *
+±r
+;
+
+11 
+±r
+ = 
+v±r
+;
+
+12 
+Æeá
+ = 
+n
+;
+
+13 
+Æeá
+ > 0) {
+
+14 iàĞ(
+nwr™‹n
+ = 
+	`wr™e
+(
+fd
+, 
+±r
+, 
+Æeá
+)) <= 0) {
+
+15 ià(
+nwr™‹n
+ < 0 && 
+”ºo
+ =ğ
+EINTR
+)
+
+16 
+nwr™‹n
+ = 0;
+
+21 
+Æeá
+ -ğ
+nwr™‹n
+;
+
+22 
+±r
+ +ğ
+nwr™‹n
+;
+
+24 (
+n
+);
+
+25 
+	}
+}
+
+29 
+	$Wr™’
+(
+fd
+, *
+±r
+, 
+size_t
+ 
+nby‹s
+)
+
+31 ià(
+	`wr™’
+(
+fd
+, 
+±r
+, 
+nby‹s
+) !=‚bytes)
+
+32 
+	`”r_sys
+("writenƒrror");
+
+33 
+	}
+}
+
+	@../lib/addrinfo.h
+
+1 #iâdef 
+__addršfo_h
+
+
+2 
+	#__addršfo_h
+
+
+	)
+
+10 
+	saddršfo
+ {
+
+11 
+	mai_æags
+;
+
+12 
+	mai_çmy
+;
+
+13 
+	mai_sockty³
+;
+
+14 
+	mai_´ÙocŞ
+;
+
+15 
+size_t
+ 
+	mai_add¾’
+;
+
+16 *
+	mai_ÿnÚÇme
+;
+
+17 
+sockaddr
+ *
+	mai_addr
+;
+
+18 
+addršfo
+ *
+	mai_Ãxt
+;
+
+22 
+	#AI_PASSIVE
+ 1
+
+	)
+
+23 
+	#AI_CANONNAME
+ 2
+
+	)
+
+26 
+	#NI_MAXHOST
+ 1025
+
+	)
+
+27 
+	#NI_MAXSERV
+ 32
+
+	)
+
+29 
+	#NI_NOFQDN
+ 1
+
+	)
+
+30 
+	#NI_NUMERICHOST
+ 2
+
+	)
+
+31 
+	#NI_NAMEREQD
+ 4
+
+	)
+
+32 
+	#NI_NUMERICSERV
+ 8
+
+	)
+
+33 
+	#NI_DGRAM
+ 16
+
+	)
+
+36 
+	#EAI_ADDRFAMILY
+ 1
+
+	)
+
+37 
+	#EAI_AGAIN
+ 2
+
+	)
+
+38 
+	#EAI_BADFLAGS
+ 3
+
+	)
+
+39 
+	#EAI_FAIL
+ 4
+
+	)
+
+40 
+	#EAI_FAMILY
+ 5
+
+	)
+
+41 
+	#EAI_MEMORY
+ 6
+
+	)
+
+42 
+	#EAI_NODATA
+ 7
+
+	)
+
+43 
+	#EAI_NONAME
+ 8
+
+	)
+
+44 
+	#EAI_SERVICE
+ 9
+
+	)
+
+45 
+	#EAI_SOCKTYPE
+ 10
+
+	)
+
+46 
+	#EAI_SYSTEM
+ 11
+
+	)
+
+	@unp.h
+
+4 #iâdef 
+__uÅ_h
+
+
+5 
+	#__uÅ_h
+
+
+	)
+
+7 
+	~"../cÚfig.h
+"
+
+13 
+	~<sys/ty³s.h
+>
+
+14 
+	~<sys/sock‘.h
+>
+
+15 #ià
+TIME_WITH_SYS_TIME
+
+
+16 
+	~<sys/time.h
+>
+
+17 
+	~<time.h
+>
+
+19 #ià
+HAVE_SYS_TIME_H
+
+
+20 
+	~<sys/time.h
+>
+
+22 
+	~<time.h
+>
+
+25 
+	~<Ãtš‘/š.h
+>
+
+26 
+	~<¬·/š‘.h
+>
+
+27 
+	~<”ºo.h
+>
+
+28 
+	~<fú.h
+>
+
+29 
+	~<Ãtdb.h
+>
+
+30 
+	~<sigÇl.h
+>
+
+31 
+	~<¡dio.h
+>
+
+32 
+	~<¡dlib.h
+>
+
+33 
+	~<¡ršg.h
+>
+
+34 
+	~<sys/¡©.h
+>
+
+35 
+	~<sys/uio.h
+>
+
+36 
+	~<uni¡d.h
+>
+
+37 
+	~<sys/wa™.h
+>
+
+38 
+	~<sys/un.h
+>
+
+40 #ifdef 
+HAVE_SYS_SELECT_H
+
+
+41 
+	~<sys/£Ëù.h
+>
+
+44 #ifdef 
+HAVE_SYS_SYSCTL_H
+
+
+45 #ifdef 
+HAVE_SYS_PARAM_H
+
+
+46 
+	~<sys/·¿m.h
+>
+
+48 
+	~<sys/sysùl.h
+>
+
+51 #ifdef 
+HAVE_POLL_H
+
+
+52 
+	~<pŞl.h
+>
+
+55 #ifdef 
+HAVE_SYS_EVENT_H
+
+
+56 
+	~<sys/ev’t.h
+>
+
+59 #ifdef 
+HAVE_STRINGS_H
+
+
+60 
+	~<¡ršgs.h
+>
+
+66 #ifdef 
+HAVE_SYS_IOCTL_H
+
+
+67 
+	~<sys/ioùl.h
+>
+
+69 #ifdef 
+HAVE_SYS_FILIO_H
+
+
+70 
+	~<sys/fio.h
+>
+
+72 #ifdef 
+HAVE_SYS_SOCKIO_H
+
+
+73 
+	~<sys/sockio.h
+>
+
+76 #ifdef 
+HAVE_PTHREAD_H
+
+
+77 
+	~<±h»ad.h
+>
+
+80 #ifdeà
+HAVE_NET_IF_DL_H
+
+
+81 
+	~<Ãt/if_dl.h
+>
+
+84 #ifdeà
+HAVE_NETINET_SCTP_H
+
+
+85 
+	~<Ãtš‘/sùp.h
+>
+
+89 #ifdef 
+__osf__
+
+
+90 #undeà
+»cv
+
+
+91 #undeà
+£nd
+
+
+92 
+	#»cv
+(
+a
+,
+b
+,
+c
+,
+d
+è
+	`»cväom
+×,b,c,d,0,0)
+
+	)
+
+93 
+	#£nd
+(
+a
+,
+b
+,
+c
+,
+d
+è
+	`£ndto
+×,b,c,d,0,0)
+
+	)
+
+96 #iâdef 
+INADDR_NONE
+
+
+98 
+	#INADDR_NONE
+ 0xfffffffà
+
+	)
+
+101 #iâdef 
+SHUT_RD
+
+
+102 
+	#SHUT_RD
+ 0
+
+	)
+
+103 
+	#SHUT_WR
+ 1
+
+	)
+
+104 
+	#SHUT_RDWR
+ 2
+
+	)
+
+111 #iâdeà
+INET_ADDRSTRLEN
+
+
+113 
+	#INET_ADDRSTRLEN
+ 16
+
+	)
+
+119 #iâdeà
+INET6_ADDRSTRLEN
+
+
+121 
+	#INET6_ADDRSTRLEN
+ 46
+
+	)
+
+129 #iâdef 
+HAVE_BZERO
+
+
+130 
+	#bz”o
+(
+±r
+,
+n
+è
+	`mem£t
+ÕŒ, 0,‚)
+
+	)
+
+136 #iâdef 
+HAVE_GETHOSTBYNAME2
+
+
+137 
+	#g‘ho¡byÇme2
+(
+ho¡
+,
+çmy
+è
+	`g‘ho¡byÇme
+((ho¡))
+
+	)
+
+141 
+	suÅ_š_pktšfo
+ {
+
+142 
+š_addr
+ 
+	mi_addr
+;
+
+143 
+	mi_ifšdex
+;
+
+152 #iâdef 
+CMSG_LEN
+
+
+154 
+	#CMSG_LEN
+(
+size
+è((
+cmsghdr
+è+ (size))
+
+	)
+
+156 #iâdef 
+CMSG_SPACE
+
+
+158 
+	#CMSG_SPACE
+(
+size
+è((
+cmsghdr
+è+ (size))
+
+	)
+
+164 #iâdef 
+SUN_LEN
+
+
+166 
+	#SUN_LEN
+(
+su
+) \
+
+167 ((*(
+su
+)è- ((su)->
+sun_·th
+è+ 
+	`¡¾’
+((su)->sun_·th))
+
+	)
+
+172 #iâdef 
+AF_LOCAL
+
+
+173 
+	#AF_LOCAL
+ 
+AF_UNIX
+
+
+	)
+
+175 #iâdef 
+PF_LOCAL
+
+
+176 
+	#PF_LOCAL
+ 
+PF_UNIX
+
+
+	)
+
+183 #iâdeà
+INFTIM
+
+
+184 
+	#INFTIM
+ (-1è
+
+	)
+
+186 #ifdef 
+HAVE_POLL_H
+
+
+187 
+	#INFTIM_UNPH
+
+
+	)
+
+193 
+	#LISTENQ
+ 1024
+
+	)
+
+196 
+	#MAXLINE
+ 4096
+
+	)
+
+197 
+	#BUFFSIZE
+ 8192
+
+	)
+
+200 
+	#SERV_PORT
+ 9877
+
+	)
+
+201 
+	#SERV_PORT_STR
+ "9877"
+
+	)
+
+202 
+	#UNIXSTR_PATH
+ "/tmp/unix.¡r"
+
+	)
+
+203 
+	#UNIXDG_PATH
+ "/tmp/unix.dg"
+
+	)
+
+212 
+	#SA
+ 
+sockaddr
+
+
+	)
+
+214 #iâdeà
+HAVE_STRUCT_SOCKADDR_STORAGE
+
+
+218 
+	#__SS_MAXSIZE
+ 128
+
+	)
+
+219 
+	#__SS_ALIGNSIZE
+ ((
+št64_t
+))
+
+	)
+
+220 #ifdeà
+HAVE_SOCKADDR_SA_LEN
+
+
+221 
+	#__SS_PAD1SIZE
+ (
+__SS_ALIGNSIZE
+ - (
+u_ch¬
+è- (
+§_çmy_t
+))
+
+	)
+
+223 
+	#__SS_PAD1SIZE
+ (
+__SS_ALIGNSIZE
+ - (
+§_çmy_t
+))
+
+	)
+
+225 
+	#__SS_PAD2SIZE
+ (
+__SS_MAXSIZE
+ - 2*
+__SS_ALIGNSIZE
+)
+
+	)
+
+227 
+	ssockaddr_¡Üage
+ {
+
+228 #ifdeà
+HAVE_SOCKADDR_SA_LEN
+
+
+229 
+u_ch¬
+ 
+	mss_Ën
+;
+
+231 
+§_çmy_t
+ 
+	mss_çmy
+;
+
+232 
+	m__ss_·d1
+[
+__SS_PAD1SIZE
+];
+
+233 
+št64_t
+ 
+	m__ss_®ign
+;
+
+234 
+	m__ss_·d2
+[
+__SS_PAD2SIZE
+];
+
+238 
+	#FILE_MODE
+ (
+S_IRUSR
+ | 
+S_IWUSR
+ | 
+S_IRGRP
+ | 
+S_IROTH
+)
+
+	)
+
+240 
+	#DIR_MODE
+ (
+FILE_MODE
+ | 
+S_IXUSR
+ | 
+S_IXGRP
+ | 
+S_IXOTH
+)
+
+	)
+
+243 
+	tSigfunc
+();
+
+245 
+	#mš
+(
+a
+,
+b
+è(×è< (bè? (aè: (b))
+
+	)
+
+246 
+	#max
+(
+a
+,
+b
+è(×è> (bè? (aè: (b))
+
+	)
+
+248 #iâdef 
+HAVE_ADDRINFO_STRUCT
+
+
+249 
+	~"../lib/addršfo.h
+"
+
+252 #iâdef 
+HAVE_IF_NAMEINDEX_STRUCT
+
+
+253 
+	sif_Çmešdex
+ {
+
+254 
+	mif_šdex
+;
+
+255 *
+	mif_Çme
+;
+
+262 #iâdef 
+HAVE_TIMESPEC_STRUCT
+
+
+263 
+	stime¥ec
+ {
+
+264 
+time_t
+ 
+	mtv_£c
+;
+
+265 
+	mtv_n£c
+;
+
+274 
+cÚÃù_nÚb
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+275 
+cÚÃù_timeo
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+276 
+d«mÚ_š™
+(const *, );
+
+277 
+d«mÚ_š‘d
+(const *, );
+
+278 
+dg_şi
+(
+FILE
+ *, , cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+279 
+dg_echo
+(, 
+SA
+ *, 
+sockËn_t
+);
+
+280 
+çmy_to_Ëv–
+();
+
+281 *
+gf_time
+();
+
+282 
+h—¹b—t_şi
+(, , );
+
+283 
+h—¹b—t_£rv
+(, , );
+
+284 
+addršfo
+ *
+ho¡_£rv
+(const *, const *, , );
+
+285 
+š‘_¤üt_add
+(*);
+
+286 
+u_ch¬
+ *
+š‘_¤üt_š™
+();
+
+287 
+š‘_¤üt_´št
+(
+u_ch¬
+ *, );
+
+288 
+š‘6_¤üt_´št
+(*);
+
+289 **
+my_addrs
+(*);
+
+290 
+»adabË_timeo
+(, );
+
+291 
+ssize_t
+ 
+»adlše
+(, *, 
+size_t
+);
+
+292 
+ssize_t
+ 
+»adn
+(, *, 
+size_t
+);
+
+293 
+ssize_t
+ 
+»ad_fd
+(, *, 
+size_t
+, *);
+
+294 
+ssize_t
+ 
+»cväom_æags
+(, *, 
+size_t
+, *, 
+SA
+ *, 
+sockËn_t
+ *,
+
+295 
+uÅ_š_pktšfo
+ *);
+
+296 
+Sigfunc
+ *
+sigÇl_šŒ
+(, Sigfunc *);
+
+297 
+sock_bšd_wd
+(, );
+
+298 
+sock_cmp_addr
+(cÚ¡ 
+SA
+ *, cÚ¡ SA *, 
+sockËn_t
+);
+
+299 
+sock_cmp_pÜt
+(cÚ¡ 
+SA
+ *, cÚ¡ SA *, 
+sockËn_t
+);
+
+300 
+sock_g‘_pÜt
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+301 
+sock_£t_addr
+(
+SA
+ *, 
+sockËn_t
+, const *);
+
+302 
+sock_£t_pÜt
+(
+SA
+ *, 
+sockËn_t
+, );
+
+303 
+sock_£t_wd
+(
+SA
+ *, 
+sockËn_t
+);
+
+304 *
+sock_Áİ
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+305 *
+sock_Áİ_ho¡
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+306 
+sockfd_to_çmy
+();
+
+307 
+¡r_echo
+();
+
+308 
+¡r_şi
+(
+FILE
+ *, );
+
+309 
+tı_cÚÃù
+(const *, const *);
+
+310 
+tı_li¡’
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+311 
+tv_sub
+(
+timev®
+ *, timeval *);
+
+312 
+udp_ş›Á
+(cÚ¡ *, cÚ¡ *, 
+SA
+ **, 
+sockËn_t
+ *);
+
+313 
+udp_cÚÃù
+(const *, const *);
+
+314 
+udp_£rv”
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+315 
+wr™abË_timeo
+(, );
+
+316 
+ssize_t
+ 
+wr™’
+(, cÚ¡ *, 
+size_t
+);
+
+317 
+ssize_t
+ 
+wr™e_fd
+(, *, 
+size_t
+, );
+
+319 #ifdef 
+MCAST
+
+
+320 
+mÿ¡_Ëave
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+321 
+mÿ¡_još
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, cÚ¡ *, 
+u_št
+);
+
+322 
+mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+323 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+324 
+mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+325 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+326 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+);
+
+327 
+mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+328 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+329 
+mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+330 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+331 
+mÿ¡_g‘_if
+();
+
+332 
+mÿ¡_g‘_loİ
+();
+
+333 
+mÿ¡_g‘_‰l
+();
+
+334 
+mÿ¡_£t_if
+(, cÚ¡ *, 
+u_št
+);
+
+335 
+mÿ¡_£t_loİ
+(, );
+
+336 
+mÿ¡_£t_‰l
+(, );
+
+338 
+Mÿ¡_Ëave
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+339 
+Mÿ¡_još
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, cÚ¡ *, 
+u_št
+);
+
+340 
+Mÿ¡_Ëave_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+341 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+342 
+Mÿ¡_još_sourû_group
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+343 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+,
+
+344 cÚ¡ *
+iâame
+, 
+u_št
+ 
+ifšdex
+);
+
+345 
+Mÿ¡_block_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+346 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+347 
+Mÿ¡_unblock_sourû
+(
+sockfd
+, cÚ¡ 
+SA
+ *
+¤c
+, 
+sockËn_t
+ 
+¤ş’
+,
+
+348 cÚ¡ 
+SA
+ *
+g½
+, 
+sockËn_t
+ 
+g½Ën
+);
+
+349 
+Mÿ¡_g‘_if
+();
+
+350 
+Mÿ¡_g‘_loİ
+();
+
+351 
+Mÿ¡_g‘_‰l
+();
+
+352 
+Mÿ¡_£t_if
+(, cÚ¡ *, 
+u_št
+);
+
+353 
+Mÿ¡_£t_loİ
+(, );
+
+354 
+Mÿ¡_£t_‰l
+(, );
+
+357 
+ušt16_t
+ 
+š_cksum
+(uint16_t *, );
+
+359 #iâdef 
+HAVE_GETADDRINFO_PROTO
+
+
+360 
+g‘addršfo
+(cÚ¡ *, cÚ¡ *, cÚ¡ 
+addršfo
+ *,
+
+361 
+addršfo
+ **);
+
+362 
+ä“addršfo
+(
+addršfo
+ *);
+
+363 *
+gai_¡»¼Ü
+();
+
+366 #iâdef 
+HAVE_GETNAMEINFO_PROTO
+
+
+367 
+g‘Çmešfo
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+, *, 
+size_t
+, *, size_t, );
+
+370 #iâdef 
+HAVE_GETHOSTNAME_PROTO
+
+
+371 
+g‘ho¡Çme
+(*, );
+
+374 #iâdef 
+HAVE_HSTRERROR_PROTO
+
+
+375 cÚ¡ *
+h¡»¼Ü
+();
+
+378 #iâdef 
+HAVE_IF_NAMETOINDEX_PROTO
+
+
+379 
+if_Çm‘ošdex
+(const *);
+
+380 *
+if_šdextÚame
+(, *);
+
+381 
+if_ä“Çmešdex
+(
+if_Çmešdex
+ *);
+
+382 
+if_Çmešdex
+ *if_nameindex();
+
+385 #iâdef 
+HAVE_INET_PTON_PROTO
+
+
+386 
+š‘_±Ú
+(, const *, *);
+
+387 cÚ¡ *
+š‘_Áİ
+(, cÚ¡ *, *, 
+size_t
+);
+
+390 #iâdef 
+HAVE_INET_ATON_PROTO
+
+
+391 
+š‘_©Ú
+(cÚ¡ *, 
+š_addr
+ *);
+
+394 #iâdef 
+HAVE_PSELECT_PROTO
+
+
+395 
+p£Ëù
+(, 
+fd_£t
+ *, fd_set *, fd_set *,
+
+396 cÚ¡ 
+time¥ec
+ *, cÚ¡ 
+sig£t_t
+ *);
+
+399 #iâdef 
+HAVE_SOCKATMARK_PROTO
+
+
+400 
+sock©m¬k
+();
+
+403 #iâdef 
+HAVE_SNPRINTF_PROTO
+
+
+404 
+¢´štf
+(*, 
+size_t
+, const *, ...);
+
+408 
+CÚÃù_timeo
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+, );
+
+409 
+Famy_to_Ëv–
+();
+
+410 
+addršfo
+ *
+Ho¡_£rv
+(const *, const *, , );
+
+411 cÚ¡ *
+IÃt_Áİ
+(, cÚ¡ *, *, 
+size_t
+);
+
+412 
+IÃt_±Ú
+(, const *, *);
+
+413 *
+If_šdextÚame
+(, *);
+
+414 
+If_Çm‘ošdex
+(const *);
+
+415 
+if_Çmešdex
+ *
+If_Çmešdex
+();
+
+416 **
+My_addrs
+(*);
+
+417 
+ssize_t
+ 
+R—d_fd
+(, *, 
+size_t
+, *);
+
+418 
+R—dabË_timeo
+(, );
+
+419 
+ssize_t
+ 
+Recväom_æags
+(, *, 
+size_t
+, *, 
+SA
+ *, 
+sockËn_t
+ *,
+
+420 
+uÅ_š_pktšfo
+ *);
+
+421 
+Sigfunc
+ *
+SigÇl
+(, Sigfunc *);
+
+422 
+Sigfunc
+ *
+SigÇl_šŒ
+(, Sigfunc *);
+
+423 
+Sock_bšd_wd
+(, );
+
+424 *
+Sock_Áİ
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+425 *
+Sock_Áİ_ho¡
+(cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+426 
+Sockfd_to_çmy
+();
+
+427 
+Tı_cÚÃù
+(const *, const *);
+
+428 
+Tı_li¡’
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+429 
+Udp_ş›Á
+(cÚ¡ *, cÚ¡ *, 
+SA
+ **, 
+sockËn_t
+ *);
+
+430 
+Udp_cÚÃù
+(const *, const *);
+
+431 
+Udp_£rv”
+(cÚ¡ *, cÚ¡ *, 
+sockËn_t
+ *);
+
+432 
+ssize_t
+ 
+Wr™e_fd
+(, *, 
+size_t
+, );
+
+433 
+Wr™abË_timeo
+(, );
+
+436 *
+C®loc
+(
+size_t
+, size_t);
+
+437 
+Clo£
+();
+
+438 
+Dup2
+(, );
+
+439 
+Fú
+(, , );
+
+440 
+G‘timeofday
+(
+timev®
+ *, *);
+
+441 
+Ioùl
+(, , *);
+
+442 
+pid_t
+ 
+FÜk
+();
+
+443 *
+M®loc
+(
+size_t
+);
+
+444 
+Mk¡emp
+(*);
+
+445 *
+Mm­
+(*, 
+size_t
+, , , , 
+off_t
+);
+
+446 
+O³n
+(cÚ¡ *, , 
+mode_t
+);
+
+447 
+Pe
+(*
+fds
+);
+
+448 
+ssize_t
+ 
+R—d
+(, *, 
+size_t
+);
+
+449 
+Sigadd£t
+(
+sig£t_t
+ *, );
+
+450 
+Sigd–£t
+(
+sig£t_t
+ *, );
+
+451 
+Sigem±y£t
+(
+sig£t_t
+ *);
+
+452 
+Sigfl£t
+(
+sig£t_t
+ *);
+
+453 
+Sigismemb”
+(cÚ¡ 
+sig£t_t
+ *, );
+
+454 
+Sig³ndšg
+(
+sig£t_t
+ *);
+
+455 
+Sig´ocmask
+(, cÚ¡ 
+sig£t_t
+ *, sigset_t *);
+
+456 *
+SŒdup
+(const *);
+
+457 
+SyscÚf
+();
+
+458 
+Sysùl
+(*, 
+u_št
+, *, 
+size_t
+ *, *, size_t);
+
+459 
+UÆšk
+(const *);
+
+460 
+pid_t
+ 
+Wa™
+(*);
+
+461 
+pid_t
+ 
+Wa™pid
+(pid_t, *, );
+
+462 
+Wr™e
+(, *, 
+size_t
+);
+
+465 
+Fşo£
+(
+FILE
+ *);
+
+466 
+FILE
+ *
+Fdİ’
+(, const *);
+
+467 *
+Fg‘s
+(*, , 
+FILE
+ *);
+
+468 
+FILE
+ *
+Fİ’
+(const *, const *);
+
+469 
+Fputs
+(cÚ¡ *, 
+FILE
+ *);
+
+472 
+Acû±
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+473 
+Bšd
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+474 
+CÚÃù
+(, cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+475 
+G‘³”Çme
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+476 
+G‘sockÇme
+(, 
+SA
+ *, 
+sockËn_t
+ *);
+
+477 
+G‘sockİt
+(, , , *, 
+sockËn_t
+ *);
+
+478 #ifdef 
+HAVE_INET6_RTH_INIT
+
+
+479 
+IÃt6_¹h_¥aû
+(, );
+
+480 *
+IÃt6_¹h_š™
+(*, 
+sockËn_t
+, , );
+
+481 
+IÃt6_¹h_add
+(*, cÚ¡ 
+š6_addr
+ *);
+
+482 
+IÃt6_¹h_»v”£
+(const *, *);
+
+483 
+IÃt6_¹h_£gm’ts
+(const *);
+
+484 
+š6_addr
+ *
+IÃt6_¹h_g‘addr
+(const *, );
+
+486 #ifdef 
+HAVE_KQUEUE
+
+
+487 
+Kqueue
+();
+
+488 
+Kev’t
+(, cÚ¡ 
+kev’t
+ *, ,
+
+489 
+kev’t
+ *, , cÚ¡ 
+time¥ec
+ *);
+
+491 
+Li¡’
+(, );
+
+492 #ifdef 
+HAVE_POLL
+
+
+493 
+PŞl
+(
+pŞlfd
+ *, , );
+
+495 
+ssize_t
+ 
+R—dlše
+(, *, 
+size_t
+);
+
+496 
+ssize_t
+ 
+R—dn
+(, *, 
+size_t
+);
+
+497 
+ssize_t
+ 
+Recv
+(, *, 
+size_t
+, );
+
+498 
+ssize_t
+ 
+Recväom
+(, *, 
+size_t
+, , 
+SA
+ *, 
+sockËn_t
+ *);
+
+499 
+ssize_t
+ 
+Recvmsg
+(, 
+msghdr
+ *, );
+
+500 
+S–eù
+(, 
+fd_£t
+ *, fd_£ˆ*, fd_£ˆ*, 
+timev®
+ *);
+
+501 
+S’d
+(, cÚ¡ *, 
+size_t
+, );
+
+502 
+S’dto
+(, cÚ¡ *, 
+size_t
+, , cÚ¡ 
+SA
+ *, 
+sockËn_t
+);
+
+503 
+S’dmsg
+(, cÚ¡ 
+msghdr
+ *, );
+
+504 
+S‘sockİt
+(, , , cÚ¡ *, 
+sockËn_t
+);
+
+505 
+Shutdown
+(, );
+
+506 
+Sock©m¬k
+();
+
+507 
+Sock‘
+(, , );
+
+508 
+Sock‘·œ
+(, , , *);
+
+509 
+Wr™’
+(, *, 
+size_t
+);
+
+511 
+”r_dump
+(const *, ...);
+
+512 
+”r_msg
+(const *, ...);
+
+513 
+”r_qu™
+(const *, ...);
+
+514 
+”r_»t
+(const *, ...);
+
+515 
+”r_sys
+(const *, ...);
+
+	@unpifi.h
+
+4 #iâdef 
+__uÅ_ifi_h
+
+
+5 
+	#__uÅ_ifi_h
+
+
+	)
+
+7 
+	~"uÅ.h
+"
+
+8 
+	~<Ãt/if.h
+>
+
+10 
+	#IFI_NAME
+ 16
+
+	)
+
+11 
+	#IFI_HADDR
+ 8
+
+	)
+
+13 
+	sifi_šfo
+ {
+
+14 
+	mifi_Çme
+[
+IFI_NAME
+];
+
+15 
+	mifi_šdex
+;
+
+16 
+	mifi_mtu
+;
+
+17 
+u_ch¬
+ 
+	mifi_haddr
+[
+IFI_HADDR
+];
+
+18 
+u_shÜt
+ 
+	mifi_hËn
+;
+
+19 
+	mifi_æags
+;
+
+20 
+	mifi_myæags
+;
+
+21 
+sockaddr
+ *
+	mifi_addr
+;
+
+22 
+sockaddr
+ *
+	mifi_brdaddr
+;
+
+23 
+sockaddr
+ *
+	mifi_d¡addr
+;
+
+24 
+ifi_šfo
+ *
+	mifi_Ãxt
+;
+
+27 
+	#IFI_ALIAS
+ 1
+
+	)
+
+30 
+ifi_šfo
+ *
+g‘_ifi_šfo
+(, );
+
+31 
+ifi_šfo
+ *
+G‘_ifi_šfo
+(, );
+
+32 
+ä“_ifi_šfo
+(
+ifi_šfo
+ *);
+
+	@unprtt.h
+
+1 #iâdef 
+__uÅ_¹t_h
+
+
+2 
+	#__uÅ_¹t_h
+
+
+	)
+
+4 
+	~"uÅ.h
+"
+
+6 
+	s¹t_šfo
+ {
+
+7 
+	m¹t_¹t
+;
+
+8 
+	m¹t_¤‰
+;
+
+9 
+	m¹t_¹tv¬
+;
+
+10 
+	m¹t_¹o
+;
+
+11 
+	m¹t_Äexmt
+;
+
+12 
+ušt32_t
+ 
+	m¹t_ba£
+;
+
+15 
+	#RTT_RXTMIN
+ 2
+
+	)
+
+16 
+	#RTT_RXTMAX
+ 60
+
+	)
+
+17 
+	#RTT_MAXNREXMT
+ 3
+
+	)
+
+20 
+¹t_debug
+(
+¹t_šfo
+ *);
+
+21 
+¹t_š™
+(
+¹t_šfo
+ *);
+
+22 
+¹t_Ãw·ck
+(
+¹t_šfo
+ *);
+
+23 
+¹t_¡¬t
+(
+¹t_šfo
+ *);
+
+24 
+¹t_¡İ
+(
+¹t_šfo
+ *, 
+ušt32_t
+);
+
+25 
+¹t_timeout
+(
+¹t_šfo
+ *);
+
+26 
+ušt32_t
+ 
+¹t_ts
+(
+¹t_šfo
+ *);
+
+28 
+¹t_d_æag
+;
+
+	@unpthread.h
+
+4 #iâdef 
+__uÅ_±h»ad_h
+
+
+5 
+	#__uÅ_±h»ad_h
+
+
+	)
+
+7 
+	~"uÅ.h
+"
+
+9 
+Pth»ad_ü—‹
+(
+±h»ad_t
+ *, cÚ¡ 
+±h»ad_©Œ_t
+ *,
+
+11 
+Pth»ad_još
+(
+±h»ad_t
+, **);
+
+12 
+Pth»ad_d‘ach
+(
+±h»ad_t
+);
+
+13 
+Pth»ad_kl
+(
+±h»ad_t
+, );
+
+15 
+Pth»ad_mu‹x©Œ_š™
+(
+±h»ad_mu‹x©Œ_t
+ *);
+
+16 
+Pth»ad_mu‹x©Œ_£sh¬ed
+(
+±h»ad_mu‹x©Œ_t
+ *, );
+
+17 
+Pth»ad_mu‹x_š™
+(
+±h»ad_mu‹x_t
+ *, 
+±h»ad_mu‹x©Œ_t
+ *);
+
+18 
+Pth»ad_mu‹x_lock
+(
+±h»ad_mu‹x_t
+ *);
+
+19 
+Pth»ad_mu‹x_uÆock
+(
+±h»ad_mu‹x_t
+ *);
+
+21 
+Pth»ad_cÚd_brßdÿ¡
+(
+±h»ad_cÚd_t
+ *);
+
+22 
+Pth»ad_cÚd_sigÇl
+(
+±h»ad_cÚd_t
+ *);
+
+23 
+Pth»ad_cÚd_wa™
+(
+±h»ad_cÚd_t
+ *, 
+±h»ad_mu‹x_t
+ *);
+
+24 
+Pth»ad_cÚd_timedwa™
+(
+±h»ad_cÚd_t
+ *, 
+±h»ad_mu‹x_t
+ *,
+
+25 cÚ¡ 
+time¥ec
+ *);
+
+27 
+Pth»ad_key_ü—‹
+(
+±h»ad_key_t
+ *, (*)(*));
+
+28 
+	`Pth»ad_£t¥ecific
+(
+±h»ad_key_t
+, const *);
+
+29 
+	`Pth»ad_Úû
+(
+±h»ad_Úû_t
+ *, (*)());
+
+	@
+1
+.
+0
+71
+3950
+G:\Study\Unix_Network_Programming\unpv13e\lib\addrinfo.h
+G:\Study\Unix_Network_Programming\unpv13e\lib\connect_nonb.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\connect_timeo.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\daemon_inetd.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\daemon_init.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\dg_cli.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\dg_echo.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\error.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\family_to_level.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\get_ifi_info.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\gf_time.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\host_serv.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\hstrerror.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\if_indextoname.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\if_nameindex.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\if_nametoindex.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\in6addr_any.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_if.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_loop.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_get_ttl.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_join.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_leave.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_if.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_loop.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\mcast_set_ttl.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\my_addrs.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\pselect.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\read_fd.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\readable_timeo.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\readline.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\readn.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\rtt.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\signal.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\signal_intr.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\snprintf.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_bind_wild.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_cmp_addr.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_cmp_port.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_get_port.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_ntop.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_ntop_host.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_addr.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_port.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sock_set_wild.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sockatmark.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\sockfd_to_family.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\str_cli.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\str_echo.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\tcp_connect.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\tcp_listen.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\tv_sub.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\udp_client.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\udp_connect.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\udp_server.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\unp.h
+G:\Study\Unix_Network_Programming\unpv13e\lib\unpifi.h
+G:\Study\Unix_Network_Programming\unpv13e\lib\unprtt.h
+G:\Study\Unix_Network_Programming\unpv13e\lib\unpthread.h
+G:\Study\Unix_Network_Programming\unpv13e\lib\wraplib.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\wrappthread.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\wrapsock.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\wrapstdio.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\wrapunix.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\writable_timeo.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\write_fd.c
+G:\Study\Unix_Network_Programming\unpv13e\lib\writen.c
+../lib/addrinfo.h
+unp.h
+unpifi.h
+unprtt.h
+unpthread.h
