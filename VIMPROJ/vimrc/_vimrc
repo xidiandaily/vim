@@ -15,7 +15,8 @@ runtime macros/matchit.vim
 	  let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
 	  if (choice!=3)
 		  let vim_proj=$VIMPROJ."/Tool"
-		  let cmd= "! C:/cygwin64/bin/mintty.exe ".vim_proj."/SSHFileuploadmodefiyfile.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
+          let cygwin_proj=$CYGWINPATH."/mintty.exe"
+		  let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
 		  execute cmd
 	  endif
   endfunction
