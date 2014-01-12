@@ -16,6 +16,8 @@ function! InitWorkSpace()
 	normal /GameTable-gb.cpp
 	normal o
 	:set rnu
+    "let g:proj_type="cpp"
+    "let g:proj_type="pkm"
 
 	let g:SSHSendDir="/"
 	let g:SSHUSER="chiyl@192.168.199.109"

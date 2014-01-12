@@ -9,7 +9,6 @@ function! SwitchDir(filename)
     let vim_proj=$VIMPROJ
     let cygwin_proj=$CYGWINPATH
     let cmd="! ".cygwin_proj."/mintty.exe  ".vim_proj."/Tool/get_dirlist.sh ~vimcurpath.tmp"
-    echo cmd
     silent! execute cmd
     let addpath=system("cat ~vimcurpath.tmp")
     execute addpath

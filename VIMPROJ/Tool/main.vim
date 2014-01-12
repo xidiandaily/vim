@@ -13,11 +13,11 @@ function! Main(pa)
 		call InitCPP()
 		call InitLua()
 		call SwitchDir(s:path)
-		call Do_CsTag()
 		:silent! Tlist
 		:NERDTree
 		:set rnu
 		call InitWorkSpace()
+		echo call(function(g:proj_cstag_dict[g:proj_type]),[])
 		"execute "source ".a:initfile
 endfunction
 
