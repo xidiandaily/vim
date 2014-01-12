@@ -31,11 +31,25 @@ function ASTYLE_default()
     return "error"
 endfunction
 
+"定义取用自定义函数（根据项目类型做出区别）名称接口
 "定义项目配置时候需要使用的（全局）变量
 let g:proj_type="default"
-let g:proj_upload_dict={"default":"UPFILE_default"}
-let g:proj_cstag_dict={"default":"CSTAG_default"}
-let g:proj_astyle_dict={"default":"ASTYLE_default"}
+let g:chiylown_func_dict={}
+function g:chiylown_func_dict.getprojtypefunc(functype) dict
+    if(!has_key(self,a:functype))
+        echohl WarningMsg | echom "don't know functype:".a:functype | echohl None
+        return ""
+    endif
+    if(!has_key(self[a:functype],g:proj_type))
+        return get(self[a:functype],"default","error")
+    else
+        return get(self[a:functype],g:proj_type,"error")
+    endif
+endfunction
+
+let g:chiylown_func_dict["UPFILE"]={"default":"UPFILE_default"}
+let g:chiylown_func_dict["CSTAG"]={"default":"CSTAG_default"}
+let g:chiylown_func_dict["ASTYLE"]={"default":"ASTYLE_default"}
 
 "禁用vi兼容模式（原始的vi功能太少了，没必要考虑兼容） 
 set nocompatible
@@ -85,9 +99,10 @@ let NERDTreeShowLineNumbers=0				" show line number
 "更新TAG
 map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
 map <C-F8> :set encoding=cp936 \| language message cp936 \| set fenc=cp936<CR>
-map <F12> :echo call(function(proj_cstag_dict[g:proj_type]),[])<CR>
-map <F10> :echo call(function(proj_astyle_dict[g:proj_type]),[])<CR>
-map <F7> :echo call(function(proj_upload_dict[g:proj_type]),[])<CR>
+map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])<CR>
+map <F10> :echo call(function(g:chiylown_func_dict.getprojtypefunc("ASTYLE")),[])<CR>
+map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
+"echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
 map Tl :silent! Tlist<CR> "按下F3就可以呼出了
 map NT :NERDTree<CR>

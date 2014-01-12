@@ -88,7 +88,7 @@ function! InitCPP()
     set completeopt=menuone,menu,longest,preview
     :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/unix_network_programming/tags
     :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/unix_network_programming/
-    :let g:proj_upload_dict["cpp"]="UPFILE_cpp"
-    :let g:proj_cstag_dict["cpp"]="CSTAG_cpp"
-    :let g:proj_astyle_dict["cpp"]="ASTYLE_cpp"
+    let g:chiylown_func_dict["UPFILE"]["cpp"]="UPFILE_cpp"
+    let g:chiylown_func_dict["CSTAG"]["cpp"]="CSTAG_cpp"
+    let g:chiylown_func_dict["ASTYLE"]["cpp"]="ASTYLE_cpp"
 endfunction
