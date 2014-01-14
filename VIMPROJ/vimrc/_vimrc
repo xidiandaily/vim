@@ -80,6 +80,9 @@ set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
 set encoding=utf-8
 set fenc=utf-8
 language message zh_CN.utf-8
+"解决菜单乱码 
+source $VIMRUNTIME/delmenu.vim 
+source $VIMRUNTIME/menu.vim
 
 "Tlist设置
 let Tlist_Ctags_Cmd='ctags' "因为我们放在环境变量里，所以可以直接执行
