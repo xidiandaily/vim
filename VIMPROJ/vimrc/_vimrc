@@ -93,6 +93,8 @@ set expandtab
 "set fo+=Mm   "中文宽度80时也自动换行
 colorscheme lucius
 au BufNewFile,BufRead *.t2t set ft=txt2tags
+" SystemTap scripts
+au BufNewFile,BufRead *.stp			set ft=stap
 set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
 set encoding=utf-8
 set fenc=utf-8
