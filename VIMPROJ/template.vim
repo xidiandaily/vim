@@ -18,6 +18,7 @@ function! InitWorkSpace()
 	:set rnu
     "let g:proj_type="cpp"
     "let g:proj_type="pkm"
+    "let g:proj_type="php"
 
 	let g:SSHSendDir="/"
 	let g:SSHUSER="chiyl@192.168.199.1"

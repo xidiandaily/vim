@@ -32,7 +32,7 @@ function ASTYLE_default()
 endfunction
 
 function SetProjType()
-    let choice=confirm("Set Project Type", "&cpp\n&pkm\n&Cancel",3)
+    let choice=confirm("Set Project Type", "&cpp\n&pkm\n&php\n&&Cancel",4)
     if choice==1
         "初始化CPP环境
         source  $VIMPROJ/Tool/InitCPP.vim
@@ -43,6 +43,11 @@ function SetProjType()
         source  $VIMPROJ/Tool/InitPkm.vim
         let g:proj_type="pkm"
         call InitPkm()
+    elseif choice==3
+        source  $VIMPROJ/Tool/InitPHP.vim
+        let g:proj_type="php"
+        call InitPHP()
+
     else
         let g:proj_type="default"
     endif

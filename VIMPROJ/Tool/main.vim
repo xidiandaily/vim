@@ -4,6 +4,8 @@ source  $VIMPROJ/Tool/InitCPP.vim
 source  $VIMPROJ/Tool/InitLua.vim
 "初始化PKM环境
 source  $VIMPROJ/Tool/InitPkm.vim
+"初始化PHP环境
+source  $VIMPROJ/Tool/InitPHP.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
@@ -15,6 +17,7 @@ function! Main(pa)
         call InitCPP()
         call InitLua()
         call InitPkm()
+        call InitPHP()
         call SwitchDir(s:path)
         :silent! Tlist
         :NERDTree
