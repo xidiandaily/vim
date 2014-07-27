@@ -1,12 +1,25 @@
 "º¯Êý
 function UPFILE_php()
-    let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
-    if (choice!=3)
-        ""let vim_proj=$VIMPROJ."/Tool"
-        ""let cygwin_proj=$CYGWINPATH."/mintty.exe"
-        ""let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
-        let cmd="echo unsupport!!"
-        execute cmd
+    let vim_proj=$VIMPROJ."/Tool"
+    let cygwin_proj=$CYGWINPATH."/mintty.exe"
+    let filelist_cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileup_phpfilelist.sh"." ".g:SSHSendDir
+    execute filelist_cmd
+
+    if (-1!=getftime("uploadfile.txt"))
+        let str_choice=""
+        for ff in readfile("uploadfile.txt")
+            let str_choice=str_choice."\n".ff
+        endfor
+
+        if (str_choice=="")
+            let str_choice="file not found"
+        endif
+
+        let choice=confirm(str_choice,"&Yes\n&Cancel",1)
+        if (choice==1)
+            let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileup_php_upload.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
+            execute cmd
+        endif
     endif
 endfunction
 
