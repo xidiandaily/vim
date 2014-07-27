@@ -15,10 +15,14 @@ function UPFILE_php()
             let str_choice="file not found"
         endif
 
-        let choice=confirm(str_choice,"&Yes\n&Cancel",1)
+        let choice=confirm(str_choice,"&Yes\n&update_timestamp\n&Cancel",1)
         if (choice==1)
             let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileup_php_upload.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
             execute cmd
+        elseif (choice==2)
+            let ctmp=["hello"]
+            call writefile(ctmp,"timestamp.txt","b")
+            echo "done"
         endif
     endif
 endfunction
