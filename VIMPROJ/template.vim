@@ -26,7 +26,7 @@ function! InitWorkSpace()
 	let g:SSHRemoteDir="/usr/server/EventMonitor/"
 
 	#let g:SSHSendDir="/"
-	#let g:SSHUSER="lawrenceChi@192.168.100.1"
+	#let g:SSHUSER="lawrenceChi@192.168.200.1"
 	#let g:SSHPORT=3600
 	#let g:SSHRemoteDir="/usr/server/EventMonitor/"
 endfunction
