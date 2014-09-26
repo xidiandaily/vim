@@ -47,9 +47,6 @@ function SetProjType()
         source  $VIMPROJ/Tool/InitPHP.vim
         let g:proj_type="php"
         call InitPHP()
-
-    else
-        let g:proj_type="default"
     endif
 endfunction
 
