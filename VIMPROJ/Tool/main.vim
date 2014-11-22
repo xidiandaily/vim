@@ -23,7 +23,11 @@ function! Main(pa)
         :NERDTree
         :set rnu
         call InitWorkSpace()
-        :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
+        if filereadable("cscope.out")
+            execute "cs add cscope.out"
+        else
+            :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
+        endif
 endfunction
 
 
