@@ -40,7 +40,7 @@ fi
 cd $DIR;
 count=0;
 if [ -f "$TIMESTEMP" ];then
-	for i in `find -type f -regextype awk  -regex ".*(php|html|c|cpp|h|Makefile|so)$" -newer $TIMESTEMP -size -10M`; do
+	for i in `find -type f -regextype awk  -regex ".*(php|html|c|cpp|h|Makefile|so|css)$" -newer $TIMESTEMP -size -10M`; do
 		n=`echo $i|sed -e "s/\.\///g"`;
         echo $n>>$FILELIST;
 		#f=$DIR"/"$n;
