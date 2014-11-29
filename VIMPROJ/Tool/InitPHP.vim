@@ -98,6 +98,11 @@ function! InitPHP()
     let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
     let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
     let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+    "jquery
+    let g:used_javascript_libs = 'jquery'
+    autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+    au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
     " automatically open and close the popup menu / preview window
     "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
     "set completeopt=menuone,menu,longest,preview
