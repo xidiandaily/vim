@@ -19,7 +19,7 @@ snippet boot_init (basic bootstrap3 initial template)
 			<title>${1}</title>
 
 			<!-- Bootstrap -->
-			<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+			<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 
 			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,13 +27,13 @@ snippet boot_init (basic bootstrap3 initial template)
 				<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 		</head>
 		<body>
 			$2
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			<script src="bower_components/jquery/dist/jquery.js"></script>
-			<!-- Include all compiled plugins (below), or include individual files as needed -->
-			<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		</body>
 	</html>
 
@@ -140,9 +140,21 @@ snippet dl-horizontal (bootstrap3)
 snippet pre-scrollable (bootstrap3)
 	<pre class="scrollable">${1}</pre>
 
-snippet table (bootstrap3)
+snippet table (bootstrap3 带常用属性)
 	<table class="table ${1:table-striped} ${2:table-bordered} ${3:table-hover} ${4:table-condensed} ${5:table-response}">
-		${6}
+		<caption>${6:表格标题}</caption>
+		<thead>
+			<tr>
+				<th class="${7:active} ${8:success} ${9:info} ${10:warning} ${11:danger}">名称</th>
+				<th>城市</th>
+			</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="${12:active} ${13:success} ${14:info} ${15:warning} ${16:danger}">Tanmay</td>
+				<td>Bangalore</td>
+			</th>
+		</tbody>
 	</table>
 
 snippet contextuals (bootstrap3)
@@ -1393,7 +1405,7 @@ snippet tabbabletabsright
 	  </ul>
 	</div>
 
-snippet table
+snippet table (bootstrap3 无常用属性)
 	<table class="table">
 	  ${1:...}
 	</table>
@@ -1433,11 +1445,20 @@ snippet textleft
 snippet textright
 	<p class="text-right">${1:Right aligned text.}</p>
 
+snippet textmuted
+	<p class="text-muted">${1:本行内容是减弱的.}</p>
+
 snippet textsuccess
 	<p class="text-success">${1:Duis mollis, est non commodo luctus, nisi erat porttitor ligula.}</p>
 
 snippet textwarning
 	<p class="text-warning">${1:Etiam porta sem malesuada magna mollis euismod.}</p>
+
+snippet textprimary 
+	<p class="text-primary">${1:本行低啊有一个 Primary class（原型).}</p>
+
+snippet textdanger 
+	<p class="text-danger">${1:本行带有一个 danger class.}</p>
 
 snippet thumbnails
 	<ul class="thumbnails">
@@ -1670,7 +1691,7 @@ snippet select
 	<select name="${1:some_name}" id="${2:$1}">
 		<option value="${3:option}">${4:$3}</option>
 	</select>${5}
-snippet table
+snippet table (普通html table)
 	<table border="${1:0}">
 		<tr><th>${2:Header}</th></tr>
 		<tr><th>${3:Data}</th></tr>
