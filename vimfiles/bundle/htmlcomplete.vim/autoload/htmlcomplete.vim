@@ -3,6 +3,9 @@
 " Maintainer:	Mikolaj Machowski ( mikmach AT wp DOT pl )
 " Last Change:	2006 Oct 19
 
+let g:html_common_libs_file_list={ 
+            \ 'bootstrap': '../misc/bootstrap.css' ,}
+
 function! htmlcomplete#CompleteTags(findstart, base)
   if a:findstart
     " locate the start of the word
@@ -283,6 +286,20 @@ function! htmlcomplete#CompleteTags(findstart, base)
 					endif
 				endfor
 				let cssfiles = styletable + secimportfiles
+                "链接型的css，增加缓存中的css文件
+                for file in cssfiles
+					if !filereadable(file)
+                        let serch_file=''
+                        for [ serch, filepath] in items(g:html_common_libs_file_list)
+                            if matchstr(file,serch)!=''
+                                let curpath=expand('%:')
+                                call add(cssfiles,curpath+'/'+filepath)
+                                break
+                            endif
+                        endfor
+                    endif
+                endfor
+                
 				let classes = []
 				for file in cssfiles
 					if filereadable(file)
