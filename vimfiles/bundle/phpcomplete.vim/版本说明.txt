@@ -1,0 +1,11 @@
+并入版本： 2015/01/09 04:36:09
+by LawrenceChi
+git:https://github.com/shawncplus/phpcomplete.vim
+
+SHA-1: 63981b8c1c45b64902f79cabd3df2c190d8d23f0
+
+* Update PHP built-in maps
+
+Now the code will try to index "procedural style" alternatives too
+(like mysqli_*, date_* or tidy_*)
+
