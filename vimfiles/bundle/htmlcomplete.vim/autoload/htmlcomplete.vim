@@ -4,7 +4,8 @@
 " Last Change:	2006 Oct 19
 
 let g:html_common_libs_file_list={ 
-            \ 'bootstrap': '../misc/bootstrap.css' ,}
+            \ 'bootstrap': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/bootstrap.css' ,}
+
 
 function! htmlcomplete#CompleteTags(findstart, base)
   if a:findstart
@@ -292,8 +293,8 @@ function! htmlcomplete#CompleteTags(findstart, base)
                         let serch_file=''
                         for [ serch, filepath] in items(g:html_common_libs_file_list)
                             if matchstr(file,serch)!=''
-                                let curpath=expand('%:')
-                                call add(cssfiles,curpath+'/'+filepath)
+                                let escp_filepath=substitute(filepath,'\\','/','g')
+                                call add(cssfiles,escp_filepath)
                                 break
                             endif
                         endfor
