@@ -8,7 +8,8 @@
 function! jspc#init()
   let w:jspc_omnifunc = &omnifunc
   let w:jspc_finding = 0
-  set omnifunc=jspc#omni
+  "set omnifunc=jspc#omni
+  set completefunc=jspc#omni
 endfunction
 
 function! jspc#omni(findstart, base)
