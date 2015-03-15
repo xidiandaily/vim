@@ -56,7 +56,7 @@ function CSTAG_cpp()
         if(g:iswindows!=1)
             silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs,*.hxx,*.cxx >> cscope.files"
         endif
         silent! execute "!cscope -b"
         execute "normal :"
