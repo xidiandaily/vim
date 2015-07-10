@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='E:\u019c\red_arrow\source\mmi_tasks'
 let g:netrw_dirhist_2='E:\u029\red_arrow\source\mmi_tasks'
+let g:netrw_dirhist_3='E:/DiFangQiPai/LocalChess/SCChess/Test_Code/CoinCacheSo/src'
