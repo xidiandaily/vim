@@ -38,15 +38,27 @@ function SetProjType()
         source  $VIMPROJ/Tool/InitCPP.vim
         let g:proj_type="cpp"
         call InitCPP()
+
+        source  $VIMPROJ/Tool/SwitchDir.vim
+        let s:path=getcwd()
+        call SwitchDir(s:path)
     elseif choice==2
         "初始化PKM环境
         source  $VIMPROJ/Tool/InitPkm.vim
         let g:proj_type="pkm"
         call InitPkm()
+
+        source  $VIMPROJ/Tool/SwitchDir.vim
+        let s:path=getcwd()
+        call SwitchDir(s:path)
     elseif choice==3
         source  $VIMPROJ/Tool/InitPHP.vim
         let g:proj_type="php"
         call InitPHP()
+
+        source  $VIMPROJ/Tool/SwitchDir.vim
+        let s:path=getcwd()
+        call SwitchDir(s:path)
     endif
 endfunction
 
@@ -118,6 +130,8 @@ let NERDChristmasTree=1						" more colorful
 let NERDTreeWinPos="right"					" put NERDTree at right
 let NERDTreeWinSize=25						" set size
 let NERDTreeShowLineNumbers=0				" show line number
+"配置C.vim doxygen enable
+let g:C_UseTool_doxygen = 'yes'
 
 "map相关
 "更新TAG
