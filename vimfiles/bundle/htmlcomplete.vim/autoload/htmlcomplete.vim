@@ -4,7 +4,14 @@
 " Last Change:	2006 Oct 19
 
 let g:html_common_libs_file_list={ 
-            \ 'bootstrap': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/bootstrap.css' ,}
+            \ 'bootstrap': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/bootstrap.css' ,
+            \ 'bootstrap.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/bootstrap.css' ,
+            \ 'pixel-admin.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/pixel-admin.css' ,
+            \ 'widgets.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/widgets.css' ,
+            \ 'themes.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/themes.css' ,
+            \ 'pages.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/pages.css' ,
+            \ 'rtl.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/rtl.css' ,
+}
 
 
 function! htmlcomplete#CompleteTags(findstart, base)
@@ -289,8 +296,8 @@ function! htmlcomplete#CompleteTags(findstart, base)
 				let cssfiles = styletable + secimportfiles
                 "链接型的css，增加缓存中的css文件
                 for file in cssfiles
-					if !filereadable(file)
-                        let serch_file=''
+                    let has_min=substitute(file,'.*min.css','minifile','g')
+					if has_min=='minifile' || !filereadable(file) 
                         for [ serch, filepath] in items(g:html_common_libs_file_list)
                             if matchstr(file,serch)!=''
                                 let escp_filepath=substitute(filepath,'\\','/','g')
