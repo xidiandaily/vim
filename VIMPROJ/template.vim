@@ -9,11 +9,11 @@
 source  $VIMPROJ/Tool/main.vim
 
 function! InitWorkSpace()
-	normal /Game
+	normal /Game
 	normal o
-	normal /MahjongGB
+	normal /MahjongGB
 	normal o
-	normal /GameTable-gb.cpp
+	normal /GameTable-gb.cpp
 	normal o
 	:set rnu
     "let g:proj_type="cpp"
