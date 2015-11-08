@@ -86,7 +86,12 @@ function! InitCPP()
     "set completeopt=menuone,menu,longest,preview
     "预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
-    :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/unix_network_programming/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags
+    if(g:iswindows==1)
+        :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/unix_network_programming/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags
+    else
+        :set tags+=$VIMPROJ/vimlib/tags.linux,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/unix_network_programming/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
+    endif
+    
     :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/unix_network_programming/,$VIMPROJ/vimlib/zeromq-3.2.5/include
     let g:chiylown_func_dict["UPFILE"]["cpp"]="UPFILE_cpp"
     let g:chiylown_func_dict["CSTAG"]["cpp"]="CSTAG_cpp"
