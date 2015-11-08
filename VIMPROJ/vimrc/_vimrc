@@ -95,7 +95,9 @@ set sw=4 "将shiftwidth设为4
 set ts=4 "将tabstop设为4
 "字体的设置
 set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
-set gfw=幼圆:h10:cGB2312
+if(g:iswindows==1)
+    set gfw=幼圆:h10:cGB2312
+endif
 set shiftwidth=4 
 set softtabstop=4 
 set tabstop=4 "让一个tab等于4个空格
