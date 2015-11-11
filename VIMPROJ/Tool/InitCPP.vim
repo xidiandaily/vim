@@ -6,8 +6,13 @@ function UPFILE_cpp()
         let vim_proj=$VIMPROJ."/Tool"
         let cygwin_proj=$CYGWINPATH."/mintty.exe"
         if(g:SSHRemoteBaseDir!="")
-            let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-            silent execute cmd
+            if(g:iswindows==1)
+                let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
+                silent execute cmd
+            else
+                let cmd= "! bash ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
+                silent execute cmd
+            endif
         endif
     endif
 endfunction
@@ -61,9 +66,9 @@ function CSTAG_cpp()
             silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.java,*.cs,*.hxx,*.cxx,*.cc >> cscope.files"
         endif
         silent! execute "!cscope -b"
-        execute "normal :"
+        silent! execute "normal :"
         if filereadable("cscope.out")
-            execute "cs add cscope.out"
+            silent! execute "cs add cscope.out"
         endif
     endif
 endfunction

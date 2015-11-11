@@ -43,7 +43,13 @@ if [ "$CHOICE" -eq 2 ];then
 fi
 if [ -f "$TIMESTEMP" ];then
 	#for i in `find . -newer $TIMESTEMP -type f `; do 
-	for i in `find -type f -regextype awk  -regex ".*(php|html|c|cpp|h|hpp|cxx|hxx|Makefile|so)$" -newer $TIMESTEMP -size -10M`; do
+    cmd="";
+    if [[ "Darwin" -eq `uname` ]];then
+        cmd="find -E . -type f -iregex \".*(php|html|c|cpp|h|hpp|cxx|hxx|Makefile|so)$\" -newer $TIMESTEMP -size -10M";
+    else
+        cmd="find . -type f -regextype awk  -regex \".*(php|html|c|cpp|h|hpp|cxx|hxx|Makefile|so)$\" -newer $TIMESTEMP -size -10M";
+    fi
+	for i in `eval $cmd`; do
 		n=`echo $i|sed -e "s/\.\///g"`;
 		f=$DIR"/"$n;
 		count=` expr $count + 1`;

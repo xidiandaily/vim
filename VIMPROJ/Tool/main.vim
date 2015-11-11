@@ -15,8 +15,12 @@ function! OpenLatestModifyFile()
     let cygwin_proj=$CYGWINPATH."/mintty.exe"
     if(g:iswindows==1)
         let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-        silent execute cmd
+        silent! execute cmd
         source ~openfile.tmp
+    else
+        let cmd= "!sh ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
+        silent! execute cmd
+        source .openfile.tmp
     endif
 endfunction
 
@@ -38,7 +42,7 @@ function! Main(pa)
         call InitWorkSpace()
         :set rnu
         if filereadable("cscope.out")
-            execute "cs add cscope.out"
+            silent! execute "cs add cscope.out"
         else
             :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
         endif
