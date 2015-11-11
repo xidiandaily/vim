@@ -7,21 +7,7 @@
 
 "初始化Main函数
 source  $VIMPROJ/Tool/main.vim
-
-function! OpenLatestModifyFile()
-    "默认打开最近修改的文件
-    let vim_proj=$VIMPROJ."/Tool"
-    let cygwin_proj=$CYGWINPATH."/mintty.exe"
-    if(g:iswindows==1)
-        let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-        silent execute cmd
-        source ~openfile.tmp
-    endif
-endfunction
-
 function! InitWorkSpace()
-    call OpenLatestModifyFile()
-	:set rnu
     "let g:proj_type="cpp"
     "let g:proj_type="pkm"
     "let g:proj_type="php"
@@ -29,6 +15,10 @@ function! InitWorkSpace()
 	let g:SSHRemoteBaseDir="/usr/server/Mahjong.gb/Borrow/Compile"
 	let g:SSHUSER="lawrenceChi@192.168.200.144"
 	let g:SSHPORT=3600
+
+	"let g:SSHRemoteBaseDir="/data/Compile"
+	"let g:SSHUSER="chiyl@xidiandaily.jios.org"
+	"let g:SSHPORT=3602
 endfunction
 
 "Main函数中的参数是项目所在的根目录

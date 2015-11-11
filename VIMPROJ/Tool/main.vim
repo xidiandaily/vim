@@ -9,6 +9,18 @@ source  $VIMPROJ/Tool/InitPHP.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
+function! OpenLatestModifyFile()
+    "默认打开最近修改的文件
+    let vim_proj=$VIMPROJ."/Tool"
+    let cygwin_proj=$CYGWINPATH."/mintty.exe"
+    if(g:iswindows==1)
+        let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
+        silent execute cmd
+        source ~openfile.tmp
+    endif
+endfunction
+
+
 function! Main(pa)
         "最大化窗口
         :simalt ~x
@@ -22,7 +34,9 @@ function! Main(pa)
         :silent! Tlist
         :NERDTree
         :set rnu
+        call OpenLatestModifyFile()
         call InitWorkSpace()
+        :set rnu
         if filereadable("cscope.out")
             execute "cs add cscope.out"
         else
