@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# -ne 5 ];then
+if [ $# -ne 4 ];then
 	echo "argumemnt number err";
 	read
 	exit 0;
@@ -8,43 +8,29 @@ fi
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 WorkPath=`pwd`;
-DIR=$WorkPath/$1;
-REMOTEIP=$2
-REMOTEPORT=$3;
-REMOTEDIR=$4;
-CHOICE=$5;
+REMOTEIP=$1
+REMOTEPORT=$2;
+REMOTEDBASE=$3;
+CHOICE=$4;
+
+PROJBASEDIR=`echo $WorkPath| sed 's/\/$//' | awk -F '/' '{print $NF}'`;
+REMOTEDIR=$REMOTEDBASE/$PROJBASEDIR;
+DIR=$WorkPath;
 
 shell_type=`uname`;
 
-if  [[ $shell_type =~ "CYGWIN" ]];then
-	echo "oh~, Cygwin"
+#验证合法性
+echo "oh~, $shell_type"
+if [ ! -d $DIR ];then
+    echo "director "$DIR" not exist!!";
+    read
+    exit 0;
+fi
 
-	if [ ! -d $DIR ];then
-		echo "director "$DIR" not exist!!";
-		read
-		exit 0;
-	fi
-
-
-else 
-	if [ ! -d $DIR ];then
-		echo "director "$DIR" not exist!!";
-		read
-		exit 0;
-	fi
-
-	if ! [[ $REMOTEIP =~ '^.*[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*$' ]];then
-		echo "remote ip( $REMOTEIP ) is not support!!";
-		read
-		exit 0;
-	fi
-
-	if ! [[ $REMOTEPORT =~ '^[0-9]+$' ]];then
-		echo "REMOTEPORT: $REMOTEPORT is not a support port!!";
-		read
-		exit 0;
-	fi
-
+if [ $CHOICE -eq 2 ];then
+    ssh $REMOTEIP -p $REMOTEPORT remote_basedir=$REMOTEDBASE proj_dir=$PROJBASEDIR 'bash -s' <<'ENDSSH'
+    cd $remote_basedir;pwd -P;echo $proj_dir;[ ! -d $proj_dir ] && mkdir $proj_dir; cd $proj_dir;pwd -P;
+ENDSSH
 fi
 
 TIMESTEMP=timestamp.txt
@@ -81,10 +67,9 @@ ssh $REMOTEIP -p $REMOTEPORT remote_cmd=$REMOTEDIR 'bash -s' <<'ENDSSH'
   find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
 ENDSSH
 
-
-
 touch $TIMESTEMP;
 
 echo "upload file :"$count;
 sleep 1;
 #read;
+

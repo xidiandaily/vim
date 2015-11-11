@@ -9,7 +9,7 @@
 source  $VIMPROJ/Tool/main.vim
 
 function! InitWorkSpace()
-	normal /Game
+	normal /\v<Game>
 	normal o
 	normal /MahjongGB
 	normal o
@@ -20,15 +20,9 @@ function! InitWorkSpace()
     "let g:proj_type="pkm"
     "let g:proj_type="php"
 
-	let g:SSHSendDir="/"
-	let g:SSHUSER="chiyl@192.168.199.1"
+	let g:SSHRemoteBaseDir="/usr/server/Mahjong.gb/Borrow/Compile"
+	let g:SSHUSER="lawrenceChi@192.168.200.144"
 	let g:SSHPORT=3600
-	let g:SSHRemoteDir="/usr/server/EventMonitor/"
-
-	"let g:SSHSendDir="/"
-	"let g:SSHUSER="lawrenceChi@192.168.200.1"
-	"let g:SSHPORT=3600
-	"let g:SSHRemoteDir="/usr/server/EventMonitor/"
 endfunction
 
 "Main函数中的参数是项目所在的根目录

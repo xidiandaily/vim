@@ -5,8 +5,10 @@ function UPFILE_cpp()
     if (choice!=3)
         let vim_proj=$VIMPROJ."/Tool"
         let cygwin_proj=$CYGWINPATH."/mintty.exe"
-        let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
-        execute cmd
+        if(g:SSHRemoteBaseDir!="")
+            let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
+            execute cmd
+        endif
     endif
 endfunction
 
