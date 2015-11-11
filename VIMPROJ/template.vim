@@ -8,13 +8,19 @@
 "初始化Main函数
 source  $VIMPROJ/Tool/main.vim
 
+function! OpenLatestModifyFile()
+    "默认打开最近修改的文件
+    let vim_proj=$VIMPROJ."/Tool"
+    let cygwin_proj=$CYGWINPATH."/mintty.exe"
+    if(g:iswindows==1)
+        let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
+        silent execute cmd
+        source ~openfile.tmp
+    endif
+endfunction
+
 function! InitWorkSpace()
-	normal /\v<Game>
-	normal o
-	normal /MahjongGB
-	normal o
-	normal /GameTable-gb.cpp
-	normal o
+    call OpenLatestModifyFile()
 	:set rnu
     "let g:proj_type="cpp"
     "let g:proj_type="pkm"

@@ -7,7 +7,7 @@ function UPFILE_cpp()
         let cygwin_proj=$CYGWINPATH."/mintty.exe"
         if(g:SSHRemoteBaseDir!="")
             let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-            execute cmd
+            silent execute cmd
         endif
     endif
 endfunction
