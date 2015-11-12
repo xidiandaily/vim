@@ -2,7 +2,7 @@
 
 file=$1;
 
-if [[ "Darwin" -eq `uname` ]];then
+if [[ "Darwin" == `uname` ]];then
     dirlist=`find . -type d  ! -path '*.svn*' ! -path '*.git*' `;
     dirlist2=`echo $dirlist |xargs | sed 's/\.\//,/g' | sed 's/\.//g' | sed 's/ //g' | sed 's/,//'`;
     echo ":set path+="$dirlist2>$file;
