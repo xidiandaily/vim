@@ -11,7 +11,7 @@ function UPFILE_cpp()
                 silent execute cmd
             else
                 let cmd= "! bash ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-                silent execute cmd
+                execute cmd
             endif
         endif
     endif
