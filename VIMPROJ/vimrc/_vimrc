@@ -147,6 +147,10 @@ map <F5> :call SetProjType() <CR>
 "更新函数列表
 map Tl :silent! Tlist<CR> "按下F3就可以呼出了
 map NT :NERDTree<CR>
+"easy-aligin
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 "自动命令
 "其他命令
 "最后
