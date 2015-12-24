@@ -1,10 +1,13 @@
 "º¯Êý
 function UPFILE_php()
     let vim_proj=$VIMPROJ."/Tool"
-    let cygwin_proj=$CYGWINPATH."/mintty.exe"
-    let filelist_cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileup_phpfilelist.sh"." ".g:SSHSendDir
+    if(g:iswindows==1)
+        let cygwin_proj=$CYGWINPATH."/mintty.exe"
+    else
+        let cygwin_proj='bash'
+    endif
+    let filelist_cmd= "! ".cygwin_proj." ".vim_proj."/php_getmodifyfile.sh"
     execute filelist_cmd
-
     if (-1!=getftime("uploadfile.txt"))
         let str_choice=""
         for ff in readfile("uploadfile.txt")
@@ -17,7 +20,7 @@ function UPFILE_php()
 
         let choice=confirm(str_choice,"&Yes\n&update_timestamp\n&Cancel",1)
         if (choice==1)
-            let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileup_php_upload.sh"." ".g:SSHSendDir." ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteDir." ".choice
+            let cmd= "! ".cygwin_proj." ".vim_proj."/php_uploadfiles.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir
             execute cmd
         elseif (choice==2)
             let ctmp=["hello"]

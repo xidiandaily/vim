@@ -1,18 +1,16 @@
 "º¯Êý
 function UPFILE_cpp()
-
     let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
     if (choice!=3)
         let vim_proj=$VIMPROJ."/Tool"
-        let cygwin_proj=$CYGWINPATH."/mintty.exe"
+        if(g:iswindows==1)
+            let cygwin_proj=$CYGWINPATH."/mintty.exe"
+        else
+            let cygwin_proj='bash'
+        endif
         if(g:SSHRemoteBaseDir!="")
-            if(g:iswindows==1)
-                let cmd= "! ".cygwin_proj." ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-                silent execute cmd
-            else
-                let cmd= "! bash ".vim_proj."/SSHFileuploadmodefiyfile.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-                execute cmd
-            endif
+            let cmd= "! ".cygwin_proj." ".vim_proj."/cpp_getmodifyfile_and_upload.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
+            silent execute cmd
         endif
     endif
 endfunction
