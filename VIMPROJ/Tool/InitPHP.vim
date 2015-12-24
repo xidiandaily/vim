@@ -7,7 +7,7 @@ function UPFILE_php()
         let cygwin_proj='bash'
     endif
     let filelist_cmd= "! ".cygwin_proj." ".vim_proj."/php_getmodifyfile.sh"
-    execute filelist_cmd
+    silent! execute filelist_cmd
     if (-1!=getftime("uploadfile.txt"))
         let str_choice=""
         for ff in readfile("uploadfile.txt")
@@ -21,7 +21,7 @@ function UPFILE_php()
         let choice=confirm(str_choice,"&Yes\n&update_timestamp\n&Cancel",1)
         if (choice==1)
             let cmd= "! ".cygwin_proj." ".vim_proj."/php_uploadfiles.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir
-            execute cmd
+            silent! execute cmd
         elseif (choice==2)
             let ctmp=["hello"]
             call writefile(ctmp,"timestamp.txt","b")
