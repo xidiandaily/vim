@@ -44,9 +44,50 @@ function CSTAG_php()
         endif
     endif
     if(executable('ctags_for_php'))
-        "silent! execute "!ctags_for_php -R --PHP-kinds=+p --fields=+iaS --extra=+q ."
+        "silent! execute "!ctags_for_php -R --languages=php ."
         silent! execute "!ctags_for_php -R --languages=php ."
+    elseif(executable('ctags'))
+        "silent! execute "!ctags -R -h \".php\" --exclude=\".svn\" --exclude=\".git\"  --totals=yes  --tag-relative=yes  --PHP-kinds=+cf"
+        silent! execute "!ctags -R --languages=php --exclude=\".svn\" --exclude=\".git\"  --totals=yes  --tag-relative=yes  --PHP-kinds=+cf"
     endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        if(g:iswindows==1)
+            let csfilesdeleted=delete(dir."\\"."cscope.files")
+        else
+            let csfilesdeleted=delete("./"."cscope.files")
+        endif
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        if(g:iswindows==1)
+            let csoutdeleted=delete(dir."\\"."cscope.out")
+        else
+            let csoutdeleted=delete("./"."cscope.out")
+        endif
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('cscope') && has("cscope") )
+        if(g:iswindows!=1)
+            silent! execute "!find . -name '*.h' '*.php' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        else
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.php,*.java,*.cs,*.hxx,*.cxx,*.cc | findstr /v \"cpp~\" >> cscope.files"
+        endif
+        silent! execute "!cscope -b"
+        silent! execute "normal :"
+        if filereadable("cscope.out")
+            silent! execute "cs add cscope.out"
+        endif
+    endif
+
 endfunction
 
 "function ASTYLE_cpp()
