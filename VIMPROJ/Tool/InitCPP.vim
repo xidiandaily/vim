@@ -10,7 +10,11 @@ function UPFILE_cpp()
         endif
         if(g:SSHRemoteBaseDir!="")
             let cmd= "! ".cygwin_proj." ".vim_proj."/cpp_getmodifyfile_and_upload.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-            silent execute cmd
+            if(g:iswindows==1)
+                silent execute cmd
+            else
+                execute cmd
+            endif
         endif
     endif
 endfunction

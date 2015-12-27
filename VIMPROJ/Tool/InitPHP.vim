@@ -21,7 +21,11 @@ function UPFILE_php()
         let choice=confirm(str_choice,"&Yes\n&update_timestamp\n&Cancel",1)
         if (choice==1)
             let cmd= "! ".cygwin_proj." ".vim_proj."/php_uploadfiles.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir
-            silent! execute cmd
+            if(g:iswindows==1)
+                silent! execute cmd
+            else
+                execute cmd
+            endif
         elseif (choice==2)
             let ctmp=["hello"]
             call writefile(ctmp,"timestamp.txt","b")
