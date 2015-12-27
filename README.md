@@ -10,6 +10,9 @@ vim config, all file in one project
 ## 常用功能
 - normal 模式下，用``NT`` 在窗口右侧打开资源管理器[NERD_tree](http://www.vim.org/scripts/script.php?script_id=1658)
 - normal 模式下，用`Tl` 在窗口左侧打开函数列表[taglist](http://www.vim.org/scripts/script.php?script_id=273)
+- input 模式下, 用``<Ctr>+X+O`` 自动补全（ctags补全）（**推荐**）
+- input 模式下, 用``<Ctr>+X+N`` 自动补全（查询本文件关键字）
+- input 模式下, 用``<Tab>`` 自动补全（tab补全）（遍历所有头文件，较慢）
 - normal 模式下, 用``<Ctr>+F8`` 将语言切换至 cp936 
 - normal 模式下, 用``<Ctr>+F9`` 将语言切换至 utf-8(**默认语言**） 
 - 选择模式下, 用``ga``进行对齐[vim-easy-align](http://www.vim.org/scripts/script.php?script_id=4520)
