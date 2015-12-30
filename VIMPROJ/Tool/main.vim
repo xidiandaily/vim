@@ -9,6 +9,10 @@ source  $VIMPROJ/Tool/InitPHP.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
+function! MaximizeWindow()    
+    silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+endfunction
+
 function! OpenLatestModifyFile()
     "默认打开最近修改的文件
     let vim_proj=$VIMPROJ."/Tool"
@@ -27,7 +31,10 @@ endfunction
 
 function! Main(pa)
         "最大化窗口
-        :simalt ~x
+        if (g:iswindows==1)
+            :simalt ~x
+        endif 
+
         let s:path=a:pa
         let s:filename=s:path
         call InitCPP()
@@ -46,6 +53,11 @@ function! Main(pa)
         else
             :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
         endif
+
+        if(has("gui_macvim"))    
+            set fu
+        endif
+        silent execute "redraw"
 endfunction
 
 
