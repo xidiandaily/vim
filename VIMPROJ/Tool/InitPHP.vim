@@ -81,7 +81,11 @@ function CSTAG_php()
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' '*.php' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            if(has('gui_macvim'))
+                silent! execute "!find -E . -type f -iregex \".*(php|h|c|cpp|h|hpp|cxx|hxx|java|cs)$\" > cscope.files"
+            else 
+                silent! execute "!find . -name '*.h' '*.php' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            endif
         else
             silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.php,*.java,*.cs,*.hxx,*.cxx,*.cc | findstr /v \"cpp~\" >> cscope.files"
         endif
