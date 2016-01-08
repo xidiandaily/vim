@@ -24,6 +24,10 @@ ENDSSH
 
 echo "create $REMOTEDIR done!"; 
 
+#上传变动的文件列表
+echo "scp -P $SSHPORT -rp $FILELIST "$SSHUSER:$REMOTEDIR/$FILELIST""; 
+scp -P $SSHPORT -rp $FILELIST "$SSHUSER:$REMOTEDIR/$FILELIST";
+
 #上传
 count=0;
 for i in `cat $FILELIST`; do
@@ -41,13 +45,21 @@ done
 
 #更改上传文件的权限
 echo "change permission..."; 
-ssh $SSHUSER -p $SSHPORT remote_cmd=$REMOTEDIR 'bash -s' <<'ENDSSH'
+ssh $SSHUSER -p $SSHPORT filelist=$FILELIST remote_cmd=$REMOTEDIR 'bash -s' <<'ENDSSH'
   # commands to run on remote host
   cd $remote_cmd; pwd
-  find -type d -exec chmod 777 {} \;
-  find -type f -exec chmod 666 {} \;
-  find -type f -name "*.sh" -exec chmod 766 {} \;
-  find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
+  for i in `cat $filelist`;do
+      if [[ $i == "ALLFILE" ]]; then
+          find -type d -exec chmod 777 {} \;
+          find -type f -exec chmod 666 {} \;
+          find -type f -name "*.sh" -exec chmod 766 {} \;
+          find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
+          break;
+      else
+          chmod 666 $i 2>/dev/null;
+          dos2unix $i 2>/dev/null;
+      fi
+  done
 ENDSSH
 
 echo "change permission done!"; 
