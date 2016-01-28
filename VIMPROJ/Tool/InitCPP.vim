@@ -82,27 +82,28 @@ endfunction
 
 function! InitCPP()
     " OmniCppComplete
-    let OmniCpp_NamespaceSearch = 1
-    let OmniCpp_GlobalScopeSearch = 1
-    let OmniCpp_ShowAccess = 1
-    let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-    let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-    let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-    let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-    let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+    let g:OmniCpp_NamespaceSearch = 1 " 1 = search namespaces in the current buffer
+    let g:OmniCpp_GlobalScopeSearch = 1 "enabled Global scope search toggle
+    let g:OmniCpp_ShowAccess = 1  "enable to show the access information ('+', '#', '-') in the popup menu.
+    let g:OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+    let g:OmniCpp_MayCompleteDot = 1 " autocomplete after .
+    let g:OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+    let g:OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+    let g:OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
     " automatically open and close the popup menu / preview window
     "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
     "set completeopt=menuone,menu,longest,preview
     "预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
     if(g:iswindows==1)
-        :set tags+=$VIMPROJ/vimlib/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/unix_network_programming/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags
+        :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags
     else
-        :set tags+=$VIMPROJ/vimlib/tags.linux,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/unix_network_programming/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
+        :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
     endif
     
-    :set path+=$VIMPROJ/vimlib/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/unix_network_programming/,$VIMPROJ/vimlib/zeromq-3.2.5/include
+    :set path+=$VIMPROJ/vimlib/cppstl/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/zeromq-3.2.5/include
     let g:chiylown_func_dict["UPFILE"]["cpp"]="UPFILE_cpp"
     let g:chiylown_func_dict["CSTAG"]["cpp"]="CSTAG_cpp"
     let g:chiylown_func_dict["ASTYLE"]["cpp"]="ASTYLE_cpp"
 endfunction
+

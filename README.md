@@ -10,7 +10,8 @@ vim config, all file in one project
 ## 常用功能
 - normal 模式下，用``NT`` 在窗口右侧打开资源管理器[NERD_tree](http://www.vim.org/scripts/script.php?script_id=1658)
 - normal 模式下，用`Tl` 在窗口左侧打开函数列表[taglist](http://www.vim.org/scripts/script.php?script_id=273)
-- input 模式下, 用``<Ctr>+X+O`` 自动补全（ctags补全）（**推荐**）
+- input 模式下, 用``<Ctr>+X+O`` 自动补全（'omnifunc'补全）（**推荐**）
+- input 模式下, 用``<Tab>`` 自动补全（'superTab'补全）
 - input 模式下, 用``<Ctr>+X+N`` 自动补全（查询本文件关键字）
 - input 模式下, 用``<Tab>`` 自动补全（tab补全）（遍历所有头文件，较慢）
 - normal 模式下, 用``<Ctr>+F8`` 将语言切换至 cp936 
@@ -56,6 +57,7 @@ vim config, all file in one project
 ## 下面是常见问题及解决办法：
 1. 启动后提示找不gvim.exe： 请查看是否将 vim/vim73 添加到系统目录
 2. 启动后无法打开最近修改的文件，报一串错误提示: 请查看 ``/usr/local/bin;/usr/bin;``是否在 $PATH 头部
+3. stl库自动补全功能不能用，例如 ``inserter()`` 使用 ``<Ctr>+X+O``并没有提示:  请添加 ``std::`` 或者 ``using namespace std;``,一般是因为类没有添加导致的。~~已经将 ``std,_GLIBCXX_STD``配置到默认类中，但是不知为何不起作用~~(原因是在InitCPP设置``OmniCpp_DefaultNamespaces`` 没加``g:``前缀，导致设置失败。
 
 Enjoy~
 
