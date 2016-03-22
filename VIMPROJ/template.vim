@@ -19,6 +19,10 @@ function! InitWorkSpace()
 	"let g:SSHRemoteBaseDir="/data/Compile"
 	"let g:SSHUSER="chiyl@xidiandaily.jios.org"
 	"let g:SSHPORT=3602
+    
+	"let g:SSHRemoteBaseDir="/data/chiyl/Compile/"
+	"let g:SSHUSER="LawrenceChi@192.168.96.156"
+	"let g:SSHPORT=3600
 endfunction
 
 "Main函数中的参数是项目所在的根目录
