@@ -153,6 +153,8 @@ map NT :NERDTree<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+source $VIMPROJ/vimrc/option.vim
+
 "自动命令
 "其他命令
 "最后
