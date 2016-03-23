@@ -1,17 +1,14 @@
 
 function Create_SSHConfig()
-    let cnf={"ip":"null","port":"3600","username":"null","remotedir":"null"}
-    let title=["1. 远程服务器IP:","2. 服务器登陆名:","3. 服务器登陆端口:","4. 服务器存放路径:"]
-    let cnfidx=["ip","port","username","remotedir"]
-
-    echo cnf
+    let conf={"ip":"null","port":"3600","username":"null","remotedir":"null"}
+    let ask=["0. 远程服务器IP:","1. 服务器登陆名:","2. 服务器登陆端口:","3. 服务器存放路径:","5. 完成配置"]
+    let answer=["","","","",""]
     while 1
         echo "\n 参数使用:ssh -p 端口 用户名@服务器IP或域名:远程文件夹路径/ \n"
         let tip=["选择输入项:"]
-        let tip= tip+[title[0].cnf['ip']]
-        let tip= tip+[title[1].cnf['username']]
-        let tip= tip+[title[2].cnf['port']]
-        let tip= tip+[title[3].cnf['remotedir']]
+        for i in [0,1,2,3,4] 
+            let tip= tip+[ask[i].answer['ip']]
+        endfor
         let idx = inputlist(tip)
         if idx ==0 
             break
