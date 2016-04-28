@@ -49,7 +49,7 @@ vim config, all file in one project
 4. 将 ``/usr/local/bin;/usr/bin;`` 添加至系统变量 $PATH 的头部
 6. ctags 和 cscope 在 ExtTool/ 中， 解压之后，将其所在的路径放到系统PATH中就可以了。（不要求在 vim 中，最好路径名称是英文）
 7. win系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/_vimrc``(修改``_vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
-8. Mac系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/_vimrc``(修改``.vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
+8. Mac系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/.vimrc``(修改``.vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
 9. (非必须)字体可以在 Font/ 中，自己安装到系统Font就可以。
 10. (扩展功能)安装 cygwin， 安装 ssh 工具;
 11. (扩展功能)设置 ssh通讯,参考: [Linux(Centos)配置OpenSSH无密码登陆](http://sjsky.iteye.com/blog/1123184)
@@ -65,9 +65,9 @@ Enjoy~
 
 ## 下面是扩展功能说明
 #### 项目(Proj)
-当前支持两种类型的项目``cpp`,``php``。如果写好项目配置文件，通过批处理脚本启动，则能够：
+当前支持两种类型的项目``cpp``,``php``。如果写好项目配置文件，通过批处理脚本启动，则能够：
 - 启动时候自动打开项目中最近修改文件
-- 根据项目类型``cpp``,``php`` 使用最合适的函数匹配功能，自动补全功能，系统上传功能
+- 根据项目类型``cpp``,``php`` 使用最合适的函数匹配功能，自动补全功能，自动上传功能
 
 ###### 配置项目文件步骤(win）
 1. 进入``$VIMPROJ\PROJ`` 文件夹，可以看到下面的文件：
@@ -122,10 +122,13 @@ call Main("E:/E_temp/foo")                                                   //�
 ```
 
 4.配置好之后，下次启动，直接使用 foo.bat 就可以自动打开项目。
+
 5.可以通过这个文章 [将PROJ文件夹放置在工具栏上](http://jingyan.baidu.com/article/91f5db1b3fcb981c7f05e3c9.html)，方便使用。
 
+6.项目模板文件是``template.vim``,你可以把你常用配置写到里面，这样以后再创建新项目，会更方便。
+
 ###### 无项目配置文件时使用项目功能步骤
-1. 打开gvim，输入：``:cd E:/E_temp/foo``, 将``E:/E_temp/foo``设成当前工作目录;
+1. 打开gvim，输入项目路径。例如输入：``:cd E:/E_temp/foo``, 将``E:/E_temp/foo``设成当前工作目录;
 2. normal模式下，用``NT`` 在窗口右侧打开资源管理器[NERD_tree](http://www.vim.org/scripts/script.php?script_id=1658)
 3. normal模式下，用`Tl` 在窗口左侧打开函数列表[taglist](http://www.vim.org/scripts/script.php?script_id=273)
 4. normal模式下，用``F5`` ，在弹出窗口选择 项目类型。
