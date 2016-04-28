@@ -58,7 +58,8 @@ vim config, all file in one project
 
 ## 下面是常见问题及解决办法：
 1. 启动后提示找不gvim.exe： 请查看是否将 vim/vim73 添加到系统目录
-2. 启动后无法打开最近修改的文件，报一串错误提示: 请查看 ``/usr/local/bin;/usr/bin;``是否在 $PATH 头部
+2. 启动后无法打开最近修改的文件，报一串错误提示: 请查看 ``/usr/local/bin;/usr/bin;``是否在 $PATH 头部，如果添加了还不解决，请下下一条.
+3. 启动时候弹框标红，很多时候是因为脚本文件变了 Window格式导致的,将脚本转成unix即可。解决方法：启动cygwin，输入"cd $VIMPROJ/Tool/;dos2unix *.sh;dos2unix *.vim;";
 3. stl库自动补全功能不能用，例如 ``inserter()`` 使用 ``<Ctr>+X+O``并没有提示:  请添加 ``std::`` 或者 ``using namespace std;``,一般是因为类没有添加导致的。~~已经将 ``std,_GLIBCXX_STD``配置到默认类中，但是不知为何不起作用~~(原因是在InitCPP设置``OmniCpp_DefaultNamespaces`` 没加``g:``前缀，导致设置失败。
 
 Enjoy~
