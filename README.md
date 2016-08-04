@@ -16,7 +16,7 @@ vim config, all file in one project
 - input 模式下, 用``<Tab>`` 自动补全（tab补全）（遍历所有头文件，较慢）
 - normal 模式下, 用``<Ctr>+F8`` 将语言切换至 cp936 
 - normal 模式下, 用``<Ctr>+F9`` 将语言切换至 utf-8(**默认语言**） 
-- 选择模式下, 用``ga``进行对齐[vim-easy-align](http://www.vim.org/scripts/script.php?script_id=4520)
+- 选择模式下, 用``ga``进行对齐，(失败处理方法请参照下面的常见问题处理)[vim-easy-align](http://www.vim.org/scripts/script.php?script_id=4520)
 - 新增插件放到 vimfiles/bundle/ 下就行 [pathogen](http://www.vim.org/scripts/script.php?script_id=2332) 
 - 启动时候能够根据项目类型(cpp/php）选择性加载库文件
     - cpp tags:glibc/stl/linux kernel head file/zeromq head file/
@@ -61,8 +61,9 @@ vim config, all file in one project
 2. 启动后无法打开最近修改的文件，报一串错误提示: 请查看 ``/usr/local/bin;/usr/bin;``是否在 $PATH 头部，如果添加了还不解决，请下下一条.
 3. 启动时候弹框标红，很多时候是因为脚本文件变了 Window格式导致的,将脚本转成unix即可。解决方法：启动cygwin，输入"cd $VIMPROJ/Tool/;dos2unix *.sh;dos2unix *.vim;";
 3. stl库自动补全功能不能用，例如 ``inserter()`` 使用 ``<Ctr>+X+O``并没有提示:  请添加 ``std::`` 或者 ``using namespace std;``,一般是因为类没有添加导致的。~~已经将 ``std,_GLIBCXX_STD``配置到默认类中，但是不知为何不起作用~~(原因是在InitCPP设置``OmniCpp_DefaultNamespaces`` 没加``g:``前缀，导致设置失败。
+4. ``ga``命令无法使用，请查看路径 ``$VIMPROJ/../vimfiles/bundle/vim-easy-align/`` 是否为空。如果是空，有两种解决方法：①可以手动下载 [vim-easy-align](http://www.vim.org/scripts/script.php?script_id=4520) 到此目录； ②可以使用 ``git submodule update`` ，git会自动更新此子模块。
 
-Enjoy~
+
 
 ## 下面是扩展功能说明
 #### 项目(Proj)
@@ -98,31 +99,36 @@ $VIMPROJ/VIMPROJ/
 ```
 3.项目文件的说明
 ```
-"这个文件试图使得创建 VIM 项目更加简单方便。
-"①常用的全局设置已经在 _vimrc中设置了
-"②常用的CPP设置在InitCPP.vim中设置
-"③还有一些每个项目私有的设置，比如说项目的根目录，启动时需要打开的文件，一键上传的目录配置等
-"③‘项目的私有设置在这个文件进行设置。
-"
-
-"初始化Main函数
-source  $VIMPROJ/Tool/main.vim
-function! InitWorkSpace()
-    "let g:proj_type="cpp"                    //创建CPP项目，则将此前面的注释 " 去掉
-    "let g:proj_type="pkm"                   //非公共项目
-    "let g:proj_type="php"                    //创建php项目，则将此前面注释 " 去掉
-
-	let g:SSHRemoteBaseDir="/usr/server/Mahjong.gb/Borrow/Compile"        //F7 自动上传远程路径
-	let g:SSHUSER="lawrenceChi@192.168.200.144"       //F7 自动上传远程服务器用户名及IP
-	let g:SSHPORT=3600                                                 //F7   自动上传端口
-endfunction
-
-"Main函数中的参数是项目所在的根目录
-call Main("E:/E_temp/foo")                                                   //项目所在路径，注意"/"分隔符号
+1  "这个文件试图使得创建 VIM 项目更加简单方便。
+2  "①常用的全局设置已经在 _vimrc中设置了
+3  "②常用的CPP设置在InitCPP.vim中设置
+4  "③还有一些每个项目私有的设置，比如说项目的根目录，启动时需要打开的文件，一键上传的目录配置等
+5  "③‘项目的私有设置在这个文件进行设置。
+6  "
+7  
+8  "初始化Main函数
+9  source  $VIMPROJ/Tool/main.vim
+10 function! InitWorkSpace()
+11     "let g:proj_type="cpp"                    //创建CPP项目，则将此前面的注释 " 去掉
+12     "let g:proj_type="pkm"                   //非公共项目
+13     "let g:proj_type="php"                    //创建php项目，则将此前面注释 " 去掉
+14 
+15 	let g:SSHRemoteBaseDir="/usr/server/Mahjong.gb/Borrow/Compile"        //F7 自动上传远程路径
+16 	let g:SSHUSER="lawrenceChi@192.168.200.144"       //F7 自动上传远程服务器用户名及IP
+17 	let g:SSHPORT=3600                                                 //F7   自动上传端口
+18 endfunction
+19 
+20 "Main函数中的参数是项目所在的根目录
+21 call Main("E:/E_temp/foo")                                                   //项目所在路径，注意"/"分隔符号
 
 ```
+按照以下步骤修改这个项目文件:
+a. 修改 第 21 行， Main 函数里面的路径，将其改成**项目代码所在的路径，window下注意将字符“\”，更改成“/”**；
+b. 如果是C++代码，则将第 11 行的注释符 " 去掉；
+c. 如果是php 代码，则将第 13 行前面的注释符 " 去掉;
+d. 其他配置无需改动，保存退出项目文件,进入下一个步骤。
 
-4.配置好之后，下次启动，直接使用 foo.bat 就可以自动打开项目。
+4.配置好之后，下次启动，直接使用 foo.bat（文件生成在 $VIMPROJ/VIMPROJ/PROJ/ 下面） 就可以自动打开项目。
 
 5.可以通过这个文章 [将PROJ文件夹放置在工具栏上](http://jingyan.baidu.com/article/91f5db1b3fcb981c7f05e3c9.html)，方便使用。
 
