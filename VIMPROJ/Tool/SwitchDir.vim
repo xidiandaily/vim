@@ -10,13 +10,11 @@ function! SwitchDir(filename)
     let cygwin_proj=$CYGWINPATH
     let addpath=""
     if(g:iswindows==1)
-        let cmd="! ".cygwin_proj."/mintty.exe  ".vim_proj."/Tool/get_dirlist.sh ~vimcurpath.tmp"
-        silent! execute cmd
-        let addpath=system("cat ~vimcurpath.tmp")
+        let cmd="! ".cygwin_proj."/mintty.exe  ".vim_proj."/Tool/get_dirlist.sh .vimcurpath.tmp"
+        silent! execute cmd | let addpath=system("cat .vimcurpath.tmp")
     else
         let cmd="!sh ".vim_proj."/Tool/get_dirlist.sh .vimcurpath.tmp"
-        silent! execute cmd
-        let addpath=system("cat .vimcurpath.tmp")
+        silent! execute cmd | let addpath=system("cat .vimcurpath.tmp")
     endif
     execute addpath
 endfunction
