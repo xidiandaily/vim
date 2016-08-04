@@ -29,12 +29,28 @@ function! OpenLatestModifyFile()
     "默认打开最近修改的文件
     let vim_proj=$VIMPROJ."/Tool"
     let cygwin_proj=$CYGWINPATH."/mintty.exe"
+    call delete(".openfile.tmp")
+    let a:tips="wait for update last modify file:.openfile.tmp "
     if(g:iswindows==1)
         let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-        silent! execute cmd | source .openfile.tmp
+        silent! execute cmd 
+
+        while(!filereadable(".openfile.tmp"))
+            echo a:tips
+            let a:tips=a:tips."  .  "
+            sleep 1
+        endwhile
+
+        source .openfile.tmp
     else
         let cmd= "!sh ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-        silent! execute cmd | source .openfile.tmp
+        silent! execute cmd 
+        while(!filereadable(".openfile.tmp"))
+            echo a:tips
+            let a:tips=a:tips."  .  "
+            sleep 1
+        endwhile
+        source .openfile.tmp
     endif
 endfunction
 
