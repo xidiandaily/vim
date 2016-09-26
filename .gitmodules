@@ -4,3 +4,6 @@
 [submodule "vimfiles/bundle/previm"]
 	path = vimfiles/bundle/previm
 	url = https://github.com/kannokanno/previm.git
+[submodule "vimfiles/bundle/open-browser.vim"]
+	path = vimfiles/bundle/open-browser.vim
+	url = https://github.com/tyru/open-browser.vim
