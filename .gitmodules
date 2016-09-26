@@ -1,3 +1,6 @@
 [submodule "vimfiles/bundle/vim-easy-align"]
 	path = vimfiles/bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "vimfiles/bundle/previm"]
+	path = vimfiles/bundle/previm
+	url = https://github.com/kannokanno/previm.git
