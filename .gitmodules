@@ -7,3 +7,9 @@
 [submodule "vimfiles/bundle/open-browser.vim"]
 	path = vimfiles/bundle/open-browser.vim
 	url = https://github.com/tyru/open-browser.vim
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vimfiles/bundle/vim-nerdtree-syntax-highlight"]
+	path = vimfiles/bundle/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
