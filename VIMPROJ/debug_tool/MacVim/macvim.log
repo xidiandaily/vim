@@ -1,0 +1,33 @@
+Sep 27 09:52:00  Vim[17572] <Debug>: void gui_macvim_after_fork_init()@151: 
+Sep 27 09:52:00  Vim[17572] <Info>: void gui_macvim_after_fork_init()@194: Use renderer=1
+Sep 27 09:52:01  Vim[17572] <Debug>: int gui_mch_init()@222: 
+Sep 27 09:52:01  Vim[17572] <Debug>: void gui_mch_new_colors()@609: back=2105376 norm=51400
+Sep 27 09:52:01  Vim[17572] <Debug>: int gui_mch_init_font(char_u *, int)@986: font_name='Bitstream_Vera_Sans_Mono:h14' fontset=0
+Sep 27 09:52:01  Vim[17572] <Debug>: void gui_mch_get_screen_dimensions(int *, int *)@1621: Columns=77 Rows=47
+Sep 27 09:52:01  Vim[17572] <Debug>: void gui_mch_set_shellsize(int, int, int, int, int, int, int)@1671: width=77 height=47 min_width=12 min_height=2 base_width=0 base_height=0 direction=15
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID SetDefaultColorsMsgID SetDefaultColorsMsgID AdjustLinespaceMsgID SetFontMsgID SetWideFontMsgID ShowToolbarMsgID SetTextDimensionsMsgID OpenWindowMsgID SetTooltipMsgID BatchDrawMsgID AddMenuItemMsgID(455) AddMenuMsgID(41) EnableMenuItemMsgID(60) SetScrollbarPositionMsgID(1) SetScrollbarThumbMsgID(1) ShowScrollbarMsgID(4) CreateScrollbarMsgID(3) 
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend(Private) processInputQueue]@1832: (1) SetWindowPositionMsgID
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend(Private) handleInputEvent:data:]@2058: SetWindowPositionMsgID: x=21 y=23
+Sep 27 09:52:01  Vim[17572] <Info>: -[MMBackend registerServerWithName:]@1453: Registered server with name: VIM3
+Sep 27 09:52:01  Vim[17572] <Debug>: void gui_mch_settitle(char_u *, char_u *)@1712: title='[No Name] - VIM3' icon='[No Name]'
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID SetServerNameMsgID SetBuffersModifiedMsgID SetWindowTitleMsgID SetDocumentFilenameMsgID SetPreEditPositionMsgID BatchDrawMsgID SetScrollbarPositionMsgID(1) SetScrollbarThumbMsgID(1) ShowScrollbarMsgID(1) 
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend(Private) processInputQueue]@1832: (1) GotFocusMsgID
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:01  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:02  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:02  Vim[17572] <Debug>: -[MMBackend(Private) processInputQueue]@1832: (1) LostFocusMsgID
+Sep 27 09:52:02  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:04  Vim[17572] <Debug>: -[MMBackend(Private) processInputQueue]@1832: (1) GotFocusMsgID
+Sep 27 09:52:04  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:05  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:05  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:05  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:06  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:06  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:06  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:07  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:07  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:07  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:07  Vim[17572] <Debug>: -[MMBackend flushQueue:]@659: Flushing queue: SetVimStateMsgID BatchDrawMsgID 
+Sep 27 09:52:08  Vim[17572] <Debug>: void gui_mch_free_font()@934: font=0x7fb41172e8c0
+Sep 27 09:52:08  Vim[17572] <Debug>: void gui_mch_exit(int)@283: rc=0

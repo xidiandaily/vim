@@ -6,6 +6,8 @@
 " 许可：GPLv3
 " ========================================================================
 " 其他文件
+source $VIMPROJ/dein.vim/init.dein.vim
+
 runtime vimrc_example.vim
 runtime macros/matchit.vim
 
@@ -135,6 +137,11 @@ let NERDChristmasTree=1						" more colorful
 let NERDTreeWinPos="right"					" put NERDTree at right
 let NERDTreeWinSize=25						" set size
 let NERDTreeShowLineNumbers=0				" show line number
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+
+
+
 "配置C.vim doxygen enable
 let g:C_UseTool_doxygen = 'yes'
 
@@ -153,6 +160,12 @@ map NT :NERDTree<CR>
 "easy-aligin
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" .vimrc
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
 
 source $VIMPROJ/vimrc/option.vim
 
