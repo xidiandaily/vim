@@ -56,7 +56,8 @@ ssh $SSHUSER -p $SSHPORT filelist=$FILELIST remote_cmd=$REMOTEDIR 'bash -s' <<'E
           find -type f -name "*.sh" -exec dos2unix  {} \; 2>/dev/null
           break;
       else
-          chmod 666 $i 2>/dev/null;
+          echo $i | grep "\.sh" >/dev/null || echo "chmod 666 $i" && chmod 666 $i 2>/dev/null;
+          echo $i | grep "\.sh" >/dev/null && echo "chmod 766 $i" && chmod 766 $i 2>/dev/null;
           dos2unix $i 2>/dev/null;
       fi
   done
