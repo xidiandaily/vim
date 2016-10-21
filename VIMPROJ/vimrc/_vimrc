@@ -9,6 +9,8 @@
 runtime vimrc_example.vim
 runtime macros/matchit.vim
 
+source $VIMPROJ/3rd/init.dein.vim
+
 if(has("win32") || has("win95") || has("win64") || has("win16"))
     let g:iswindows=1
 else

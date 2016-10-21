@@ -10,3 +10,6 @@
 [submodule "vimfiles/bundle/nerdtree"]
 	path = vimfiles/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "VIMPROJ/3rd/dein.vim/repos/github.com/Shougo/dein.vim"]
+	path = VIMPROJ/3rd/dein.vim/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim.git
