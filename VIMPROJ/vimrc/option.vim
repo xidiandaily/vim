@@ -43,9 +43,20 @@ function Init_SSHConfig()
     endif
 endfunction
 
+function Init_F11()
+    let l:my_filetype=&filetype
+    echo l:my_filetype
+    if('markdown'==l:my_filetype)
+        :PrevimOpen
+    else
+        echo "empty function"
+    endif
+endfunction
+
 let s:datapath='C:/Vim/VIMPROJ/Tool/data/'
 call Init_SSHConfig()
 amenu &chiyl.-SEP2-                              :
 amenu &chiyl.About                               :echo "\ngVIM-menu for chiyl.vim (https://github.com/xidiandaily/vim.git)\nby LawrenceChi\ncodeforfuture (at) 126.com\n"<Cr>
 amenu &chiyl.test                               :call Init_SSHConfig()<Cr>
 
+map <F11> :call Init_F11()<CR>

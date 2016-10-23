@@ -10,9 +10,8 @@ let g:html_common_libs_file_list={
             \ 'widgets.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/widgets.css' ,
             \ 'themes.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/themes.css' ,
             \ 'pages.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/pages.css' ,
-            \ 'rtl.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/rtl.css' ,
-}
-
+            \ 'rtl.min.css': $VIM.'/vimfiles/bundle/htmlcomplete.vim/misc/rtl.css',
+            \}
 
 function! htmlcomplete#CompleteTags(findstart, base)
   if a:findstart

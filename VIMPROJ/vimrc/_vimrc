@@ -153,7 +153,7 @@ let g:C_UseTool_doxygen = 'yes'
 map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
 map <C-F8> :set encoding=cp936 \| language message cp936 \| set fenc=cp936<CR>
 map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])<CR>
-map <F10> :echo call(function(g:chiylown_func_dict.getprojtypefunc("ASTYLE")),[])<CR>
+"map <F10> :echo call(function(g:chiylown_func_dict.getprojtypefunc("ASTYLE")),[])<CR>
 map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
 map <F5> :call SetProjType() <CR>
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
@@ -164,11 +164,15 @@ map NT :NERDTree<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" .vimrc
+"Previm
 augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
+if(has("mac"))
+    "因为MAC 下Chrome禁用了 file://协议下加载 js 的请求，只能改成Safari
+    let g:previm_open_cmd = 'open -a Safari'
+endif
 
 source $VIMPROJ/vimrc/option.vim
 
