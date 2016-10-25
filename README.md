@@ -55,6 +55,7 @@ vim config, all file in one project
 11. (扩展功能)设置 ssh通讯,参考: [Linux(Centos)配置OpenSSH无密码登陆](http://sjsky.iteye.com/blog/1123184)
 12. (扩展功能) 设置系统变量 CYGWINPATH,值为 cygwin 的 mintty.exe 坐在的路径;
 13. (扩展功能)sh的启动方式默认设成 cygwin的 mintty.exe;
+14. (扩展功能) 首次配置需要手动调用 ``call dein#install()``、``call dein#recache_runtimepath()``
 
 ## 下面是常见问题及解决办法：
 1. 启动后提示找不gvim.exe： 请查看是否将 vim/vim73 添加到系统目录
@@ -151,7 +152,4 @@ TODO:将来可能讲自动上传模块独立出来，现在还没做~
 
 
 Enjoy~
-
-
-
 
