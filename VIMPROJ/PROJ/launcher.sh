@@ -39,6 +39,24 @@ Open_prj(){
     exit;
 }
 
+Add_prj(){
+    set -- ${@};
+    local proj_name=${1};
+    local proj_path=${2};
+    local proj_type=${3};
+    echo "new:"$proj_name $proj_path $proj_type;
+    [[ -d $VIMPROJ ]] && cd $VIMPROJ; 
+    [[ $? -eq 1 ]] && echo "create failed!" &&exit;
+    cp template.vim $proj_name.vim;
+    [[ ! -f "$proj_name.vim" ]] && echo "copy template failed!" && exit;
+    perl -pi.bak -ne 's/.*proj_type="cpp"/    let g:proj_type="cpp"/' $proj_name.vim;
+    perl -pi.bak -ne 's/call Main.*/call Main('\\\"${proj_path//\//\\\/}\\\"')/' $proj_name.vim;
+    #echo "call Main(\"$proj_path\")" >> $proj_name.vim;
+    [[ -f $proj_name.vim.bak ]] && rm -f $proj_name.vim.bak;
+
+    echo -e "Create Project ${__RED} $proj_name ${__NC} Sucessed";
+}
+
 Del_prj(){
     local p=${1};
     echo "handle delete $p";
@@ -138,12 +156,52 @@ Main_Choice_proj()
     done;
 }
 
+Main_Add_proj(){
+    local proj_name="";
+    local proj_path="";
+    local proj_type="";
+    while true;do
+        read -p "PROJ PATH:" proj_path;
+        [[ ! -d $proj_path ]] && echo "PATH Not Found" && continue;
+        break;
+    done;
+
+    declare -a types=(cpp php);
+    select i in ${types[@]};do
+        [[ -z $i ]] && echo "invalid input" && continue;
+        proj_type=$i;
+        break;
+    done;
+
+    while true;do
+        read -p "PROJ NAME:" proj_name;
+        [[ -z "$proj_name" ]] && continue;
+        echo "$proj_name" | grep -e '|' -e '/' -e ' ' -e '*' -e '\\' && echo -e "${__RED}format error${__NC}" && continue;
+        [[ -f "$VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
+        break;
+    done;
+
+    set -x;
+    echo -e "${__RED}----CONFIRM---${__NC}";
+    echo -e "PROJ NAME:  ${__RED}$proj_name${__NC}";
+    echo -e "PROJ PATH:  ${__RED}$proj_path${__NC}";
+    echo -e "PROJ TYPES: ${__RED}$proj_type${__NC}";
+    read -p "CREATE Project(y/n)[Default n]:" choice;
+    declare -a newproj=($proj_name $proj_path $proj_type);
+    case "$choice" in 
+        y|Y ) echo -e "${__RED}yes${__NC}" && Add_prj ${newproj[@]} && exit;;
+        n|N ) echo -e "${__RED}no${__NC}" && exit;;
+        *) echo -e "${__RED}default no${__NC}" &&exit;;
+    esac
+}
+
 Main_help(){
     echo "${0#.*/} version:$__VERSION author by lawrencechi";
     echo "email: codeforfuture{AT}126.com";
     echo "";
     echo "manual:";
     echo "$0       display all project and choice ";
+    echo "$0 -a    create proj";
     echo "$0 -d    delete proj";
     echo "$0 -v    display version";
     echo "$0 -h    display help";
@@ -155,6 +213,9 @@ if [[ $# -eq 0 ]];then
     if [[ $? -eq 0 ]];then
         Open_prj "$__USER_CHOICE_PROJ";
     fi
+elif [[ ${1} = "-a" ]];then
+    echo "Create New Proj";
+    Main_Add_proj;
 elif [[ ${1} = "-d" ]];then
     export __CHOICE_TIPS="Delete Project:";
     echo "Choice Delete Proj";
