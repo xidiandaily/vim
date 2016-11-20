@@ -98,7 +98,7 @@ set sw=4 "将shiftwidth设为4
 set ts=4 "将tabstop设为4
 "字体的设置
 if(g:iswindows==1)
-    set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
+    set guifont=BitstreamVeraSansMono_NF:h9:cANSI "记住空格用下划线代替哦
     "set gfw=幼圆:h10:cGB2312
 else 
     set guifont=Bitstream_Vera_Sans_Mono_Nerd_Font_Complete:h14
