@@ -79,9 +79,9 @@ Select_prj()
     IFS=$oldifs;
     while true;do
         for(( i=0;i<${#arr[@]};i++)){
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-20s"   ${i} ${arr[$i]} && i=$(($i+1));
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-20s"   ${i} ${arr[$i]} && i=$(($i+1));
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-20s\n" ${i} ${arr[$i]};
+            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
+            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
+            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s\n" ${i} ${arr[$i]};
         }
         echo "";
         read -p "Select Project[Default 0]:" choice;
