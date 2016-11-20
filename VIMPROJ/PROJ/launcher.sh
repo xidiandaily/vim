@@ -6,7 +6,12 @@
 # 项目列表
 export __PRIORITY_FILE=".prio.launcher.chiyl";
 export __USER_INPUT_LETTER="";
+export __USER_CHOICE_PROJ="";
 declare -a projectlist;
+export __RED='\033[0;31m'
+export __NC='\033[0m' # No Color
+export __VERSION="1.0";
+export __CHOICE_TIPS="";
 
 has_in_projectlist()
 { 
@@ -34,7 +39,22 @@ Open_prj(){
     exit;
 }
 
-Select_prj(){
+Del_prj(){
+    local p=${1};
+    echo "handle delete $p";
+    set -x;
+    [[ -f $VIMPROJ/$p.vim ]] && rm -f "$VIMPROJ/$p.vim";
+    [[ $? -eq 1 ]] && echo -e "${__RED}delete project($p) failed!${__NC}" && exit;
+
+    [[ -f $VIMPROJ/PROJ/$p.sh ]] && rm -f "$VIMPROJ/PROJ/$p.sh";
+    [[ -f $VIMPROJ/PROJ/$p.bat ]] && rm -f "$VIMPROJ/PROJ/$p.bat";
+    cat $__PRIORITY_FILE | grep -v "$p" > $__PRIORITY_FILE;
+    echo -e "${__RED}delete $p done${__NC}";
+    exit;
+}
+
+Select_prj()
+{
     local oldifs="$IFS";
     IFS=" ";
     local -a arr=($@);
@@ -55,14 +75,15 @@ Select_prj(){
             return 1;
         else
             local prj=${arr[$choice]};
-            [[ -z $prj ]] && echo "invaliable input:$choice" && continue;
-            [[ $prj = "EXIT" ]] && echo "exit" && exit;
-            [[ $prj = "ALL" ]] && echo "Show Al" && __USER_INPUT_LETTER="" && return 1;
-            read -p "Open Project $prj (y/n default:y)?" choice
+            [[ -z $prj ]] && echo -e "${__RED}invaliable input:$choice${__NC}" && continue;
+            [[ $prj = "EXIT" ]] && echo -e "${__RED}exit${__NC}" && exit;
+            [[ $prj = "ALL" ]] && echo -e "${__RED}Show Al${__NC}" && __USER_INPUT_LETTER="" && return 1;
+            echo -e "${__CHOICE_TIPS} ${__RED}$prj${__NC}?";
+            read -p "choice(y/n default:y):" choice;
             case "$choice" in 
-                y|Y ) echo "yes" && Open_prj "$prj";;
-                n|N ) echo "no" && continue;;
-                *) echo "default" && Open_prj "$prj";;
+                y|Y ) echo -e "${__RED}yes${__NC}" && __USER_CHOICE_PROJ="$prj" && return 0;;
+                n|N ) echo -e "${__RED}no${__NC}" && continue;;
+                *) echo -e "${__RED}default y${__NC}" &&__USER_CHOICE_PROJ="$prj" && return 0;;
             esac
         fi;
     done;
@@ -70,17 +91,13 @@ Select_prj(){
 
 Main_Choice_proj()
 {
-
     if [[ -f $__PRIORITY_FILE ]]; then
         oldifs="$IFS";
         IFS=$'\n';
         pri=( $(cat $__PRIORITY_FILE) );
         IFS="$oldifs";
 
-        #print_arr ${pri[@]};
-
         for((n=${#pri[@]}-1;n>=0;n--));do i=${pri[$n]};
-            [[ $i = "proj/template.vim" ]] && continue; 
             has_in_projectlist $i;
             [[ $? -eq 1 ]] && continue;
             projectlist+=($i);
@@ -92,7 +109,7 @@ Main_Choice_proj()
         done;
     fi
 
-    for i in proj/*.vim;do  i=${i##*/};
+    for i in $VIMPROJ/*.vim;do  i=${i##*/};
         i=${i%%.vim};
         [[ $i = "template" ]] && continue;
         has_in_projectlist $i;
@@ -100,18 +117,14 @@ Main_Choice_proj()
         projectlist+=($i);
     done;
 
-    #for ((i=0;i<${#projectlist[@]};i++));do echo ${projectlist[$i]};
-    #done
-
-    #print_arr ${projectlist[@]};
-
     # 选择并启动对应的项目
     while true;do
         local -a my_prjlist=();
         if [[ ${#__USER_INPUT_LETTER} -ne 0 ]];then
             for i in ${projectlist[@]};do
-                re='.*'$__USER_INPUT_LETTER'.*';
-                [[ $i =~ $re ]] && my_prjlist+=($i);
+                re=`echo '.*'$__USER_INPUT_LETTER'.*'|tr "[:upper:]" "[:lower:]"`;
+                up=`echo $i |tr "[:upper:]" "[:lower:]"`;
+                [[ $up =~ $re ]] && my_prjlist+=($i);
             done;
             my_prjlist+=("ALL");
         else
@@ -119,18 +132,39 @@ Main_Choice_proj()
         fi
         my_prjlist+=("EXIT");
         Select_prj ${my_prjlist[@]};
+        if [[ $? -eq 0 ]];then
+            return 0;
+        fi;
     done;
-
-    #select prj in ${projectlist[@]};
-    #do [[ $prj = "exit" ]] && exit;
-    #    read -p "Open Project $prj (y/n)?" choice
-    #    case "$choice" in 
-    #        y|Y ) echo "yes" && Open_prj "$prj";;
-    #        n|N ) echo "no";;
-    #        *) echo "default" && Open_prj "$prj";;
-    #    esac
-    #done;
 }
 
-Main_Choice_proj;
+Main_help(){
+    echo "${0#.*/} version:$__VERSION author by lawrencechi";
+    echo "email: codeforfuture{AT}126.com";
+    echo "";
+    echo "manual:";
+    echo "$0       display all project and choice ";
+    echo "$0 -d    delete proj";
+    echo "$0 -v    display version";
+    echo "$0 -h    display help";
+}
+
+if [[ $# -eq 0 ]];then
+    export __CHOICE_TIPS="Open Project:";
+    Main_Choice_proj;
+    if [[ $? -eq 0 ]];then
+        Open_prj "$__USER_CHOICE_PROJ";
+    fi
+elif [[ ${1} = "-d" ]];then
+    export __CHOICE_TIPS="Delete Project:";
+    echo "Choice Delete Proj";
+    Main_Choice_proj;
+    if [[ $? -eq 0 ]];then
+        Del_prj "$__USER_CHOICE_PROJ";
+    fi
+elif [[ ${1} = "-v" ]];then
+    echo "version:"$__VERSION;
+else
+    Main_help;
+fi
 
