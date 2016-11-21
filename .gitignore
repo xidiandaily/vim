@@ -1,4 +1,4 @@
-/vim73
+﻿/vim73
 /_vimrc
 /ExtTool/cscope-15.8a/cscope-15.8a/cscope.exe
 /ExtTool/ctags58/ctags58/COPYING
@@ -1675,4 +1675,9 @@
 /vim74/vimrun.exe
 /vim74/vimtutor.bat
 /vim74/xxd.exe
-/VIMPROJ/3rd/dein.vim/.dein/
+/Font/
+/VIMPROJ/3rd/dein.vim/
+/vim80/
+/VIMPROJ/*.vim
+/VIMPROJ/PROJ/*.bat
+
