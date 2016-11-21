@@ -12,6 +12,7 @@ runtime macros/matchit.vim
 source $VIMPROJ/3rd/init.dein.vim
 
 if(has("win32") || has("win95") || has("win64") || has("win16"))
+    set shell=C:\windows\system32\cmd.exe
     let g:iswindows=1
 else
     let g:iswindows=0

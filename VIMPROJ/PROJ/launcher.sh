@@ -12,6 +12,8 @@ export __RED='\033[0;31m'
 export __NC='\033[0m' # No Color
 export __VERSION="1.0";
 export __CHOICE_TIPS="";
+export __VIMPROJ=$VIMPROJ;
+export __OSTYPE=$OSTYPE;
 
 has_in_projectlist()
 { 
@@ -35,7 +37,15 @@ print_arr(){
 
 Open_prj(){
     local p=${1};
-    echo "$p" >> $__PRIORITY_FILE && /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$VIMPROJ/$p.vim";
+    echo "$p" >> $__PRIORITY_FILE;
+    if [[ $__OSTYPE = "cygwin" ]];then
+        run env HOME=/cygdrive/c/Users/lawrencechi/ VIMPROJ=D:/Vim/VIMPROJ CYGWINPATH=C:/cygwin64/bin gvim -wait -S "$__VIMPROJ/$p.vim" &
+        sleep 10;
+    elif [[ $__OSTYPE =~ "*darwin*" ]];then
+        /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$__VIMPROJ/$p.vim";
+    else
+        echo "$__OSTYPE not support";
+    fi
     exit;
 }
 
@@ -45,7 +55,7 @@ Add_prj(){
     local proj_path=${2};
     local proj_type=${3};
     echo "new:"$proj_name $proj_path $proj_type;
-    [[ -d $VIMPROJ ]] && cd $VIMPROJ; 
+    [[ -d $__VIMPROJ ]] && cd $__VIMPROJ; 
     [[ $? -eq 1 ]] && echo "create failed!" &&exit;
     cp template.vim $proj_name.vim;
     [[ ! -f "$proj_name.vim" ]] && echo "copy template failed!" && exit;
@@ -61,11 +71,11 @@ Del_prj(){
     local p=${1};
     echo "handle delete $p";
     set -x;
-    [[ -f $VIMPROJ/$p.vim ]] && rm -f "$VIMPROJ/$p.vim";
+    [[ -f $__VIMPROJ/$p.vim ]] && rm -f "$__VIMPROJ/$p.vim";
     [[ $? -eq 1 ]] && echo -e "${__RED}delete project($p) failed!${__NC}" && exit;
 
-    [[ -f $VIMPROJ/PROJ/$p.sh ]] && rm -f "$VIMPROJ/PROJ/$p.sh";
-    [[ -f $VIMPROJ/PROJ/$p.bat ]] && rm -f "$VIMPROJ/PROJ/$p.bat";
+    [[ -f $__VIMPROJ/PROJ/$p.sh ]] && rm -f "$__VIMPROJ/PROJ/$p.sh";
+    [[ -f $__VIMPROJ/PROJ/$p.bat ]] && rm -f "$__VIMPROJ/PROJ/$p.bat";
     cat $__PRIORITY_FILE | grep -v "$p" > $__PRIORITY_FILE;
     echo -e "${__RED}delete $p done${__NC}";
     exit;
@@ -127,7 +137,7 @@ Main_Choice_proj()
         done;
     fi
 
-    for i in $VIMPROJ/*.vim;do  i=${i##*/};
+    for i in "$__VIMPROJ"/*.vim;do  i=${i##*/};
         i=${i%%.vim};
         [[ $i = "template" ]] && continue;
         has_in_projectlist $i;
@@ -140,9 +150,12 @@ Main_Choice_proj()
         local -a my_prjlist=();
         if [[ ${#__USER_INPUT_LETTER} -ne 0 ]];then
             for i in ${projectlist[@]};do
-                re=`echo '.*'$__USER_INPUT_LETTER'.*'|tr "[:upper:]" "[:lower:]"`;
-                up=`echo $i |tr "[:upper:]" "[:lower:]"`;
-                [[ $up =~ $re ]] && my_prjlist+=($i);
+                echo "$i" | grep -i "$__USER_INPUT_LETTER" >/dev/null 2>&1 ;
+                [[ "$?" -eq 1 ]] && continue;
+                my_prjlist+=($i);
+                #re=`echo '.*'$__USER_INPUT_LETTER'.*'|tr "[:upper:]" "[:lower:]"`;
+                #up=`echo $i |tr "[:upper:]" "[:lower:]"`;
+                #[[ $up =~ $re ]] && my_prjlist+=($i);
             done;
             my_prjlist+=("ALL");
         else
@@ -177,7 +190,7 @@ Main_Add_proj(){
         read -p "PROJ NAME:" proj_name;
         [[ -z "$proj_name" ]] && continue;
         echo "$proj_name" | grep -e '|' -e '/' -e ' ' -e '*' -e '\\' && echo -e "${__RED}format error${__NC}" && continue;
-        [[ -f "$VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
+        [[ -f "$__VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
         break;
     done;
 
@@ -207,6 +220,10 @@ Main_help(){
     echo "$0 -h    display help";
 }
 
+[[ -z $__VIMPROJ ]] && echo "vimproj not set exit" && exit;
+[[ -d $__VIMPROJ ]] && cd $__VIMPROJ;
+[[ $? -eq 1 ]] && "cd vimproj:$__VIMPROJ Failed" && exit;
+[[ $__OSTYPE = "cygwin" ]] && echo "Press Alt+Enter FullScreen" && read;
 if [[ $# -eq 0 ]];then
     export __CHOICE_TIPS="Open Project:";
     Main_Choice_proj;
