@@ -1681,3 +1681,4 @@
 /VIMPROJ/*.vim
 /VIMPROJ/PROJ/*.bat
 
+/VIMPROJ/.prio.launcher.chiyl
