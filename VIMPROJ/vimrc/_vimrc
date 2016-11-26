@@ -136,7 +136,7 @@ let Tlist_Inc_Winwidth=0
 "≈‰÷√NERDTree
 "let NERDChristmasTree=1						" more colorful
 let g:NERDTreeWinPos="right"					" put NERDTree at right
-let g:NERDTreeWinSize=30						" set size
+let g:NERDTreeWinSize=45						" set size
 let g:NERDTreeShowLineNumbers=0				" show line number
 "let g:NERDTreeDirArrowExpandable = '+'
 "let g:NERDTreeDirArrowCollapsible = '-'
