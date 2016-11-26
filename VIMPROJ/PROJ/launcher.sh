@@ -22,7 +22,6 @@ Init(){
     [[ -z $__VIMPROJ ]] && echo -e "${__RED}VIMPROJ EMPTY${__NC}"&& exit;
     [[ -d $__VIMPROJ ]] && cd $__VIMPROJ;
     [[ $? -eq 1 ]] && "cd vimproj:$__VIMPROJ Failed" && exit;
-    [[ $__OSTYPE = "cygwin" ]] && echo "Press Alt+Enter FullScreen" && read;
 }
 
 
@@ -272,6 +271,7 @@ Main_help(){
 }
 
 Init;
+[[ $__OSTYPE = "cygwin" ]] && [[ $# -eq 0 ]] && echo "Press Alt+Enter FullScreen" && read;
 if [[ $# -eq 0 ]] || [[ ${1} = "-r" ]];then
     export __USER_CHOICE_PROJ=${2};
     if [[ -z $__USER_CHOICE_PROJ ]];then
