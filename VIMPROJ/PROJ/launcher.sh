@@ -12,9 +12,14 @@ export __NC='\033[0m' # No Color
 export __VERSION="1.0";
 export __CHOICE_TIPS="";
 export __SUPPORT_TYPES=(cpp php empty);
+export __OSTYPE=$OSTYPE;
 export __VIMPROJ=$VIMPROJ;
-
 declare -a projectlist;
+
+Init(){
+    [[ $__OSTYPE = "cygwin" ]] && export __VIMPROJ=${VIMPROJ//\\/\/};
+    [[ -z $__VIMPROJ ]] && echo -e "${__RED}VIMPROJ EMPTY${__NC}"&& exit;
+}
 
 
 has_in_projectlist()
@@ -39,12 +44,17 @@ print_arr(){
 
 Open_prj(){
     local p=${1};
-    if [[ ! -f "$__VIMPROJ/$p.vim" ]] ;then
-        cat $__PRIORITY_FILE | grep -v -w "$p" > $__PRIORITY_FILE;
-        echo -e "${__RED}$p NOT FOUND${__NC}";
-        exit;
-    fi
-    echo "$p" >> $__PRIORITY_FILE && /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$__VIMPROJ/$p.vim";
+    set -x;
+    [[ ! -f "$__VIMPROJ/$p.vim" ]] && echo -e "${__RED}$p not found ${__NC}" && exit;
+    echo "$p" >> $__PRIORITY_FILE;
+    if [[ $__OSTYPE = "cygwin" ]];then
+        run env HOME=/cygdrive/c/Users/lawrencechi/ VIMPROJ=D:/Vim/VIMPROJ CYGWINPATH=C:/cygwin64/bin gvim -wait -S "$__VIMPROJ/$p.vim" &
+        sleep 10;
+    elif [[ $__OSTYPE =~ "*darwin*" ]];then
+        /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$__VIMPROJ/$p.vim";
+    else
+        echo "$__OSTYPE not support";
+    fi  
     exit;
 }
 
@@ -236,8 +246,7 @@ Main_help(){
     echo "$0 -h    display help";
 }
 
-[[ -z $__VIMPROJ ]] && echo -e "${__RED}VIMPROJ EMPTY${__NC}"&& exit;
-
+Init;
 if [[ $# -eq 0 ]];then
     export __CHOICE_TIPS="Open Project:";
     Main_Choice_proj;
