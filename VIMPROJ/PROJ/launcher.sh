@@ -7,11 +7,15 @@
 export __PRIORITY_FILE=".prio.launcher.chiyl";
 export __USER_INPUT_LETTER="";
 export __USER_CHOICE_PROJ="";
-declare -a projectlist;
 export __RED='\033[0;31m'
 export __NC='\033[0m' # No Color
 export __VERSION="1.0";
 export __CHOICE_TIPS="";
+export __SUPPORT_TYPES=(cpp php empty);
+export __VIMPROJ=$VIMPROJ;
+
+declare -a projectlist;
+
 
 has_in_projectlist()
 { 
@@ -35,7 +39,33 @@ print_arr(){
 
 Open_prj(){
     local p=${1};
-    echo "$p" >> $__PRIORITY_FILE && /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$VIMPROJ/$p.vim";
+    if [[ ! -f "$__VIMPROJ/$p.vim" ]] ;then
+        cat $__PRIORITY_FILE | grep -v -w "$p" > $__PRIORITY_FILE;
+        echo -e "${__RED}$p NOT FOUND${__NC}";
+        exit;
+    fi
+    echo "$p" >> $__PRIORITY_FILE && /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$__VIMPROJ/$p.vim";
+    exit;
+}
+
+Rename_prj(){
+    local old_projname=${1};
+    local proj_name="";
+    [[ ! -f "$__VIMPROJ/$old_projname.vim" ]] && echo -e "${__RED} ${__VIMPROJ}/$old_projname.vim NOT FOUND!!${__NC}" && exit;
+
+    while true;do
+        read -p "NEW PROJ NAME:" proj_name;
+        [[ -z "$proj_name" ]] && continue;
+        echo "$proj_name" | grep -e '|' -e '/' -e ' ' -e '*' -e '\\' && echo -e "${__RED}format error${__NC}" && continue;
+        [[ -f "$__VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
+        break;
+    done;
+
+    mv "${__VIMPROJ}/$old_projname.vim" "${__VIMPROJ}/$proj_name.vim";
+    cat $__PRIORITY_FILE | grep -v -w "$old_projname" > $__PRIORITY_FILE;
+    [[ -f $__VIMPROJ/PROJ/$p.sh ]] && rm -f "$__VIMPROJ/PROJ/$p.sh";
+    [[ -f $__VIMPROJ/PROJ/$p.bat ]] && rm -f "$__VIMPROJ/PROJ/$p.bat";
+    echo -e "${__RED} Rename $old_projname to $proj_name DONE";
     exit;
 }
 
@@ -45,7 +75,7 @@ Add_prj(){
     local proj_path=${2};
     local proj_type=${3};
     echo "new:"$proj_name $proj_path $proj_type;
-    [[ -d $VIMPROJ ]] && cd $VIMPROJ; 
+    [[ -d $__VIMPROJ ]] && cd $__VIMPROJ; 
     [[ $? -eq 1 ]] && echo "create failed!" &&exit;
     cp template.vim $proj_name.vim;
     [[ ! -f "$proj_name.vim" ]] && echo "copy template failed!" && exit;
@@ -60,13 +90,12 @@ Add_prj(){
 Del_prj(){
     local p=${1};
     echo "handle delete $p";
-    set -x;
-    [[ -f $VIMPROJ/$p.vim ]] && rm -f "$VIMPROJ/$p.vim";
+    [[ -f $__VIMPROJ/$p.vim ]] && rm -f "$__VIMPROJ/$p.vim";
     [[ $? -eq 1 ]] && echo -e "${__RED}delete project($p) failed!${__NC}" && exit;
 
-    [[ -f $VIMPROJ/PROJ/$p.sh ]] && rm -f "$VIMPROJ/PROJ/$p.sh";
-    [[ -f $VIMPROJ/PROJ/$p.bat ]] && rm -f "$VIMPROJ/PROJ/$p.bat";
-    cat $__PRIORITY_FILE | grep -v "$p" > $__PRIORITY_FILE;
+    [[ -f $__VIMPROJ/PROJ/$p.sh ]] && rm -f "$__VIMPROJ/PROJ/$p.sh";
+    [[ -f $__VIMPROJ/PROJ/$p.bat ]] && rm -f "$__VIMPROJ/PROJ/$p.bat";
+    cat $__PRIORITY_FILE | grep -v -w "$p" > $__PRIORITY_FILE;
     echo -e "${__RED}delete $p done${__NC}";
     exit;
 }
@@ -127,7 +156,7 @@ Main_Choice_proj()
         done;
     fi
 
-    for i in $VIMPROJ/*.vim;do  i=${i##*/};
+    for i in $__VIMPROJ/*.vim;do  i=${i##*/};
         i=${i%%.vim};
         [[ $i = "template" ]] && continue;
         has_in_projectlist $i;
@@ -166,7 +195,7 @@ Main_Add_proj(){
         break;
     done;
 
-    declare -a types=(cpp php);
+    declare -a types=${__SUPPORT_TYPES[@]};
     select i in ${types[@]};do
         [[ -z $i ]] && echo "invalid input" && continue;
         proj_type=$i;
@@ -177,11 +206,10 @@ Main_Add_proj(){
         read -p "PROJ NAME:" proj_name;
         [[ -z "$proj_name" ]] && continue;
         echo "$proj_name" | grep -e '|' -e '/' -e ' ' -e '*' -e '\\' && echo -e "${__RED}format error${__NC}" && continue;
-        [[ -f "$VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
+        [[ -f "$__VIMPROJ/$proj_name.vim" ]] && "PROJ Exists" && continue;
         break;
     done;
 
-    set -x;
     echo -e "${__RED}----CONFIRM---${__NC}";
     echo -e "PROJ NAME:  ${__RED}$proj_name${__NC}";
     echo -e "PROJ PATH:  ${__RED}$proj_path${__NC}";
@@ -202,10 +230,13 @@ Main_help(){
     echo "manual:";
     echo "$0       display all project and choice ";
     echo "$0 -a    create proj";
+    echo "$0 -r    rename proj";
     echo "$0 -d    delete proj";
     echo "$0 -v    display version";
     echo "$0 -h    display help";
 }
+
+[[ -z $__VIMPROJ ]] && echo -e "${__RED}VIMPROJ EMPTY${__NC}"&& exit;
 
 if [[ $# -eq 0 ]];then
     export __CHOICE_TIPS="Open Project:";
@@ -216,6 +247,13 @@ if [[ $# -eq 0 ]];then
 elif [[ ${1} = "-a" ]];then
     echo "Create New Proj";
     Main_Add_proj;
+elif [[ ${1} = "-r" ]];then
+    echo "Rename Proj";
+    export __CHOICE_TIPS="Rename Project:";
+    Main_Choice_proj;
+    if [[ $? -eq 0 ]];then
+        Rename_prj "$__USER_CHOICE_PROJ";
+    fi
 elif [[ ${1} = "-d" ]];then
     export __CHOICE_TIPS="Delete Project:";
     echo "Choice Delete Proj";
