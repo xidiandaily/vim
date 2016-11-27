@@ -201,8 +201,9 @@ Main_Add_proj(){
     local proj_path="";
     local proj_type="";
     while true;do
-        read -p "PROJ PATH:" proj_path;
-        [[ ! -d $proj_path ]] && echo "PATH Not Found" && continue;
+        read -r -p "PROJ PATH:" proj_path;
+        proj_path=${proj_path//\\/\/};
+        [[ ! -d $proj_path ]] && echo "PATH Not Found:$proj_path" && continue;
         break;
     done;
 
