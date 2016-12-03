@@ -125,6 +125,10 @@ language message zh_CN.utf-8
 source $VIMRUNTIME/delmenu.vim 
 source $VIMRUNTIME/menu.vim
 
+"vim 8.0 更改了 default.vim的 so 配置，导致 zt/zb 不到底不到顶,修复之
+"http://stackoverflow.com/questions/40264417/cursor-does-not-go-to-top-or-bottom-of-window-in-gvim-8
+set scrolloff=0
+
 "Tlist设置
 let Tlist_Ctags_Cmd='ctags' "因为我们放在环境变量里，所以可以直接执行
 let Tlist_Use_Right_Window=0 "让窗口显示在右边，0的话就是显示在左边
