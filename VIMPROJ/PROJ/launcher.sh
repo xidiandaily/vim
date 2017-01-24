@@ -90,6 +90,7 @@ Add_prj(){
     perl -pi.bak -ne 's/call Main.*/call Main('\\\"${proj_path//\//\\\/}\\\"')/' $proj_name.vim;
     #echo "call Main(\"$proj_path\")" >> $proj_name.vim;
     [[ -f $proj_name.vim.bak ]] && rm -f $proj_name.vim.bak;
+    [[ -f $proj_name.vim ]] && dos2unix $proj_name.vim;
 
     echo -e "Create Project ${__RED} $proj_name ${__NC} Sucessed";
 }
