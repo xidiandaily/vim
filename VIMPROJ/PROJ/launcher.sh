@@ -124,14 +124,17 @@ Select_prj()
             if [[ $i -lt ${__LATEST_PROJ_COUNT} ]] && [[ $i%3 -eq 0 ]]; then
                 printf "\n";
             elif [[ $i -eq ${__LATEST_PROJ_COUNT} ]]; then
-                #printf "\n ----\n";
-                echo "         ";
-                echo "        ^";
-                echo "        |";
-                echo " -------+----LatestUserOrder  ------------    NameOrder +--------------";
-                echo "                                                        |";
-                echo "                                                        V";
-                echo "                                                         ";
+                if [[ $i -ne 0 ]];then
+                    echo "         ";
+                    echo "        ^";
+                    echo "        |";
+                    echo " -------+----LatestUserOrder  ------------    NameOrder +--------------";
+                    echo "                                                        |";
+                    echo "                                                        V";
+                    echo "                                                         ";
+                else
+                    printf "\n";
+                fi
             elif [[ $i -eq ${#arr[@]}-1 ]]; then 
                 printf "\n\n ----\n";
             elif [[ $i -gt ${__LATEST_PROJ_COUNT} ]] && [[ $(($i-${__LATEST_PROJ_COUNT}))%3 -eq 0 ]]; then
@@ -211,6 +214,7 @@ Main_Choice_proj()
     while true;do
         local -a my_prjlist=();
         if [[ ${#__USER_INPUT_LETTER} -ne 0 ]];then
+            __LATEST_PROJ_COUNT=0;
             for i in ${__PROJLIST[@]};do
                 echo "$i" | grep -i "$__USER_INPUT_LETTER" >/dev/null 2>&1 ;
                 [[ "$?" -eq 1 ]] && continue;
