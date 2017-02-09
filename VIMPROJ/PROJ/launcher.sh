@@ -1,5 +1,9 @@
 #!/bin/bash
-# 创建项目列表支持：1,根据最近打开的时间次序进行排序;2,支持根据关键词进行筛选
+# 创建项目列表支持：
+# 1,根据最近打开的时间次序进行排序(只保留最近5个);
+# 2,支持根据关键词进行筛选
+# 3,不属于时间序排序的，按照文件名排序
+#
 # 每次启动项目，都记录一次打开的时间放到一个文件，打开时根据时间的倒序列出项目
 
 
@@ -15,6 +19,7 @@ export __CHOICE_TIPS="";
 export __SUPPORT_TYPES=(cpp php empty);
 export __OSTYPE=$OSTYPE;
 export __VIMPROJ=$VIMPROJ;
+export __LATEST_PROJ_COUNT=0;
 declare -a __PROJLIST;
 
 Init(){
@@ -116,9 +121,34 @@ Select_prj()
     IFS=$oldifs;
     while true;do
         for(( i=0;i<${#arr[@]};i++)){
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
-            [[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s\n" ${i} ${arr[$i]};
+            if [[ $i -lt ${__LATEST_PROJ_COUNT} ]] && [[ $i%3 -eq 0 ]]; then
+                printf "\n";
+            elif [[ $i -eq ${__LATEST_PROJ_COUNT} ]]; then
+                #printf "\n ----\n";
+                echo "         ";
+                echo "        ^";
+                echo "        |";
+                echo " -------+----LatestUserOrder  ------------    NameOrder +--------------";
+                echo "                                                        |";
+                echo "                                                        V";
+                echo "                                                         ";
+            elif [[ $i -eq ${#arr[@]}-1 ]]; then 
+                printf "\n\n ----\n";
+            elif [[ $i -gt ${__LATEST_PROJ_COUNT} ]] && [[ $(($i-${__LATEST_PROJ_COUNT}))%3 -eq 0 ]]; then
+                printf "\n";
+            fi
+            printf "%2s) %-50s"   ${i} ${arr[$i]};
+
+            #[[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
+            #[[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s"   ${i} ${arr[$i]} && i=$(($i+1));
+            #[[ ! -z ${arr[$i]} ]] && printf "%2s) %-50s\n" ${i} ${arr[$i]};
+            #[[ ${i} -eq "5" ]] && echo "         ";
+            #[[ ${i} -eq "5" ]] && echo "        ^";
+            #[[ ${i} -eq "5" ]] && echo "        |";
+            #[[ ${i} -eq "5" ]] && echo "        +----LatestUserOrder  ------------    NameOrder +";
+            #[[ ${i} -eq "5" ]] && echo "                                                        |";
+            #[[ ${i} -eq "5" ]] && echo "                                                        V";
+            #[[ ${i} -eq "5" ]] && echo "                                                         ";
         }
         echo "";
         read -p "Select Project[Default 0]:" choice;
@@ -149,8 +179,9 @@ List_prj()
     if [[ -f $__PRIORITY_FILE ]]; then
         oldifs="$IFS";
         IFS=$'\n';
-        pri=( $(cat $__PRIORITY_FILE) );
+        pri=( $(cat $__PRIORITY_FILE |tail -n 6) );
         IFS="$oldifs";
+        __LATEST_PROJ_COUNT=${#pri[@]};
 
         for((n=${#pri[@]}-1;n>=0;n--));do i=${pri[$n]};
             has_in_projectlist $i;
