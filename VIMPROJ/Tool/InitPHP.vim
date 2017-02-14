@@ -87,7 +87,7 @@ function CSTAG_php()
                 silent! execute "!find . -name '*.h' '*.php' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
             endif
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.php,*.java,*.cs,*.hxx,*.cxx,*.cc | findstr /v \"cpp~\" >> cscope.files"
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.php,*.java,*.cs,*.hxx,*.cxx,*.cc >> cscope.files"
         endif
         silent! execute "!cscope -b"
         silent! execute "normal :"
