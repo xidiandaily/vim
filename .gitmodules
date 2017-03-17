@@ -16,3 +16,12 @@
 [submodule "vimfiles/bundle/html5.vim"]
 	path = vimfiles/bundle/html5.vim
 	url = https://github.com/othree/html5.vim.git
+[submodule "vimfiles/bundle/pdv"]
+	path = vimfiles/bundle/pdv
+	url = https://github.com/tobyS/pdv.git
+[submodule "vimfiles/bundle/vmustache"]
+	path = vimfiles/bundle/vmustache
+	url = https://github.com/tobyS/vmustache.git
+[submodule "vimfiles/bundle/ultisnips"]
+	path = vimfiles/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git

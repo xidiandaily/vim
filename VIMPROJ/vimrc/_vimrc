@@ -153,6 +153,10 @@ set ambiwidth=double
 "配置C.vim doxygen enable
 let g:C_UseTool_doxygen = 'yes'
 
+"配置pdv(PHP Documentor for VIM)的属性
+let g:pdv_template_dir = $VIM."/vimfiles/bundle/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+
 "map相关
 "更新TAG
 map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
