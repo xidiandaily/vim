@@ -1,22 +1,6 @@
 "º¯Êý
 function UPFILE_cpp()
-    let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
-    if (choice!=3)
-        let vim_proj=$VIMPROJ."/Tool"
-        if(g:iswindows==1)
-            let cygwin_proj=$CYGWINPATH."/mintty.exe"
-        else
-            let cygwin_proj='bash'
-        endif
-        if(g:SSHRemoteBaseDir!="")
-            let cmd= "! ".cygwin_proj." ".vim_proj."/cpp_getmodifyfile_and_upload.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir." ".choice
-            if(g:iswindows==1)
-                silent execute cmd
-            else
-                execute cmd
-            endif
-        endif
-    endif
+    call TarModifyFile()
 endfunction
 
 function CSTAG_cpp()

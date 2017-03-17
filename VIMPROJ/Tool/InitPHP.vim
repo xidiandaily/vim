@@ -1,37 +1,6 @@
 "º¯Êý
 function UPFILE_php()
-    let vim_proj=$VIMPROJ."/Tool"
-    if(g:iswindows==1)
-        let cygwin_proj=$CYGWINPATH."/mintty.exe"
-    else
-        let cygwin_proj='bash'
-    endif
-    let filelist_cmd= "! ".cygwin_proj." ".vim_proj."/php_getmodifyfile.sh"
-    silent! execute filelist_cmd
-    if (-1!=getftime("uploadfile.txt"))
-        let str_choice=""
-        for ff in readfile("uploadfile.txt")
-            let str_choice=str_choice."\n".ff
-        endfor
-
-        if (str_choice=="")
-            let str_choice="file not found"
-        endif
-
-        let choice=confirm(str_choice,"&Yes\n&update_timestamp\n&Cancel",1)
-        if (choice==1)
-            let cmd= "! ".cygwin_proj." ".vim_proj."/php_uploadfiles.sh ".g:SSHUSER." ".g:SSHPORT." ".g:SSHRemoteBaseDir
-            if(g:iswindows==1)
-                silent! execute cmd
-            else
-                execute cmd
-            endif
-        elseif (choice==2)
-            let ctmp=["hello"]
-            call writefile(ctmp,"timestamp.txt","b")
-            echo "done"
-        endif
-    endif
+    call TarModifyFile()
 endfunction
 
 function CSTAG_php()
