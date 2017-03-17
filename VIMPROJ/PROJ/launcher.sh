@@ -125,13 +125,20 @@ Select_prj()
                 printf "\n";
             elif [[ $i -eq ${__LATEST_PROJ_COUNT} ]]; then
                 if [[ $i -ne 0 ]];then
-                    echo "         ";
-                    echo "        ^";
-                    echo "        |";
-                    echo " -------+----LatestUserOrder  ------------    NameOrder +--------------";
-                    echo "                                                        |";
-                    echo "                                                        V";
-                    echo "                                                         ";
+                    sys=`uname`;
+                    if [[ $sys = 'Darwin' ]];then
+                        echo "         ";
+                        echo " -------^----LatestUserOrder  ------------    NameOrder v--------------";
+                        echo "         ";
+                    else
+                        echo "         ";
+                        echo "        ^";
+                        echo "        |";
+                        echo " -------+----LatestUserOrder  ------------    NameOrder +--------------";
+                        echo "                                                        |";
+                        echo "                                                        V";
+                        echo "                                                         ";
+                    fi
                 else
                     printf "\n";
                 fi
