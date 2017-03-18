@@ -17,16 +17,20 @@ function! TarModifyFile()
             let cygwin_proj='bash'
         endif
 
+        if g:tarmodifyfile_zlib==0
+            let s:zlibopt=''
+        else
+            let s:zlibopt=' -z '
+        endif
+
         if g:tarmodifyfile_dstpath==''
             let g:tarmodifyfile_dstpath=g:tarmodifyfile_path."/../"
         endif
 
-
-
         if g:tarmodifyfile_exclude!=''
-            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s -e \'".g:tarmodifyfile_exclude.s:choiceopt."\' ".g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
+            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s -e \'".g:tarmodifyfile_exclude."\' ".s:choiceopt." ".s:zlibopt." ".g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
         else
-            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s ".s:choiceopt.g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
+            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s ".s:choiceopt." ".s:zlibopt." ".g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
         endif
 
         echo cmd

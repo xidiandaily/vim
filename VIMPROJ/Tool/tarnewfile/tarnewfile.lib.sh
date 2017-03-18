@@ -8,7 +8,7 @@ function __init() {
 	## -- BEGIN YOUR OWN APPLICATION INITIALIZATION CODE HERE --
 
 	## parse command line options
-	while getopts 'hxszaf:e:' opt; do
+	while getopts 'hxszalf:e:' opt; do
 		case "${opt}" in
             ## opton x debug mode
             x)
@@ -41,6 +41,11 @@ function __init() {
 			f)
 				__FILTER="${OPTARG}"
                 __msg debug "export __FILTER=${__FILTER}"
+				;;
+			## option l
+			l)
+				export __LISTFILE=1
+                __msg debug "export __LISTFILE=${__LISTFILE}"
 				;;
 			## option without a required argument
 			:)
@@ -103,6 +108,7 @@ function Help(){
     echo "   -h ;show help info "
     echo "   -a ;whole dirtory [default  latest modify file]"
     echo "   -z ;zlib compress "
+    echo "   -l ;list tar file name"
     echo "   -s ;Silent Mode "
     echo ""
     echo " [EXAMPLE]"
@@ -179,12 +185,12 @@ function InterActive(){
 function handle()
 {
     set -- $args
-    export __SRCDIR=$1
+    export __SRCDIR=`realpath $1`
     export __TMPDIR='/tmp/'
-    export __DSTFILENAME=${__TMPDIR}${__SRCDIR##*\/}.tar${__ZlibMode:+.gz}
+    export __DSTFILENAME=${__TMPDIR}${__SRCDIR##*\/}.tarnewfile.tar${__ZlibMode:+.gz}
     export __TIMESTAMEFILE=${__TMPDIR}${__SRCDIR##*\/}'_lastcompress_time'
-    if [[ -d "$2" ]];then
-        export __DSTFILENAME=${2}${__SRCDIR##*\/}.tar${__ZlibMode:+.gz}
+    if [[ -d $(realpath $2) ]];then
+        export __DSTFILENAME=$(realpath $2)/${__SRCDIR##*\/}.tarnewfile.tar${__ZlibMode:+.gz}
     fi
 
     if [[ $(uname) = 'CYGWIN_NT-6.1' ]];then
@@ -205,10 +211,18 @@ function handle()
     [[ ${__CompressMode} = 'newer' ]] && [[ ! -f ${__TIMESTAMEFILE} ]] && export __CompressMode='all';
     [[ ${__SilentMode:-0} -eq 0 ]] && InterActive ;
 
-
-    curpath=`pwd`;
+    beforepath=$(pwd)
     cd ${__SRCDIR};
+    export __SRCDIR=$(pwd)
+
     if [[ ${__CompressMode} = 'all' ]];then
+
+        if [[ ${__LISTFILE:-0} -eq 1 ]];then
+            _optlistfile=" -v "
+        else
+            _optlistfile=''
+        fi
+
         if [[ ${__ZlibMode:-0} -eq 0 ]];then
             _optcompress=" -cf "
         else
@@ -223,12 +237,18 @@ function handle()
             _optexclude=${_optexclude}' --exclude='$i;
         done
 
-        cmd="tar ${_optcompress} ${__DSTFILENAME} ${_optexclude}  ./ "
+        cmd="tar ${_optlistfile} ${_optcompress} ${__DSTFILENAME} ${_optexclude}  ./ "
         [[ ${__SilentMode:-0} -eq 0 ]] && echo $cmd
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
         $cmd
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     elif [[  ${__CompressMode} = 'newer' ]];then
+        if [[ ${__LISTFILE:-0} -eq 1 ]];then
+            _optlistfile=" -v "
+        else
+            _optlistfile=''
+        fi
+
         if [[ ${__ZlibMode:-0} -eq 0 ]];then
             _optcompress=" -cf "
         else
@@ -236,16 +256,28 @@ function handle()
         fi
 
         for i in ${__EXCLUDE};do
-            _optexclude=${_optexclude}' --exclude='$i;
+            _optexclude=${_optexclude}' --exclude='${i};
         done
 
         for i in ${__FILTER};do
             _optexclude=${_optexclude}' --exclude='$i;
         done
 
-        compress_cmd="tar ${_optcompress} ${__DSTFILENAME} ${_optexclude} --newer-mtime=${__TIMESTAMEFILE} ./ "
+        compress_cmd="tar ${_optlistfile} ${_optcompress} ${__DSTFILENAME} ${_optexclude} --newer-mtime-than=${__TIMESTAMEFILE} ./ "
         [[ ${__SilentMode:-0} -eq 0 ]] && echo $compress_cmd
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
+        #fix:修复文件时候，只有直属文件夹 mtime 有改动,导致压缩命令 --newer-mtime-than 出错
+        oldifs=IFS
+        find ./ -type d -newer ${__TIMESTAMEFILE} -print0 | while ISF= read -r -d '' file;do
+            cd "$file"
+            while true; do
+                touch ./ 
+                [[ $(pwd) = ${__SRCDIR} ]] && break;
+                cd ../
+            done
+        done
+        unset IFS
+
         $compress_cmd
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     fi
@@ -253,6 +285,6 @@ function handle()
 
     [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME} > /tmp/tarnewfile.compressfilename
     __msg info "compress done!"
-    cd ${curpath};
+    cd ${beforepath};
 }
 

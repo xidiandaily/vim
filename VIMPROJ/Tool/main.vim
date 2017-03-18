@@ -26,6 +26,7 @@ function! Main(pa)
         let s:filename=s:path
         let g:tarmodifyfile_path=s:filename
         let g:tarmodifyfile_dstpath=''
+        let g:tarmodifyfile_zlib=0
         let g:tarmodifyfile_exclude=".svn .git *.md tags cscope.out *.swp *.tmp"
         call InitCPP()
         call InitLua()
