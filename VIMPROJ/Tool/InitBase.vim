@@ -29,6 +29,12 @@ function! TarModifyFile()
             let s:listopt=' -l '
         endif
 
+        if isdirectory(g:tarmodifyfile_path)
+        else
+            echo "Failed!!! is not directory:".g:tarmodifyfile_path
+            return
+        endif
+
         if isdirectory(g:tarmodifyfile_dstpath)
         else
             let g:tarmodifyfile_dstpath=g:tarmodifyfile_path."/../"
