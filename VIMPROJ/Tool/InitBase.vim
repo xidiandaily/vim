@@ -23,17 +23,35 @@ function! TarModifyFile()
             let s:zlibopt=' -z '
         endif
 
-        if g:tarmodifyfile_dstpath==''
+        if g:tarmodifyfile_listfile==0
+            let s:listopt=''
+        else
+            let s:listopt=' -l '
+        endif
+
+        if isdirectory(g:tarmodifyfile_dstpath)
+        else
             let g:tarmodifyfile_dstpath=g:tarmodifyfile_path."/../"
         endif
 
         if g:tarmodifyfile_exclude!=''
-            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s -e \'".g:tarmodifyfile_exclude."\' ".s:choiceopt." ".s:zlibopt." ".g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
+            let cmd= "! ".cygwin_proj." ".vim_proj
+            let cmd= cmd."/tarnewfile/tarnewfile.sh -s"
+            let cmd= cmd.s:zlibopt
+            let cmd= cmd.s:choiceopt
+            let cmd= cmd.s:listopt
+            let cmd= cmd." -e \'".g:tarmodifyfile_exclude."\' "
+            let cmd= cmd.g:tarmodifyfile_path." "
+            let cmd= cmd.g:tarmodifyfile_dstpath
         else
-            let cmd= "! ".cygwin_proj." ".vim_proj."/tarnewfile/tarnewfile.sh -s ".s:choiceopt." ".s:zlibopt." ".g:tarmodifyfile_path." ".g:tarmodifyfile_dstpath
+            let cmd= "! ".cygwin_proj." ".vim_proj
+            let cmd= cmd."/tarnewfile/tarnewfile.sh -s"
+            let cmd= cmd.s:choiceopt
+            let cmd= cmd.s:zlibopt
+            let cmd= cmd.s:listopt
+            let cmd= cmd.g:tarmodifyfile_path." "
+            let cmd= cmd.g:tarmodifyfile_dstpath
         endif
-
-        echo cmd
 
         if(g:iswindows==1)
             silent execute cmd
