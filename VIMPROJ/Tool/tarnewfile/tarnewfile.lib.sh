@@ -217,66 +217,77 @@ function handle()
 
     if [[ ${__CompressMode} = 'all' ]];then
 
-        if [[ ${__LISTFILE:-0} -eq 1 ]];then
-            _optlistfile=" -v "
-        else
-            _optlistfile=''
-        fi
+        compress_cmd="tar "
+        case  ${__LISTFILE:-0} in
+            1) compress_cmd=${compress_cmd}" -v ";;
+            *) ;;
+        esac
 
-        if [[ ${__ZlibMode:-0} -eq 0 ]];then
-            _optcompress=" -cf "
-        else
-            _optcompress=" -czf "
-        fi
+        case  ${__ZlibMode:-0} in
+            1) compress_cmd=${compress_cmd}" -czf ";;
+            *) compress_cmd=${compress_cmd}" -cf ";;
+        esac
+
+        compress_cmd=${compress_cmd}" ${__DSTFILENAME} "
 
         for i in ${__EXCLUDE};do
-            _optexclude=${_optexclude}' --exclude='$i;
+            compress_cmd=${compress_cmd}' --exclude='${i};
         done
 
         for i in ${__FILTER};do
-            _optexclude=${_optexclude}' --exclude='$i;
+            compress_cmd=${compress_cmd}' --exclude='${i};
         done
 
-        cmd="tar ${_optlistfile} ${_optcompress} ${__DSTFILENAME} ${_optexclude}  ./ "
-        [[ ${__SilentMode:-0} -eq 0 ]] && echo $cmd
+        compress_cmd=${compress_cmd}" ./ "
+        [[ ${__SilentMode:-0} -eq 0 ]] && echo ${compress_cmd}
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
-        $cmd
+        ${compress_cmd}
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     elif [[  ${__CompressMode} = 'newer' ]];then
-        if [[ ${__LISTFILE:-0} -eq 1 ]];then
-            _optlistfile=" -v "
-        else
-            _optlistfile=''
-        fi
 
-        if [[ ${__ZlibMode:-0} -eq 0 ]];then
-            _optcompress=" -cf "
-        else
-            _optcompress=" -czf "
-        fi
+        compress_cmd="tar "
+        case  ${__LISTFILE:-0} in
+            1) compress_cmd=${compress_cmd}" -v ";;
+            *) ;;
+        esac
+
+        case  ${__ZlibMode:-0} in
+            1) compress_cmd=${compress_cmd}" -czf ";;
+            *) compress_cmd=${compress_cmd}" -cf ";;
+        esac
+
+        compress_cmd=${compress_cmd}" ${__DSTFILENAME} "
 
         for i in ${__EXCLUDE};do
-            _optexclude=${_optexclude}' --exclude='${i};
+            compress_cmd=${compress_cmd}' --exclude='${i};
         done
 
         for i in ${__FILTER};do
-            _optexclude=${_optexclude}' --exclude='$i;
+            compress_cmd=${compress_cmd}' --exclude='${i};
         done
 
-        compress_cmd="tar ${_optlistfile} ${_optcompress} ${__DSTFILENAME} ${_optexclude} --newer-mtime-than=${__TIMESTAMEFILE} ./ "
+        if [[ $(uname) =~ 'Darwin' ]];then
+            compress_cmd=${compress_cmd}" --newer-mtime-than=${__TIMESTAMEFILE} "
+        else
+            compress_cmd=${compress_cmd}" --newer=${__TIMESTAMEFILE} "
+        fi
+
+        compress_cmd=${compress_cmd}" ./ "
         [[ ${__SilentMode:-0} -eq 0 ]] && echo $compress_cmd
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
         #fix:修复文件时候，只有直属文件夹 mtime 有改动,导致压缩命令 --newer-mtime-than 出错
-        oldifs=IFS
-        find ./ -type d -newer ${__TIMESTAMEFILE} -print0 | while ISF= read -r -d '' file;do
-            cd "$file"
-            while true; do
-                touch ./ 
-                [[ $(pwd) = ${__SRCDIR} ]] && break;
-                cd ../
+        if [[ $(uname) =~ 'Darwin' ]];then
+            oldifs=IFS
+            find ./ -type d -newer ${__TIMESTAMEFILE} -print0 | while ISF= read -r -d '' file;do
+                cd "$file"
+                while true; do
+                    touch ./ 
+                    [[ $(pwd) = ${__SRCDIR} ]] && break;
+                    cd ../
+                done
             done
-        done
-        unset IFS
+            unset IFS
+        fi
 
         $compress_cmd
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
