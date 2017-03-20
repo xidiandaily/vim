@@ -60,7 +60,7 @@ export __ScriptGenerateStackTrace=0 # default: 1
 ## timestamp format for the message functions,
 ## will be passed to date(1).
 ## default: "%Y-%m-%d %H:%M:%S %:z"
-export __MsgTimestampFormat="[%Y-%m-%d %H:%M:%S %:z]" # with brackets
+export __MsgTimestampFormat="[%Y-%m-%d %H:%M:%S %Z]" # with brackets
 #export __MsgTimestampFormat="[%Y-%m-%d %H:%M:%S.%N %:z]" # with brackets and nanoseconds
 
 ## -- bashinator message printing settings --
@@ -159,6 +159,7 @@ export __LogDebug=1   # default: 0
 #export __LogTarget="file:/var/log/${__ScriptName}.log:overwrite,syslog:user"
 #export __LogTarget="file:/var/log/${__ScriptName}.log:append,file:/var/log/${__ScriptName}-current.log:overwrite"
 #export __LogTarget="file:/var/log/${__ScriptName}.$(date +"%Y%m%d-%H%M%S").log"
+export __LogTarget="file:${__ScriptPath}/${__ScriptName}.$(date +"%Y%m%d").log:append"
 
 ## -- bashinator message mailing settings --
 

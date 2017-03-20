@@ -831,7 +831,7 @@ function __msgLog() {
 
 	## 4. prefix message with script name + pid? (for file target only)
 	case ${__LogPrefixScriptNamePid:-1} in
-		1) fileTargetMessagePrefix="${__ScriptName:-${0##*/}}[${$}] ${fileTargetmessagePrefix}" ;;
+		1) fileTargetMessagePrefix="${__ScriptName:-${0##*/}}[${$}] ${fileTargetMessagePrefix}" ;;
 		*) ;;
 	esac
 
@@ -1555,3 +1555,109 @@ function __addPrefix() {
 	sed -e "s:^:${prefix}:g"
 
 } # __addPrefix()
+
+function __Download_Files()
+{
+	## ----- head -----
+	##
+	## DESCRIPTION:
+	##   Down load a files from web
+	##
+	## ARGUMENTS:
+	##   *: url (req): download url
+	##   *: name (req): download filename
+	##
+	## GLOBAL VARIABLES USED:
+	##   /
+	##
+
+    local URL=$1
+    local FileName=$2
+    if [ -s "${FileName}" ]; then
+        echo "${FileName} [found]"
+    else
+        echo "Notice: ${FileName} not found!!!download now..."
+        wget -c --progress=bar:force ${URL}
+    fi
+} #__Download_Files
+
+function __Color_Text()
+{
+    ## determine whether we can show colors
+    local -i colorTerm=0
+    case "${TERM}" in
+        rxvt*|screen*|xterm*) let colorTerm=1 ;;
+        *) let colorTerm=0 ;;
+    esac
+
+    if [[ ${colorTerm} -eq 0 ]];then
+        echo -e "$1"
+    else
+        echo -e "\033[$2m${1}\033[m"
+    fi
+}
+
+function __Echo_Red()
+{
+    echo $(__Color_Text "$1" "31")
+}
+
+function __Echo_Green()
+{
+    echo $(__Color_Text "$1" "32")
+}
+
+function __Echo_Yellow()
+{
+    echo $(__Color_Text "$1" "33")
+}
+
+function __Echo_Blue()
+{
+    echo $(__Color_Text "$1" "34")
+}
+
+function __Echo_Normal()
+{
+    echo ${1}
+
+}
+
+function __SelectExample()
+{
+    __Echo_Normal "==========================="
+
+    YourSelect="3"
+    __Echo_Yellow "You have 6 options for your Select."
+    __Echo_Normal "1: Option 1"
+    __Echo_Normal "2: Option 2"
+    __Echo_Blue   "3: Install PHP 5.4.45 (Default)"
+    __Echo_Normal "4: Option 4"
+    __Echo_Normal "5: Option 5"
+    __Echo_Normal "6: Option 6"
+    read -p "Enter your choice (1, 2, 3, 4, 5 or 6): " YourSelect
+
+    case "${YourSelect}" in
+        1)
+            echo "Option 1"
+            ;;
+        2)
+            echo "Option 2"
+            ;;
+        3)
+            echo "Option 3"
+            ;;
+        4)
+            echo "Option 4"
+            ;;
+        5)
+            echo "Option 5"
+            ;;
+        6)
+            echo "Option 6"
+            ;;
+        *)
+            echo "No input,Option 3"
+            YourSelect="3"
+    esac
+}

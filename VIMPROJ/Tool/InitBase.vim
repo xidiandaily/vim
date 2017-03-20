@@ -1,9 +1,11 @@
 "初始化基本代码
 function! TarModifyFile()
     if g:tarmodifyfile_path!=''
-        let choice=confirm("Upload file?", "&modefy\n&All\n&Cancel",1)
-        if choice==3
+        let choice=confirm("Upload file?", "&modefy\n&All\n&Option\n&Cancel",1)
+        if choice==4
             return
+        elseif choice==3
+            let s:choiceopt=' -c '
         elseif choice==2
             let s:choiceopt=' -a '
         else 

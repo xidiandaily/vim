@@ -8,7 +8,7 @@ function __init() {
 	## -- BEGIN YOUR OWN APPLICATION INITIALIZATION CODE HERE --
 
 	## parse command line options
-	while getopts 'hxszalf:e:' opt; do
+	while getopts 'hxszalcf:e:' opt; do
 		case "${opt}" in
             ## opton x debug mode
             x)
@@ -46,6 +46,11 @@ function __init() {
 			l)
 				export __LISTFILE=1
                 __msg debug "export __LISTFILE=${__LISTFILE}"
+				;;
+			## option c
+			c)
+				export __CHOICEMODE=1
+                __msg debug "export __CHOICEMODE=${__CHOICEMODE}"
 				;;
 			## option without a required argument
 			:)
@@ -110,6 +115,7 @@ function Help(){
     echo "   -z ;zlib compress "
     echo "   -l ;list tar file name"
     echo "   -s ;Silent Mode "
+    echo "   -c ;Choice Latest Packet Time"
     echo ""
     echo " [EXAMPLE]"
     echo "   ${__ScriptFile} -e '.svn .git' -f 'cscope.out tags' "
@@ -182,6 +188,50 @@ function InterActive(){
     esac
 }
 
+function Choice()
+{
+    if [[ ! -f ${__TIMESTAMEFILE} ]];then
+        __Echo_Red "${__TIMESTAMEFILE} not fond!"
+        return
+    fi
+
+    local oldifs=IFS
+    declare -a options
+    while ISF='\n' read  -r file;do
+        options+=("$file");
+    done <${__TIMESTAMEFILE}
+    unset IFS
+
+    __Echo_Normal "==========================="
+    __Echo_Yellow "选择你想要上传的时间点："
+    __Echo_Blue   "打包时间 0:当前时间"
+    local idx=0
+    while [[ $idx -lt ${#options[@]} ]];do
+        __Echo_Normal "打包时间 "$(($idx+1))":${options[$idx]}"
+        idx=$(($idx+1))
+    done
+
+    read -p "Enter your choice: " YourSelect
+    __msg debug "choice ${YourSelect}"
+
+    if [[ ${YourSelect} -gt 0 && ${YourSelect} -le ${#options[@]} ]];then
+        idx=$(($YourSelect-1));
+        local timestamp="${options[$idx]}"
+        timestamp=${timestamp:1:19}
+        local tst=${timestamp:2:2}
+        tst=${tst}${timestamp:5:2}
+        tst=${tst}${timestamp:8:2}
+        tst=${tst}${timestamp:11:2}
+        tst=${tst}${timestamp:14:2}
+        tst=${tst}.${timestamp:17:2}
+        touch -t "${tst}" ${__TIMESTAMEFILE}
+        __msg debug "choice timestamp:${timestamp}"
+    else
+        export __ChoiceExit=1;
+        __msg debug "export __ChoiceExit=1"
+    fi
+}
+
 function handle()
 {
     set -- $args
@@ -244,6 +294,10 @@ function handle()
         ${compress_cmd}
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     elif [[  ${__CompressMode} = 'newer' ]];then
+        if [[ ${__CHOICEMODE:-0} -eq 1 ]];then
+            Choice;
+            [[ ${__ChoiceExit:-0} -eq 1 ]] && return;
+        fi
 
         compress_cmd="tar "
         case  ${__LISTFILE:-0} in
@@ -277,7 +331,7 @@ function handle()
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
         #fix:修复文件时候，只有直属文件夹 mtime 有改动,导致压缩命令 --newer-mtime-than 出错
         if [[ $(uname) =~ 'Darwin' ]];then
-            oldifs=IFS
+            local oldifs=IFS
             find ./ -type d -newer ${__TIMESTAMEFILE} -print0 | while ISF= read -r -d '' file;do
                 cd "$file"
                 while true; do
@@ -293,6 +347,11 @@ function handle()
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     fi
     touch ${__TIMESTAMEFILE}
+
+    #choice mode
+    local timestamp=$(date "+[%Y-%m-%d %H:%M:%S %Z]" 2>/dev/null)
+    echo ${timestamp} >>  ${__TIMESTAMEFILE} 2>/dev/null
+    head -n 10 ${timestamp} >>  ${__TIMESTAMEFILE} 2>/dev/null
 
     [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME} > /tmp/tarnewfile.compressfilename
     __msg info "compress done!"
