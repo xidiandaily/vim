@@ -7,6 +7,9 @@ export __ScriptFile=${0##*/} # evaluates to "win2mnet.sh"
 export __ScriptName=${__ScriptFile%.sh} # evaluates to "win2mnet"
 export __ScriptPath=${0%/*}; __ScriptPath=${__ScriptPath%/} # evaluates to /path/to/win2mnet/win2mnet.sh
 export __ScriptHost=$(hostname -f) # evaluates to the current hostname, e.g. host.win2mnet.com
+if [[ $(uname) =~ CYGWIN* ]];then
+    export __ScriptPath=$(cygpath ${__ScriptPath})
+fi
 
 export __BashinatorConfig="${__BashinatorConfig:-${__ScriptPath}/bashinator.cfg.sh}"
 export __BashinatorLibrary="${__BashinatorLibrary:-${__ScriptPath}/bashinator.lib.0.sh}" # APIv0

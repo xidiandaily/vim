@@ -62,10 +62,26 @@ function! TarModifyFile()
         endif
 
         if(g:iswindows==1)
+            let s:compressfilename=$CYGWINPATH."/../tmp/tarnewfile.compressfilename"
+            call delete(s:compressfilename)
             silent execute cmd
         else
+            let s:compressfilename="/tmp/tarnewfile.compressfilename"
+            call delete(s:compressfilename)
             execute cmd
         endif
+        let s:count=0
+        while s:count<10
+            echo "等待打包，耗时(".s:count.")s"
+            let s:count+=1
+            sleep
+            if (filereadable(s:compressfilename))
+                for s:line in readfile(s:compressfilename,'',2)
+                    echo "打包成功:".s:line
+                endfor
+                break
+            endif
+        endwhile
     endif
 endfunction
 

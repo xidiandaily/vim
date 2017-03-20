@@ -256,6 +256,8 @@ function handle()
     __requireCommand 'find';
     __requireCommand 'tar';
     __requireCommand 'touch';
+    __requireCommand 'tail';
+    __requireCommand 'mv';    
 
     # interactive mode
     [[ ${__CompressMode} = 'newer' ]] && [[ ! -f ${__TIMESTAMEFILE} ]] && export __CompressMode='all';
@@ -264,6 +266,7 @@ function handle()
     beforepath=$(pwd)
     cd ${__SRCDIR};
     export __SRCDIR=$(pwd)
+    __msg debug "beforepath:${beforepath} __SRCDIR:${__SRCDIR} __DSTFILENAME:${__DSTFILENAME}"
 
     if [[ ${__CompressMode} = 'all' ]];then
 
@@ -350,8 +353,9 @@ function handle()
 
     #choice mode
     local timestamp=$(date "+[%Y-%m-%d %H:%M:%S %Z]" 2>/dev/null)
-    echo ${timestamp} >>  ${__TIMESTAMEFILE} 2>/dev/null
-    head -n 10 ${timestamp} >>  ${__TIMESTAMEFILE} 2>/dev/null
+    echo ${timestamp} >>  "${__TIMESTAMEFILE}" 2>/dev/null
+    tail -n 10 ${__TIMESTAMEFILE} > "${__TIMESTAMEFILE}.tmp"
+    mv "${__TIMESTAMEFILE}.tmp" "${__TIMESTAMEFILE}"
 
     [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME} > /tmp/tarnewfile.compressfilename
     __msg info "compress done!"
