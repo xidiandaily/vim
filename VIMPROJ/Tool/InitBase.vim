@@ -77,7 +77,8 @@ function! TarModifyFile()
             sleep
             if (filereadable(s:compressfilename))
                 for s:line in readfile(s:compressfilename,'',2)
-                    echo "打包成功:".s:line
+                    let @*=s:line
+                    echo "打包成功，已经将路径复制到粘贴板:".@*
                 endfor
                 break
             endif

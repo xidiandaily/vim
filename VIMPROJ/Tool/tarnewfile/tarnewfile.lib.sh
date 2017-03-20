@@ -243,7 +243,7 @@ function handle()
         export __DSTFILENAME=$(realpath $2)/${__SRCDIR##*\/}.tarnewfile.tar${__ZlibMode:+.gz}
     fi
 
-    if [[ $(uname) = 'CYGWIN_NT-6.1' ]];then
+    if [[ $(uname) =~ CYGWIN* ]];then
         export __SRCDIR=`cygpath ${__SRCDIR}`
         export __TMPDIR=`cygpath ${__TMPDIR}`
         export __DSTFILENAME=`cygpath ${__DSTFILENAME}`
@@ -357,7 +357,15 @@ function handle()
     tail -n 10 ${__TIMESTAMEFILE} > "${__TIMESTAMEFILE}.tmp"
     mv "${__TIMESTAMEFILE}.tmp" "${__TIMESTAMEFILE}"
 
-    [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME} > /tmp/tarnewfile.compressfilename
+    set -x
+    if [[ -f ${__DSTFILENAME} ]];then
+        if [[ $(uname) =~ CYGWIN* ]];then
+            echo $(cygpath -w ${__DSTFILENAME}) > /tmp/tarnewfile.compressfilename
+        else
+            echo ${__DSTFILENAME} > /tmp/tarnewfile.compressfilename
+        fi
+    fi
+    set +x
     __msg info "compress done!"
     cd ${beforepath};
 }

@@ -28,7 +28,7 @@ function! Main(pa)
         let g:tarmodifyfile_dstpath=''
         let g:tarmodifyfile_zlib=0      "是否压缩
         let g:tarmodifyfile_listfile=0  "是否打印文件列表
-        let g:tarmodifyfile_exclude=".svn .git *.md tags cscope.out *.swp *.tmp"
+        let g:tarmodifyfile_exclude=".svn .git *.md tags cscope.files cscope.out *.swp *.tmp *.log *.tar"
         call InitCPP()
         call InitLua()
         call InitPkm()
