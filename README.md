@@ -50,7 +50,7 @@ vim config, all file in one project
 6. ctags 和 cscope 在 ExtTool/ 中， 解压之后，将其所在的路径放到系统PATH中就可以了。（不要求在 vim 中，最好路径名称是英文）
 7. win系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/_vimrc``(修改``_vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
 8. Mac系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/.vimrc``(修改``.vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
-9. 初始化本项目以来的外部模块.在[your dir]/Vim 目录执行``git submodule update``
+9. 初始化本项目以来的外部模块.在[your dir]/Vim 目录执行``git submodule init && git submodule update``
 10. (非必须)字体可以在 Font/ 中，自己安装到系统Font就可以。
 11. (扩展功能)安装 cygwin， 安装 ssh 工具;
 12. (扩展功能)设置 ssh通讯,参考: [Linux(Centos)配置OpenSSH无密码登陆](http://sjsky.iteye.com/blog/1123184)
