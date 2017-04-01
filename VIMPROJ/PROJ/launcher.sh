@@ -56,7 +56,7 @@ Open_prj(){
     [[ ! -f "$__VIMPROJ/$p.vim" ]] && echo -e "${__RED}$p not found ${__NC}" && exit;
     echo "$p" >> $__PRIORITY_FILE;
     if [[ $__OSTYPE = "cygwin" ]];then
-        run env HOME=/cygdrive/c/Users/lawrencechi/ VIMPROJ=D:/Vim/VIMPROJ CYGWINPATH=C:/cygwin64/bin gvim -wait -S "$__VIMPROJ/$p.vim" &
+        run env HOME=$(cygpath -w $USERPROFILE) VIMPROJ=$(cygpath -w $VIMPROJ) CYGWINPATH=$(cygpath -w $CYGWINPATH) gvim -wait -S "$(cygpath -w $__VIMPROJ/$p.vim)" &
         sleep 10;
     elif [[ $__OSTYPE =~ $reg ]];then
         /Applications/MacVim.app/Contents/MacOS/Vim -g -S "$__VIMPROJ/$p.vim";
