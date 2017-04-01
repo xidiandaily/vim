@@ -294,6 +294,7 @@ function handle()
         compress_cmd=${compress_cmd}" ./ "
         [[ ${__SilentMode:-0} -eq 0 ]] && echo ${compress_cmd}
         [[ -f ${__DSTFILENAME} ]] && rm -f ${__DSTFILENAME}
+        __msg debug "compress_cmd:${compress_cmd}"
         ${compress_cmd}
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     elif [[  ${__CompressMode} = 'newer' ]];then
@@ -346,6 +347,7 @@ function handle()
             unset IFS
         fi
 
+        __msg debug "compress_cmd:${compress_cmd}"
         $compress_cmd
         [[ -f ${__DSTFILENAME} ]] && echo ${__DSTFILENAME}
     fi
