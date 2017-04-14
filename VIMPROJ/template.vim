@@ -11,6 +11,7 @@ function! InitWorkSpace()
     "let g:proj_type="cpp"
     "let g:proj_type="pkm"
     "let g:proj_type="php"
+    "let g:tarmodifyfile_path="$Your Comparess Project_ROOTDIR"
 
     "let g:SSHRemoteBaseDir="/usr/server/Mahjong.gb/Borrow/Compile"
     "let g:SSHUSER="lawrenceChi@192.168.200.144"
