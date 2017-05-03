@@ -113,6 +113,7 @@ set smarttab      "use tabs at the start of a line, spaces elsewhere
 set expandtab
 "set tw=80    "宽度为80时自动换行
 "set fo+=Mm   "中文宽度80时也自动换行
+set colorcolumn=80
 colorscheme lucius
 au BufNewFile,BufRead *.t2t set ft=txt2tags
 " SystemTap scripts
