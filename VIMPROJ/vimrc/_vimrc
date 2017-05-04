@@ -189,7 +189,7 @@ source $VIMPROJ/vimrc/option.vim
 "marvim
 " to change the macro storage location use the following 
 let marvim_store = $VIMPROJ."/../vimfiles/bundle/marvim/examples"
-"let marvim_find_key = '<Space>' " change find key from <F2> to 'space'
+let marvim_find_key = '<C-S-m>' " change find key from <F2> to 'space'
 "let marvim_store_key = 'ms'     " change store key from <F3> to 'ms'
 "let marvim_register = 'c'       " change used register from 'q' to 'c'
 let marvim_prefix = 0           " disable default syntax based prefix
