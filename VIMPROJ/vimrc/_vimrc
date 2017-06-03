@@ -1,11 +1,11 @@
 " ========================================================================
-"¹«ËïĞ¡Áú(chiyl) µÄ vimrc
-"ÎÒµÄÁªÏµ·½Ê½:xidiandaily (AT) gmail (DOT) COM
+"å…¬å­™å°é¾™(chiyl) çš„ vimrc
+"æˆ‘çš„è”ç³»æ–¹å¼:xidiandaily (AT) gmail (DOT) COM
 "
 "
-" Ğí¿É£ºGPLv3
+" è®¸å¯ï¼šGPLv3
 " ========================================================================
-" ÆäËûÎÄ¼ş
+" å…¶ä»–æ–‡ä»¶
 runtime vimrc_example.vim
 runtime macros/matchit.vim
 
@@ -18,7 +18,7 @@ else
     let g:iswindows=0
 endif
 
-"¶¨ÒåÄ¬ÈÏµÄµ÷ÓÃº¯Êı
+"å®šä¹‰é»˜è®¤çš„è°ƒç”¨å‡½æ•°
 function UPFILE_default()
     echohl WarningMsg | echom "upload file tool has not build for this project type ;-0" | echohl None
     return "error"
@@ -37,7 +37,7 @@ endfunction
 function SetProjType()
     let choice=confirm("Set Project Type", "&cpp\n&pkm\n&php\n&&Cancel",4)
     if choice==1
-        "³õÊ¼»¯CPP»·¾³
+        "åˆå§‹åŒ–CPPç¯å¢ƒ
         source  $VIMPROJ/Tool/InitCPP.vim
         let g:proj_type="cpp"
         call InitCPP()
@@ -46,7 +46,7 @@ function SetProjType()
         let s:path=getcwd()
         call SwitchDir(s:path)
     elseif choice==2
-        "³õÊ¼»¯PKM»·¾³
+        "åˆå§‹åŒ–PKMç¯å¢ƒ
         source  $VIMPROJ/Tool/InitPkm.vim
         let g:proj_type="pkm"
         call InitPkm()
@@ -65,8 +65,8 @@ function SetProjType()
     endif
 endfunction
 
-"¶¨ÒåÈ¡ÓÃ×Ô¶¨Òåº¯Êı£¨¸ù¾İÏîÄ¿ÀàĞÍ×ö³öÇø±ğ£©Ãû³Æ½Ó¿Ú
-"¶¨ÒåÏîÄ¿ÅäÖÃÊ±ºòĞèÒªÊ¹ÓÃµÄ£¨È«¾Ö£©±äÁ¿
+"å®šä¹‰å–ç”¨è‡ªå®šä¹‰å‡½æ•°ï¼ˆæ ¹æ®é¡¹ç›®ç±»å‹åšå‡ºåŒºåˆ«ï¼‰åç§°æ¥å£
+"å®šä¹‰é¡¹ç›®é…ç½®æ—¶å€™éœ€è¦ä½¿ç”¨çš„ï¼ˆå…¨å±€ï¼‰å˜é‡
 let g:proj_type="default"
 let g:chiylown_func_dict={}
 function g:chiylown_func_dict.getprojtypefunc(functype) dict
@@ -85,34 +85,34 @@ let g:chiylown_func_dict["UPFILE"]={"default":"UPFILE_default"}
 let g:chiylown_func_dict["CSTAG"]={"default":"CSTAG_default"}
 let g:chiylown_func_dict["ASTYLE"]={"default":"ASTYLE_default"}
 
-"½ûÓÃvi¼æÈİÄ£Ê½£¨Ô­Ê¼µÄvi¹¦ÄÜÌ«ÉÙÁË£¬Ã»±ØÒª¿¼ÂÇ¼æÈİ£© 
+"ç¦ç”¨viå…¼å®¹æ¨¡å¼ï¼ˆåŸå§‹çš„viåŠŸèƒ½å¤ªå°‘äº†ï¼Œæ²¡å¿…è¦è€ƒè™‘å…¼å®¹ï¼‰ 
 set nocompatible
-""¿ªÆôÎÄ¼ş¼ì²â,Ê¹µÃ snipMate ÄÜ¹»ÕıÈ·¼ÓÔØ
+""å¼€å¯æ–‡ä»¶æ£€æµ‹,ä½¿å¾— snipMate èƒ½å¤Ÿæ­£ç¡®åŠ è½½
 :filetype on
 
-"setÏà¹Ø
+"setç›¸å…³
 set nobackup
-set rnu "×Ô¶¯ÏÔÊ¾ĞĞºÅ
-set nowrap "²»×Ô¶¯»»ĞĞ
-set noundofile "²»²úÉú un~ ÎÄ¼ş
-set sw=4 "½«shiftwidthÉèÎª4
-set ts=4 "½«tabstopÉèÎª4
-"×ÖÌåµÄÉèÖÃ
+set rnu "è‡ªåŠ¨æ˜¾ç¤ºè¡Œå·
+set nowrap "ä¸è‡ªåŠ¨æ¢è¡Œ
+set noundofile "ä¸äº§ç”Ÿ un~ æ–‡ä»¶
+set sw=4 "å°†shiftwidthè®¾ä¸º4
+set ts=4 "å°†tabstopè®¾ä¸º4
+"å­—ä½“çš„è®¾ç½®
 if(g:iswindows==1)
-    set guifont=BitstreamVeraSansMono_NF:h9:cANSI "¼Ç×¡¿Õ¸ñÓÃÏÂ»®Ïß´úÌæÅ¶
-    "set gfw=Ó×Ô²:h10:cGB2312
+    set guifont=BitstreamVeraSansMono_NF:h9:cANSI "è®°ä½ç©ºæ ¼ç”¨ä¸‹åˆ’çº¿ä»£æ›¿å“¦
+    "set gfw=å¹¼åœ†:h10:cGB2312
 else 
     set guifont=Bitstream_Vera_Sans_Mono_Nerd_Font_Complete:h14
 endif
 set shiftwidth=4 
 set softtabstop=4 
-set tabstop=4 "ÈÃÒ»¸ötabµÈÓÚ4¸ö¿Õ¸ñ
+set tabstop=4 "è®©ä¸€ä¸ªtabç­‰äº4ä¸ªç©ºæ ¼
 set autoindent    "always set autoindenting on
 set smartindent   "set smart indent
 set smarttab      "use tabs at the start of a line, spaces elsewhere
 set expandtab
-"set tw=80    "¿í¶ÈÎª80Ê±×Ô¶¯»»ĞĞ
-"set fo+=Mm   "ÖĞÎÄ¿í¶È80Ê±Ò²×Ô¶¯»»ĞĞ
+"set tw=80    "å®½åº¦ä¸º80æ—¶è‡ªåŠ¨æ¢è¡Œ
+"set fo+=Mm   "ä¸­æ–‡å®½åº¦80æ—¶ä¹Ÿè‡ªåŠ¨æ¢è¡Œ
 set colorcolumn=80
 colorscheme lucius
 au BufNewFile,BufRead *.t2t set ft=txt2tags
@@ -122,23 +122,23 @@ set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
 set encoding=utf-8
 set fenc=utf-8
 language message zh_CN.utf-8
-"½â¾ö²Ëµ¥ÂÒÂë 
+"è§£å†³èœå•ä¹±ç  
 source $VIMRUNTIME/delmenu.vim 
 source $VIMRUNTIME/menu.vim
 
-"vim 8.0 ¸ü¸ÄÁË default.vimµÄ so ÅäÖÃ£¬µ¼ÖÂ zt/zb ²»µ½µ×²»µ½¶¥,ĞŞ¸´Ö®
+"vim 8.0 æ›´æ”¹äº† default.vimçš„ so é…ç½®ï¼Œå¯¼è‡´ zt/zb ä¸åˆ°åº•ä¸åˆ°é¡¶,ä¿®å¤ä¹‹
 "http://stackoverflow.com/questions/40264417/cursor-does-not-go-to-top-or-bottom-of-window-in-gvim-8
 set scrolloff=0
 
-"TlistÉèÖÃ
-let Tlist_Ctags_Cmd='ctags' "ÒòÎªÎÒÃÇ·ÅÔÚ»·¾³±äÁ¿Àï£¬ËùÒÔ¿ÉÒÔÖ±½ÓÖ´ĞĞ
-let Tlist_Use_Right_Window=0 "ÈÃ´°¿ÚÏÔÊ¾ÔÚÓÒ±ß£¬0µÄ»°¾ÍÊÇÏÔÊ¾ÔÚ×ó±ß
-let Tlist_Show_One_File=0 "ÈÃtaglist¿ÉÒÔÍ¬Ê±Õ¹Ê¾¶à¸öÎÄ¼şµÄº¯ÊıÁĞ±í£¬Èç¹ûÏëÖ»ÓĞ1¸ö£¬ÉèÖÃÎª1
-let Tlist_File_Fold_Auto_Close=1 "·Çµ±Ç°ÎÄ¼ş£¬º¯ÊıÁĞ±íÕÛµşÒş²Ø
-let Tlist_Exit_OnlyWindow=1 "µ±taglistÊÇ×îºóÒ»¸ö·Ö¸î´°¿ÚÊ±£¬×Ô¶¯ÍÆ³övim
-let Tlist_Process_File_Always=0 "²»ÊÇÒ»Ö±ÊµÊ±¸üĞÂtags£¬ÒòÎªÃ»ÓĞ±ØÒª
+"Tlistè®¾ç½®
+let Tlist_Ctags_Cmd='ctags' "å› ä¸ºæˆ‘ä»¬æ”¾åœ¨ç¯å¢ƒå˜é‡é‡Œï¼Œæ‰€ä»¥å¯ä»¥ç›´æ¥æ‰§è¡Œ
+let Tlist_Use_Right_Window=0 "è®©çª—å£æ˜¾ç¤ºåœ¨å³è¾¹ï¼Œ0çš„è¯å°±æ˜¯æ˜¾ç¤ºåœ¨å·¦è¾¹
+let Tlist_Show_One_File=0 "è®©taglistå¯ä»¥åŒæ—¶å±•ç¤ºå¤šä¸ªæ–‡ä»¶çš„å‡½æ•°åˆ—è¡¨ï¼Œå¦‚æœæƒ³åªæœ‰1ä¸ªï¼Œè®¾ç½®ä¸º1
+let Tlist_File_Fold_Auto_Close=1 "éå½“å‰æ–‡ä»¶ï¼Œå‡½æ•°åˆ—è¡¨æŠ˜å éšè—
+let Tlist_Exit_OnlyWindow=1 "å½“taglistæ˜¯æœ€åä¸€ä¸ªåˆ†å‰²çª—å£æ—¶ï¼Œè‡ªåŠ¨æ¨å‡ºvim
+let Tlist_Process_File_Always=0 "ä¸æ˜¯ä¸€ç›´å®æ—¶æ›´æ–°tagsï¼Œå› ä¸ºæ²¡æœ‰å¿…è¦
 let Tlist_Inc_Winwidth=0
-"ÅäÖÃNERDTree
+"é…ç½®NERDTree
 "let NERDChristmasTree=1						" more colorful
 let g:NERDTreeWinPos="right"					" put NERDTree at right
 let g:NERDTreeWinSize=45						" set size
@@ -151,15 +151,15 @@ set ambiwidth=double
 
 
 
-"ÅäÖÃC.vim doxygen enable
+"é…ç½®C.vim doxygen enable
 let g:C_UseTool_doxygen = 'yes'
 
-"ÅäÖÃpdv(PHP Documentor for VIM)µÄÊôĞÔ
+"é…ç½®pdv(PHP Documentor for VIM)çš„å±æ€§
 let g:pdv_template_dir = $VIM."/vimfiles/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
-"mapÏà¹Ø
-"¸üĞÂTAG
+"mapç›¸å…³
+"æ›´æ–°TAG
 map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
 map <C-F8> :set encoding=cp936 \| language message cp936 \| set fenc=cp936<CR>
 map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])<CR>
@@ -167,8 +167,8 @@ map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])
 map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
 map <F5> :call SetProjType() <CR>
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
-"¸üĞÂº¯ÊıÁĞ±í
-map Tl :silent! Tlist<CR> "°´ÏÂF3¾Í¿ÉÒÔºô³öÁË
+"æ›´æ–°å‡½æ•°åˆ—è¡¨
+map Tl :silent! Tlist<CR> "æŒ‰ä¸‹F3å°±å¯ä»¥å‘¼å‡ºäº†
 map NT :NERDTree<CR>
 "easy-aligin
 xmap ga <Plug>(EasyAlign)
@@ -180,7 +180,7 @@ augroup PrevimSettings
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 if(has("mac"))
-    "ÒòÎªMAC ÏÂChrome½ûÓÃÁË file://Ğ­ÒéÏÂ¼ÓÔØ js µÄÇëÇó£¬Ö»ÄÜ¸Ä³ÉSafari
+    "å› ä¸ºMAC ä¸‹Chromeç¦ç”¨äº† file://åè®®ä¸‹åŠ è½½ js çš„è¯·æ±‚ï¼Œåªèƒ½æ”¹æˆSafari
     let g:previm_open_cmd = 'open -a Safari'
 endif
 
@@ -189,14 +189,14 @@ source $VIMPROJ/vimrc/option.vim
 "marvim
 " to change the macro storage location use the following 
 let marvim_store = $VIMPROJ."/../vimfiles/bundle/marvim/examples"
-let marvim_find_key = '<C-S-m>' " change find key from <F2> to 'space'
+"let marvim_find_key = '<C-S-m>' " change find key from <F2> to 'space'
 "let marvim_store_key = 'ms'     " change store key from <F3> to 'ms'
 "let marvim_register = 'c'       " change used register from 'q' to 'c'
 let marvim_prefix = 0           " disable default syntax based prefix
 
 source $VIMPROJ/../vimfiles/bundle/marvim/marvim.vim   " omit if marvim.vim is in the plugin dir
 
-"×Ô¶¯ÃüÁî
-"ÆäËûÃüÁî
-"×îºó
+"è‡ªåŠ¨å‘½ä»¤
+"å…¶ä»–å‘½ä»¤
+"æœ€å
 call pathogen#infect()
