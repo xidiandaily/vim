@@ -149,7 +149,9 @@ let g:NERDTreeShowLineNumbers=0				" show line number
 "autocmd FileType nerdtree setlocal nolist
 set ambiwidth=double
 
-
+"visincr
+"将vimball的home设置在 vimfiles里面，用git管理起来，免得每次都要``so %``
+let g:vimball_home=$VIMPROJ."/../vimfiles/"
 
 "配置C.vim doxygen enable
 let g:C_UseTool_doxygen = 'yes'
