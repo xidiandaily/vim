@@ -47,7 +47,7 @@ function CSTAG_cpp()
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
-            let fileter="-o -name '*.c' "
+            let fileter=" -name '*.c' "
             let fileter.="-o -name '*.cpp' "
             let fileter.="-o -name '*.h' "
             let fileter.="-o -name '*.hpp' "
