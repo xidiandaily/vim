@@ -176,6 +176,11 @@ map NT :NERDTree<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+"commanline-edit
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+
 "Previm
 augroup PrevimSettings
     autocmd!

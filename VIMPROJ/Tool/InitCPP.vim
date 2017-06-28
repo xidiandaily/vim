@@ -47,9 +47,27 @@ function CSTAG_cpp()
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            let fileter="-o -name '*.c' "
+            let fileter.="-o -name '*.cpp' "
+            let fileter.="-o -name '*.h' "
+            let fileter.="-o -name '*.hpp' "
+            let fileter.="-o -name '*.java' "
+            let fileter.="-o -name '*.cs' "
+            let fileter.="-o -name '*.hxx' "
+            let fileter.="-o -name '*.cxx' "
+            let fileter.="-o -name '*.cc' "
+            silent! execute "!find . ".fileter." > cscope.files"
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.hpp,*.java,*.cs,*.hxx,*.cxx,*.cc | findstr /v \"cpp~\" >> cscope.files"
+            let fileter="*.c,"
+            let fileter.="*.cpp,"
+            let fileter.="*.h,"
+            let fileter.="*.hpp,"
+            let fileter.="*.java,"
+            let fileter.="*.cs,"
+            let fileter.="*.hxx,"
+            let fileter.="*.cxx,"
+            let fileter.="*.cc,"
+            silent! execute "!dir /s/b ".fileter." | findstr /v \"cpp~\" >> cscope.files"
         endif
         silent! execute "!cscope -b"
         silent! execute "normal :"
