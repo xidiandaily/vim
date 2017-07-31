@@ -1,0 +1,11 @@
+rz -bye && tar -v -xf swoole.tarnewfile.tar |grep -v '\/$' && rm -f swoole.tarnewfile.tar
+./configure --with-php-config=/usr/local/php55/bin/php-config --enable-coroutine --enable-async-redis 
+
+
+#build 
+php './configure' '--prefix=/usr/local/php55' '--with-config-file-path=/usr/local/php55/etc' '--enable-fpm' '--with-fpm-user=www' '--with-fpm-group=www' '--with-mysql=mysqlnd' '--with-mysqli=mysqlnd' '--with-pdo-mysql=mysqlnd' '--with-iconv-dir=' '--with-freetype-dir=/usr/local/freetype' '--with-jpeg-dir' '--with-png-dir' '--with-zlib' '--with-libxml-dir=/usr' '--enable-xml' '--disable-rpath' '--enable-bcmath' '--enable-shmop' '--enable-sysvsem' '--enable-inline-optimization' '--with-curl' '--enable-mbregex' '--enable-mbstring' '--with-mcrypt' '--enable-ftp' '--with-gd' '--enable-gd-native-ttf' '--with-openssl' '--with-mhash' '--enable-pcntl' '--enable-sockets' '--with-xmlrpc' '--enable-zip' '--enable-soap' '--with-gettext' '--disable-fileinfo' '--enable-opcache' '--enable-intl' '--with-xsl' '--enable-debug ' '--enable-maintainer-zts'
+make ZEND_EXTRA_LIBS='-liconv'
+
+rz -bye && tar -v -xf phpframe.tarnewfile.tar |grep -v '\/$' && rm -f phpframe.tarnewfile.tar
+
+rz -bye && tar -v -xf PHP-X.tarnewfile.tar |grep -v '\/$' && rm PHP-X.tarnewfile.tar

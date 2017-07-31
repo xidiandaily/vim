@@ -1,0 +1,1 @@
+rz -bye && tar -v -xf swoole.tarnewfile.tar |grep -v '\/$' && rm -f swoole.tarnewfile.tar
