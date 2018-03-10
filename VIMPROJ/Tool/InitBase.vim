@@ -123,7 +123,7 @@ function! OpenLatestModifyFile()
             let a:tips=a:tips."  .  "
             sleep 1
         endwhile
-        source .openfile.tmp
+        "source .openfile.tmp
     endif
 endfunction
 
