@@ -25,3 +25,9 @@
 [submodule "vimfiles/bundle/ultisnips"]
 	path = vimfiles/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "vimfiles/bundle/jedi-vim"]
+	path = vimfiles/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vimfiles/bundle/python-mode"]
+	path = vimfiles/bundle/python-mode
+	url = https://github.com/python-mode/python-mode.git
