@@ -1,22 +1,77 @@
 "初始化基本代码
+function! DoTarModifyFile(root,iswindows,path,choice)
+python << EOF
+import os
+import time
+import re
+import tarfile
+import sys
+import vim
+
+escape_reg=["\.git","\.svn",".last_update_file"]
+
+a_root      = vim.eval("a:root")
+a_iswindows = int(vim.eval("a:iswindows"))
+a_path      = vim.eval("a:path")
+a_choice    = vim.eval("a:choice")
+
+if a_iswindows==1:
+    base_dir=a_path.replace("/","\\")
+else:
+    base_dir=a_path
+
+compres_dir=os.path.join(base_dir,"..")
+last_update_file=os.path.join(a_root,".last_modify_file")
+last_tstamp=0
+if int(a_choice)==1 and os.path.exists(last_update_file):
+    last_tstamp=os.path.getmtime(last_update_file)
+
+result=[]
+for root, dirs, files in os.walk(base_dir):
+    for file in files:
+        filename=os.path.join(root,file)
+        bEscape=True
+        for regex in escape_reg:
+            m=re.search(regex,filename)
+            if m:
+                bEscape=False
+        if not bEscape:
+            continue
+        cur=os.path.getmtime(filename)
+        if cur>=last_tstamp:
+            result.append(filename)
+            print("{}.{}".format(len(result),filename))
+if len(result)==0:
+    print("modify file empty, exit!")
+else:
+    dir=os.path.split(a_root)
+
+    # tar new file
+    tarfilename=os.path.join(compres_dir,dir[1]+".tar")
+    tar=tarfile.open(tarfilename,"w")
+    for r in result:
+        tar.add(r,arcname=os.path.relpath(r,base_dir))
+    tar.close()
+
+    # update last_update_file
+    with open(last_update_file,"w") as myfile:
+        myfile.write(str(len(result)))
+        myfile.close()
+    cmd=":let @*='"+tarfilename+"'"
+    vim.command(cmd)
+
+    print('')
+    print(30*'-')
+    print("打包文件数  :"+str(len(result)))
+    print("打包文件路径:\'"+tarfilename+"\' 已经复制到粘贴板!!")
+EOF
+endfunction
+
 function! TarModifyFile()
     if g:tarmodifyfile_path!=''
-        let choice=confirm("Upload file?", "&modefy\n&All\n&Option\n&Cancel",1)
-        if choice==4
+        let choice=confirm("Upload file?", "&modefy\n&All\n&&Cancel",1)
+        if choice==3
             return
-        elseif choice==3
-            let s:choiceopt=' -c '
-        elseif choice==2
-            let s:choiceopt=' -a '
-        else 
-            let s:choiceopt=''
-        endif
-
-        let vim_proj=$VIMPROJ."/Tool"
-        if g:iswindows==1 
-            let cygwin_proj=$CYGWINPATH."/mintty.exe"
-        else
-            let cygwin_proj='bash'
         endif
 
         if g:tarmodifyfile_zlib==0
@@ -25,64 +80,13 @@ function! TarModifyFile()
             let s:zlibopt=' -z '
         endif
 
-        if g:tarmodifyfile_listfile==0
-            let s:listopt=''
-        else
-            let s:listopt=' -l '
-        endif
-
         if isdirectory(g:tarmodifyfile_path)
         else
             echo "Failed!!! is not directory:".g:tarmodifyfile_path
             return
         endif
 
-        if isdirectory(g:tarmodifyfile_dstpath)
-        else
-            let g:tarmodifyfile_dstpath=g:tarmodifyfile_path."/../"
-        endif
-
-        if g:tarmodifyfile_exclude!=''
-            let cmd= "! ".cygwin_proj." ".vim_proj
-            let cmd= cmd."/tarnewfile/tarnewfile.sh -s"
-            let cmd= cmd.s:zlibopt
-            let cmd= cmd.s:choiceopt
-            let cmd= cmd.s:listopt
-            let cmd= cmd." -e \'".g:tarmodifyfile_exclude."\' "
-            let cmd= cmd.g:tarmodifyfile_path." "
-            let cmd= cmd.g:tarmodifyfile_dstpath
-        else
-            let cmd= "! ".cygwin_proj." ".vim_proj
-            let cmd= cmd."/tarnewfile/tarnewfile.sh -s"
-            let cmd= cmd.s:choiceopt
-            let cmd= cmd.s:zlibopt
-            let cmd= cmd.s:listopt
-            let cmd= cmd.g:tarmodifyfile_path." "
-            let cmd= cmd.g:tarmodifyfile_dstpath
-        endif
-
-        if(g:iswindows==1)
-            let s:compressfilename=$CYGWINPATH."/../tmp/tarnewfile.compressfilename"
-            call delete(s:compressfilename)
-            silent execute cmd
-        else
-            let s:compressfilename="/tmp/tarnewfile.compressfilename"
-            call delete(s:compressfilename)
-            execute cmd
-        endif
-        let s:count=0
-        while s:count<10
-            echo "等待打包，耗时(".s:count.")s"
-            let s:count+=1
-            sleep
-            if (filereadable(s:compressfilename))
-                for s:line in readfile(s:compressfilename,'',2)
-                    let @*=s:line
-                    echo "打包成功，已经将路径复制到粘贴板:".@*
-                endfor
-                break
-            endif
-        endwhile
+        call DoTarModifyFile(getcwd(),g:iswindows,g:tarmodifyfile_path,choice)
     endif
 endfunction
 
