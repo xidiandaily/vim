@@ -29,6 +29,7 @@ function! Main(pa)
         let g:tarmodifyfile_zlib=0      "是否压缩
         let g:tarmodifyfile_listfile=0  "是否打印文件列表
         let g:tarmodifyfile_exclude=".svn .git *.md tags cscope.files cscope.out *.swp *.tmp *.log *.tar .last_modify_file"
+        call InitWorkSpace()
         call InitCPP()
         call InitLua()
         call InitPkm()
@@ -37,8 +38,7 @@ function! Main(pa)
         call OpenLatestModifyFile(getcwd(),g:iswindows)
         ":silent! Tlist
         :NERDTree
-        :set rnu
-        call InitWorkSpace()
+        ":set rnu
         :set rnu
         if filereadable("cscope.out")
             silent! execute "cs add cscope.out"
