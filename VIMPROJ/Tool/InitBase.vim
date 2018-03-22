@@ -8,7 +8,7 @@ import tarfile
 import sys
 import vim
 
-escape_reg=["\.git","\.svn",".last_update_file"]
+escape_reg=["\.git","\.svn",".last_modify_file"]
 
 a_root      = vim.eval("a:root")
 a_iswindows = int(vim.eval("a:iswindows"))
@@ -69,8 +69,13 @@ endfunction
 
 function! TarModifyFile()
     if g:tarmodifyfile_path!=''
-        let choice=confirm("Upload file?", "&modefy\n&All\n&&Cancel",1)
+        let choice=confirm("Upload file?", "&modefy\n&All\n&OpenLatestFile\n&Cancel",1)
+        if choice==4
+            return
+        endif
+
         if choice==3
+            call OpenLatestModifyFile(getcwd(),g:iswindows)
             return
         endif
 
@@ -80,55 +85,75 @@ function! TarModifyFile()
             let s:zlibopt=' -z '
         endif
 
-        if isdirectory(g:tarmodifyfile_path)
-        else
-            echo "Failed!!! is not directory:".g:tarmodifyfile_path
-            return
-        endif
+        "if isdirectory(g:tarmodifyfile_path)
+        "else
+        "    echo "Failed!!! is not directory:".g:tarmodifyfile_path
+        "    return
+        "endif
 
         call DoTarModifyFile(getcwd(),g:iswindows,g:tarmodifyfile_path,choice)
     endif
 endfunction
 
 function! SaveLatestModifyFileName(is_update)
-    if(g:proj_type!="cpp" && g:proj_type!="php" && g:proj_type!="pkm")
         return
-    endif
-
-    if(a:is_update==1)
-        let g:chiyl_last_modify_file_name=strpart(expand("%:p"),strlen(getcwd())+1)
-    else
-        call writefile([g:chiyl_last_modify_file_name], ".last_modify_file");
-    endif
 endfunction
 
-function! OpenLatestModifyFile()
-    "TODO:在 iOA监控下，打开很慢，后面重构成 python的实现
-    " "默认打开最近修改的文件
-    " let vim_proj=$VIMPROJ."/Tool"
-    " let cygwin_proj=$CYGWINPATH."/mintty.exe"
-    " call delete(".openfile.tmp")
-    " let a:tips="wait for update last modify file:.openfile.tmp "
-    " if(g:iswindows==1)
-    "     let cmd= "! ".cygwin_proj." ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-    "     silent! execute cmd 
+function! OpenLatestModifyFile(root,iswindows)
+python << EOF
+import os
+import time
+import re
+import tarfile
+import sys
+import vim
 
-    "     while(!filereadable(".openfile.tmp"))
-    "         echo a:tips
-    "         let a:tips=a:tips."  .  "
-    "         sleep 1
-    "     endwhile
+escape_reg=["\.git","\.svn"]
 
-    "     source .openfile.tmp
-    " else
-    "     let cmd= "!sh ".vim_proj."/get_the_latest_cppproj_modifty_file.sh"
-    "     silent! execute cmd 
-    "     while(!filereadable(".openfile.tmp"))
-    "         echo a:tips
-    "         let a:tips=a:tips."  .  "
-    "         sleep 1
-    "     endwhile
-    "     "source .openfile.tmp
-    " endif
+g_proj_type = vim.eval("g:proj_type")
+a_root      = vim.eval("a:root")
+a_iswindows = vim.eval("a:iswindows")
+
+if a_iswindows==1:
+    base_dir=a_root.replace("/","\\")
+else:
+    base_dir=a_root
+
+include_reg=[]
+if g_proj_type=="cpp":
+    include_reg=["\.cc$","\.hpp$","\.h$","\.cpp$"]
+
+cur_tstamp=time.time()
+max_tstamp=0
+last_modify_filename=''
+for root, dirs, files in os.walk(base_dir):
+    for file in files:
+        filename=os.path.join(root,file)
+        bEscape=True
+        for regex in escape_reg:
+            m=re.search(regex,filename)
+            if m:
+                bEscape=False
+        if not bEscape:
+            continue
+
+        bEscape=True
+        if len(include_reg)>0:
+            for regex in include_reg:
+                m=re.search(regex,filename)
+                if m:
+                    bEscape=False
+        if bEscape:
+            continue
+        cur=os.path.getmtime(filename)
+        if abs(cur-cur_tstamp) <abs(max_tstamp-cur_tstamp):
+            max_tstamp=cur
+            last_modify_filename=os.path.join(root,file)
+if not os.path.exists(last_modify_filename):
+    print("{} filename not found!".format(last_modify_filename))
+else:
+    cmd=":silent e "+last_modify_filename
+    vim.command(cmd)
+EOF
 endfunction
 

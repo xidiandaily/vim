@@ -34,10 +34,10 @@ function! Main(pa)
         call InitPkm()
         call InitPHP()
         call SwitchDir(s:path)
+        call OpenLatestModifyFile(getcwd(),g:iswindows)
         ":silent! Tlist
         :NERDTree
         :set rnu
-        call OpenLatestModifyFile()
         call InitWorkSpace()
         :set rnu
         if filereadable("cscope.out")
