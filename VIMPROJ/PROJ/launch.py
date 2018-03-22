@@ -128,9 +128,8 @@ def open_proj(fname):
     with open(PRIORITY_FILE,"w") as myfile:
         for i in reversed(result):
             myfile.write(i)
-    cmd = os.environ.get('EDITOR', 'gvim') + ' -g -S ' + os.path.join(PROJ_DIR,fname)
     #subprocess.call(cmd, shell=True)
-    process=subprocess.Popen(cmd)
+    process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-S',os.path.join(PROJ_DIR,fname)])
     sys.exit()
 
 def del_proj(fname):
