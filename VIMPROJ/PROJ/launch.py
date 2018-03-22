@@ -129,7 +129,9 @@ def open_proj(fname):
         for i in reversed(result):
             myfile.write(i)
     cmd = os.environ.get('EDITOR', 'gvim') + ' -g -S ' + os.path.join(PROJ_DIR,fname)
-    subprocess.call(cmd, shell=True)
+    #subprocess.call(cmd, shell=True)
+    process=subprocess.Popen(cmd)
+    sys.exit()
 
 def del_proj(fname):
     if not check_proj_exists(fname):
