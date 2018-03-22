@@ -76,15 +76,20 @@ def choice_proj(tip):
             result.append("")
             idx+=1
         idx=0
+        defaulttext=""
         while idx < itemCnt:
             text="{:<50}{:<50}{:<50}".format(result[idx],result[idx+1],result[idx+2])
+            if defaulttext=="":
+                defaulttext=result[idx]
             idx=idx+3
             print(text)
         print(30*"-")
         if bWrongNum!=-1:
                 termcolor.cprint("ID:'{}' not found,retry agin".format(bWrongNum),color="red")
-        sys.stdout.write(termcolor.colored("input proj name OR id OR exit:",color="blue"))
+        sys.stdout.write("input name OR id OR exit (default {}):".format(termcolor.colored(defaulttext,color="blue")))
         key_reg=raw_input("")
+        if key_reg=="":
+            key_reg='1'
         bWrongNum=-1
         if key_reg.isdigit():
             if int(key_reg)>itemCnt or int(key_reg)<=0:
