@@ -34,7 +34,7 @@ function! Main(pa)
         call InitPkm()
         call InitPHP()
         call SwitchDir(s:path)
-        :silent! Tlist
+        ":silent! Tlist
         :NERDTree
         :set rnu
         call OpenLatestModifyFile()
