@@ -1,23 +1,39 @@
+function! UpdatePath(root)
+python << EOF
+
+import os
+import vim
+
+a_root      = vim.eval("a:root")
+a_iswindows = vim.eval("g:iswindows")
+
+if a_iswindows==1:
+    base_dir=a_root.replace("/","\\")
+else:
+    base_dir=a_root
+
+result=[]
+for root, dirs, files in os.walk(base_dir):
+    for file in files:
+        rel=os.path.relpath(root,base_dir)
+        if ".svn" in rel:
+            continue;
+        if ".git" in rel:
+            continue;
+        if not rel in result:
+            result.append(rel)
+            cmd=":set path+="+rel.replace(" ","\ ")
+            vim.command(cmd)
+EOF
+endfunction
+
 function! SwitchDir(filename)
-    echo a:filename
     if !isdirectory(a:filename)
         if exists("*mkdir")
             call mkdir(a:filename,"p",0755)
         endif
     endif
     execute ":cd ".a:filename
-    let vim_proj=$VIMPROJ
-    let cygwin_proj=$CYGWINPATH
-    let addpath=""
-    "TODO:iOA启动慢，后面改成Python实现
-    " if(g:iswindows==1)
-    "     let cmd="! ".cygwin_proj."/mintty.exe  ".vim_proj."/Tool/get_dirlist.sh .vimcurpath.tmp"
-    "     silent! execute cmd | let addpath=system("cat .vimcurpath.tmp")
-    " else
-    "     let cmd="!sh ".vim_proj."/Tool/get_dirlist.sh .vimcurpath.tmp"
-    "     silent! execute cmd | let addpath=system("cat .vimcurpath.tmp")
-    " endif
-    " execute addpath
+    call UpdatePath(getcwd())
 endfunction
-
 
