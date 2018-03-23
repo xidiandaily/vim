@@ -112,7 +112,7 @@ escape_reg=["\.git","\.svn"]
 
 g_proj_type = vim.eval("g:proj_type")
 a_root      = vim.eval("a:root")
-a_iswindows = vim.eval("a:iswindows")
+a_iswindows = vim.eval("g:iswindows")
 
 if a_iswindows==1:
     base_dir=a_root.replace("/","\\")
@@ -129,6 +129,9 @@ last_modify_filename=''
 for root, dirs, files in os.walk(base_dir):
     for file in files:
         filename=os.path.join(root,file)
+        if re.search("^\.",os.path.basename(filename)):
+            continue
+
         bEscape=True
         for regex in escape_reg:
             m=re.search(regex,filename)
@@ -137,8 +140,9 @@ for root, dirs, files in os.walk(base_dir):
         if not bEscape:
             continue
 
-        bEscape=True
+        bEscape=False
         if len(include_reg)>0:
+            bEscape=True
             for regex in include_reg:
                 m=re.search(regex,filename)
                 if m:
@@ -146,7 +150,7 @@ for root, dirs, files in os.walk(base_dir):
         if bEscape:
             continue
         cur=os.path.getmtime(filename)
-        if abs(cur-cur_tstamp) <abs(max_tstamp-cur_tstamp):
+        if abs(cur-cur_tstamp) < abs(max_tstamp-cur_tstamp):
             max_tstamp=cur
             last_modify_filename=os.path.join(root,file)
 if not os.path.exists(last_modify_filename):

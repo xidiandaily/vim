@@ -36,23 +36,21 @@ function! Main(pa)
         call InitPHP()
         call SwitchDir(s:path)
         call OpenLatestModifyFile(getcwd(),g:iswindows)
-        ":silent! Tlist
         :NERDTree
-        ":set rnu
         :set rnu
+        if (g:iswindows!=1)
+            :silent! Tlist
+            :set rnu
+        endif
         if filereadable("cscope.out")
             silent! execute "cs add cscope.out"
         else
             :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
         endif
 
-        "autocmd
-        autocmd BufWritePost *	call SaveLatestModifyFileName(1)
-        autocmd VimLeave *	call SaveLatestModifyFileName(0)
-
         if(has("gui_macvim"))    
-            set fu
+            :set fu
         endif
-        silent execute "redraw"
+        :silent execute "redraw"
 endfunction
 
