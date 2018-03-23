@@ -1,2 +1,0 @@
-start gvim.exe -S "%VIMPROJ%\template.vim" 
-exit 
