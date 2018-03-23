@@ -158,7 +158,7 @@ def list_proj():
         print(i)
 
 def create_proj(path,type,name):
-    content=template_cpp.format(type,path)
+    content=template_cpp.format(type,path.replace("\\","/"))
     with open(os.path.join(PROJ_DIR,name+".vim"),"w") as myfile:
         myfile.write(content)
         sys.exit("create project({}) done!".format(termcolor.colored("{}".format(name),color="red")))
