@@ -55,6 +55,7 @@ else:
 
     # tar new file
     tarfilename=os.path.join(compres_dir,dir[1]+".tar")
+    tarfilename=os.path.abspath(tarfilename)
     tar=tarfile.open(tarfilename,"w")
     for r in result:
         tar.add(r,arcname=os.path.relpath(r,base_dir))
