@@ -165,6 +165,10 @@ def create_proj(path,type,name):
 
 def new_proj():
     proj_path=raw_input("project path:")
+
+    if os.path.isfile(proj_path):
+        proj_path=os.path.dirname(proj_path)
+
     if not os.path.exists(proj_path):
         sys.exit("{} path not found",proj_path)
     idx=0
