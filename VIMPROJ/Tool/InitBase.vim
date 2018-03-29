@@ -23,6 +23,13 @@ else:
 compres_dir=os.path.join(base_dir,"..")
 last_update_file=os.path.join(a_root,".last_modify_file")
 last_tstamp=0
+
+if int(a_choice)==3:
+    with open(last_update_file,"w") as myfile:
+        myfile.write("0")
+        myfile.close()
+    a_choice=1
+
 if int(a_choice)==1 and os.path.exists(last_update_file):
     last_tstamp=os.path.getmtime(last_update_file)
 
@@ -69,12 +76,12 @@ endfunction
 
 function! TarModifyFile()
     if g:tarmodifyfile_path!=''
-        let choice=confirm("Upload file?", "&modefy\n&All\n&OpenLatestFile\n&Cancel",1)
-        if choice==4
+        let choice=confirm("Upload file?", "&modefy\n&All\n&SetTstamp\n&OpenLatestFile\n&Cancel",1)
+        if choice==5
             return
         endif
 
-        if choice==3
+        if choice==4
             call OpenLatestModifyFile(getcwd(),g:iswindows)
             return
         endif
