@@ -107,6 +107,13 @@ def choice_proj(tip):
         elif key_reg=='exit':
             sys.exit('exit')
 
+def remove_empty_proj():
+    print("TODO:remove empty proj")
+    pj=get_proj_list('')
+    result=[]
+    for i in pj["indir"]:
+        print(i)
+
 def open_proj(fname):
     if not check_proj_exists(fname):
         sys.exit("open faile, {} not found!".format(fname))
@@ -227,6 +234,7 @@ args_parser.add_argument('-c','--choice',action='store_true', help='list all pro
 args_parser.add_argument('-l','--list',action='store_true', help='display all project')
 args_parser.add_argument('-n','--new',action='store_true', help='create proj')
 args_parser.add_argument('-d','--delete',action='store_true', help='delete proj')
+args_parser.add_argument('-r','--remove',action='store_true', help='remove empty proj')
 args = args_parser.parse_args()
 
 if not args.choice and not args.list and not args.new and not args.delete:
@@ -241,6 +249,10 @@ SUPPORT_TYPES=["empty","cpp","php","python"]
 
 if not os.path.exists(VIMPROJ):
     sys.exit("VIMPROJ EMPTY")
+
+if args.remove:
+    remove_empty_proj()
+    sys.exit()
 
 if args.new:
     new_proj()

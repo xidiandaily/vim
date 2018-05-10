@@ -7,8 +7,11 @@ import re
 import tarfile
 import sys
 import vim
+import datetime
+import time
+import subprocess
 
-escape_reg=["\.git","\.svn",".last_modify_file"]
+escape_reg=["\.git","\.svn",".last_modify_file","cscope.files","cscope.out","tags",".swp"]
 
 a_root      = vim.eval("a:root")
 a_iswindows = int(vim.eval("a:iswindows"))
@@ -29,6 +32,21 @@ if int(a_choice)==3:
         myfile.write("0")
         myfile.close()
     a_choice=1
+elif int(a_choice)==5:
+
+    curtstamp=time.time()
+    # set cur tstamp
+    os.utime(last_update_file,(curtstamp-1,curtstamp-1))
+
+    # set file type
+    out=subprocess.check_output(["svn","status"]) # out:str
+    for i in out.split("\n"): #type:str
+        if not re.search('^\?',i) and not re.search('^~',i):
+            ppath=re.sub(". *",'',i,1)
+            if os.path.isfile(ppath) and os.path.exists(ppath):
+                result=os.stat(ppath)
+                os.utime(ppath,(curtstamp,curtstamp))
+                #elif int(a_choice)==6:
 
 if int(a_choice)==1 and os.path.exists(last_update_file):
     last_tstamp=os.path.getmtime(last_update_file)
@@ -77,8 +95,8 @@ endfunction
 
 function! TarModifyFile()
     if g:tarmodifyfile_path!=''
-        let choice=confirm("Upload file?", "&modefy\n&All\n&SetTstamp\n&OpenLatestFile\n&Cancel",1)
-        if choice==5
+        let choice=confirm("Upload file?", "&modefy\n&All\n&SetTstamp\n&OpenLatestFile\n&SetSvnTstamp\n&SetGitTstamp\n&Cancel",1)
+        if choice==7
             return
         endif
 
