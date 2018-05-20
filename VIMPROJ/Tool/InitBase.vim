@@ -27,28 +27,55 @@ compres_dir=os.path.join(base_dir,"..")
 last_update_file=os.path.join(a_root,".last_modify_file")
 last_tstamp=0
 
+if not os.path.exists(last_update_file):
+    with open(last_update_file,"w") as myfile:
+        myfile.write("0")
+        myfile.close()
+
 if int(a_choice)==3:
     with open(last_update_file,"w") as myfile:
         myfile.write("0")
         myfile.close()
     a_choice=1
 elif int(a_choice)==5:
-
     curtstamp=time.time()
-    # set cur tstamp
-    os.utime(last_update_file,(curtstamp-1,curtstamp-1))
 
-    # set file type
-    out=subprocess.check_output(["svn","status"]) # out:str
+    # update change file modify time
+    p = subprocess.Popen(["svn","status"],shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.stdin.close()
+    out,err=p.communicate()
+    if err:
+        print("Falied!",err)
+        sys.exit()
     for i in out.split("\n"): #type:str
         if not re.search('^\?',i) and not re.search('^~',i):
             ppath=re.sub(". *",'',i,1)
             if os.path.isfile(ppath) and os.path.exists(ppath):
                 result=os.stat(ppath)
                 os.utime(ppath,(curtstamp,curtstamp))
-                #elif int(a_choice)==6:
+    # update update_file modify time
+    os.utime(last_update_file,(curtstamp-1,curtstamp-1))
+elif int(a_choice)==6:
+    curtstamp=time.time()
 
-if int(a_choice)==1 and os.path.exists(last_update_file):
+    # update change file modify time
+    p = subprocess.Popen(["git","status","-s"],shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # out:str
+    p.stdin.close()
+    out,err=p.communicate()
+    if err:
+        print("Falied!",err)
+        sys.exit()
+
+    for i in out.split("\n"): #type:str
+        if not re.search('^\?\?',i) :
+            ppath=i.split(" ")[-1:][0]
+            if os.path.exists(ppath):
+                result=os.stat(ppath)
+                os.utime(ppath,(curtstamp,curtstamp));
+    # update update_file modify time
+    os.utime(last_update_file,(curtstamp-1,curtstamp-1))
+
+if int(a_choice)==1 or int(a_choice)==5 or int(a_choice)==6:
     last_tstamp=os.path.getmtime(last_update_file)
 
 result=[]
@@ -66,6 +93,10 @@ for root, dirs, files in os.walk(base_dir):
         if cur>=last_tstamp:
             result.append(filename)
             print("{}.{}".format(len(result),filename))
+            if(len(result)>150):
+                print("can't pack more than 100 files ,Failed And Exit!!!")
+                sys.exit()
+
 if len(result)==0:
     print("modify file empty, exit!")
 else:
