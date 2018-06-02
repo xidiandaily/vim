@@ -6,6 +6,7 @@ import argparse
 import termcolor
 import subprocess
 import re
+import fileinput
 
 template_cpp='''
 "这个文件试图使得创建 VIM 项目更加简单方便。
@@ -107,13 +108,6 @@ def choice_proj(tip):
         elif key_reg=='exit':
             sys.exit('exit')
 
-def remove_empty_proj():
-    print("TODO:remove empty proj")
-    pj=get_proj_list('')
-    result=[]
-    for i in pj["indir"]:
-        print(i)
-
 def open_proj(fname):
     if not check_proj_exists(fname):
         sys.exit("open faile, {} not found!".format(fname))
@@ -139,7 +133,7 @@ def open_proj(fname):
     process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-S',os.path.join(PROJ_DIR,fname)])
     sys.exit()
 
-def del_proj(fname):
+def del_proj(fname,is_exit):
     if not check_proj_exists(fname):
         sys.exit("delete faile, {} not found!".format(fname))
     subprocess.call(["rm","-f",os.path.join(PROJ_DIR,fname)], shell=False)
@@ -156,7 +150,25 @@ def del_proj(fname):
     with open(PRIORITY_FILE,"w") as myfile:
         for i in filelist:
             myfile.write(i)
-    sys.exit("delete {} success".format(fname))
+    if is_exit:
+        sys.exit("delete {} success".format(fname))
+
+def remove_empty_proj():
+    deletefiles=[]
+    for root,dirs,files in os.walk(os.path.dirname(os.getcwd())):
+        for f in files:
+            if not re.search("\.vim$",f):
+                continue
+            for line in fileinput.input(os.path.join(root,f)):
+                if re.search(" Main\(\"",line):
+                    if not os.path.exists(line.split("\"")[1]):
+                        if f!="template.vim":
+                            deletefiles.append(f)
+        break
+    for i in deletefiles:
+        print("remove empty proj:"+termcolor.colored(i,color="red"))
+        del_proj(i,0)
+
 
 def list_proj():
     pj=get_proj_list('')
@@ -252,7 +264,7 @@ if not os.path.exists(VIMPROJ):
 
 if args.remove:
     remove_empty_proj()
-    sys.exit()
+    sys.exit("remove all empty proj")
 
 if args.new:
     new_proj()
@@ -260,7 +272,7 @@ if args.new:
 if args.list:
     list_proj()
 if args.delete:
-    del_proj(choice_proj("delete proj"))
+    del_proj(choice_proj("delete proj"),1)
 
 if args.choice:
     open_proj(choice_proj("open proj"))
