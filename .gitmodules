@@ -31,3 +31,6 @@
 [submodule "vimfiles/bundle/python-mode"]
 	path = vimfiles/bundle/python-mode
 	url = https://github.com/python-mode/python-mode.git
+[submodule "vimfiles/bundle/YouCompleteMe.vim"]
+	path = vimfiles/bundle/YouCompleteMe.vim
+	url = https://github.com/Valloric/YouCompleteMe.git

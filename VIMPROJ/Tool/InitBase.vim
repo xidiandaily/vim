@@ -41,9 +41,9 @@ elif int(a_choice)==5:
     curtstamp=time.time()
 
     # update change file modify time
-    p = subprocess.Popen(["svn","status"],shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    p.stdin.close()
+    p = subprocess.Popen(["svn","status"],shell=False,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out,err=p.communicate()
+    p.stdin.close()
     if err:
         print("Falied!",err)
         sys.exit()
@@ -59,9 +59,9 @@ elif int(a_choice)==6:
     curtstamp=time.time()
 
     # update change file modify time
-    p = subprocess.Popen(["git","status","-s"],shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # out:str
-    p.stdin.close()
+    p = subprocess.Popen(["git","status","-s"],shell=False,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) # out:str
     out,err=p.communicate()
+    p.stdin.close()
     if err:
         print("Falied!",err)
         sys.exit()
