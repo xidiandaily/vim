@@ -203,6 +203,20 @@ let marvim_prefix = 0           " disable default syntax based prefix
 
 source $VIMPROJ/../vimfiles/bundle/marvim/marvim.vim   " omit if marvim.vim is in the plugin dir
 
+"Pymode
+
+"Turn on the whole plugin
+let g:pymode = 0
+
+"Enable pymode folding
+let g:pymode_folding = 0
+
+"Enable pymode-motion
+let g:pymode_motion = 0
+
+"Binds keys to run python code
+let g:pymode_run_bind = '<leader>r'
+
 "jedi-vim
 "Jedi is by default automatically initialized. If you don't want that I suggest you disable the auto-initialization in your .vimrc:
 let g:jedi#auto_initialization = 1
@@ -225,7 +239,6 @@ let g:jedi#popup_select_first = 1
 
 "Jedi displays function call signatures in insert mode in real-time, highlighting the current argument. The call signatures can be displayed as a pop-up in the buffer (set to 1, the default), which has the advantage of being easier to refer to, or in Vim's command line aligned with the function call (set to 2), which can improve the integrity of Vim's undo history.
 let g:jedi#show_call_signatures = "1"
-
 let g:jedi#completions_command = "<C-K>"
 
 
