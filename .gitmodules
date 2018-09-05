@@ -34,6 +34,3 @@
 [submodule "vimfiles/bundle/YouCompleteMe.vim"]
 	path = vimfiles/bundle/YouCompleteMe.vim
 	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "vimfiles/bundle/bundle/ctrlp.vim"]
-	path = vimfiles/bundle/bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
