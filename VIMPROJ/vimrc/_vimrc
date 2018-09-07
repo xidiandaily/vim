@@ -241,6 +241,18 @@ let g:jedi#popup_select_first = 1
 let g:jedi#show_call_signatures = "1"
 let g:jedi#completions_command = "<C-K>"
 
+""ctrlp
+""使用该选项来改变普通模式 |Normal| 下调用CtrlP的按键绑定: >
+"let g:ctrlp_map = '<c-f>'
+"
+""设置当按下上面的按键绑定时，使用的默认打开命令: >
+"let g:ctrlp_cmd = 'CtrlP'
+"
+""修改该选项为1，设置默认为按文件名搜索（否则为全路径）: >
+"let g:ctrlp_by_filename = 0
+
+"扩展是可选的。把它的名字添加到变量g:ctrlp_extensions中来开启扩展: >
+let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir']
 
 "自动命令
 "其他命令
