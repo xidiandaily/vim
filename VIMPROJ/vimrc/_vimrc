@@ -168,6 +168,12 @@ map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])
 "map <F10> :echo call(function(g:chiylown_func_dict.getprojtypefunc("ASTYLE")),[])<CR>
 map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
 map <F5> :call SetProjType() <CR>
+
+"tab new
+nmap tn :tabnew
+nmap tl :tabnext
+nmap th :tabp
+
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
 map Tl :silent! Tlist<CR> "按下F3就可以呼出了
@@ -253,6 +259,46 @@ let g:jedi#completions_command = "<C-K>"
 
 "扩展是可选的。把它的名字添加到变量g:ctrlp_extensions中来开启扩展: >
 let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir']
+
+"ctrlp
+let g:ctrlp_working_path_mode = 'a'
+
+"使用该选项来改变普通模式 |Normal| 下调用CtrlP的按键绑定: >
+let g:ctrlp_map = '<c-p>'
+
+"设置当按下上面的按键绑定时，使用的默认打开命令: >
+let g:ctrlp_cmd = 'CtrlPMenu'
+
+"修改该选项为1，设置默认为按文件名搜索（否则为全路径）: >
+let g:ctrlp_by_filename = 1
+
+"当尝试打开一个文件时，如果它已经在某个窗口被打开，CtrlP会尝试跳到那个窗口，而
+"不是新打开一个实例。: >
+let g:ctrlp_switch_buffer = 'Et'
+
+"采用更快的搜索实现
+" PyMatcher for CtrlP
+if !has('python')
+    echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+endif
 
 "自动命令
 "其他命令
