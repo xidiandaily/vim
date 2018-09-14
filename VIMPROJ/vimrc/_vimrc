@@ -170,9 +170,9 @@ map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[]
 map <F5> :call SetProjType() <CR>
 
 "tab new
-nmap tn :tabnew
-nmap tl :tabnext
-nmap th :tabp
+nmap tn :tabnew<CR>
+nmap tl :tabnext<CR>
+nmap th :tabp<CR>
 
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
