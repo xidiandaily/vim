@@ -18,6 +18,47 @@ else
     let g:iswindows=0
 endif
 
+"定义对齐xml函数
+function IndentCodeXml()
+python << EOF
+import vim
+import re
+
+buf = vim.current.buffer
+(lnum1, col1) = buf.mark('<')
+(lnum2, col2) = buf.mark('>')
+lines = vim.eval('getline({}, {})'.format(lnum1, lnum2))
+for l in lines:
+    if "\t" in l:
+        vim.command(":'<,'>s/\t/    /g".format(lnum2-lnum1+1))
+        break
+for l in lines:
+    if re.search("\"\s*\/\s*>",l):
+        vim.command(":'<,'>s/\" *\/>/\"\/>/g".format(lnum2-lnum1+1))
+        break
+vim.command("normal {}gg".format(lnum1))
+vim.command("normal {}==".format(lnum2-lnum1+1))
+vim.command(":'<,'>EasyAlign*\ ")
+
+lines = vim.eval('getline({}, {})'.format(lnum1, lnum2))
+i=0
+for l in lines:
+    vim.command("normal {}gg".format(lnum1+i))
+    i+=1
+    if re.search("<struct ",l) or re.search("<macrosgroup ",l):
+        vim.command("normal mn")
+        vim.command("normal mm")
+    elif re.search("<\/struct>",l) or re.search("<\/macrosgroup>",l):
+        pass
+    else:
+        vim.command("normal mm")
+        continue
+    vim.command(":'n,'mEasyAlign*\ ")
+    vim.command("normal j")
+    vim.command("normal mn")
+EOF
+endfunction
+
 "定义默认的调用函数
 function UPFILE_default()
     echohl WarningMsg | echom "upload file tool has not build for this project type ;-0" | echohl None
@@ -186,6 +227,9 @@ nmap ga <Plug>(EasyAlign)
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
+
+"lgame项目配置
+nmap TP :call IndentCodeXml()<CR>
 
 "Previm
 augroup PrevimSettings
