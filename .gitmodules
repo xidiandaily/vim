@@ -39,7 +39,7 @@
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "vimfiles/bundle/ctrlp-extensions.vim"]
 	path = vimfiles/bundle/ctrlp-extensions.vim
-	url = https://github.com/sgur/ctrlp-extensions.vim.git
+	url = https://github.com/xidiandaily/ctrlp-extensions.vim.git
 [submodule "vimfiles/bundle/ctrlp-py-matcher.vim"]
 	path = vimfiles/bundle/ctrlp-py-matcher.vim
 	url = https://github.com/FelikZ/ctrlp-py-matcher.git
