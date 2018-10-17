@@ -302,7 +302,11 @@ let g:jedi#completions_command = "<C-K>"
 "let g:ctrlp_by_filename = 0
 
 "扩展是可选的。把它的名字添加到变量g:ctrlp_extensions中来开启扩展: >
-let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir']
+let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
+            \ 'mycmd', 'menu']
+
+"自己定义的一些命令
+let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
 
 "ctrlp
 let g:ctrlp_working_path_mode = 'a'
