@@ -88,8 +88,8 @@ function! InitCPP()
     let g:OmniCpp_GlobalScopeSearch = 1 "enabled Global scope search toggle
     let g:OmniCpp_ShowAccess = 1  "enable to show the access information ('+', '#', '-') in the popup menu.
     let g:OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-    let g:OmniCpp_MayCompleteDot = 1 " autocomplete after .
-    let g:OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+    let g:OmniCpp_MayCompleteDot = 0 " autocomplete after .
+    let g:OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
     let g:OmniCpp_MayCompleteScope = 1 " autocomplete after ::
     let g:OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
     " automatically open and close the popup menu / preview window

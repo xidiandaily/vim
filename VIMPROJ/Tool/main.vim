@@ -8,6 +8,8 @@ source  $VIMPROJ/Tool/InitLua.vim
 source  $VIMPROJ/Tool/InitPkm.vim
 "初始化PHP环境
 source  $VIMPROJ/Tool/InitPHP.vim
+"初始化Python环境
+source  $VIMPROJ/Tool/InitPython.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
