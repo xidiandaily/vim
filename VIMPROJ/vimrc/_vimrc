@@ -167,6 +167,12 @@ language message zh_CN.utf-8
 source $VIMRUNTIME/delmenu.vim 
 source $VIMRUNTIME/menu.vim
 
+"BOM设置
+if(g:iswindows==0)
+    "删除BOM
+    :set nobomb
+endif
+
 "vim 8.0 更改了 default.vim的 so 配置，导致 zt/zb 不到底不到顶,修复之
 "http://stackoverflow.com/questions/40264417/cursor-does-not-go-to-top-or-bottom-of-window-in-gvim-8
 set scrolloff=0
