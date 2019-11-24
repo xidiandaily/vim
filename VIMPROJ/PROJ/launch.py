@@ -155,15 +155,19 @@ def del_proj(fname,is_exit):
 
 def remove_empty_proj():
     deletefiles=[]
-    for root,dirs,files in os.walk(os.path.dirname(os.getcwd())):
+    print(PROJ_DIR)
+    for root,dirs,files in os.walk(PROJ_DIR):
         for f in files:
+            if f == "template.vim":
+                continue
             if not re.search("\.vim$",f):
                 continue
             for line in fileinput.input(os.path.join(root,f)):
-                if re.search(" Main\(\"",line):
-                    if not os.path.exists(line.split("\"")[1]):
-                        if f!="template.vim":
-                            deletefiles.append(f)
+                result = re.search(r'call\s*?Main\s*\(\s*\"(.*?)\"\)',line)
+                if result:
+                    cur_proj_dir=result.group(1)
+                    if not os.path.exists(cur_proj_dir):
+                        deletefiles.append(f)
         break
     for i in deletefiles:
         print("remove empty proj:"+termcolor.colored(i,color="red"))
