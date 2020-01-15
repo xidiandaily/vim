@@ -1,29 +1,46 @@
 function! UpdatePath(root)
 python << EOF
-
 import os
 import vim
 
-a_root      = vim.eval("a:root")
-a_iswindows = vim.eval("g:iswindows")
+class DirItem:
+    def __init__(self,relpath,depno):
+        self.relpath = relpath
+        self.depno = depno
 
-if a_iswindows==1:
-    base_dir=a_root.replace("/","\\")
-else:
-    base_dir=a_root
+    def __cmp__(self,other):
+        if self.depno < other.depno:
+            return -1
+        elif self.depno > other.depno:
+            return 1
+        elif self.relpath < other.relpath:
+            return -1
+        elif self.relpath > other.relpath:
+            return 1
+        else:
+            return 0
 
+base_dir = vim.eval("a:root") 
 result=[]
 for root, dirs, files in os.walk(base_dir):
-    for file in files:
-        rel=os.path.relpath(root,base_dir)
-        if ".svn" in rel:
-            continue;
-        if ".git" in rel:
-            continue;
-        if not rel in result:
-            result.append(rel)
-            cmd=":set path+="+rel.replace(" ","\ ")
-            vim.command(cmd)
+    dirs[:]=[d for d in dirs if d not in [".svn",".git"] ]
+    bFoundHeader=False
+    for filename in files:
+        ext = os.path.splitext(filename)[1]
+        if ext in ['.h','.hpp']:
+            bFoundHeader = True
+            break
+    if not bFoundHeader:
+        continue
+    rel=os.path.relpath(root,base_dir)
+    item=DirItem(rel,len(rel.split(os.path.sep)))
+    if not item in result:
+        result.append(item)
+
+result.sort()
+for r in result:
+    cmd=":set path+="+r.relpath.replace(" ","\ ")
+    vim.command(cmd)
 EOF
 endfunction
 
