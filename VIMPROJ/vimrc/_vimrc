@@ -138,9 +138,11 @@ set nowrap "不自动换行
 set noundofile "不产生 un~ 文件
 set sw=4 "将shiftwidth设为4
 set ts=4 "将tabstop设为4
+set ff=unix  "将文件的文件格式设置为 fileformat unix
 "字体的设置
 if(g:iswindows==1)
     set guifont=BitstreamVeraSansMono_NF:h9:cANSI "记住空格用下划线代替哦
+    "set guifont=BitstreamVeraSansMono_NF:h12:cANSI "记住空格用下划线代替哦
     "set gfw=幼圆:h10:cGB2312
 else 
     set guifont=Bitstream_Vera_Sans_Mono_Nerd_Font_Complete:h14
@@ -222,10 +224,10 @@ map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])
 map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
 map <F5> :call SetProjType() <CR>
 
-"tab new
-nmap tn :tabnew<CR>
-nmap tl :tabnext<CR>
-nmap th :tabp<CR>
+"tab
+nmap ts :tab split<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
