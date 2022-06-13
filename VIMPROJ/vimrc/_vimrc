@@ -323,7 +323,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 
 "扩展是可选的。把它的名字添加到变量g:ctrlp_extensions中来开启扩展: >
 let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
-            \ 'mycmd', 'menu', 'myp4']
+            \ 'mycmd', 'menu', 'myp4', 'lofiles', 'lomem', 'loname', 'locur']
 
 "自己定义的一些命令
 let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
