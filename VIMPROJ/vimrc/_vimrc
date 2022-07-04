@@ -394,6 +394,11 @@ let g:easy_align_delimiters = {
 \   }
 \ }
 
+"openbrowser
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+vmap gx <Plug>(openbrowser-open)
+nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
+
 "自动命令
 "其他命令
 "最后
