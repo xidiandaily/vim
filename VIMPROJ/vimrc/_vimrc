@@ -322,9 +322,11 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "let g:ctrlp_by_filename = 0
 
 "扩展是可选的。把它的名字添加到变量g:ctrlp_extensions中来开启扩展: >
-let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
-            \ 'mycmd', 'menu', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
-            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid']
+"let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
+"            \ 'mycmd', 'menu', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
+"            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lxml']
+let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
+            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lxml']
 
 "自己定义的一些命令
 let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]

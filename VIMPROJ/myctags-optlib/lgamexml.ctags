@@ -1,0 +1,15 @@
+--_echo='hello'
+--languages=-Xml
+--langdef=lgamexml{base=Xml}
+--map-lgamexml=.xml
+--kinddef-lgamexml=m,macro,macro
+--kinddef-lgamexml=M,macrosgroup,macrosgroup
+--kinddef-lgamexml=s,struct,struct
+--kinddef-lgamexml=e,entry,entry
+--kinddef-lgamexml=u,union,union
+--regex-lgamexml=/<entry[ \t]+.*?name=\"([a-zA-Z_]+?)\".*\>/\1/e/
+--regex-lgamexml=/<macro[ \t]+.*?name=\"([a-zA-Z_]+?)\".*\>/\1/m/
+--regex-lgamexml=/[^<]+<struct[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/s/{scope=push}
+--regex-lgamexml=/<\/struct>///{scope=pop}{placeholder}
+--regex-lgamexml=/[^<]+<macrosgroup[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/M/{scope=push}
+--regex-lgamexml=/<\/macrosgroup>///{scope=pop}{placeholder}

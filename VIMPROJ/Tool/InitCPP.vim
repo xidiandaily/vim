@@ -43,7 +43,17 @@ function CSTAG_cpp()
     endif
     if(executable('ctags'))
         "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        "silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        if(g:iswindows==1)
+            let s:lgamexml=getenv('VIMPROJ').'\\myctags-optlib\\lgamexml.ctags'
+            if filereadable(s:lgamexml)
+                execute "!ctags.exe -R --languages=-json --languages=-JavaScript --languages=-CSS --languages=-Markdown --languages=-SQL --options=".s:lgamexml." --c++-kinds=+p --fields=+iaS --extras=+q ."
+            else
+                silent! execute "!ctags.exe -R --languages=-json --languages=-JavaScript --languages=-CSS --languages=-Markdown --languages=-SQL --c++-kinds=+p --fields=+iaS --extras=+q ."
+            endif
+        else
+            silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        endif
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)

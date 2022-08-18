@@ -47,7 +47,7 @@ vim config, all file in one project
 2. 设置 VIMPROJ 系统变量为 [your dir]/Vim/VIMPROJ 
 3. 将 [your dir]/Vim/vim73 添加至系统变量
 4. 将 ``/usr/local/bin;/usr/bin;`` 添加至系统变量 $PATH 的头部
-6. ctags 和 cscope 在 ExtTool/ 中， 解压之后，将其所在的路径放到系统PATH中就可以了。（不要求在 vim 中，最好路径名称是英文）
+6. ctags([Universal ctags](https://github.com/universal-ctags/ctags)) 和 cscope 在 ExtTool/ 中， 解压之后，将其所在的路径放到系统PATH中就可以了。（不要求在 vim 中，最好路径名称是英文）([Universal ctags最新版本下载链接](https://github.com/universal-ctags/ctags-win32))
 7. win系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/_vimrc``(修改``_vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
 8. Mac系统：启动gvim，命令模式输入(注意包含第一个冒号） ``:e $home/.vimrc``(修改``.vimrc``文件),输入(注意不包含冒号）:``source $VIMPROJ/vimrc/_vimrc``,保存退出
 9. 初始化本项目以来的外部模块.在[your dir]/Vim 目录执行``git submodule init && git submodule update``
