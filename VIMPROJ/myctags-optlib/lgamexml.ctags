@@ -1,4 +1,4 @@
---_echo='hello'
+--_echo='import lgamexml.ctags'
 --languages=-Xml
 --langdef=lgamexml{base=Xml}
 --map-lgamexml=.xml

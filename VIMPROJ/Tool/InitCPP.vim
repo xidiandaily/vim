@@ -47,7 +47,7 @@ function CSTAG_cpp()
         if(g:iswindows==1)
             let s:lgamexml=getenv('VIMPROJ').'\\myctags-optlib\\lgamexml.ctags'
             if filereadable(s:lgamexml)
-                execute "!ctags.exe -R --languages=-json --languages=-JavaScript --languages=-CSS --languages=-Markdown --languages=-SQL --options=".s:lgamexml." --c++-kinds=+p --fields=+iaS --extras=+q ."
+                silent! execute "!ctags.exe -R --languages=-json --languages=-JavaScript --languages=-CSS --languages=-Markdown --languages=-SQL --options=".s:lgamexml." --c++-kinds=+p --fields=+iaS --extras=+q ."
             else
                 silent! execute "!ctags.exe -R --languages=-json --languages=-JavaScript --languages=-CSS --languages=-Markdown --languages=-SQL --c++-kinds=+p --fields=+iaS --extras=+q ."
             endif
