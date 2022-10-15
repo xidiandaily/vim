@@ -43,6 +43,32 @@ function Init_SSHConfig()
     endif
 endfunction
 
+function Init_PyenvConfig()
+
+    let l:filelist=split(globpath(s:datapath,'*.sshconfig'),'\n')
+    for l:i in l:filelist
+        if (g:iswindows==1)
+            let l:tmp=split(l:i,'\')
+        else
+            let l:tmp=split(l:i,'/')
+        endif
+        let l:item=":amenu 90 &chiyl.上传文件配置.".substitute(l:tmp[-1],'\.','_','g')."   :echo 'helloworld' "
+        exec l:item
+    endfor
+    amenu  &chiyl.上传文件配置.-SEP1-                  :
+    nmenu  &chiyl.上传文件配置.创建                    :call Create_SSHConfig()<Cr>
+    amenu  &chiyl.上传文件配置.说明                    :echo "通过ssh上传文件到远程服务器，可以分为全部上传，只上传最新更新两种模式，这里选择配置好的远程服务器ip、端口。\n配置文件放置在$VIMPROJ/Tool/data/下，文件名是:*.sshdconfig\n 配置文件放到文件夹下会自动加载" <Cr>
+
+    if (g:iswindows==1)
+        let l:projpath=substitute(substitute(getcwd(),'\','_','g'),':','_','g')
+    else
+        let l:projpath=substitute(getcwd(),'/','_','g')
+    endif
+    let l:projconfig=s:datapath."/".l:projpath.".dat"
+    if filereadable(l:projconfig)
+    endif
+endfunction
+
 function Init_F11()
     let l:my_filetype=&filetype
     echo l:my_filetype
@@ -55,8 +81,17 @@ endfunction
 
 let s:datapath='C:/Vim/VIMPROJ/Tool/data/'
 call Init_SSHConfig()
-amenu &chiyl.-SEP2-                              :
-amenu &chiyl.About                               :echo "\ngVIM-menu for chiyl.vim (https://github.com/xidiandaily/vim.git)\nby LawrenceChi\ncodeforfuture (at) 126.com\n"<Cr>
+amenu &chiyl.Jedi环境配置.-SEP2-                              :
+if g:iswindows==1
+    amenu &chiyl.Jedi环境配置.Py39  :let g:jedi#environment_path = "E:\\env-python39" <CR>
+    amenu &chiyl.Jedi环境配置.Py27  :let g:jedi#environment_path = "E:\\env-python27" <CR>
+    amenu &chiyl.Jedi环境配置.Py310 :let g:jedi#environment_path = "E:\\env-python3" <CR>
+endif
+amenu &chiyl.Jedi环境配置.查看当前配置      :echo g:jedi#environment_path<CR>
+amenu &chiyl.Jedi环境配置.说明      :echo "\n设置jedi的python运行环境\n配置其实是设置 g:jedi#environment_path\n说明:help g:jedi#environment_path\n配置地址:$VIMPROJ\vimrc\option.vim\n"<CR>
+call Init_PyenvConfig()
+amenu &chiyl.-SEP3-                              :
+amenu &chiyl.About                               :echo "\ngVIM-menu for chiyl.vim (https://github.com/xidiandaily/vim.git)\nby LawrenceChi\ncodeforfuture (at) 126.com\n"<CR>
 amenu &chiyl.test                               :call Init_SSHConfig()<Cr>
 
 map <F11> :call Init_F11()<CR>

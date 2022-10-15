@@ -36,6 +36,7 @@ function! Main(pa)
         call InitLua()
         call InitPkm()
         call InitPHP()
+        call InitPython()
         call SwitchDir(s:path)
         call OpenLatestModifyFile(getcwd(),g:iswindows)
         :NERDTree

@@ -4,10 +4,6 @@ function UPFILE_python()
 endfunction
 
 function CSTAG_python()
-    echohl WarningMsg | echo "Python not support generate cstag!" | echohl None
-endfunction
-
-function ASTYLE_python()
     if(g:iswindows==1)
         let s:lgamexml=getenv('VIMPROJ').'\\myctags-optlib\\lgamexml.ctags'
         if filereadable(s:lgamexml)
@@ -18,6 +14,10 @@ function ASTYLE_python()
     else
         silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
     endif
+endfunction
+
+function ASTYLE_python()
+    echohl WarningMsg | echo "Python not support astyle" | echohl None
 endfunction
 
 function! InitPython()

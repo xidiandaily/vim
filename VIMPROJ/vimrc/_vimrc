@@ -289,11 +289,11 @@ let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 1
 
 "You can make jedi-vim use tabs when going to a definition etc:
-let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_tabs_not_buffers = 0
 
 "If you are a person who likes to use VIM-splits, you might want to put this in your .vimrc:
 "This options could be "left", "right", "top", "bottom" or "winwidth". It will decide the direction where the split open.
-let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#use_splits_not_buffers = ""
 
 "Jedi automatically starts the completion, if you type a dot, e.g. str., if you don't want this:
 let g:jedi#popup_on_dot = 1
@@ -304,6 +304,11 @@ let g:jedi#popup_select_first = 1
 "Jedi displays function call signatures in insert mode in real-time, highlighting the current argument. The call signatures can be displayed as a pop-up in the buffer (set to 1, the default), which has the advantage of being easier to refer to, or in Vim's command line aligned with the function call (set to 2), which can improve the integrity of Vim's undo history.
 let g:jedi#show_call_signatures = "1"
 let g:jedi#completions_command = "<C-K>"
+
+if g:iswindows==1
+    " 设置默认的python库
+    let g:jedi#environment_path = "E:\\env-python39"
+endif
 
 " ycm 配置
 let g:ycm_echo_current_diagnostic = 0 " 关闭实时报错
@@ -326,7 +331,8 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "            \ 'mycmd', 'menu', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
 let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
-            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lxml']
+            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
+            \ 'lswitch']
 
 "自己定义的一些命令
 let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
