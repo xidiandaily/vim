@@ -332,7 +332,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
 let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
             \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
-            \ 'lswitch']
+            \ 'lswitch', 'tag']
 
 "自己定义的一些命令
 let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]

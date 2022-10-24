@@ -70,6 +70,9 @@ function CSTAG_lgamesvr()
                 silent! execute "!ctags.exe -L ".s:lgamexmlfilelist." -f lgamexml.tags --options=".s:lgamexml." --languages=+lgamexml --c++-kinds=+p --fields=+iaS --extras=+q"
                 set tags+=lgamexml.tags
             endif
+
+            silent! execute '!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamesvrc.tags'
+            silent! execute '!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
         else
             silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         endif
