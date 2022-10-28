@@ -46,3 +46,6 @@
 [submodule "vimfiles/bundle/ctrlp.chiyl.vim"]
 	path = vimfiles/bundle/ctrlp.chiyl.vim
 	url = https://github.com/xidiandaily/ctrlp.chiyl.vim.git
+[submodule "vimfiles/bundle/vimcdoc"]
+	path = vimfiles/bundle/vimcdoc
+	url = https://github.com/yianwillis/vimcdoc.git
