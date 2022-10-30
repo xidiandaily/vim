@@ -332,7 +332,18 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
 let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
             \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
-            \ 'lswitch', 'tag']
+            \ 'lswitch', 'tag', 'buffertag', 'lofies', 'loname']
+
+" mymenu 插件配置，将上面的 g:ctrlp_extensions 按照二级目录的方式进行选择
+let g:ctrlp_mymenu_ext_groups={
+            \ 'tag':['tag','bft'],
+            \ 'mycmd':['mycmd'],
+            \ 'myp4':['myp4'],
+            \ 'sme':['locur','lofies','loname'],
+            \ 'ldb':['lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lswitch'],
+            \ 'lgme':['lerror', 'lasync', 'lextdbtype',  'lsvrid', 'lresource']
+            \ }
+
 
 "自己定义的一些命令
 let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
@@ -344,7 +355,7 @@ let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_map = '<c-p>'
 
 "设置当按下上面的按键绑定时，使用的默认打开命令: >
-let g:ctrlp_cmd = 'CtrlPMenu'
+let g:ctrlp_cmd = 'CtrlPMyMenu'
 
 "修改该选项为1，设置默认为按文件名搜索（否则为全路径）: >
 let g:ctrlp_by_filename = 1

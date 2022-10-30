@@ -130,7 +130,7 @@ function! InitCPP()
     "预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
     if(g:iswindows==1)
-        :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags
+        :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags,lgamesvrc.tags,lgamexml.tags
     else
         :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
     endif

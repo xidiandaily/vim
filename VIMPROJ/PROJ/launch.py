@@ -261,7 +261,7 @@ if not args.choice and not args.list and not args.new and not args.delete:
 VIMPROJ=os.getenv("VIMPROJ")
 PROJ_DIR=VIMPROJ
 PRIORITY_FILE=os.path.join(PROJ_DIR,".prio.launcher.chiyl")
-SUPPORT_TYPES=["empty","cpp","php","python","lgamesvr"]
+SUPPORT_TYPES=["empty","cpp","php","python","lgamesvr","vim"]
 
 if not os.path.exists(VIMPROJ):
     sys.exit("VIMPROJ EMPTY")

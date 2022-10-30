@@ -49,3 +49,6 @@
 [submodule "vimfiles/bundle/vimcdoc"]
 	path = vimfiles/bundle/vimcdoc
 	url = https://github.com/yianwillis/vimcdoc.git
+[submodule "vimfiles/bundle/ctrlp-mymenu.vim"]
+	path = vimfiles/bundle/ctrlp-mymenu.vim
+	url = git@github.com:xidiandaily/ctrlp-mymenu.vim.git

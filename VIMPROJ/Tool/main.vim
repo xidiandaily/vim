@@ -12,6 +12,8 @@ source  $VIMPROJ/Tool/InitPHP.vim
 source  $VIMPROJ/Tool/InitLGameSvr.vim
 "初始化Python环境
 source  $VIMPROJ/Tool/InitPython.vim
+"初始化VIM环境
+source  $VIMPROJ/Tool/InitVim.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
 
@@ -39,6 +41,7 @@ function! Main(pa)
         call InitPkm()
         call InitPHP()
         call InitPython()
+        call InitVim()
         call SwitchDir(s:path)
         call OpenLatestModifyFile(getcwd(),g:iswindows)
         :NERDTree
