@@ -52,3 +52,9 @@
 [submodule "vimfiles/bundle/ctrlp-mymenu.vim"]
 	path = vimfiles/bundle/ctrlp-mymenu.vim
 	url = git@github.com:xidiandaily/ctrlp-mymenu.vim.git
+[submodule "vimfiles/bundle/CRefVim.git"]
+	path = vimfiles/bundle/CRefVim.git
+	url = https://github.com/vim-scripts/CRefVim.git
+[submodule "vimfiles/bundle/vim-gutentags.git"]
+	path = vimfiles/bundle/vim-gutentags.git
+	url = https://github.com/ludovicchabant/vim-gutentags.git
