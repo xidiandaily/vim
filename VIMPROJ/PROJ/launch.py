@@ -131,6 +131,7 @@ def open_proj(fname):
             myfile.write(i)
     #subprocess.call(cmd, shell=True)
     process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-S',os.path.join(PROJ_DIR,fname)])
+    #process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-V20vim2.log','-S',os.path.join(PROJ_DIR,fname)])
     sys.exit()
 
 def del_proj(fname,is_exit):

@@ -71,8 +71,9 @@ function CSTAG_lgamesvr()
                 set tags+=lgamexml.tags
             endif
 
-            silent! execute '!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamesvrc.tags'
-            silent! execute '!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
+            silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamesvrc.tags'
+            silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
+            call ctrlp#mycmd#LGameCtrlPTag()
         else
             silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         endif
@@ -114,7 +115,7 @@ function ASTYLE_lgamesvr()
     silent execute "!astyle -A1M40Sjk1n --mode=c ".getcwd()."/".g:astyle_file
 endfunction
 
-function! InitCPP()
+function! InitLGameSvr()
     " OmniCppComplete
     let g:OmniCpp_NamespaceSearch = 1 " 1 = search namespaces in the current buffer
     let g:OmniCpp_GlobalScopeSearch = 1 "enabled Global scope search toggle

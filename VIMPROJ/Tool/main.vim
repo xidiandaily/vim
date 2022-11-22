@@ -36,12 +36,26 @@ function! Main(pa)
         let g:tarmodifyfile_listfile=0  "是否打印文件列表
         let g:tarmodifyfile_exclude=".svn .git *.md tags cscope.files cscope.out *.swp *.tmp *.log *.tar .last_modify_file"
         call InitWorkSpace()
-        call InitCPP()
-        call InitLua()
-        call InitPkm()
-        call InitPHP()
-        call InitPython()
-        call InitVim()
+
+        let s:proj_type = get(g:,'proj_type','default')
+        if 'lua' == s:proj_type
+            call InitLua()
+        elseif 'pkm' == s:proj_type
+            call InitPkm()
+        elseif 'php' == s:proj_type
+            call InitPHP()
+        elseif 'python' == s:proj_type
+            call InitPython()
+        elseif 'vim' == s:proj_type
+            call InitVim()
+        elseif 'cpp' == s:proj_type
+            call InitCPP()
+        elseif 'lgamesvr' == s:proj_type
+            call InitLGameSvr()
+        else
+            call InitCPP()
+        endif
+
         call SwitchDir(s:path)
         call OpenLatestModifyFile(getcwd(),g:iswindows)
         :NERDTree
@@ -50,10 +64,13 @@ function! Main(pa)
             :silent! Tlist
             :set rnu
         endif
-        if filereadable("cscope.out")
-            silent! execute "cs add cscope.out"
-        else
-            :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
+
+        if 'cpp' == s:proj_type || 'lgamesvr' == s:proj_type
+            if filereadable("cscope.out")
+                silent! execute "cs add cscope.out"
+            else
+                :echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])
+            endif
         endif
 
         if(has("gui_macvim"))    

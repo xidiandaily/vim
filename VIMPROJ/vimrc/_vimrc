@@ -106,6 +106,43 @@ function SetProjType()
     endif
 endfunction
 
+"暂时屏蔽相关插件
+let g:pathogen_disabled=[]
+"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+"call add(g:pathogen_disabled,'asyncomplete.vim')
+"call add(g:pathogen_disabled,'lua_omni_v0.17')
+"call add(g:pathogen_disabled,'vim-lsp-settings')
+"call add(g:pathogen_disabled,'vim-lsp')
+
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'my-gtags')
+"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
+"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
+"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
+"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
+"call add(g:pathogen_disabled,'ctrlp.vim')
+call add(g:pathogen_disabled,'html5.vim')
+call add(g:pathogen_disabled,'htmlcomplete.vim')
+call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
+call add(g:pathogen_disabled,'jedi-vim')
+call add(g:pathogen_disabled,'jspc.vim')
+call add(g:pathogen_disabled,'luarefvim')
+call add(g:pathogen_disabled,'marvim')
+"call add(g:pathogen_disabled,'nerdtree')
+call add(g:pathogen_disabled,'open-browser.vim')
+call add(g:pathogen_disabled,'pdv')
+call add(g:pathogen_disabled,'phpcomplete.vim')
+call add(g:pathogen_disabled,'previm')
+call add(g:pathogen_disabled,'python-mode')
+call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+call add(g:pathogen_disabled,'ultisnips')
+call add(g:pathogen_disabled,'vim-easy-align')
+call add(g:pathogen_disabled,'vimcdoc')
+call add(g:pathogen_disabled,'vimerl-1.4.1')
+call add(g:pathogen_disabled,'vmustache')
+call add(g:pathogen_disabled,'wmgraphviz.vim')
+call add(g:pathogen_disabled,'YouCompleteMe.vim')
+
 "定义取用自定义函数（根据项目类型做出区别）名称接口
 "定义项目配置时候需要使用的（全局）变量
 let g:proj_type="default"
@@ -332,11 +369,11 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
 let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
             \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
-            \ 'lswitch', 'tag', 'buffertag', 'lofies', 'loname']
+            \ 'lswitch', 'tag', 'buffertag', 'lofies', 'loname', 'fixtag']
 
 " mymenu 插件配置，将上面的 g:ctrlp_extensions 按照二级目录的方式进行选择
 let g:ctrlp_mymenu_ext_groups={
-            \ 'tag':['tag','bft'],
+            \ 'tag':['tag','bft', 'fixtag'],
             \ 'mycmd':['mycmd'],
             \ 'myp4':['myp4'],
             \ 'sme':['locur','lofies','loname'],
@@ -355,7 +392,8 @@ let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_map = '<c-p>'
 
 "设置当按下上面的按键绑定时，使用的默认打开命令: >
-let g:ctrlp_cmd = 'CtrlPMyMenu'
+"let g:ctrlp_cmd = 'CtrlPMyMenu'
+let g:ctrlp_cmd = 'CtrlPMenu'
 
 "修改该选项为1，设置默认为按文件名搜索（否则为全路径）: >
 let g:ctrlp_by_filename = 1
@@ -418,6 +456,19 @@ let g:easy_align_delimiters = {
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 vmap gx <Plug>(openbrowser-open)
 nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
+
+"GTasg-CsCope
+"let g:GtagsCscope_Auto_Load       = 1
+"let g:GtagsCscope_Auto_Map        = 1
+"let g:GtagsCscope_Use_Old_Key_Map = 1
+"let g:GtagsCscope_Ignore_Case     = 1
+"let g:GtagsCscope_Absolute_Path   = 1
+"let g:GtagsCscope_Keep_Alive      = 1
+
+"vim lsp 相关配置
+let g:lsp_auto_enable = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
 
 "自动命令
 "其他命令
