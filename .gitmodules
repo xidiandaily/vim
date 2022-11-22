@@ -51,7 +51,7 @@
 	url = https://github.com/yianwillis/vimcdoc.git
 [submodule "vimfiles/bundle/ctrlp-mymenu.vim"]
 	path = vimfiles/bundle/ctrlp-mymenu.vim
-	url = git@github.com:xidiandaily/ctrlp-mymenu.vim.git
+	url = https://github.com/xidiandaily/ctrlp-mymenu.vim.git
 [submodule "vimfiles/bundle/CRefVim.git"]
 	path = vimfiles/bundle/CRefVim.git
 	url = https://github.com/vim-scripts/CRefVim.git
