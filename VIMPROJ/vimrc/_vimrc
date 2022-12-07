@@ -6,6 +6,7 @@
 " 许可：GPLv3
 " ========================================================================
 " 其他文件
+let s:plugin_path = escape(expand('<sfile>:p:h'), '\')
 runtime vimrc_example.vim
 runtime macros/matchit.vim
 
@@ -106,11 +107,27 @@ function SetProjType()
     endif
 endfunction
 
-"暂时屏蔽相关插件
+fu! GetExtVimrcByProjType()
+    if has_key(environ(),'VIMPROJTYPE')
+        let ext_vimrc_file_name=s:plugin_path.'\'.environ()['VIMPROJTYPE'].'._extvimrc'
+        if filereadable(ext_vimrc_file_name)
+            return ext_vimrc_file_name
+        endif
+    endif
+    return ''
+endfu
+
+"暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
 let g:pathogen_disabled=[]
+
+"根据项目类型加载对应的 _vimrc 配置
+if GetExtVimrcByProjType() != ''
+    sil! exe 'source '.GetExtVimrcByProjType()
+endif
+
 "call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
 "call add(g:pathogen_disabled,'asyncomplete.vim')
-"call add(g:pathogen_disabled,'lua_omni_v0.17')
+""call add(g:pathogen_disabled,'lua_omni_v0.17')
 "call add(g:pathogen_disabled,'vim-lsp-settings')
 "call add(g:pathogen_disabled,'vim-lsp')
 
@@ -121,26 +138,26 @@ let g:pathogen_disabled=[]
 "call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
 "call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
 "call add(g:pathogen_disabled,'ctrlp.vim')
-call add(g:pathogen_disabled,'html5.vim')
-call add(g:pathogen_disabled,'htmlcomplete.vim')
-call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
-call add(g:pathogen_disabled,'jedi-vim')
-call add(g:pathogen_disabled,'jspc.vim')
-call add(g:pathogen_disabled,'luarefvim')
-call add(g:pathogen_disabled,'marvim')
+"call add(g:pathogen_disabled,'html5.vim')
+"call add(g:pathogen_disabled,'htmlcomplete.vim')
+"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
+"call add(g:pathogen_disabled,'jedi-vim')
+"call add(g:pathogen_disabled,'jspc.vim')
+"call add(g:pathogen_disabled,'luarefvim')
+"call add(g:pathogen_disabled,'marvim')
 "call add(g:pathogen_disabled,'nerdtree')
-call add(g:pathogen_disabled,'open-browser.vim')
-call add(g:pathogen_disabled,'pdv')
-call add(g:pathogen_disabled,'phpcomplete.vim')
-call add(g:pathogen_disabled,'previm')
-call add(g:pathogen_disabled,'python-mode')
-call add(g:pathogen_disabled,'tinytool.chiyl.vim')
-call add(g:pathogen_disabled,'ultisnips')
-call add(g:pathogen_disabled,'vim-easy-align')
-call add(g:pathogen_disabled,'vimcdoc')
-call add(g:pathogen_disabled,'vimerl-1.4.1')
-call add(g:pathogen_disabled,'vmustache')
-call add(g:pathogen_disabled,'wmgraphviz.vim')
+"call add(g:pathogen_disabled,'open-browser.vim')
+"call add(g:pathogen_disabled,'pdv')
+"call add(g:pathogen_disabled,'phpcomplete.vim')
+"call add(g:pathogen_disabled,'previm')
+"call add(g:pathogen_disabled,'python-mode')
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'ultisnips')
+"call add(g:pathogen_disabled,'vim-easy-align')
+"call add(g:pathogen_disabled,'vimcdoc')
+"call add(g:pathogen_disabled,'vimerl-1.4.1')
+"call add(g:pathogen_disabled,'vmustache')
+"call add(g:pathogen_disabled,'wmgraphviz.vim')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
 
 "定义取用自定义函数（根据项目类型做出区别）名称接口
@@ -457,13 +474,20 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 vmap gx <Plug>(openbrowser-open)
 nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
 
+"quick fix
+nmap <C-@><C-P> :cp <CR>
+nmap <C-@><C-N> :cn <CR>
+nmap <C-@><C-L> :cl <CR>
+
 "GTasg-CsCope
-"let g:GtagsCscope_Auto_Load       = 1
-"let g:GtagsCscope_Auto_Map        = 1
-"let g:GtagsCscope_Use_Old_Key_Map = 1
-"let g:GtagsCscope_Ignore_Case     = 1
-"let g:GtagsCscope_Absolute_Path   = 1
-"let g:GtagsCscope_Keep_Alive      = 1
+"GtagsCscope_Auto_Load 设置以后，会自动检测目录下是否有GTAGS文件，但是检测时候
+"还没有跳转到工作目录，导致毕弹错误，这里就不强制跳转，等到最后在执行GTags的加载
+let g:GtagsCscope_Auto_Load       = 0
+let g:GtagsCscope_Auto_Map        = 1
+let g:GtagsCscope_Use_Old_Key_Map = 1
+let g:GtagsCscope_Ignore_Case     = 1
+let g:GtagsCscope_Absolute_Path   = 1
+let g:GtagsCscope_Keep_Alive      = 1
 
 "vim lsp 相关配置
 let g:lsp_auto_enable = 1

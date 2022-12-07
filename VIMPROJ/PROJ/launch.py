@@ -7,6 +7,7 @@ import termcolor
 import subprocess
 import re
 import fileinput
+import pdb
 
 template_cpp='''
 "这个文件试图使得创建 VIM 项目更加简单方便。
@@ -129,6 +130,13 @@ def open_proj(fname):
     with open(PRIORITY_FILE,"w") as myfile:
         for i in reversed(result):
             myfile.write(i)
+
+    #设置环境变量
+    with open(os.path.join(PROJ_DIR,fname),'r') as myfile:
+        for line in myfile.readlines():
+            result=re.search('^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
+            if result:
+                os.environ['VIMPROJTYPE']=result.group(1)
     #subprocess.call(cmd, shell=True)
     process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-S',os.path.join(PROJ_DIR,fname)])
     #process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-V20vim2.log','-S',os.path.join(PROJ_DIR,fname)])

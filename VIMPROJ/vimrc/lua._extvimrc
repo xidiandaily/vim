@@ -1,0 +1,41 @@
+"暂时屏蔽相关插件
+if !has_key(environ(),'VIMPROJTYPE') || environ()['VIMPROJTYPE'] != 'lua'
+    finish
+endif
+
+let g:pathogen_disabled=[]
+"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+"call add(g:pathogen_disabled,'asyncomplete.vim')
+""call add(g:pathogen_disabled,'lua_omni_v0.17')
+"call add(g:pathogen_disabled,'vim-lsp-settings')
+"call add(g:pathogen_disabled,'vim-lsp')
+
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'my-gtags')
+"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
+"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
+"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
+"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
+"call add(g:pathogen_disabled,'ctrlp.vim')
+"call add(g:pathogen_disabled,'html5.vim')
+"call add(g:pathogen_disabled,'htmlcomplete.vim')
+"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
+"call add(g:pathogen_disabled,'jedi-vim')
+"call add(g:pathogen_disabled,'jspc.vim')
+"call add(g:pathogen_disabled,'luarefvim')
+"call add(g:pathogen_disabled,'marvim')
+"call add(g:pathogen_disabled,'nerdtree')
+"call add(g:pathogen_disabled,'open-browser.vim')
+"call add(g:pathogen_disabled,'pdv')
+"call add(g:pathogen_disabled,'phpcomplete.vim')
+"call add(g:pathogen_disabled,'previm')
+"call add(g:pathogen_disabled,'python-mode')
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'ultisnips')
+"call add(g:pathogen_disabled,'vim-easy-align')
+"call add(g:pathogen_disabled,'vimcdoc')
+"call add(g:pathogen_disabled,'vimerl-1.4.1')
+"call add(g:pathogen_disabled,'vmustache')
+"call add(g:pathogen_disabled,'wmgraphviz.vim')
+call add(g:pathogen_disabled,'YouCompleteMe.vim')
+
