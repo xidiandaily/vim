@@ -479,6 +479,10 @@ nmap <C-@><C-P> :cp <CR>
 nmap <C-@><C-N> :cn <CR>
 nmap <C-@><C-L> :cl <CR>
 
+"cscope jump
+nmap <C-@><C-@><C-P> :tp <CR>
+nmap <C-@><C-@><C-N> :tn <CR>
+
 "GTasg-CsCope
 "GtagsCscope_Auto_Load 设置以后，会自动检测目录下是否有GTAGS文件，但是检测时候
 "还没有跳转到工作目录，导致毕弹错误，这里就不强制跳转，等到最后在执行GTags的加载

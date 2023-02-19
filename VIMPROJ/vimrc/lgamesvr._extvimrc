@@ -1,9 +1,20 @@
-"暂时屏蔽相关插件
+"==============================================================================
+" Description: global plugin for lawrencechi
+" Author:      lawrencechi <codeforfuture <at> 126.com>
+" Last Change: 2022.12.08
+" License:     This file is placed in the public domain.
+" Version:     1.0.0
+"==============================================================================
+"
+
 if !has_key(environ(),'VIMPROJTYPE') || environ()['VIMPROJTYPE'] != 'lgamesvr'
     finish
 endif
 
-let g:pathogen_disabled=[]
+"暂时屏蔽相关插件
+if !has_key(g:,'pathogen_disabled')
+    let g:pathogen_disabled=[]
+endif
 call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
 call add(g:pathogen_disabled,'asyncomplete.vim')
 "call add(g:pathogen_disabled,'lua_omni_v0.17')

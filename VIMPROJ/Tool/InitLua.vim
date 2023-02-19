@@ -51,7 +51,7 @@ function CSTAG_lua()
             let choice=2
             let s:lgamexml=getenv('VIMPROJ').'\\myctags-optlib\\lgamexml.ctags'
             silent! execute "!ctags.exe -f lgamelua.tags -R --languages=C,+C++,+CMake,+Automake,+Autoconf,+Lua --c++-kinds=+p --fields=+iaS --extras=+q ."
-            silent! execute "!ctags.exe -f lgamexml.tags --options=".s:lgamexml." --languages=+lgamexml --c++-kinds=+p --fields=+iaS --extras=+q"
+            silent! execute "!ctags.exe -f lgamexml.tags -R --options=".s:lgamexml." --languages=+lgamexml --c++-kinds=+p --fields=+iaS --extras=+q ."
             set tags+=lgamelua.tags
             set tags+=lgamexml.tags
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamelua.tags'
