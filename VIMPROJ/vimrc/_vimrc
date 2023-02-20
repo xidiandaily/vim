@@ -9,7 +9,7 @@
 let s:plugin_path = escape(expand('<sfile>:p:h'), '\')
 let crp=&runtimepath
 let s:tempvimes=fnamemodify(expand("$VIMPROJ/../vimfiles"),":p:h")
-set runtimepath+=D:\Code.github\vim2\vimfiles
+sil! exe 'set runtimepath+='.s:tempvimes
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 runtime vimrc_example.vim
 runtime macros/matchit.vim
@@ -18,10 +18,10 @@ runtime macros/matchit.vim
 
 if(has("win32") || has("win95") || has("win64") || has("win16"))
     set shell=C:\windows\system32\cmd.exe
-	"set pythonhome=C:\Python27
+	set pythonhome=C:\Python27
 	set pythondll=C:\Windows\System32\python27.dll
-	"set pythonthreehome=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python310
-	set pythonthreedll=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python39\python39.dll
+	set pythonthreehome=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python310
+	set pythonthreedll=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python310\python310.dll
     let g:iswindows=1
 else
     let g:iswindows=0
@@ -166,7 +166,8 @@ endif
 "call add(g:pathogen_disabled,'vimerl-1.4.1')
 "call add(g:pathogen_disabled,'vmustache')
 "call add(g:pathogen_disabled,'wmgraphviz.vim')
-"call add(g:pathogen_disabled,'YouCompleteMe.vim')
+call add(g:pathogen_disabled,'YouCompleteMe.vim')
+call add(g:pathogen_disabled,'lua_omni_v0.17')
 
 "定义取用自定义函数（根据项目类型做出区别）名称接口
 "定义项目配置时候需要使用的（全局）变量
@@ -509,4 +510,4 @@ let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
 "自动命令
 "其他命令
 "最后
-call pathogen#infect('D:\Code.github\vim2\vimfiles\bundle\{}')
+sil! exe "call pathogen#infect('".s:tempvimes."\\bundle\\{}')"
