@@ -507,6 +507,10 @@ let g:lsp_auto_enable = 1
 let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
 
+"修改 C-N, C-P 的默认搜索范围
+"因为默认值会遍历所有头文件进行补全，耗时太大
+set complete=.,w,b
+
 "自动命令
 "其他命令
 "最后
