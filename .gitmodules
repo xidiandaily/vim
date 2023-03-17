@@ -70,3 +70,24 @@
 [submodule "vimfiles/bundle/supertab"]
 	path = vimfiles/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "vimfiles/bundle/vim-lsp"]
+	path = vimfiles/bundle/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule "vimfiles/bundle/vim-lsp-settings"]
+	path = vimfiles/bundle/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings.git
+[submodule "vimfiles/bundle/asyncomplete.vim"]
+	path = vimfiles/bundle/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule "vimfiles/bundle/asyncomplete-lsp.vim"]
+	path = vimfiles/bundle/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "vimfiles/bundle/luarefvim"]
+	path = vimfiles/bundle/luarefvim
+	url = https://github.com/wsdjeg/luarefvim.git
+[submodule "vimfiles/bundle/vim-snippets"]
+	path = vimfiles/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vimfiles/bundle/OmniCppComplete"]
+	path = vimfiles/bundle/OmniCppComplete
+	url = https://github.com/vim-scripts/OmniCppComplete.git

@@ -23,11 +23,6 @@ function! MaximizeWindow()
 endfunction
 
 function! Main(pa)
-        "最大化窗口
-        if (g:iswindows==1)
-            :simalt ~x
-        endif 
-
         let s:path=a:pa
         let s:filename=s:path
         let g:tarmodifyfile_path=s:filename
@@ -76,6 +71,10 @@ function! Main(pa)
         if(has("gui_macvim"))    
             :set fu
         endif
+        "最大化窗口
+        if (g:iswindows==1)
+            :simalt ~x
+        endif 
         :silent execute "redraw"
 endfunction
 

@@ -63,17 +63,18 @@ function CSTAG_lgamesvr()
 
             if choice == 1 || choice == 2
                 silent! execute "!ctags.exe -f lgamesvrc.tags -R --languages=C,+C++,+CMake,+Automake,+Autoconf,+Lua --c++-kinds=+p --fields=+iaS --extras=+q ."
-                set tags+=lgamesvrc.tags
+                "set tags+=lgamesvrc.tags
             endif
 
             if choice == 1 || choice == 3
                 silent! execute "!ctags.exe -L ".s:lgamexmlfilelist." -f lgamexml.tags --options=".s:lgamexml." --languages=+lgamexml --c++-kinds=+p --fields=+iaS --extras=+q"
-                set tags+=lgamexml.tags
+                "set tags+=lgamexml.tags
             endif
 
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamesvrc.tags'
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
             call ctrlp#mycmd#LGameCtrlPTag()
+            set tags+=lgamesvrc.ctrlptags,lgamexml.ctlptags
         else
             silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         endif
@@ -131,7 +132,9 @@ function! InitLGameSvr()
     "预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
     if(g:iswindows==1)
-        :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags,lgamesvrc.tags,lgamexml.tags
+        ":set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags,lgamesvrc.tags,lgamexml.tags
+        ":set tags+=lgamesvrc.tags,lgamexml.tags
+        :set tags+=lgamesvrc.ctrlptags,lgamexml.ctlptags
     else
         :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
     endif

@@ -74,7 +74,11 @@ function ASTYLE_lua()
 endfunction
 
 function! InitLua()
-    :set tags+=$VIMPROJ/vimlib/lua-5.1.5/tags,
+    set tags+=$VIMPROJ/vimlib/lua-5.1.5/tags
+    if(g:iswindows==1)
+        set tags+=lgamelua.tags
+        set tags+=lgamexml.tags
+    endif
     let g:chiylown_func_dict["UPFILE"]["lua"]="UPFILE_lua"
     let g:chiylown_func_dict["CSTAG"]["lua"]="CSTAG_lua"
     let g:chiylown_func_dict["ASTYLE"]["lua"]="ASTYLE_lua"
