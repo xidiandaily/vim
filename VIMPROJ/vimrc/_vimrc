@@ -319,6 +319,7 @@ if(has("mac"))
 endif
 
 source $VIMPROJ/vimrc/option.vim
+source $VIMPROJ/vimrc/hexToDec.vim
 
 "marvim
 " to change the macro storage location use the following 
@@ -487,6 +488,8 @@ nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
 nmap <C-@><C-P> :cp <CR>
 nmap <C-@><C-N> :cn <CR>
 nmap <C-@><C-L> :cl <CR>
+nmap <C-@><C-H> :cr <CR>
+nmap <C-@><C-T> :cla <CR>
 
 "cscope jump
 nmap <C-@><C-@><C-P> :tp <CR>
@@ -503,9 +506,12 @@ let g:GtagsCscope_Absolute_Path   = 1
 let g:GtagsCscope_Keep_Alive      = 1
 
 "vim lsp 相关配置
-let g:lsp_auto_enable = 1
+let g:lsp_auto_enable = 0
 let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
+nmap \lspd :LspDefinition<CR>
+nmap \lsph :LspHover<CR>
+nmap \lspr :LspReferences<CR>
 
 "修改 C-N, C-P 的默认搜索范围
 "因为默认值会遍历所有头文件进行补全，耗时太大

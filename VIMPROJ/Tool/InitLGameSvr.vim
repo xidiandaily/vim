@@ -74,7 +74,7 @@ function CSTAG_lgamesvr()
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamesvrc.tags'
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
             call ctrlp#mycmd#LGameCtrlPTag()
-            set tags+=lgamesvrc.ctrlptags,lgamexml.ctlptags
+            set tags+=lgamesvrc.ctrlptags,lgamexml.ctrlptags
         else
             silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         endif
@@ -134,7 +134,7 @@ function! InitLGameSvr()
     if(g:iswindows==1)
         ":set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags,$VIMPROJ/vimlib/zeromq-3.2.5/tags,lgamesvrc.tags,lgamexml.tags
         ":set tags+=lgamesvrc.tags,lgamexml.tags
-        :set tags+=lgamesvrc.ctrlptags,lgamexml.ctlptags
+        :set tags+=lgamesvrc.ctrlptags,lgamexml.ctrlptags
     else
         :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
     endif

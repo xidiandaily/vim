@@ -1,13 +1,13 @@
 "==============================================================================
 " Description: global plugin for lawrencechi
 " Author:      lawrencechi <codeforfuture <at> 126.com>
-" Last Change: 2022.12.08
+" Last Change: 2023.04.06
 " License:     This file is placed in the public domain.
 " Version:     1.0.0
 "==============================================================================
 
 "暂时屏蔽相关插件
-if !has_key(environ(),'VIMPROJTYPE') || environ()['VIMPROJTYPE'] != 'lua'
+if !has_key(environ(),'VIMPROJTYPE') || environ()['VIMPROJTYPE'] != 'python'
     finish
 endif
 
@@ -15,10 +15,11 @@ if !has_key(g:,'pathogen_disabled')
     let g:pathogen_disabled=[]
 endif
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
-"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
-"call add(g:pathogen_disabled,'asyncomplete.vim')
-"call add(g:pathogen_disabled,'vim-lsp-settings')
-"call add(g:pathogen_disabled,'vim-lsp')
+call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+call add(g:pathogen_disabled,'asyncomplete.vim')
+call add(g:pathogen_disabled,'lua_omni_v0.17')
+call add(g:pathogen_disabled,'vim-lsp-settings')
+call add(g:pathogen_disabled,'vim-lsp')
 
 "diagnostics
 let g:lsp_diagnostics_enabled = 0

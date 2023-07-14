@@ -79,6 +79,7 @@ function Init_F11()
     endif
 endfunction
 
+
 let s:datapath='C:/Vim/VIMPROJ/Tool/data/'
 call Init_SSHConfig()
 amenu &chiyl.Jedi环境配置.-SEP2-                              :
@@ -93,5 +94,6 @@ call Init_PyenvConfig()
 amenu &chiyl.-SEP3-                              :
 amenu &chiyl.About                               :echo "\ngVIM-menu for chiyl.vim (https://github.com/xidiandaily/vim.git)\nby LawrenceChi\ncodeforfuture (at) 126.com\n"<CR>
 amenu &chiyl.test                               :call Init_SSHConfig()<Cr>
+
 
 map <F11> :call Init_F11()<CR>
