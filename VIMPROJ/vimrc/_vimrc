@@ -125,49 +125,6 @@ fu! GetExtVimrcByProjType()
     return ''
 endfu
 
-"暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
-let g:pathogen_disabled=[]
-
-"根据项目类型加载对应的 _vimrc 配置
-if GetExtVimrcByProjType() != ''
-    sil! exe 'source '.GetExtVimrcByProjType()
-endif
-
-"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
-"call add(g:pathogen_disabled,'asyncomplete.vim')
-""call add(g:pathogen_disabled,'lua_omni_v0.17')
-"call add(g:pathogen_disabled,'vim-lsp-settings')
-"call add(g:pathogen_disabled,'vim-lsp')
-
-"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
-"call add(g:pathogen_disabled,'my-gtags')
-"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
-"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
-"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
-"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
-"call add(g:pathogen_disabled,'ctrlp.vim')
-"call add(g:pathogen_disabled,'html5.vim')
-"call add(g:pathogen_disabled,'htmlcomplete.vim')
-"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
-"call add(g:pathogen_disabled,'jedi-vim')
-"call add(g:pathogen_disabled,'jspc.vim')
-"call add(g:pathogen_disabled,'luarefvim')
-"call add(g:pathogen_disabled,'marvim')
-"call add(g:pathogen_disabled,'nerdtree')
-"call add(g:pathogen_disabled,'open-browser.vim')
-"call add(g:pathogen_disabled,'pdv')
-"call add(g:pathogen_disabled,'phpcomplete.vim')
-"call add(g:pathogen_disabled,'previm')
-"call add(g:pathogen_disabled,'python-mode')
-"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
-"call add(g:pathogen_disabled,'ultisnips')
-"call add(g:pathogen_disabled,'vim-easy-align')
-"call add(g:pathogen_disabled,'vimcdoc')
-"call add(g:pathogen_disabled,'vimerl-1.4.1')
-"call add(g:pathogen_disabled,'vmustache')
-"call add(g:pathogen_disabled,'wmgraphviz.vim')
-call add(g:pathogen_disabled,'YouCompleteMe.vim')
-call add(g:pathogen_disabled,'lua_omni_v0.17')
 
 "定义取用自定义函数（根据项目类型做出区别）名称接口
 "定义项目配置时候需要使用的（全局）变量
@@ -227,6 +184,7 @@ au BufNewFile,BufRead *.stp			set ft=stap
 set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
 set encoding=utf-8
 set fenc=utf-8
+set fileformat=unix
 language message zh_CN.utf-8
 "解决菜单乱码 
 source $VIMRUNTIME/delmenu.vim 
@@ -319,7 +277,6 @@ if(has("mac"))
 endif
 
 source $VIMPROJ/vimrc/option.vim
-source $VIMPROJ/vimrc/hexToDec.vim
 
 "marvim
 " to change the macro storage location use the following 
@@ -516,6 +473,50 @@ nmap \lspr :LspReferences<CR>
 "修改 C-N, C-P 的默认搜索范围
 "因为默认值会遍历所有头文件进行补全，耗时太大
 set complete=.,w,b
+
+"暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
+let g:pathogen_disabled=[]
+
+"根据项目类型加载对应的 _vimrc 配置
+if GetExtVimrcByProjType() != ''
+    sil! exe 'source '.GetExtVimrcByProjType()
+endif
+
+"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+"call add(g:pathogen_disabled,'asyncomplete.vim')
+""call add(g:pathogen_disabled,'lua_omni_v0.17')
+"call add(g:pathogen_disabled,'vim-lsp-settings')
+"call add(g:pathogen_disabled,'vim-lsp')
+
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'my-gtags')
+"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
+"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
+"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
+"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
+"call add(g:pathogen_disabled,'ctrlp.vim')
+"call add(g:pathogen_disabled,'html5.vim')
+"call add(g:pathogen_disabled,'htmlcomplete.vim')
+"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
+"call add(g:pathogen_disabled,'jedi-vim')
+"call add(g:pathogen_disabled,'jspc.vim')
+"call add(g:pathogen_disabled,'luarefvim')
+"call add(g:pathogen_disabled,'marvim')
+"call add(g:pathogen_disabled,'nerdtree')
+"call add(g:pathogen_disabled,'open-browser.vim')
+"call add(g:pathogen_disabled,'pdv')
+"call add(g:pathogen_disabled,'phpcomplete.vim')
+"call add(g:pathogen_disabled,'previm')
+"call add(g:pathogen_disabled,'python-mode')
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'ultisnips')
+"call add(g:pathogen_disabled,'vim-easy-align')
+"call add(g:pathogen_disabled,'vimcdoc')
+"call add(g:pathogen_disabled,'vimerl-1.4.1')
+"call add(g:pathogen_disabled,'vmustache')
+"call add(g:pathogen_disabled,'wmgraphviz.vim')
+call add(g:pathogen_disabled,'YouCompleteMe.vim')
+call add(g:pathogen_disabled,'lua_omni_v0.17')
 
 "自动命令
 "其他命令

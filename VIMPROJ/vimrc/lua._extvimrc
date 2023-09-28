@@ -19,18 +19,26 @@ call add(g:pathogen_disabled,'YouCompleteMe.vim')
 "call add(g:pathogen_disabled,'asyncomplete.vim')
 "call add(g:pathogen_disabled,'vim-lsp-settings')
 "call add(g:pathogen_disabled,'vim-lsp')
+" 
+" "diagnostics
+" let g:lsp_diagnostics_enabled = 0
+" let g:lsp_diagnostics_signs_enabled = 0
+" let g:lsp_diagnostics_virtual_text_enabled = 0
+" let g:lsp_diagnostics_highlights_enabled = 0
+" 
+" let g:lsp_log_vebose=0
+" let g:lsp_log_file=expand("~/vim-lsp.log")
+" let g:lsp_use_native_client = 0
+" "let g:lsp_experimental_workspace_folders=1
+" 
+" " for asyncomplete.vim log
+" let g:asyncomplete_log_file = expand('~/vim-lsp-asyncomplete.log')
 
-"diagnostics
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_signs_enabled = 0
+let g:lsp_auto_enable = 1
+let g:lsp_use_native_client = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_highlights_enabled = 0
-
-let g:lsp_log_vebose=0
 let g:lsp_log_file=expand("~/vim-lsp.log")
-let g:lsp_use_native_client = 0
-"let g:lsp_experimental_workspace_folders=1
-
-" for asyncomplete.vim log
-let g:asyncomplete_log_file = expand('~/vim-lsp-asyncomplete.log')
-
+"let g:asyncomplete_log_file=''

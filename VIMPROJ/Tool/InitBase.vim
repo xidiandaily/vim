@@ -165,7 +165,7 @@ import tarfile
 import sys
 import vim
 
-escape_reg=["\.git","\.svn"]
+escape_reg=["\.git","\.svn","\.cache"]
 
 g_proj_type = vim.eval("g:proj_type")
 a_root      = vim.eval("a:root")

@@ -15,11 +15,11 @@ endif
 if !has_key(g:,'pathogen_disabled')
     let g:pathogen_disabled=[]
 endif
-call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
-call add(g:pathogen_disabled,'asyncomplete.vim')
+"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+"call add(g:pathogen_disabled,'asyncomplete.vim'!y!.
 "call add(g:pathogen_disabled,'lua_omni_v0.17')
-call add(g:pathogen_disabled,'vim-lsp-settings')
-call add(g:pathogen_disabled,'vim-lsp')
+"call add(g:pathogen_disabled,'vim-lsp-settings')
+"call add(g:pathogen_disabled,'vim-lsp')
 call add(g:pathogen_disabled,'OmniCppComplete')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
 
@@ -51,4 +51,12 @@ call add(g:pathogen_disabled,'YouCompleteMe.vim')
 "call add(g:pathogen_disabled,'vimerl-1.4.1')
 "call add(g:pathogen_disabled,'vmustache')
 "call add(g:pathogen_disabled,'wmgraphviz.vim')
-
+"
+let g:lsp_auto_enable = 1
+let g:lsp_use_native_client = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_log_file = ''
+"let g:asyncomplete_log_file=''
