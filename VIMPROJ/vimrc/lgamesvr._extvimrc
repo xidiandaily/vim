@@ -22,6 +22,7 @@ endif
 "call add(g:pathogen_disabled,'vim-lsp')
 call add(g:pathogen_disabled,'OmniCppComplete')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
+call add(g:pathogen_disabled,'vim-gutentags.git')
 
 #call add(g:pathogen_disabled,'supertab')
 "call add(g:pathogen_disabled,'tinytool.chiyl.vim')
