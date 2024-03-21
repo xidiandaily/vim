@@ -1,0 +1,18 @@
+--_echo='import lgametestclientproto.ctags'
+--langdef=lgametestclientproto
+--map-lgametestclientproto=.lua
+--kinddef-lgametestclientproto=m,macro,macro
+--kinddef-lgametestclientproto=M,macrosgroup,macrosgroup
+--kinddef-lgametestclientproto=s,struct,struct
+--kinddef-lgametestclientproto=e,entry,entry
+--kinddef-lgametestclientproto=t,type,type
+--kinddef-lgametestclientproto=u,union,union
+--regex-lgametestclientproto=/<entry[ \t]+.*?type=\"([a-zA-Z_0-9]+?)\".*\>/\1/t/
+--regex-lgametestclientproto=/<entry[ \t]+.*?name=\"([a-zA-Z_0-9]+?)\".*\>/\1/e/
+--regex-lgametestclientproto=/<macro[ \t]+.*?name=\"([a-zA-Z_0-9]+?)\".*\>/\1/m/
+--regex-lgametestclientproto=/[^<]+<struct[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/s/{scope=push}
+--regex-lgametestclientproto=/<\/struct>///{scope=pop}{placeholder}
+--regex-lgametestclientproto=/[^<]+<macrosgroup[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/M/{scope=push}
+--regex-lgametestclientproto=/<\/macrosgroup>///{scope=pop}{placeholder}
+--regex-lgametestclientproto=/[^<]+<union[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/u/{scope=push}
+--regex-lgametestclientproto=/<\/union>///{scope=pop}{placeholder}

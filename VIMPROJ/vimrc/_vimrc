@@ -352,7 +352,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
 "            \ 'mycmd', 'menu', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
-let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
+let g:ctrlp_extensions = ['mycmd', 'myp4', 'mygit', 'locur', 'lerror', 'lasync', 'lextdbtype',
             \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
             \ 'lswitch', 'tag', 'buffertag', 'lofies', 'loname', 'fixtag']
 
@@ -368,7 +368,7 @@ let g:ctrlp_mymenu_ext_groups={
 
 
 "自己定义的一些命令
-let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
+let g:ctrlp_mycmd_cmds=[]
 
 "ctrlp
 let g:ctrlp_working_path_mode = 'a'
@@ -407,8 +407,18 @@ let g:ctrlp_max_files = 0
 
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+    "set grepprg=ag\ --nogroup\ --nocolor\ -p\ .agignore
+    set grepprg=grep\ -nH\ -r\ --include=\"*.lua\"\ --include=\"*.java\"\ --include=\"*.c\"\ --include=\"*.cpp\"\ --include=\"*.h\"\ --include=\"*.hpp\"\ --include=\"*.xml\"\ -e
+    let g:ackprg = 'ag --vimgrep -p .agignore'
+    "let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore .git --ignore .DS_Store --ignore node_modules --hidden -g ""'
+    "let g:ctrlp_show_hidden =1 
+    let g:ctrlp_user_command = {
+                \ 'ignore':1,
+                \ 'fallback':'ag %s -i --nocolor --nogroup --ignore .git --ignore .svn --ignore .vim-lsp-settings --ignore build --ignore .DS_Store --ignore node_modules --hidden -g ""'
+                \}
+    let g:ctrlp_custom_ignore = {
+                \ 'file': '\v[\/]\.vimtmp.filename.*\.txt$|\.vimtmp.incr$|.myp4.out.filelog|.gitignore|.gitattributes|\.so$',
+                \ }
 endif
 
 "EasyAlign
@@ -448,6 +458,8 @@ nmap <C-@><C-N> :cn <CR>
 nmap <C-@><C-L> :cl <CR>
 nmap <C-@><C-H> :cr <CR>
 nmap <C-@><C-T> :cla <CR>
+nmap <C-@><C-O> :copen <CR>
+nmap <C-@><C-C> :cclose <CR>
 
 "cscope jump
 nmap <C-@><C-@><C-P> :tp <CR>

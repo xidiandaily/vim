@@ -91,3 +91,6 @@
 [submodule "vimfiles/bundle/OmniCppComplete"]
 	path = vimfiles/bundle/OmniCppComplete
 	url = https://github.com/vim-scripts/OmniCppComplete.git
+[submodule "vimfiles/bundle/ack.vim"]
+	path = vimfiles/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git

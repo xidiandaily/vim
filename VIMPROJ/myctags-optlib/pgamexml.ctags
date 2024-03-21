@@ -1,0 +1,19 @@
+--_echo='import pgamexml.ctags'
+--languages=-Xml
+--langdef=pgamexml{base=Xml}
+--map-pgamexml=.xml
+--kinddef-pgamexml=m,macro,macro
+--kinddef-pgamexml=M,macrosgroup,macrosgroup
+--kinddef-pgamexml=s,struct,struct
+--kinddef-pgamexml=e,entry,entry
+--kinddef-pgamexml=t,type,type
+--kinddef-pgamexml=u,union,union
+--regex-pgamexml=/<entry[ \t]+.*?\btype=\"([a-zA-Z_0-9]{15,})\".*\>/\1/t/
+--regex-pgamexml=/<entry[ \t]+.*?\bname=\"([a-zA-Z_0-9]+?)\".*\>/\1/e/
+--regex-pgamexml=/<macro[ \t]+.*?\bname=\"([a-zA-Z_0-9]+?)\".*\>/\1/m/
+--regex-pgamexml=/[^<]+<struct[ \t]+.*?\bname=\"([^\"]+)\"[^>]*>.*$/\1/s/{scope=push}
+--regex-pgamexml=/<\/struct>///{scope=pop}{placeholder}
+--regex-pgamexml=/[^<]+<macrosgroup[ \t]+[^>]*\bname=\"([^\"]+)\"[^>]*>.*$/\1/M/{scope=push}
+--regex-pgamexml=/<\/macrosgroup>///{scope=pop}{placeholder}
+--regex-pgamexml=/[^<]+<union[ \t]+[^>]*\bname=\"([^\"]+)\"[^>]*>.*$/\1/u/{scope=push}
+--regex-pgamexml=/<\/union>///{scope=pop}{placeholder}

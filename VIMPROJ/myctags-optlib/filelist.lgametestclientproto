@@ -1,0 +1,10 @@
+./script/doc/all_macro.lua
+./script/doc/autotest_api.lua
+./script/doc/star_aisvr.lua
+./script/doc/star_comm.lua
+./script/doc/star_cs.lua
+./script/doc/star_def.lua
+./script/doc/star_macro.lua
+./script/doc/star_shm2db.lua
+./script/doc/star_ss.lua
+./script/doc/star_sync.lua

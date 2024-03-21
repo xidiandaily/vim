@@ -16,6 +16,8 @@ source  $VIMPROJ/Tool/InitPython.vim
 source  $VIMPROJ/Tool/InitVim.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
+"初始化PGame环境
+source  $VIMPROJ/Tool/InitPGameSvr.vim
 
 
 function! MaximizeWindow()    
@@ -47,6 +49,8 @@ function! Main(pa)
             call InitCPP()
         elseif 'lgamesvr' == s:proj_type
             call InitLGameSvr()
+        elseif 'pgamesvr' == s:proj_type
+            call InitPGameSvr()
         else
             call InitCPP()
         endif
