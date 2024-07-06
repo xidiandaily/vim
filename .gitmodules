@@ -94,3 +94,9 @@
 [submodule "vimfiles/bundle/ack.vim"]
 	path = vimfiles/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vimfiles/bundle/markdown-preview.nvim"]
+	path = vimfiles/bundle/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim.git
+[submodule "vimfiles/bundle/vim-signature"]
+	path = vimfiles/bundle/vim-signature
+	url = https://github.com/kshenoy/vim-signature.git

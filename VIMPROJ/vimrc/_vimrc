@@ -530,6 +530,22 @@ endif
 "call add(g:pathogen_disabled,'wmgraphviz.vim')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
 call add(g:pathogen_disabled,'lua_omni_v0.17')
+call add(g:pathogen_disabled,'markdown-preview.nvim')
+"let g:node_client_debug = 1
+
+"let $NVIM_SRAN_LOG_FILE = expand('~/sran-nvim.log')
+"let $NVIM_SRAN_LOG_LEVEL = 'debug'
+"let $NVIM_MKDP_LOG_FILE = expand('~/mkdp-log.log')
+"let $NVIM_MKDP_LOG_LEVEL = 'debug'
+"let $VIM_MKDP_RPC_LOG_FILE = expand('~/mkdp-rpc-log.log')
+"let $VIM_MKDP_RPC_LOG_LEVEL = 'debug'
+"let $NODE_CLIENT_LOG_FILE = expand('~/mkdp-clientlog.log')
+""let $COC_NODE_CLIENT_DEBUG =1
+"let $COC_TESTER = 1
+"let $NODE_CLIENT_LOG_LEVEL ='debug'
+"let $DEBUG = '*'
+"call ch_logfile(expand('~/mkdp-cnlog.chiyl.log'))
+
 
 "自动命令
 "其他命令
