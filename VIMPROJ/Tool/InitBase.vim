@@ -157,7 +157,7 @@ function! SaveLatestModifyFileName(is_update)
 endfunction
 
 function! OpenLatestModifyFile(root,iswindows)
-python << EOF
+python3 << EOF
 import os
 import time
 import re
@@ -165,20 +165,20 @@ import tarfile
 import sys
 import vim
 
-escape_reg=["\.git","\.svn","\.cache"]
+escape_reg=[r"\.git",r"\.svn",r"\.cache"]
 
 g_proj_type = vim.eval("g:proj_type")
 a_root      = vim.eval("a:root")
 a_iswindows = vim.eval("g:iswindows")
 
 if a_iswindows==1:
-    base_dir=a_root.replace("/","\\")
+    base_dir=a_root.replace(r"/","\\")
 else:
     base_dir=a_root
 
 include_reg=[]
 if g_proj_type=="cpp":
-    include_reg=["\.cc$","\.hpp$","\.h$","\.cpp$"]
+    include_reg=[r"\.cc$",r"\.hpp$",r"\.h$",r"\.cpp$"]
 
 cur_tstamp=time.time()
 max_tstamp=0
@@ -186,7 +186,7 @@ last_modify_filename=''
 for root, dirs, files in os.walk(base_dir):
     for file in files:
         filename=os.path.join(root,file)
-        if re.search("^\.",os.path.basename(filename)):
+        if re.search(r"^\.",os.path.basename(filename)):
             continue
 
         bEscape=True

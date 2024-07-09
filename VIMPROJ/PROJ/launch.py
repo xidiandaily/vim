@@ -44,7 +44,7 @@ def get_proj_list(key):
         fh = open(PRIORITY_FILE, "r").readlines()
         for line in fh:
             line=line.strip()+".vim"
-            if re.search(".*"+key+".*\.vim$",line,re.IGNORECASE):
+            if re.search(r".*"+key+r".*\.vim$",line,re.IGNORECASE):
                 proj.append(line)
     proj.reverse()
 
@@ -53,7 +53,7 @@ def get_proj_list(key):
     exclude=proj
     for dirpath,dirnames,filenames in os.walk(PROJ_DIR):
         for file in filenames:
-            if re.search(".*"+key+".*\.vim$",file,re.IGNORECASE) and not file in exclude:
+            if re.search(r".*"+key+r".*\.vim$",file,re.IGNORECASE) and not file in exclude:
                 indir.append(file)
         break
     return {"proj":proj,"indir":sorted(indir)}
@@ -140,13 +140,13 @@ def open_proj(fname):
     if sys.version_info[0] < 3:  # 如果 Python 版本小于 3.x
         with open(os.path.join(PROJ_DIR,fname),'r') as myfile:
             for line in myfile.readlines():
-                result=re.search('^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
+                result=re.search(r'^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
                 if result:
                     os.environ['VIMPROJTYPE']=result.group(1)
     else:
         with open(os.path.join(PROJ_DIR,fname),'r',encoding='utf-8') as myfile:
             for line in myfile.readlines():
-                result=re.search('^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
+                result=re.search(r'^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
                 if result:
                     os.environ['VIMPROJTYPE']=result.group(1)
     #subprocess.call(cmd, shell=True)
@@ -181,7 +181,7 @@ def remove_empty_proj():
         for f in files:
             if f == "template.vim":
                 continue
-            if not re.search("\.vim$",f):
+            if not re.search(r"\.vim$",f):
                 continue
             for line in fileinput.input(os.path.join(root,f)):
                 result = re.search(r'call\s*?Main\s*\(\s*\"(.*?)\"\)',line)

@@ -1,0 +1,1 @@
+:let @*=€kb = substitute(expand('%:p'),'\\','/','g')

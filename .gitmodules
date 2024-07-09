@@ -100,3 +100,6 @@
 [submodule "vimfiles/bundle/vim-signature"]
 	path = vimfiles/bundle/vim-signature
 	url = https://github.com/kshenoy/vim-signature.git
+[submodule "Font/Consolas-with-Yahei"]
+	path = Font/Consolas-with-Yahei
+	url = https://github.com/crvdgc/Consolas-with-Yahei.git

@@ -1,5 +1,5 @@
 function! UpdatePath(root)
-python << EOF
+python3 << EOF
 import os
 import vim
 
@@ -8,17 +8,22 @@ class DirItem:
         self.relpath = relpath
         self.depno = depno
 
-    def __cmp__(self,other):
+    def __lt__(self,other):
         if self.depno < other.depno:
-            return -1
-        elif self.depno > other.depno:
-            return 1
-        elif self.relpath < other.relpath:
-            return -1
-        elif self.relpath > other.relpath:
-            return 1
-        else:
-            return 0
+            return True
+        elif self.depno == other.depno and self.relpath < other.relpath:
+            return True
+        return False
+
+    def __gt__(self,other):
+        if self.depno > other.depno:
+            return True
+        elif self.depno == other.depno and self.relpath > other.relpath:
+            return True
+        return False
+
+    def __eq__(self,other):
+        return self.depno == other.depno and self.relpath == other.relpath
 
 base_dir = vim.eval("a:root") 
 result=[]
@@ -39,7 +44,7 @@ for root, dirs, files in os.walk(base_dir):
 
 result.sort()
 for r in result:
-    cmd=":set path+="+r.relpath.replace(" ","\ ")
+    cmd=":set path+="+r.relpath.replace(r" ",r"\ ")
     vim.command(cmd)
 EOF
 endfunction
