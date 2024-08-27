@@ -9,6 +9,14 @@ function CTags_pgamesvr_xml()
     silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/pgamexml.tags'
 endfunction
 
+function CTags_pgamesvr_lua()
+    let s:pgamelua=getenv('VIMPROJ').'\\myctags-optlib\\pgamelua.ctags'
+    let l:mycmd="!ctags.exe -R -f pgamelua.tags --options=".s:pgamelua." --languages=+pgamelua"
+    echom l:mycmd
+    silent! execute l:mycmd
+    silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/pgamelua.tags'
+endfunction
+
 function CSTAG_pgamesvr()
     let dir = getcwd()
     if filereadable("tags")
@@ -69,8 +77,7 @@ function CSTAG_pgamesvr()
             endif
 
             if choice == 1 || choice == 3
-                silent! execute "!ctags -R --languages=lua --exclude=pgamelua.ctags -f pgamelua.tags ."
-                silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/pgamelua.tags'
+                call CTags_pgamesvr_lua()
             endif
 
             if choice == 1 || choice == 4

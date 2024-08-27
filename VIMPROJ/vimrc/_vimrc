@@ -20,8 +20,8 @@ if(has("win32") || has("win95") || has("win64") || has("win16"))
     set shell=C:\windows\system32\cmd.exe
 	set pythonhome=C:\Python27
 	set pythondll=C:\Windows\System32\python27.dll
-	set pythonthreehome=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python310
-	set pythonthreedll=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python310\python310.dll
+	set pythonthreehome=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python312
+	set pythonthreedll=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python312\python312.dll
     let g:iswindows=1
 else
     let g:iswindows=0

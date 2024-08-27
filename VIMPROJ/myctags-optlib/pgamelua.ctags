@@ -1,0 +1,19 @@
+--_echo='import pgamelua.ctags'
+--languages=Lua
+--langdef=pgamelua{base=Lua}{shared}
+--map-pgamelua=.lua
+--kinddef-pgamelua=g,globalvar,global vars
+--kinddef-pgamelua=v,fileglobalvar,file defined global var without _G
+--kinddef-pgamelua=s,struct,global struct without _G
+--kinddef-pgamelua=i,importfilelocalvar,import file to local var
+--kinddef-pgamelua=t,localtypestruct,local struct with star
+--kinddef-pgamelua=r,localstructonfile,local struct define on file
+--regex-pgamelua=/^\s*local\s+?(\w*)\s*=\s*import\s*\(/\1/i/
+--regex-pgamelua=/^\s*_G\.(\w*)\s*=/\1/g/
+--regex-pgamelua=/^\s*(\w*)\s*=\s*['"0-9]/\1/v/{scope=ref}
+--regex-pgamelua=/^\s*(\w*)\s*=\s*[\{]*\s*$/\1/s/{scope=push}
+--regex-pgamelua=/\s*\}///{scope=pop}{placeholder}
+--regex-pgamelua=/^\s*(\w*\.\w*)\s*=\s*['"0-9]/\1/t/
+--regex-pgamelua=/^\s*local\s*(\w*)\s*=\s*[\{]*\s*$/\1/r/{scope=push}
+--regex-pgamelua=/\s*\}///{scope=pop}{placeholder}
+
