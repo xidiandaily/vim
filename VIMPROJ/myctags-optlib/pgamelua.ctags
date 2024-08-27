@@ -8,6 +8,8 @@
 --kinddef-pgamelua=i,importfilelocalvar,import file to local var
 --kinddef-pgamelua=t,localtypestruct,local struct with star
 --kinddef-pgamelua=r,localstructonfile,local struct define on file
+--kinddef-pgamelua=c,class,define class
+--kinddef-pgamelua=e,classfield,define class field
 --regex-pgamelua=/^\s*local\s+?(\w*)\s*=\s*import\s*\(/\1/i/
 --regex-pgamelua=/^\s*_G\.(\w*)\s*=/\1/g/
 --regex-pgamelua=/^\s*(\w*)\s*=\s*['"0-9]/\1/v/{scope=ref}
@@ -16,4 +18,7 @@
 --regex-pgamelua=/^\s*(\w*\.\w*)\s*=\s*['"0-9]/\1/t/
 --regex-pgamelua=/^\s*local\s*(\w*)\s*=\s*[\{]*\s*$/\1/r/{scope=push}
 --regex-pgamelua=/\s*\}///{scope=pop}{placeholder}
+--regex-pgamelua=/^\s*---@class\s*(\w*)/\1/c/{scope=push}
+--regex-pgamelua=/^$///{scope=pop}{placeholder}
+--regex-pgamelua=/^\s*---@field\s*(\w*)\s*/\1/e/{scope=ref}
 

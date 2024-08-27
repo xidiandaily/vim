@@ -84,7 +84,8 @@ function CSTAG_pgamesvr()
                 call CTags_pgamesvr_xml()
             endif
 
-            set tags+=pgamesvrc.tags,pgamelua.tags,pgamexml.tags
+            call ctrlp#mycmd#PGameCtrlPTag()
+            set tags+=pgamelua.ctrlptags,pgamexml.ctrlptags,pgamesvrc.ctrlptags
         else
             silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         endif
@@ -142,7 +143,7 @@ function! InitPGameSvr()
     "预览窗口不会自动关闭 by LawrenceChi
     set completeopt=menuone,menu,longest,preview
     if(g:iswindows==1)
-        :set tags+=pgamesvrc.tags,pgamelua.tags,pgamexml.tags
+        :set tags+=pgamelua.ctrlptags,pgamexml.ctrlptags,pgamesvrc.ctrlptags
     else
         :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
     endif
