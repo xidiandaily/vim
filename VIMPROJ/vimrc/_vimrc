@@ -456,10 +456,19 @@ nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
 nmap <C-@><C-P> :cp <CR>
 nmap <C-@><C-N> :cn <CR>
 nmap <C-@><C-L> :cl <CR>
-nmap <C-@><C-H> :cr <CR>
-nmap <C-@><C-T> :cla <CR>
-nmap <C-@><C-O> :copen <CR>
-nmap <C-@><C-C> :cclose <CR>
+nmap <C-@><C-G><C-G> :cr <CR>
+nmap <C-@><C-G> :cla <CR>
+nmap <C-@><C-F> :grep <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-Q>o :copen <CR>
+nmap <C-@><C-Q><C-O> :copen <CR>
+nmap <C-@><C-Q>c :cclose <CR>
+nmap <C-@><C-Q>l :chi <CR>
+nmap <C-@><C-Q>n :cnewer <CR>
+nmap <C-@><C-Q>p :colder <CR>
+nmap <C-@><C-Q>g :cnewer 99<CR>
+nmap <C-@><C-Q>gg :colder 99<CR>
+nmap <C-@><C-Q>h :call tinytoolchiyl#base#mygrep#help()<CR>
+nmap <C-@><C-H>  :call tinytoolchiyl#base#mygrep#help()<CR>
 
 "cscope jump
 nmap <C-@><C-@><C-P> :tp <CR>
