@@ -72,7 +72,7 @@ function CSTAG_pgamesvr()
             endif
 
             if choice == 1 || choice == 2
-                silent! execute "!ctags.exe -f pgamesvrc.tags -R --languages=C,+C++,+CMake,+Automake,+Autoconf --c++-kinds=+p --fields=+iaS --extras=+q ."
+                silent! execute "!ctags.exe -f pgamesvrc.tags  -D \"UFUNCTION(x)=;\" -D \"UPROPERTY(x)=;\" --languages=C,+C++,+CMake,+Automake,+Autoconf --c++-kinds=+p --fields=+iaS --extras=+q -R ."
                 silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/pgamesvrc.tags'
             endif
 
@@ -146,6 +146,10 @@ function! InitPGameSvr()
         :set tags+=pgamelua.ctrlptags,pgamexml.ctrlptags,pgamesvrc.ctrlptags
     else
         :set tags+=$VIMPROJ/vimlib/cppstl/tags,$VIMPROJ/vimlib/linux/tags.linux,$VIMPROJ/vimlib/zeromq-3.2.5/tags.linux
+    endif
+
+    if filereadable("cscope.out")
+        silent! execute "cs add cscope.out"
     endif
     
     :set path+=$VIMPROJ/vimlib/cppstl/cpp_src,$VIMPROJ/vimlib/linux/include,$VIMPROJ/vimlib/linux/include/sys/,$VIMPROJ/vimlib/zeromq-3.2.5/include

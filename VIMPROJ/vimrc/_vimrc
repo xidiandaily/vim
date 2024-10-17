@@ -407,9 +407,10 @@ let g:ctrlp_max_files = 0
 
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
-    "set grepprg=ag\ --nogroup\ --nocolor\ -p\ .agignore
-    set grepprg=grep\ -nH\ -r\ --include=\"*.lua\"\ --include=\"*.java\"\ --include=\"*.c\"\ --include=\"*.cpp\"\ --include=\"*.h\"\ --include=\"*.hpp\"\ --include=\"*.xml\"\ -e
+    "set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ -p\ .agignore
+    set grepprg=cmd\ /c\ chcp\ 65001\ \&\&\ ag\ --nogroup\ --nocolor\ --vimgrep\ -p\ _agignore
     let g:ackprg = 'ag --vimgrep -p .agignore'
+    set grepformat=%f:%l:%c:%m
     "let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore .git --ignore .DS_Store --ignore node_modules --hidden -g ""'
     "let g:ctrlp_show_hidden =1 
     let g:ctrlp_user_command = {
@@ -471,8 +472,10 @@ nmap <C-@><C-Q>h :call tinytoolchiyl#base#mygrep#help()<CR>
 nmap <C-@><C-H>  :call tinytoolchiyl#base#mygrep#help()<CR>
 
 "cscope jump
-nmap <C-@><C-@><C-P> :tp <CR>
-nmap <C-@><C-@><C-N> :tn <CR>
+nmap <C-]>/ :tag /<C-R>=expand("<cword>")<CR><CR>
+nmap <C-]>s :ts <C-R>=expand("<cword>")<CR><CR>
+nmap <C-]><C-P> :tp <CR>
+nmap <C-]><C-N> :tn <CR>
 
 "GTasg-CsCope
 "GtagsCscope_Auto_Load 设置以后，会自动检测目录下是否有GTAGS文件，但是检测时候
