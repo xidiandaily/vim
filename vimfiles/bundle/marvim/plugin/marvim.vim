@@ -70,6 +70,7 @@ if has('menu')
     vmenu &Macro.&Store\ Template y:call marvim#template_store()<CR>
     nmenu &Macro.&Store\ Template :call marvim#template_store()<CR>
     nmenu &Macro.&Store\ Macroechom :call marvim#macro_with_echom_store()<CR>
+    nmenu &Macro.&Store\ MacroechomHelp :call marvim#macro_with_echom_store_help()<CR>
 endif
 " mappings end. }}}
 
