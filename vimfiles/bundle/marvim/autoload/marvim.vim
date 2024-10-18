@@ -3,6 +3,8 @@
 let s:macro_file_extension = '.mv'.strpart(v:version,0,1)
 " template extension
 let s:template_extension = '.mvt'
+" specify macro extension by lawrencechi vim version number
+let s:macro_echom_file_extension = '.mve'
 " The path separator for the specific OS.
 if has('win16') || has('win32') || has('win64') || has ('win95')
     let s:path_seperator = '\'
@@ -155,10 +157,18 @@ function! s:run_file(file_name)
         silent execute 'read ' . a:file_name
         return 2
 
-    else
+    " Run the file according to its type.
+    elseif l:macro_type == s:macro_echom_file_extension[1:]
 
+        " read the macro file into the register and run it
+        let l:macro_content = readfile(a:file_name,'b')
+        call setreg(g:marvim_register, l:macro_content[0], 'c')
+        execute '@' . g:marvim_register
         return 3
 
+    else
+
+        return 4
     endif
 
 endfunction
@@ -342,6 +352,35 @@ function! marvim#macro_store()
 endfunction
 " marvim#macro_store end }}}
 
+" Function: marvim#macro_with_echom_store {{{
+" @brief: Store a new macro with echom in the macro repository.
+" @description: Ask for user input for the name of the macro, and save the
+"  content of register g:marvim_register in a file by that name.
+" @returns: None
+function! marvim#macro_with_echom_store()
+
+    " Get the name of the macro. Continue only if there is a name.
+    let l:macro_name = s:input('Enter MacroEchom Save Name -> ')
+    let l:macro_path = s:to_os_path(l:macro_name)
+    if empty(l:macro_name) || empty(s:get_filename(l:macro_path))
+        call s:new_line_echom("Macro name wasn't specify, not creating macro.")
+        return
+    endif
+
+    " Get the data macro from the register. Continue only if there is data in
+    " the specify register.
+    let l:macro_data = [getreg(g:marvim_register)]
+    if l:macro_data[0] == ""
+        call s:new_line_echom("Macro's register empty, not creating macro.")
+        return
+    endif
+
+    " Save the file and output success massage.
+    call s:save_file(l:macro_name, l:macro_data, s:macro_echom_file_extension)
+    call s:new_line_echom('MacroEchom ' . l:macro_name . ' Stored')
+
+endfunction
+
 " Function: marvim#search {{{
 " @brief: Search for a new macro/template in the repository.
 " @description: Get the name of the macro/template file from the user and try
@@ -371,7 +410,7 @@ function! marvim#search()
                     call s:new_line_echom('Macro ' . l:macro_file . ' Run')
                 elseif (l:run_file_return == 2)
                     call s:new_line_echom('Template ' . l:macro_file . ' Run')
-                elseif (l:run_file_return == 3)
+                elseif (l:run_file_return == 4)
                     call s:new_line_echom('Got file with invalid extension.')
                 endif
             endif

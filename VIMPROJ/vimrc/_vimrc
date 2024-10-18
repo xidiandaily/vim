@@ -287,8 +287,6 @@ let marvim_store = $VIMPROJ."/../vimfiles/bundle/marvim/examples"
 "let marvim_register = 'c'       " change used register from 'q' to 'c'
 let marvim_prefix = 0           " disable default syntax based prefix
 
-source $VIMPROJ/../vimfiles/bundle/marvim/marvim.vim   " omit if marvim.vim is in the plugin dir
-
 "Pymode
 
 "Turn on the whole plugin
