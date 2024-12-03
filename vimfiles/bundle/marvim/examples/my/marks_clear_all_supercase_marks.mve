@@ -1,0 +1,1 @@
+:call feedkeys(":delmarks A-Z\<CR>",'n') | call feedkeys(":marks",'n'€kb€kb€kb€kb€kb\<CR>",'n')
