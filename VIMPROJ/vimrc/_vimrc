@@ -248,8 +248,8 @@ map <F5> :call SetProjType() <CR>
 
 "tab
 nmap ts :tab split<CR>
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-Left>  zh
+nnoremap <C-Right>  zl
 
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
@@ -505,6 +505,14 @@ if GetExtVimrcByProjType() != ''
     sil! exe 'source '.GetExtVimrcByProjType()
 endif
 
+""UltiSnips
+"if !exists("g:UltiSnipsSnippetDirectories")
+"    let g:UltiSnipsSnippetDirectories = [ "UltiSnips" ]
+"endif
+"call add(g:UltiSnipsSnippetDirectories, "UltiSnips.my")
+"let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $VIMPROJ."/../vimfiles/bundle/tinytool.chiyl.vim/UltiSnips.my"
+
+
 "call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
 "call add(g:pathogen_disabled,'asyncomplete.vim')
 ""call add(g:pathogen_disabled,'lua_omni_v0.17')
@@ -561,3 +569,25 @@ call add(g:pathogen_disabled,'markdown-preview.nvim')
 "其他命令
 "最后
 sil! exe "call pathogen#infect('".s:tempvimes."\\bundle\\{}')"
+
+"安装插件
+"打开 Vim，运行以下命令安装 vim-plug 管理的插件：
+"
+"vim
+"复制代码
+":PlugInstall
+"4. 更新插件
+"定期更新 vim-plug 管理的插件，运行：
+"
+"vim
+"复制代码
+":PlugUpdate
+" vim-plug 配置
+call plug#begin(s:tempvimes.'\\plugged')
+
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+call plug#end()
