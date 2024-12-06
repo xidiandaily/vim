@@ -500,10 +500,14 @@ set complete=.,w,b
 "暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
 let g:pathogen_disabled=[]
 
+"EasyMotion
+
+
 "根据项目类型加载对应的 _vimrc 配置
 if GetExtVimrcByProjType() != ''
     sil! exe 'source '.GetExtVimrcByProjType()
 endif
+
 
 ""UltiSnips
 "if !exists("g:UltiSnipsSnippetDirectories")

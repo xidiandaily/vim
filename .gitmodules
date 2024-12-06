@@ -109,3 +109,6 @@
 [submodule "vimfiles/bundle/vim-table-mode"]
 	path = vimfiles/bundle/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode.git
+[submodule "vimfiles/bundle/vim-easymotion"]
+	path = vimfiles/bundle/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
