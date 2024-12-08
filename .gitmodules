@@ -112,3 +112,6 @@
 [submodule "vimfiles/bundle/vim-easymotion"]
 	path = vimfiles/bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "vimfiles/bundle/vim-easymotion-chs"]
+	path = vimfiles/bundle/vim-easymotion-chs
+	url = https://github.com/ZSaberLv0/vim-easymotion-chs.git
