@@ -115,3 +115,6 @@
 [submodule "vimfiles/bundle/vim-easymotion-chs"]
 	path = vimfiles/bundle/vim-easymotion-chs
 	url = https://github.com/ZSaberLv0/vim-easymotion-chs.git
+[submodule "vimfiles/bundle/acme-colors"]
+	path = vimfiles/bundle/acme-colors
+	url = https://github.com/plan9-for-vimspace/acme-colors.git
