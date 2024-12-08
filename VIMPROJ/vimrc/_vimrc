@@ -501,7 +501,19 @@ set complete=.,w,b
 let g:pathogen_disabled=[]
 
 "EasyMotion
-
+"忽略大小写
+let g:EasyMotion_smartcase  = 1
+let g:EasyMotion_do_mapping = 0
+"跨窗口跳转
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+xmap <Leader>f <Plug>(easymotion-bd-f)
+omap <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+xmap <Leader>L <Plug>(easymotion-bd-jk)
+omap <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+xmap <Leader>w <Plug>(easymotion-bd-w)
+omap <Leader>w <Plug>(easymotion-bd-w)
 
 "根据项目类型加载对应的 _vimrc 配置
 if GetExtVimrcByProjType() != ''
