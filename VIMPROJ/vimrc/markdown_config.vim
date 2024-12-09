@@ -7,13 +7,13 @@
 "==============================================================================
 
 " 定义保存每个缓冲区配置的全局字典
-let g:buffer_configs = {}
+let g:markdown_buffer_configs = {}
 
 " 保存当前配置的函数
 function! SaveCurrentConfig()
   let buf = bufnr('%')
-  if !has_key(g:buffer_configs, buf)
-    let g:buffer_configs[buf] = {
+  if !has_key(g:markdown_buffer_configs, buf)
+    let g:markdown_buffer_configs[buf] = {
           \ 'colorscheme': substitute(execute('colorscheme'), '\n', '', 'g'),
           \ 'guifont': &guifont,
           \ 'rnu': &rnu,
@@ -26,8 +26,8 @@ endfunction
 " 恢复配置的函数
 function! RestoreOriginalConfig()
   let buf = bufnr('%')
-  if has_key(g:buffer_configs, buf)
-    let config = g:buffer_configs[buf]
+  if has_key(g:markdown_buffer_configs, buf)
+    let config = g:markdown_buffer_configs[buf]
     if config['colorscheme'] != ""
       execute 'colorscheme ' . config['colorscheme']
     endif
@@ -46,7 +46,7 @@ function! RestoreOriginalConfig()
     endif
 
     " 移除已恢复的配置，防止泄露内存
-    call remove(g:buffer_configs, buf)
+    call remove(g:markdown_buffer_configs, buf)
   endif
 endfunction
 
@@ -65,4 +65,4 @@ autocmd BufEnter *.md call SetMarkdownConfig()
 autocmd BufLeave *.md call RestoreOriginalConfig()
 
 " 窗口切换处理
-autocmd WinEnter * if &filetype ==# 'markdown' | call SetMarkdownConfig() | elseif exists('g:buffer_configs') | call RestoreOriginalConfig() | endif
+autocmd WinEnter * if &filetype ==# 'markdown' | call SetMarkdownConfig() | elseif exists('g:markdown_buffer_configs') | call RestoreOriginalConfig() | endif
