@@ -115,3 +115,9 @@
 [submodule "vimfiles/bundle/acme-colors"]
 	path = vimfiles/bundle/acme-colors
 	url = https://github.com/plan9-for-vimspace/acme-colors.git
+[submodule "vimfiles/bundle/vim-colors-pencil"]
+	path = vimfiles/bundle/vim-colors-pencil
+	url = https://github.com/preservim/vim-colors-pencil.git
+[submodule "vimfiles/bundle/vim-pencil"]
+	path = vimfiles/bundle/vim-pencil
+	url = https://github.com/preservim/vim-pencil.git

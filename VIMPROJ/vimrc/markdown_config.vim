@@ -53,11 +53,17 @@ endfunction
 " 设置Markdown配置的函数
 function! SetMarkdownConfig()
   call SaveCurrentConfig()
-  colorscheme acme
+  "colorscheme acme
+  colorscheme pencil
   set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI:qDRAFT
   set nornu
   set colorcolumn=0
   set wrap
+  set bg=light
+  set nofoldenable
+  :SoftPencil
+  let g:vim_markdown_fenced_languages = ['csharp=cs']
+  "let g:pencil#softDetectThreshold = 130
 endfunction
 
 " 自动应用配置
