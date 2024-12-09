@@ -196,62 +196,6 @@ if(g:iswindows==0)
     :set nobomb
 endif
 
-" 定义保存每个缓冲区配置的全局字典
-let g:buffer_configs = {}
-
-" 保存当前配置的函数
-function! SaveCurrentConfig()
-  let buf = bufnr('%')
-  if !has_key(g:buffer_configs, buf)
-    let g:buffer_configs[buf] = {
-          \ 'colorscheme': substitute(execute('colorscheme'), '\n', '', 'g'),
-          \ 'guifont': &guifont,
-          \ 'rnu': &rnu,
-          \ 'colorcolumn': &colorcolumn
-          \ }
-  endif
-endfunction
-
-" 恢复配置的函数
-function! RestoreOriginalConfig()
-  let buf = bufnr('%')
-  if has_key(g:buffer_configs, buf)
-    let config = g:buffer_configs[buf]
-    if config['colorscheme'] != ""
-      execute 'colorscheme ' . config['colorscheme']
-    endif
-    let &guifont = config['guifont']
-    if config['rnu'] == 1
-      set rnu
-    else
-      set nornu
-    endif
-    if config['colorcolumn'] != 0
-      execute 'set colorcolumn=' . config['colorcolumn']
-    endif
-
-    " 移除已恢复的配置，防止泄露内存
-    call remove(g:buffer_configs, buf)
-  endif
-endfunction
-
-" 设置Markdown配置的函数
-function! SetMarkdownConfig()
-  call SaveCurrentConfig()
-  colorscheme acme
-  set guifont=楷体:h12:cGB2312:qDRAFT
-  set nornu
-  set colorcolumn=0
-endfunction
-
-" 自动应用配置
-autocmd BufEnter *.md call SetMarkdownConfig()
-autocmd BufLeave *.md call RestoreOriginalConfig()
-
-" 窗口切换处理
-autocmd WinEnter * if &filetype ==# 'markdown' | call SetMarkdownConfig() | elseif exists('g:buffer_configs') | call RestoreOriginalConfig() | endif
-
-
 "vim 8.0 更改了 default.vim的 so 配置，导致 zt/zb 不到底不到顶,修复之
 "http://stackoverflow.com/questions/40264417/cursor-does-not-go-to-top-or-bottom-of-window-in-gvim-8
 set scrolloff=0
@@ -274,6 +218,9 @@ let g:NERDTreeShowLineNumbers=0				" show line number
 "let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 "autocmd FileType nerdtree setlocal nolist
 set ambiwidth=double
+
+"加载对markdown的专属配置
+source $VIMPROJ/vimrc/markdown_config.vim
 
 " 关闭gvim在出错的时候的告警声音
 set vb t_vb=
