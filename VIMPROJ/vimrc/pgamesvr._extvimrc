@@ -15,7 +15,7 @@ if !has_key(g:,'pathogen_disabled')
 endif
 call add(g:pathogen_disabled,'OmniCppComplete')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
-call add(g:pathogen_disabled,'vim-gutentags.git')
+"call add(g:pathogen_disabled,'vim-gutentags.git')
 "call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
 "call add(g:pathogen_disabled,'asyncomplete.vim')
 "call add(g:pathogen_disabled,'vim-lsp-settings')
