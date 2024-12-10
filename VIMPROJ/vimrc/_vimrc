@@ -492,9 +492,9 @@ let g:GtagsCscope_Keep_Alive      = 1
 let g:lsp_auto_enable = 0
 let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
-nmap \lspd :LspDefinition<CR>
-nmap \lsph :LspHover<CR>
-nmap \lspr :LspReferences<CR>
+nmap gd :LspDefinition<CR>
+nmap gh :LspHover<CR>
+nmap gr :LspReferences<CR>
 
 "修改 C-N, C-P 的默认搜索范围
 "因为默认值会遍历所有头文件进行补全，耗时太大
@@ -534,6 +534,7 @@ endif
 
 "call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
 "call add(g:pathogen_disabled,'asyncomplete.vim')
+call add(g:pathogen_disabled,'OmniCppComplete')
 ""call add(g:pathogen_disabled,'lua_omni_v0.17')
 "call add(g:pathogen_disabled,'vim-lsp-settings')
 "call add(g:pathogen_disabled,'vim-lsp')
@@ -609,4 +610,8 @@ call plug#begin(s:tempvimes.'\\plugged')
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+" Use release branch (recommended)
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
+
