@@ -523,6 +523,11 @@ if GetExtVimrcByProjType() != ''
     sil! exe 'source '.GetExtVimrcByProjType()
 endif
 
+"img-paste.vim
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+let g:mdip_imgname = 'image'
 
 ""UltiSnips
 "if !exists("g:UltiSnipsSnippetDirectories")
@@ -569,6 +574,8 @@ call add(g:pathogen_disabled,'OmniCppComplete')
 call add(g:pathogen_disabled,'YouCompleteMe.vim')
 call add(g:pathogen_disabled,'lua_omni_v0.17')
 "call add(g:pathogen_disabled,'vim-markdown')
+call add(g:pathogen_disabled,'vim-ingo-library')
+call add(g:pathogen_disabled,'vim-mark')
 "let g:node_client_debug = 1
 
 "let $NVIM_SRAN_LOG_FILE = expand('~/sran-nvim.log')
