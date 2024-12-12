@@ -131,3 +131,6 @@
 	path = vimfiles/bundle/img-paste.vim
 	url = git@github.com:xidiandaily/img-paste.vim.git
 	branch = clipboard_files_or_image_20241210
+[submodule "vimfiles/bundle/goyo.vim"]
+	path = vimfiles/bundle/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
