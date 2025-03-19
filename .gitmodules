@@ -134,3 +134,9 @@
 [submodule "vimfiles/bundle/goyo.vim"]
 	path = vimfiles/bundle/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
+[submodule "vimfiles/bundle/vim-mark"]
+	path = vimfiles/bundle/vim-mark
+	url = https://github.com/inkarkat/vim-mark.git
+[submodule "vimfiles/bundle/vim-ingo-library"]
+	path = vimfiles/bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library.git
