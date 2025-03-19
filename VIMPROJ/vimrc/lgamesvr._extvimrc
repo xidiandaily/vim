@@ -53,7 +53,7 @@ call add(g:pathogen_disabled,'vim-gutentags.git')
 "call add(g:pathogen_disabled,'vmustache')
 "call add(g:pathogen_disabled,'wmgraphviz.vim')
 "
-let g:lsp_auto_enable = 1
+let g:lsp_auto_enable = 0
 let g:lsp_use_native_client = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1

@@ -490,8 +490,13 @@ let g:GtagsCscope_Keep_Alive      = 1
 
 "vim lsp 相关配置
 let g:lsp_auto_enable = 0
-let g:lsp_log_file = expand('~/vim-lsp.log')
-let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
+let g:lsp_use_native_client = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
+"let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
 nmap gd :LspDefinition<CR>
 nmap gh :LspHover<CR>
 nmap gr :LspReferences<CR>
@@ -511,9 +516,9 @@ let g:EasyMotion_do_mapping = 0
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 xmap <Leader>f <Plug>(easymotion-bd-f)
 omap <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-xmap <Leader>L <Plug>(easymotion-bd-jk)
-omap <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+xmap <Leader>l <Plug>(easymotion-bd-jk)
+omap <Leader>l <Plug>(easymotion-bd-jk)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 xmap <Leader>w <Plug>(easymotion-bd-w)
 omap <Leader>w <Plug>(easymotion-bd-w)

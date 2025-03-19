@@ -56,6 +56,12 @@ function! SwitchDir(filename)
         endif
     endif
     execute ":cd ".a:filename
-    call UpdatePath(getcwd())
+    let update_functionname = 'UpdatePath_' . get(g:,'proj_type','')
+    if exists('*' . update_functionname)
+        echom 'call '.update_functionname
+        call function(update_functionname,[getcwd()])
+    else
+        call UpdatePath(getcwd())
+    endif
 endfunction
 
