@@ -161,7 +161,7 @@ set ts=4 "将tabstop设为4
 set ff=unix  "将文件的文件格式设置为 fileformat unix
 "字体的设置
 if(g:iswindows==1)
-    set guifont=BitstreamVeraSansMono_NF:h9:cANSI "记住空格用下划线代替哦
+    set guifont=BitstreamVeraSansMono_NF:h11:cANSI "记住空格用下划线代替哦
     "set guifont=BitstreamVeraSansMono_NF:h12:cANSI "记住空格用下划线代替哦
     "set gfw=幼圆:h10:cGB2312
 else 
