@@ -513,15 +513,15 @@ let g:pathogen_disabled=[]
 let g:EasyMotion_smartcase  = 1
 let g:EasyMotion_do_mapping = 0
 "跨窗口跳转
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-xmap <Leader>f <Plug>(easymotion-bd-f)
-omap <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>l <Plug>(easymotion-overwin-line)
-xmap <Leader>l <Plug>(easymotion-bd-jk)
-omap <Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-xmap <Leader>w <Plug>(easymotion-bd-w)
-omap <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-overwin-f)
+xmap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-bd-f)
+omap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-bd-f)
+nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
+xmap <Leader><Leader>l <Plug>(easymotion-bd-jk)
+omap <Leader><Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+xmap <Leader><Leader>w <Plug>(easymotion-bd-w)
+omap <Leader><Leader>w <Plug>(easymotion-bd-w)
 
 "根据项目类型加载对应的 _vimrc 配置
 if GetExtVimrcByProjType() != ''

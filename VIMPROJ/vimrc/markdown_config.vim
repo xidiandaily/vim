@@ -55,7 +55,8 @@ function! SetMarkdownConfig()
   call SaveCurrentConfig()
   "colorscheme acme
   colorscheme pencil
-  set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI:qDRAFT
+  "set guifont=Bitstream_Vera_Sans_Mono:h11:cANSI:qDRAFT,Microsoft_YaHei:h11 "记住空格用下划线代替哦
+  set guifont=更纱终端书呆黑体-简:h12
   set nornu
   set colorcolumn=0
   set wrap
@@ -66,9 +67,46 @@ function! SetMarkdownConfig()
   "let g:pencil#softDetectThreshold = 130
 endfunction
 
+"augroup FixEasyMotionReflowInGoyo
+"  autocmd!
+"  autocmd User EasyMotionPromptBegin call s:em_begin()
+"  autocmd User EasyMotionPromptEnd   call s:em_end()
+"augroup END
+"
+"function! s:em_begin() abort
+"  " 保存当前窗口的设置（用 w: 变量避免互相污染）
+"  let w:em_save_wrap = &l:wrap
+"  let w:em_save_lbr  = &l:linebreak
+"
+"  echom "w:em_save_wrap" w:em_save_wrap
+"  echom "w:em_save_lbr" w:em_save_lbr
+"
+"  " 提示阶段禁用软换行重排
+"  setlocal nowrap
+"  setlocal nolinebreak
+"
+"  redraw!
+"endfunction
+"
+"function! s:em_end() abort
+"  if exists('w:em_save_wrap')
+"    echom "reset &l:wrap" w:em_save_wrap
+"    let &l:wrap = w:em_save_wrap
+"    unlet w:em_save_wrap
+"  endif
+"  if exists('w:em_save_lbr')
+"    echom "reset &l:linebreak" w:em_save_lbr
+"    let &l:linebreak = w:em_save_lbr
+"    unlet w:em_save_lbr
+"  endif
+"
+"  redraw!
+"endfunction
+
+
 " 自动应用配置
-autocmd BufEnter *.md call SetMarkdownConfig()
-autocmd BufLeave *.md call RestoreOriginalConfig()
+"autocmd BufEnter *.md call SetMarkdownConfig()
+"autocmd BufLeave *.md call RestoreOriginalConfig()
 
 " 窗口切换处理
-autocmd WinEnter * if &filetype ==# 'markdown' | call SetMarkdownConfig() | elseif exists('g:markdown_buffer_configs') | call RestoreOriginalConfig() | endif
+" autocmd WinEnter * if &filetype ==# 'markdown' | call SetMarkdownConfig() | elseif exists('g:markdown_buffer_configs') | call RestoreOriginalConfig() | endif
