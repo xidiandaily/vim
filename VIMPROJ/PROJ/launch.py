@@ -11,10 +11,9 @@ import pdb
 
 template_cpp='''
 "这个文件试图使得创建 VIM 项目更加简单方便。
-"①常用的全局设置已经在 _vimrc中设置了
-"②常用的CPP设置在InitCPP.vim中设置
-"③还有一些每个项目私有的设置，比如说项目的根目录，启动时需要打开的文件，一键上传的目录配置等
-"③‘项目的私有设置在这个文件进行设置。
+"1. 常用的全局设置已经在 _vimrc中设置了
+"2. 常用的CPP设置在InitCPP.vim中设置
+"3. 还有一些每个项目私有的设置，比如说项目的根目录，启动时需要打开的文件，一键上传的目录配置等项目的私有设置在这个文件进行设置。
 "
 
 "初始化Main函数
@@ -28,6 +27,12 @@ endfunction
 call Main("{}")
 '''
 
+def get_input(prompt):
+    if sys.version_info[0] < 3:  # 如果 Python 版本小于 3.x
+        return raw_input(prompt)
+    else:
+        return input(prompt)
+
 def check_proj_exists(proj_name):
     return os.path.exists(os.path.join(PROJ_DIR,proj_name))
 
@@ -39,7 +44,7 @@ def get_proj_list(key):
         fh = open(PRIORITY_FILE, "r").readlines()
         for line in fh:
             line=line.strip()+".vim"
-            if re.search(".*"+key+".*\.vim$",line,re.IGNORECASE):
+            if re.search(r".*"+key+r".*\.vim$",line,re.IGNORECASE):
                 proj.append(line)
     proj.reverse()
 
@@ -48,7 +53,7 @@ def get_proj_list(key):
     exclude=proj
     for dirpath,dirnames,filenames in os.walk(PROJ_DIR):
         for file in filenames:
-            if re.search(".*"+key+".*\.vim$",file,re.IGNORECASE) and not file in exclude:
+            if re.search(r".*"+key+r".*\.vim$",file,re.IGNORECASE) and not file in exclude:
                 indir.append(file)
         break
     return {"proj":proj,"indir":sorted(indir)}
@@ -89,7 +94,7 @@ def choice_proj(tip):
         if bWrongNum!=-1:
                 termcolor.cprint("ID:'{}' not found,retry agin".format(bWrongNum),color="red")
         sys.stdout.write("input name OR id OR exit (default {}):".format(termcolor.colored(defaulttext,color="blue")))
-        key_reg=raw_input("")
+        key_reg=get_input("")
         if key_reg=="":
             key_reg='1'
         bWrongNum=-1
@@ -101,7 +106,7 @@ def choice_proj(tip):
             else:
                 proj_name=alllist[int(key_reg)-1]
                 sys.stdout.write(tip+" {} Yy/N(default:Y):".format(termcolor.colored(proj_name,color="blue")))
-                bOpen=raw_input("")
+                bOpen=get_input("")
                 if bOpen=='N' or bOpen=='n':
                     sys.exit('exit')
                 else:
@@ -132,11 +137,18 @@ def open_proj(fname):
             myfile.write(i)
 
     #设置环境变量
-    with open(os.path.join(PROJ_DIR,fname),'r') as myfile:
-        for line in myfile.readlines():
-            result=re.search('^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
-            if result:
-                os.environ['VIMPROJTYPE']=result.group(1)
+    if sys.version_info[0] < 3:  # 如果 Python 版本小于 3.x
+        with open(os.path.join(PROJ_DIR,fname),'r') as myfile:
+            for line in myfile.readlines():
+                result=re.search(r'^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
+                if result:
+                    os.environ['VIMPROJTYPE']=result.group(1)
+    else:
+        with open(os.path.join(PROJ_DIR,fname),'r',encoding='utf-8') as myfile:
+            for line in myfile.readlines():
+                result=re.search(r'^\s*let\s*g:proj_type=\"(.*?)\"',line,re.DOTALL)
+                if result:
+                    os.environ['VIMPROJTYPE']=result.group(1)
     #subprocess.call(cmd, shell=True)
     process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-S',os.path.join(PROJ_DIR,fname)])
     #process=subprocess.Popen([os.environ.get('EDITOR', 'gvim'),'-g','-V20vim2.log','-S',os.path.join(PROJ_DIR,fname)])
@@ -169,7 +181,7 @@ def remove_empty_proj():
         for f in files:
             if f == "template.vim":
                 continue
-            if not re.search("\.vim$",f):
+            if not re.search(r"\.vim$",f):
                 continue
             for line in fileinput.input(os.path.join(root,f)):
                 result = re.search(r'call\s*?Main\s*\(\s*\"(.*?)\"\)',line)
@@ -191,12 +203,12 @@ def list_proj():
 
 def create_proj(path,type,name):
     content=template_cpp.format(type,path.replace("\\","/"))
-    with open(os.path.join(PROJ_DIR,name+".vim"),"w") as myfile:
+    with open(os.path.join(PROJ_DIR,name+".vim"),"w",encoding="utf-8") as myfile:
         myfile.write(content)
         sys.exit("create project({}) done!".format(termcolor.colored("{}".format(name),color="red")))
 
 def new_proj():
-    proj_path=raw_input("project path:")
+    proj_path=get_input("project path:")
 
     if os.path.isfile(proj_path):
         proj_path=os.path.dirname(proj_path)
@@ -207,7 +219,7 @@ def new_proj():
     while idx < len(SUPPORT_TYPES):
         print("{}.{}".format(int(idx)+1,SUPPORT_TYPES[idx]))
         idx+=1
-    choice=raw_input("choice project type({}):".format(termcolor.colored("{}.{}".format(1,SUPPORT_TYPES[0]),color="blue")))
+    choice=get_input("choice project type({}):".format(termcolor.colored("{}.{}".format(1,SUPPORT_TYPES[0]),color="blue")))
     if choice=='':
         choice='1'
     if not choice.isdigit() or not int(choice) in range(1,len(SUPPORT_TYPES)+1):
@@ -228,7 +240,7 @@ def new_proj():
             tmp_proj_name="{}{}".format(proj_name,idx)
             idx+=1
         proj_name=tmp_proj_name
-    tmpName=raw_input("input project name(default name:"+termcolor.colored("{}".format(proj_name),color="blue")+"):")
+    tmpName=get_input("input project name(default name:"+termcolor.colored("{}".format(proj_name),color="blue")+"):")
     if tmpName:
         proj_name=tmpName
 
@@ -240,7 +252,7 @@ def new_proj():
     print("TYPE: "+termcolor.colored(proj_type,color="blue"))
     print("NAME: "+termcolor.colored(proj_name,color="blue"))
     print(30*'-')
-    choice=raw_input("create project? Yy/Nn"+termcolor.colored("(default:N):",color="blue"))
+    choice=get_input("create project? Yy/Nn"+termcolor.colored("(default:N):",color="blue"))
     if choice!='Y' and choice!='y':
         sys.exit("exit")
     create_proj(proj_path,proj_type,proj_name)
@@ -270,7 +282,7 @@ if not args.choice and not args.list and not args.new and not args.delete:
 VIMPROJ=os.getenv("VIMPROJ")
 PROJ_DIR=VIMPROJ
 PRIORITY_FILE=os.path.join(PROJ_DIR,".prio.launcher.chiyl")
-SUPPORT_TYPES=["empty","cpp","php","python","lgamesvr","vim"]
+SUPPORT_TYPES=["empty","cpp","php","python","lgamesvr","vim","pgamesvr","crgamesvr","ueproj"]
 
 if not os.path.exists(VIMPROJ):
     sys.exit("VIMPROJ EMPTY")

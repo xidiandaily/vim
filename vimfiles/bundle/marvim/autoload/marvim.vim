@@ -3,6 +3,8 @@
 let s:macro_file_extension = '.mv'.strpart(v:version,0,1)
 " template extension
 let s:template_extension = '.mvt'
+" specify macro extension by lawrencechi vim version number
+let s:macro_echom_file_extension = '.mve'
 " The path separator for the specific OS.
 if has('win16') || has('win32') || has('win64') || has ('win95')
     let s:path_seperator = '\'
@@ -155,10 +157,18 @@ function! s:run_file(file_name)
         silent execute 'read ' . a:file_name
         return 2
 
-    else
+    " Run the file according to its type.
+    elseif l:macro_type == s:macro_echom_file_extension[1:]
 
+        " read the macro file into the register and run it
+        let l:macro_content = readfile(a:file_name,'b')
+        call setreg(g:marvim_register, l:macro_content[0], 'c')
+        execute '@' . g:marvim_register
         return 3
 
+    else
+
+        return 4
     endif
 
 endfunction
@@ -342,6 +352,86 @@ function! marvim#macro_store()
 endfunction
 " marvim#macro_store end }}}
 
+" Function: marvim#macro_with_echom_store {{{
+" @brief: Store a new macro with echom in the macro repository.
+" @description: Ask for user input for the name of the macro, and save the
+"  content of register g:marvim_register in a file by that name.
+" @returns: None
+function! marvim#macro_with_echom_store()
+
+    " Get the name of the macro. Continue only if there is a name.
+    let l:macro_name = s:input('Enter MacroEchom Save Name -> ')
+    let l:macro_path = s:to_os_path(l:macro_name)
+    if empty(l:macro_name) || empty(s:get_filename(l:macro_path))
+        call s:new_line_echom("Macro name wasn't specify, not creating macro.")
+        return
+    endif
+
+    " Get the data macro from the register. Continue only if there is data in
+    " the specify register.
+    let l:macro_data = [getreg(g:marvim_register)]
+    if l:macro_data[0] == ""
+        call s:new_line_echom("Macro's register empty, not creating macro.")
+        return
+    endif
+
+    " Save the file and output success massage.
+    call s:save_file(l:macro_name, l:macro_data, s:macro_echom_file_extension)
+    call s:new_line_echom('MacroEchom ' . l:macro_name . ' Stored')
+
+endfunction
+
+function! marvim#macro_with_echom_store_help()
+    echom "问: 在vim中，使用 qq录制宏的时候，我想要这个宏实现的逻辑是帮我在命令行输入一段命令：例如:call hello() ，这是时候，怎么录制呢？ 因为在命令输入模式下，没有办法退回nomal下面，调用q结束录制"
+    echom "ChatGPT:"
+    echom "如果你希望在 Vim 中录制一个宏，只输入 :call hello() 而不按下 Enter，可以通过以下的变通方式来实现你的需求："
+    echom "方法：使用 feedkeys() 来插入命令"
+    echom "你可以利用 Vim 的 feedkeys() 函数在宏中输入命令，而不执行 Enter。这样的方法不会直接进入命令行模式，但会把命令注入到命令行中，并等待手动按 Enter。步骤如下："
+    echom "开始录制宏：qq"
+    echom "输入以下命令："
+    echom "```vim"
+    echom "    :call feedkeys(\":call hello()\\<CR>\",\"n\")"
+    echom "```"
+    echom "按 Enter 执行这条命令。"
+    echom "结束宏录制：q"
+    echom " "
+    echom "问:这个可以了，请介绍一下 feedkeys ，他一般用于什么场景"
+    echom "ChatGPT:"
+    echom "feedkeys() 是 Vim 中的一个非常强大的函数，它的主要作用是将指定的按键序列“注入”到 Vim 的按键处理队列中，就好像你手动按下了这些按键一样。它常用于自动化任务或需要在脚本中模拟按键输入的场景。"
+    echom "feedkeys() 的基本语法："
+    echom "```vim"
+    echom "    :call feedkeys({keys}, {mode})"
+    echom "```"
+    echom "{keys}: 这是一个字符串，表示你希望 Vim \"按下\" 的按键。例如，:call feedkeys(\":call hello()\") 就相当于将 :call hello() 注入到命令行输入中。"
+    echom "{mode}: 这是可选参数，用来控制按键处理的模式。它可以接受的值如下："
+    echom "'n'：立即处理按键，而不是等到执行完脚本或宏之后。"
+    echom "'t'：将按键当作终端输入，而不是 Vim 自身的命令。"
+    echom "'m'：当有映射时，展开映射后的按键。"
+    echom "'x'：将按键作为文本输入，而非命令。"
+    echom "''（默认）：将按键按常规方式处理。"
+    echom "常见的应用场景："
+    echom "1. 在脚本或函数中自动执行特定的按键操作："
+    echom " "
+    echom "例如，当你需要模拟用户按下 Esc 键来退出插入模式，可以使用 feedkeys(\"\<Esc>\")。"
+    echom "延迟执行命令："
+    echom " "
+    echom "2. 在某些情况下，Vim 可能会优先处理脚本中的命令，而不立即响应按键。通过 feedkeys() 的 'n' 模式，可以让 Vim 立即执行注入的按键，而不等到脚本结束。例如："
+    echom "```vim"
+    echom "    :call feedkeys(\":wq\", 'n')"
+    echom "```"
+    echom " "
+    echom "3. 在宏中使用："
+    echom "在宏中，如果你希望在某个特定时间点插入按键操作，但这些操作不能被立即执行，feedkeys() 可以用于将这些操作排入队列，并在适当的时间点执行。"
+    echom " "
+    echom "4.控制映射展开："
+    echom "feedkeys() 可以帮助你控制映射（mappings）的展开行为。比如，如果你希望注入的按键不受已有映射影响，可以在 mode 中添加 'm'。"
+    echom " "
+    echom "5. 在调试或临时测试中使用："
+    echom "如果你想临时输入某些命令或按键，而不想手动操作，feedkeys() 可以帮助你快速模拟这些操作。"
+    echom "总结："
+    echom "feedkeys() 是在 Vim 脚本、自动化操作、宏录制等场景下非常有用的工具。它提供了直接注入按键和控制 Vim 行为的能力，允许开发者创建更灵活、更强大的自动化解决方案。"
+endfunction
+
 " Function: marvim#search {{{
 " @brief: Search for a new macro/template in the repository.
 " @description: Get the name of the macro/template file from the user and try
@@ -371,7 +461,7 @@ function! marvim#search()
                     call s:new_line_echom('Macro ' . l:macro_file . ' Run')
                 elseif (l:run_file_return == 2)
                     call s:new_line_echom('Template ' . l:macro_file . ' Run')
-                elseif (l:run_file_return == 3)
+                elseif (l:run_file_return == 4)
                     call s:new_line_echom('Got file with invalid extension.')
                 endif
             endif

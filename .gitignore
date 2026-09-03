@@ -1682,3 +1682,9 @@
 /VIMPROJ/PROJ/*.bat
 
 /VIMPROJ/.prio.launcher.chiyl
+/VIMPROJ/PROJ/config.ini
+ubuntu_header
+/VIMPROJ/PROJ/launch.exe
+/VIMPROJ/PROJ/run_base_conemu.exe
+/tags
+/vim.tags

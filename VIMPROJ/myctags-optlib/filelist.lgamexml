@@ -1,8 +1,9 @@
 ./battlemgr/battlemgr_config.xml
 ./csserver/csserver_config.xml
 ./dep/itc/cfg/itc.xml
-./funcsvr/build/funcsvr_config.xml
+./funcsvr/funcsvr_config.xml
 ./gameidipsvr/gameidipsvr_config.xml
+./gameidipsvr/LGAME_IDIP.xml
 ./matchmgr/matchmgr_config.xml
 ./matchsvr/match_config.xml
 ./matchworker/match_config.xml

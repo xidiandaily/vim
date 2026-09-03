@@ -16,6 +16,12 @@ source  $VIMPROJ/Tool/InitPython.vim
 source  $VIMPROJ/Tool/InitVim.vim
 "初始化工作目录
 source  $VIMPROJ/Tool/SwitchDir.vim
+"初始化PGame环境
+source  $VIMPROJ/Tool/InitPGameSvr.vim
+"初始化CRGame环境
+source  $VIMPROJ/Tool/InitCRGameSvr.vim
+"初始化UE PROJ环境
+source  $VIMPROJ/Tool/InitUEPROJ.vim
 
 
 function! MaximizeWindow()    
@@ -23,11 +29,6 @@ function! MaximizeWindow()
 endfunction
 
 function! Main(pa)
-        "最大化窗口
-        if (g:iswindows==1)
-            :simalt ~x
-        endif 
-
         let s:path=a:pa
         let s:filename=s:path
         let g:tarmodifyfile_path=s:filename
@@ -52,6 +53,12 @@ function! Main(pa)
             call InitCPP()
         elseif 'lgamesvr' == s:proj_type
             call InitLGameSvr()
+        elseif 'pgamesvr' == s:proj_type
+            call InitPGameSvr()
+        elseif 'crgamesvr' == s:proj_type
+            call InitCRGameSvr()
+        elseif 'ueproj' == s:proj_type
+            call InitUEProj()
         else
             call InitCPP()
         endif
@@ -76,6 +83,10 @@ function! Main(pa)
         if(has("gui_macvim"))    
             :set fu
         endif
+        "最大化窗口
+        if (g:iswindows==1)
+            :simalt ~x
+        endif 
         :silent execute "redraw"
 endfunction
 

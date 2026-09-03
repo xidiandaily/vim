@@ -1,0 +1,1 @@
+:call ctrlp#mybase#add_function_comment_by_tag()

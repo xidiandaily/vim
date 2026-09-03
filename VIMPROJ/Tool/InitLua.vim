@@ -54,6 +54,12 @@ function CSTAG_lua()
             silent! execute "!ctags.exe -f lgamexml.tags -R --options=".s:lgamexml." --languages=+lgamexml --c++-kinds=+p --fields=+iaS --extras=+q ."
             set tags+=lgamelua.tags
             set tags+=lgamexml.tags
+
+            let s:lgametestclientproto=getenv('VIMPROJ').'\\myctags-optlib\\lgametestclientproto.ctags'
+            let s:lgametestclientprotofilelists=getenv('VIMPROJ').'\\myctags-optlib\\filelist.lgametestclientproto'
+            silent! execute "!ctags.exe -L ".s:lgametestclientprotofilelists." -f lgametestclientproto.tags --options=".s:lgametestclientproto." --languages=+lgametestclientproto "
+            set tags+=lgametestclientproto.tags
+
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamelua.tags'
             silent execute ':!'.getenv('VIMPROJ').'/mytag_helper/mytag_helper.exe -r -t '.getcwd().'/lgamexml.tags'
             call ctrlp#mycmd#LGameCtrlPTag()
@@ -74,7 +80,12 @@ function ASTYLE_lua()
 endfunction
 
 function! InitLua()
-    :set tags+=$VIMPROJ/vimlib/lua-5.1.5/tags,
+    set tags+=$VIMPROJ/vimlib/lua-5.1.5/tags
+    if(g:iswindows==1)
+        set tags+=lgamelua.tags
+        set tags+=lgamexml.tags
+        set tags+=lgametestclientproto.tags
+    endif
     let g:chiylown_func_dict["UPFILE"]["lua"]="UPFILE_lua"
     let g:chiylown_func_dict["CSTAG"]["lua"]="CSTAG_lua"
     let g:chiylown_func_dict["ASTYLE"]["lua"]="ASTYLE_lua"

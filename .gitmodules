@@ -64,3 +64,73 @@
 [submodule "vimfiles/bundle/tinytool.chiyl.vim"]
 	path = vimfiles/bundle/tinytool.chiyl.vim
 	url = https://github.com/xidiandaily/tinytool.chiyl.vim.git
+[submodule "vimfiles/bundle/vim-pathogen"]
+	path = vimfiles/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "vimfiles/bundle/supertab"]
+	path = vimfiles/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vimfiles/bundle/vim-lsp"]
+	path = vimfiles/bundle/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule "vimfiles/bundle/vim-lsp-settings"]
+	path = vimfiles/bundle/vim-lsp-settings
+	url = https://github.com/xidiandaily/vim-lsp-settings.git
+[submodule "vimfiles/bundle/asyncomplete.vim"]
+	path = vimfiles/bundle/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule "vimfiles/bundle/asyncomplete-lsp.vim"]
+	path = vimfiles/bundle/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "vimfiles/bundle/luarefvim"]
+	path = vimfiles/bundle/luarefvim
+	url = https://github.com/wsdjeg/luarefvim.git
+[submodule "vimfiles/bundle/vim-snippets"]
+	path = vimfiles/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vimfiles/bundle/OmniCppComplete"]
+	path = vimfiles/bundle/OmniCppComplete
+	url = https://github.com/vim-scripts/OmniCppComplete.git
+[submodule "vimfiles/bundle/ack.vim"]
+	path = vimfiles/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vimfiles/bundle/vim-signature"]
+	path = vimfiles/bundle/vim-signature
+	url = https://github.com/kshenoy/vim-signature.git
+[submodule "Font/Consolas-with-Yahei"]
+	path = Font/Consolas-with-Yahei
+	url = https://github.com/crvdgc/Consolas-with-Yahei.git
+[submodule "vimfiles/bundle/vim-markdown"]
+	path = vimfiles/bundle/vim-markdown
+	url = https://github.com/preservim/vim-markdown.git
+[submodule "vimfiles/bundle/vim-table-mode"]
+	path = vimfiles/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
+[submodule "vimfiles/bundle/vim-easymotion"]
+	path = vimfiles/bundle/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "vimfiles/bundle/vim-easymotion-chs"]
+	path = vimfiles/bundle/vim-easymotion-chs
+	url = https://github.com/ZSaberLv0/vim-easymotion-chs.git
+[submodule "vimfiles/bundle/acme-colors"]
+	path = vimfiles/bundle/acme-colors
+	url = https://github.com/plan9-for-vimspace/acme-colors.git
+[submodule "vimfiles/bundle/vim-colors-pencil"]
+	path = vimfiles/bundle/vim-colors-pencil
+	url = https://github.com/preservim/vim-colors-pencil.git
+[submodule "vimfiles/bundle/vim-pencil"]
+	path = vimfiles/bundle/vim-pencil
+	url = https://github.com/preservim/vim-pencil.git
+[submodule "vimfiles/bundle/img-paste.vim"]
+	path = vimfiles/bundle/img-paste.vim
+	url = git@github.com:xidiandaily/img-paste.vim.git
+	branch = clipboard_files_or_image_20241210
+[submodule "vimfiles/bundle/goyo.vim"]
+	path = vimfiles/bundle/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule "vimfiles/bundle/vim-mark"]
+	path = vimfiles/bundle/vim-mark
+	url = https://github.com/inkarkat/vim-mark.git
+[submodule "vimfiles/bundle/vim-ingo-library"]
+	path = vimfiles/bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library.git

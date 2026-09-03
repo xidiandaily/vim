@@ -7,13 +7,21 @@
 " ========================================================================
 " 其他文件
 let s:plugin_path = escape(expand('<sfile>:p:h'), '\')
+let crp=&runtimepath
+let s:tempvimes=fnamemodify(expand("$VIMPROJ/../vimfiles"),":p:h")
+sil! exe 'set runtimepath+='.s:tempvimes
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 runtime vimrc_example.vim
 runtime macros/matchit.vim
 
-source $VIMPROJ/3rd/init.dein.vim
+"source $VIMPROJ/3rd/init.dein.vim
 
 if(has("win32") || has("win95") || has("win64") || has("win16"))
     set shell=C:\windows\system32\cmd.exe
+	set pythonhome=C:\Python27
+	set pythondll=C:\Windows\System32\python27.dll
+	set pythonthreehome=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python313
+	set pythonthreedll=C:\Users\lawrencechi\AppData\Local\Programs\Python\Python313\python313.dll
     let g:iswindows=1
 else
     let g:iswindows=0
@@ -117,48 +125,6 @@ fu! GetExtVimrcByProjType()
     return ''
 endfu
 
-"暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
-let g:pathogen_disabled=[]
-
-"根据项目类型加载对应的 _vimrc 配置
-if GetExtVimrcByProjType() != ''
-    sil! exe 'source '.GetExtVimrcByProjType()
-endif
-
-"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
-"call add(g:pathogen_disabled,'asyncomplete.vim')
-""call add(g:pathogen_disabled,'lua_omni_v0.17')
-"call add(g:pathogen_disabled,'vim-lsp-settings')
-"call add(g:pathogen_disabled,'vim-lsp')
-
-"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
-"call add(g:pathogen_disabled,'my-gtags')
-"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
-"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
-"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
-"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
-"call add(g:pathogen_disabled,'ctrlp.vim')
-"call add(g:pathogen_disabled,'html5.vim')
-"call add(g:pathogen_disabled,'htmlcomplete.vim')
-"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
-"call add(g:pathogen_disabled,'jedi-vim')
-"call add(g:pathogen_disabled,'jspc.vim')
-"call add(g:pathogen_disabled,'luarefvim')
-"call add(g:pathogen_disabled,'marvim')
-"call add(g:pathogen_disabled,'nerdtree')
-"call add(g:pathogen_disabled,'open-browser.vim')
-"call add(g:pathogen_disabled,'pdv')
-"call add(g:pathogen_disabled,'phpcomplete.vim')
-"call add(g:pathogen_disabled,'previm')
-"call add(g:pathogen_disabled,'python-mode')
-"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
-"call add(g:pathogen_disabled,'ultisnips')
-"call add(g:pathogen_disabled,'vim-easy-align')
-"call add(g:pathogen_disabled,'vimcdoc')
-"call add(g:pathogen_disabled,'vimerl-1.4.1')
-"call add(g:pathogen_disabled,'vmustache')
-"call add(g:pathogen_disabled,'wmgraphviz.vim')
-call add(g:pathogen_disabled,'YouCompleteMe.vim')
 
 "定义取用自定义函数（根据项目类型做出区别）名称接口
 "定义项目配置时候需要使用的（全局）变量
@@ -195,7 +161,7 @@ set ts=4 "将tabstop设为4
 set ff=unix  "将文件的文件格式设置为 fileformat unix
 "字体的设置
 if(g:iswindows==1)
-    set guifont=BitstreamVeraSansMono_NF:h9:cANSI "记住空格用下划线代替哦
+    set guifont=BitstreamVeraSansMono_NF:h11:cANSI "记住空格用下划线代替哦
     "set guifont=BitstreamVeraSansMono_NF:h12:cANSI "记住空格用下划线代替哦
     "set gfw=幼圆:h10:cGB2312
 else 
@@ -218,6 +184,7 @@ au BufNewFile,BufRead *.stp			set ft=stap
 set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
 set encoding=utf-8
 set fenc=utf-8
+set fileformat=unix
 language message zh_CN.utf-8
 "解决菜单乱码 
 source $VIMRUNTIME/delmenu.vim 
@@ -252,6 +219,9 @@ let g:NERDTreeShowLineNumbers=0				" show line number
 "autocmd FileType nerdtree setlocal nolist
 set ambiwidth=double
 
+"加载对markdown的专属配置
+source $VIMPROJ/vimrc/markdown_config.vim
+
 " 关闭gvim在出错的时候的告警声音
 set vb t_vb=
 
@@ -266,22 +236,23 @@ let g:vimball_home=$VIMPROJ."/../vimfiles/"
 let g:C_UseTool_doxygen = 'yes'
 
 "配置pdv(PHP Documentor for VIM)的属性
-let g:pdv_template_dir = $VIM."/vimfiles/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+"let g:pdv_template_dir = $VIM."/vimfiles/bundle/pdv/templates_snip"
+"nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 "map相关
 "更新TAG
 map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
 map <C-F8> :set encoding=cp936 \| language message cp936 \| set fenc=cp936<CR>
-map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])<CR>
+map <F7>  :echo tinytoolchiyl#base#find_modified_files#doit()<CR>
+"map <F7> :echo call(function(g:chiylown_func_dict.getprojtypefunc("UPFILE")),[])<CR>
 "map <F10> :echo call(function(g:chiylown_func_dict.getprojtypefunc("ASTYLE")),[])<CR>
 map <F12> ::echo call(function(g:chiylown_func_dict.getprojtypefunc("CSTAG")),[])<CR>
 map <F5> :call SetProjType() <CR>
 
 "tab
 nmap ts :tab split<CR>
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-Left>  zh
+nnoremap <C-Right>  zl
 
 "echo g:chiylown_func_dict.getprojtypefunc("UPFILE")
 "更新函数列表
@@ -318,8 +289,6 @@ let marvim_store = $VIMPROJ."/../vimfiles/bundle/marvim/examples"
 "let marvim_store_key = 'ms'     " change store key from <F3> to 'ms'
 "let marvim_register = 'c'       " change used register from 'q' to 'c'
 let marvim_prefix = 0           " disable default syntax based prefix
-
-source $VIMPROJ/../vimfiles/bundle/marvim/marvim.vim   " omit if marvim.vim is in the plugin dir
 
 "Pymode
 
@@ -384,7 +353,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'undo', 'line', 'changes', 'bookmarkdir',
 "            \ 'mycmd', 'menu', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
 "            \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource']
-let g:ctrlp_extensions = ['mycmd', 'myp4', 'locur', 'lerror', 'lasync', 'lextdbtype',
+let g:ctrlp_extensions = ['mycmd', 'myp4', 'mygit', 'locur', 'lerror', 'lasync', 'lextdbtype',
             \ 'lcomm', 'ldbtables', 'leventlog', 'lidip', 'lsscmd', 'lcscmd', 'lsvrid', 'lresource',
             \ 'lswitch', 'tag', 'buffertag', 'lofies', 'loname', 'fixtag']
 
@@ -400,7 +369,7 @@ let g:ctrlp_mymenu_ext_groups={
 
 
 "自己定义的一些命令
-let g:ctrlp_mycmd_cmds=[{'name':'nt','cmd':'NERDTree','desc':'NERDTree'}]
+let g:ctrlp_mycmd_cmds=[]
 
 "ctrlp
 let g:ctrlp_working_path_mode = 'a'
@@ -439,8 +408,19 @@ let g:ctrlp_max_files = 0
 
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+    "set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ -p\ .agignore
+    set grepprg=cmd\ /c\ chcp\ 65001\ \&\&\ ag\ --nogroup\ --nocolor\ --vimgrep\ -p\ _agignore
+    let g:ackprg = 'ag --vimgrep -p .agignore'
+    set grepformat=%f:%l:%c:%m
+    "let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore .git --ignore .DS_Store --ignore node_modules --hidden -g ""'
+    "let g:ctrlp_show_hidden =1 
+    let g:ctrlp_user_command = {
+                \ 'ignore':1,
+                \ 'fallback':'ag %s -i --nocolor --nogroup --ignore .git --ignore .svn --ignore .vim-lsp-settings --ignore build --ignore .DS_Store --ignore node_modules --hidden -g ""'
+                \}
+    let g:ctrlp_custom_ignore = {
+                \ 'file': '\v[\/]\.vimtmp.filename.*\.txt$|\.vimtmp.incr$|.myp4.out.filelog|.gitignore|.gitattributes|\.so$',
+                \ }
 endif
 
 "EasyAlign
@@ -478,10 +458,25 @@ nmap gx <Plug>(ctrlp#myp4#P4ReviewLink)
 nmap <C-@><C-P> :cp <CR>
 nmap <C-@><C-N> :cn <CR>
 nmap <C-@><C-L> :cl <CR>
+nmap <C-@><C-G><C-G> :cr <CR>
+nmap <C-@><C-G> :cla <CR>
+nmap <C-@><C-F> :grep <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-Q>o :copen <CR>
+nmap <C-@><C-Q><C-O> :copen <CR>
+nmap <C-@><C-Q>c :cclose <CR>
+nmap <C-@><C-Q>l :chi <CR>
+nmap <C-@><C-Q>n :cnewer <CR>
+nmap <C-@><C-Q>p :colder <CR>
+nmap <C-@><C-Q>g :cnewer 99<CR>
+nmap <C-@><C-Q>gg :colder 99<CR>
+nmap <C-@><C-Q>h :call tinytoolchiyl#base#mygrep#help()<CR>
+nmap <C-@><C-H>  :call tinytoolchiyl#base#mygrep#help()<CR>
 
 "cscope jump
-nmap <C-@><C-@><C-P> :tp <CR>
-nmap <C-@><C-@><C-N> :tn <CR>
+nmap <C-]>/ :tag /<C-R>=expand("<cword>")<CR><CR>
+nmap <C-]>s :ts <C-R>=expand("<cword>")<CR><CR>
+nmap <C-]><C-P> :tp <CR>
+nmap <C-]><C-N> :tn <CR>
 
 "GTasg-CsCope
 "GtagsCscope_Auto_Load 设置以后，会自动检测目录下是否有GTAGS文件，但是检测时候
@@ -494,11 +489,141 @@ let g:GtagsCscope_Absolute_Path   = 1
 let g:GtagsCscope_Keep_Alive      = 1
 
 "vim lsp 相关配置
-let g:lsp_auto_enable = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
-let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
+let g:lsp_auto_enable = 0
+let g:lsp_use_native_client = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
+"let g:asyncomplete_log_file=expand('~/vim-lsp-asynccomplete.log')
+nmap gd :LspDefinition<CR>
+nmap gh :LspHover<CR>
+nmap gr :LspReferences<CR>
+
+"修改 C-N, C-P 的默认搜索范围
+"因为默认值会遍历所有头文件进行补全，耗时太大
+set complete=.,w,b
+
+"暂时屏蔽相关插件,屏蔽插件放到 extvimrc 中进行分项目配置
+let g:pathogen_disabled=[]
+
+"EasyMotion
+"忽略大小写
+let g:EasyMotion_smartcase  = 1
+let g:EasyMotion_do_mapping = 0
+"跨窗口跳转
+nmap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-overwin-f)
+xmap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-bd-f)
+omap <Leader><Leader>f :redraw!<CR><Plug>(easymotion-bd-f)
+nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
+xmap <Leader><Leader>l <Plug>(easymotion-bd-jk)
+omap <Leader><Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+xmap <Leader><Leader>w <Plug>(easymotion-bd-w)
+omap <Leader><Leader>w <Plug>(easymotion-bd-w)
+
+"根据项目类型加载对应的 _vimrc 配置
+if GetExtVimrcByProjType() != ''
+    sil! exe 'source '.GetExtVimrcByProjType()
+endif
+
+"img-paste.vim
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+let g:mdip_imgname = 'image'
+
+""UltiSnips
+"if !exists("g:UltiSnipsSnippetDirectories")
+"    let g:UltiSnipsSnippetDirectories = [ "UltiSnips" ]
+"endif
+"call add(g:UltiSnipsSnippetDirectories, "UltiSnips.my")
+"let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $VIMPROJ."/../vimfiles/bundle/tinytool.chiyl.vim/UltiSnips.my"
+
+
+"call add(g:pathogen_disabled,'asyncomplete-lsp.vim')
+"call add(g:pathogen_disabled,'asyncomplete.vim')
+call add(g:pathogen_disabled,'OmniCppComplete')
+""call add(g:pathogen_disabled,'lua_omni_v0.17')
+"call add(g:pathogen_disabled,'vim-lsp-settings')
+"call add(g:pathogen_disabled,'vim-lsp')
+
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'my-gtags')
+"call add(g:pathogen_disabled,'ctrlp-extensions.vim')
+"call add(g:pathogen_disabled,'ctrlp-mymenu.vim')
+"call add(g:pathogen_disabled,'ctrlp-py-matcher.vim')
+"call add(g:pathogen_disabled,'ctrlp.chiyl.vim')
+"call add(g:pathogen_disabled,'ctrlp.vim')
+"call add(g:pathogen_disabled,'html5.vim')
+"call add(g:pathogen_disabled,'htmlcomplete.vim')
+"call add(g:pathogen_disabled,'javascript-libraries-syntax.vim')
+"call add(g:pathogen_disabled,'jedi-vim')
+"call add(g:pathogen_disabled,'jspc.vim')
+"call add(g:pathogen_disabled,'luarefvim')
+"call add(g:pathogen_disabled,'marvim')
+"call add(g:pathogen_disabled,'nerdtree')
+"call add(g:pathogen_disabled,'open-browser.vim')
+"call add(g:pathogen_disabled,'pdv')
+"call add(g:pathogen_disabled,'phpcomplete.vim')
+"call add(g:pathogen_disabled,'previm')
+"call add(g:pathogen_disabled,'python-mode')
+"call add(g:pathogen_disabled,'tinytool.chiyl.vim')
+"call add(g:pathogen_disabled,'ultisnips')
+"call add(g:pathogen_disabled,'vim-easy-align')
+"call add(g:pathogen_disabled,'vimcdoc')
+"call add(g:pathogen_disabled,'vimerl-1.4.1')
+"call add(g:pathogen_disabled,'vmustache')
+"call add(g:pathogen_disabled,'wmgraphviz.vim')
+call add(g:pathogen_disabled,'YouCompleteMe.vim')
+call add(g:pathogen_disabled,'lua_omni_v0.17')
+"call add(g:pathogen_disabled,'vim-markdown')
+call add(g:pathogen_disabled,'vim-ingo-library')
+call add(g:pathogen_disabled,'vim-mark')
+"let g:node_client_debug = 1
+
+"let $NVIM_SRAN_LOG_FILE = expand('~/sran-nvim.log')
+"let $NVIM_SRAN_LOG_LEVEL = 'debug'
+"let $NVIM_MKDP_LOG_FILE = expand('~/mkdp-log.log')
+"let $NVIM_MKDP_LOG_LEVEL = 'debug'
+"let $VIM_MKDP_RPC_LOG_FILE = expand('~/mkdp-rpc-log.log')
+"let $VIM_MKDP_RPC_LOG_LEVEL = 'debug'
+"let $NODE_CLIENT_LOG_FILE = expand('~/mkdp-clientlog.log')
+""let $COC_NODE_CLIENT_DEBUG =1
+"let $COC_TESTER = 1
+"let $NODE_CLIENT_LOG_LEVEL ='debug'
+"let $DEBUG = '*'
+"call ch_logfile(expand('~/mkdp-cnlog.chiyl.log'))
+
 
 "自动命令
 "其他命令
 "最后
-call pathogen#infect()
+sil! exe "call pathogen#infect('".s:tempvimes."\\bundle\\{}')"
+
+"安装插件
+"打开 Vim，运行以下命令安装 vim-plug 管理的插件：
+"
+"vim
+"复制代码
+":PlugInstall
+"4. 更新插件
+"定期更新 vim-plug 管理的插件，运行：
+"
+"vim
+"复制代码
+":PlugUpdate
+" vim-plug 配置
+call plug#begin(s:tempvimes.'\\plugged')
+
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+" Use release branch (recommended)
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+

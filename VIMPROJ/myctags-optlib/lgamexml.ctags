@@ -11,9 +11,9 @@
 --regex-lgamexml=/<entry[ \t]+.*?type=\"([a-zA-Z_0-9]+?)\".*\>/\1/t/
 --regex-lgamexml=/<entry[ \t]+.*?name=\"([a-zA-Z_0-9]+?)\".*\>/\1/e/
 --regex-lgamexml=/<macro[ \t]+.*?name=\"([a-zA-Z_0-9]+?)\".*\>/\1/m/
---regex-lgamexml=/[^<]+<struct[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/s/{scope=push}
+--regex-lgamexml=/[^<]+<struct[ \t]+[^>]*name=\"([^\"]+)\"[^>]*>.*$/\1/s/{scope=push}
 --regex-lgamexml=/<\/struct>///{scope=pop}{placeholder}
---regex-lgamexml=/[^<]+<macrosgroup[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/M/{scope=push}
+--regex-lgamexml=/[^<]+<macrosgroup[ \t]+[^>]*name=\"([^\"]+)\"[^>]*>.*$/\1/M/{scope=push}
 --regex-lgamexml=/<\/macrosgroup>///{scope=pop}{placeholder}
---regex-lgamexml=/[^<]+<union[ \t]+[^>]*name=\"([^\"]+)\"[ \t]+[^>]*>.*$/\1/u/{scope=push}
+--regex-lgamexml=/[^<]+<union[ \t]+[^>]*name=\"([^\"]+)\"[^>]*>.*$/\1/u/{scope=push}
 --regex-lgamexml=/<\/union>///{scope=pop}{placeholder}
